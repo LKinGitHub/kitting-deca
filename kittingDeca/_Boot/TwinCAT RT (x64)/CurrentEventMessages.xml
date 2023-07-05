@@ -1,0 +1,811 @@
+<?xml version="1.0"?>
+<TcEventSources Version="2">
+	<Source>
+		<GUID>{28111931-0056-0100-0311-000001000000}</GUID>
+		<Name LcId="1033">SIG350-0006AP100</Name>
+		<Event>
+			<Id>1</Id>
+			<Message LcId="1031">Kommende Diagnose: Fehler Startupparameter – Parameter prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Startup parametrization error – check parameter, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>2</Id>
+			<Message LcId="1031">Kommende Diagnose: Falsche VendorID - Diskrepanz beim Vergleich, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Incorrect VendorID – Inspection Level mismatch, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>3</Id>
+			<Message LcId="1031">Kommende Diagnose: Falsche DeviceID – Diskrepanz beim Vergleich, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Incorrect DeviceID – Inspection Level mismatch, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4</Id>
+			<Message LcId="1031">Kommende Diagnose: Kurzschluss an C/Q – Verdrahtung prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Short circuit at C/Q – check wire connection, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>5</Id>
+			<Message LcId="1031">Kommende Diagnose: PHY Übertemperatur – Mastertemperatur und -Last prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: PHY overtemperature – check master temperature and load, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>6</Id>
+			<Message LcId="1031">Kommende Diagnose: Kurzschluss an L+ – Verdrahtung prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Short circuit at L+ – check wire connection, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>7</Id>
+			<Message LcId="1031">Kommende Diagnose: Überstrom an L+ – Stromversorgung prüfen (z.B. L1+), Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Overcurrent at L+ – check power supply (e.g. L1+), port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>8</Id>
+			<Message LcId="1031">Kommende Diagnose: Geräteereignisüberlauf, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Device Event overflow, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>9</Id>
+			<Message LcId="1031">Kommende Diagnose: Backup Inkonsistenz – Speichergröße überschritten (2048 Octets), Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Backup inconsistency – memory out of range (2048 octets), port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>10</Id>
+			<Message LcId="1031">Kommende Diagnose: Backup Inkonsistenz – Identifikationsfehler, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Backup inconsistency – identity fault, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>11</Id>
+			<Message LcId="1031">Kommende Diagnose: Backup Inkonsistenz – Unspezifischer Data Storage Fehler, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Backup inconsistency – Data Storage unspecific error, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>12</Id>
+			<Message LcId="1031">Kommende Diagnose: Backup Inkonsistenz – Fehler beim Upload, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Backup inconsistency – upload fault, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>13</Id>
+			<Message LcId="1031">Kommende Diagnose: Parameter Inkonsistenz – Fehler beim Download, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Parameter inconsistency – download fault, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>14</Id>
+			<Message LcId="1031">Kommende Diagnose: P24 (Class B) fehlende oder Unterspannung, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: P24 (Class B) missing or undervoltage, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>15</Id>
+			<Message LcId="1031">Kommende Diagnose: Kurzschluss an P24 (Class B) – Verdrahtung prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Short circuit at P24 (Class B) – check wire connection (e.g. L2+), port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>16</Id>
+			<Message LcId="1031">Kommende Diagnose: Kurzschluss an I/Q – Verdrahtung prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Short circuit at I/Q – check wiring, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>17</Id>
+			<Message LcId="1031">Kommende Diagnose: Kurzschluss an C/Q (wenn digitaler Ausgang) – Verdrahtung prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Short circuit at C/Q (if digital output) – check wiring, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>18</Id>
+			<Message LcId="1031">Kommende Diagnose: Überspannung an I/Q – Last prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Overcurrent at I/Q – check load, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>19</Id>
+			<Message LcId="1031">Kommende Diagnose: Überspannung an C/Q (wenn digitaler Ausgang) – Last prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Overcurrent at C/Q (if digital output) – check load, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>20</Id>
+			<Message LcId="1031">Kommende Diagnose: Ungültige Zykluszeit, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Invalid cycle time, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>21</Id>
+			<Message LcId="1031">Kommende Diagnose: Revisionsfehler – inkompatible Protokollversion, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Revision fault – incompatible protocol version, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>22</Id>
+			<Message LcId="1031">Kommende Diagnose: ISDU batch fehlgeschlagen – Parameter inkonsistent?, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: ISDU batch failed – parameter inconsistency?, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>23</Id>
+			<Message LcId="1031">Keine Fehlfunktionen, Port S{0}</Message>
+			<Message LcId="1033">No malfunction, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>24</Id>
+			<Message LcId="1031">Kommende Diagnose: Allgemeine Fehlfunktion - Ursache unbekannt, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: General malfunction – unknown error, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>25</Id>
+			<Message LcId="1031">Kommende Diagnose: Temperaturfehler - Überlastung, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Temperature fault – Overload, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>26</Id>
+			<Message LcId="1031">Kommende Diagnose: Übertemperatur - Hitzequelle entfernen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Device temperature overrun – Clear source of heat, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>27</Id>
+			<Message LcId="1031">Kommende Diagnose: Untertemperatur - Gerät isolieren, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Device temperature underrun – Insulate Device, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>28</Id>
+			<Message LcId="1031">Kommende Diagnose: Hardwarefehler - Gerät ersetzen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Device hardware fault – Device exchange, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>29</Id>
+			<Message LcId="1031">Kommende Diagnose: Fehlfunktion Komponente - Reparieren oder ersetzen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Component malfunction – Repair or exchange, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>30</Id>
+			<Message LcId="1031">Kommende Diagnose: Speicherverlust Remanentspeicher - Batterie prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Non volatile memory loss – Check batteries, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>31</Id>
+			<Message LcId="1031">Kommende Diagnose: Batterie schwach - Batterie austauschen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Batteries low – Exchange batteries, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>32</Id>
+			<Message LcId="1031">Kommende Diagnose: Allgemeiner Fehler Spannungsversorgung - Versorgung prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: General power supply fault – Check availability, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>33</Id>
+			<Message LcId="1031">Kommende Diagnose: Sicherung ausgelöst - Sicherung tauschen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Fuse blown/open – Exchange fuse, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>34</Id>
+			<Message LcId="1031">Kommende Diagnose: Primäre Versorgungsspannung zu hoch – Toleranz prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Primary supply voltage overrun – Check tolerance, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>35</Id>
+			<Message LcId="1031">Kommende Diagnose: Primäre Versorgungsspannung zu niedrig – Toleranz prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Primary supply voltage underrun – Check tolerance, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>36</Id>
+			<Message LcId="1031">Kommende Diagnose: Sekundäre Versorgungsspannung fehlerhaft (Port Class B) – Toleranz prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Secondary supply voltage fault (Port Class B) – Check tolerance, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>37</Id>
+			<Message LcId="1031">Kommende Diagnose: Gerätesoftwarefehler – Firmwarerevision prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Device software fault – Check firmware revision, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>38</Id>
+			<Message LcId="1031">Kommende Diagnose: Parameterfehler – Datenblatt und Werte prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Parameter error – Check data sheet and values, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>39</Id>
+			<Message LcId="1031">Kommende Diagnose: Parameter fehlt – Datenblatt prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Parameter missing – Check data sheet, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>40</Id>
+			<Message LcId="1031">Kommende Diagnose: Kabelbruch unterlagertes Gerät – Installation prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Wire break of a subordinate device – Check installation, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>41</Id>
+			<Message LcId="1031">Kommende Diagnose: Kabelbruch unterlagertes Gerät 1 – Installation prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Wire break of subordinate device 1 – Check installation, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>42</Id>
+			<Message LcId="1031">Kommende Diagnose: Kabelbruch unterlagertes Gerät 2 – Installation prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Wire break of subordinate device 2 – Check installation, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>43</Id>
+			<Message LcId="1031">Kommende Diagnose: Kabelbruch unterlagertes Gerät 3 – Installation prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Wire break of subordinate device 3 – Check installation, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>44</Id>
+			<Message LcId="1031">Kommende Diagnose: Kabelbruch unterlagertes Gerät 4 – Installation prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Wire break of subordinate device 4 – Check installation, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>45</Id>
+			<Message LcId="1031">Kommende Diagnose: Kabelbruch unterlagertes Gerät 5 – Installation prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Wire break of subordinate device 5 – Check installation, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>46</Id>
+			<Message LcId="1031">Kommende Diagnose: Kabelbruch unterlagertes Gerät 6 – Installation prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Wire break of subordinate device 6 – Check installation, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>47</Id>
+			<Message LcId="1031">Kommende Diagnose: Kabelbruch unterlagertes Gerät 7 – Installation prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Wire break of subordinate device 7 – Check installation, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>48</Id>
+			<Message LcId="1031">Kommende Diagnose: Kabelbruch unterlagertes Gerät 8 – Installation prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Wire break of subordinate device 8 – Check installation, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>49</Id>
+			<Message LcId="1031">Kommende Diagnose: Kabelbruch unterlagertes Gerät 9 – Installation prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Wire break of subordinate device 9 – Check installation, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>50</Id>
+			<Message LcId="1031">Kommende Diagnose: Kabelbruch unterlagertes Gerät 10 – Installation prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Wire break of subordinate device 10 – Check installation, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>51</Id>
+			<Message LcId="1031">Kommende Diagnose: Kabelbruch unterlagertes Gerät 11 – Installation prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Wire break of subordinate device 11 – Check installation, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>52</Id>
+			<Message LcId="1031">Kommende Diagnose: Kabelbruch unterlagertes Gerät 12 – Installation prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Wire break of subordinate device 12 – Check installation, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>53</Id>
+			<Message LcId="1031">Kommende Diagnose: Kabelbruch unterlagertes Gerät 13 – Installation prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Wire break of subordinate device 13 – Check installation, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>54</Id>
+			<Message LcId="1031">Kommende Diagnose: Kabelbruch unterlagertes Gerät 14 – Installation prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Wire break of subordinate device 14 – Check installation, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>55</Id>
+			<Message LcId="1031">Kommende Diagnose: Kabelbruch unterlagertes Gerät 15 – Installation prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Wire break of subordinate device 15 – Check installation, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>56</Id>
+			<Message LcId="1031">Kommende Diagnose: Kurzschluss – Installation prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Short circuit – Check installation, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>57</Id>
+			<Message LcId="1031">Kommende Diagnose: Erdungsfehler – Installation prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Ground fault – Check installation, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>58</Id>
+			<Message LcId="1031">Kommende Diagnose: Technologiespezifischer Anwendungsfehler – Gerätereset durchführen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Technology specific application fault – Reset Device, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>59</Id>
+			<Message LcId="1031">Kommende Diagnose: Simulation aktiv – Betriebsmodus prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Simulation active – Check operational mode, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>60</Id>
+			<Message LcId="1031">Kommende Diagnose: Bereichsüberschreitung Prozessvariable – Prozessdaten unsicher, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Process variable range overrun – Process Data uncertain, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>61</Id>
+			<Message LcId="1031">Kommende Diagnose: Messbereichsüberlauf – Applikation prüfen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Measurement range exceeded – Check application, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>62</Id>
+			<Message LcId="1031">Kommende Diagnose: Bereichsunterschreitung Prozessvariable – Prozessdaten unsicher, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Process variable range underrun – Process Data uncertain, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>63</Id>
+			<Message LcId="1031">Kommende Diagnose: Wartung benötigt – Reinigung, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Maintenance required – Cleaning, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>64</Id>
+			<Message LcId="1031">Kommende Diagnose: Wartung benötigt – Nachfüllen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Maintenance required – Refill, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>65</Id>
+			<Message LcId="1031">Kommende Diagnose: Wartung benötigt – Verschleißteile austauschen, Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: Maintenance required – Exchange wear and tear parts, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>66</Id>
+			<Message LcId="1031">Data Storage Upload abgeschlossen und neues Datenobjekt vorhanden, Port S{0}</Message>
+			<Message LcId="1033">Data Storage upload completed and new data object available, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>67</Id>
+			<Message LcId="1031">Kommende Diagnose: Unbekannter Fehlercode vom Gerät am Port S{0} EventCode 0x{1,X}</Message>
+			<Message LcId="1033">Incoming diagnosis: Unknown Error identifier received from device on port S{0} EventCode 0x{1,X}</Message>
+			<Detail>
+				<Name LcId="1033">Info</Name>
+				<Text LcId="1031">Siehe Anleitung des gesteckten IO-Link Gerätes oder IO-Link Spezifikation</Text>
+				<Text LcId="1033">See manual of plugged IO-Link Device or IO-Link Specification.</Text>
+			</Detail>
+		</Event>
+		<Event>
+			<Id>68</Id>
+			<Message LcId="1031">Kommende Diagnose: Kein Gerät (keine Kommunikation), Port S{0}</Message>
+			<Message LcId="1033">Incoming diagnosis: No Device (communication), port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>256</Id>
+			<Message LcId="1031">Kommende Diagnose: Gerät hat Unterspannung</Message>
+			<Message LcId="1033">Incoming diagnosis: Main power supply dropped below the voltage limit</Message>
+		</Event>
+		<Event>
+			<Id>257</Id>
+			<Message LcId="1031">Kommende Diagnose: Gerät hat Überspannung</Message>
+			<Message LcId="1033">Incoming diagnosis: Main power supply exceed the voltage limit</Message>
+		</Event>
+		<Event>
+			<Id>258</Id>
+			<Message LcId="1031">Kommende Diagnose: Gerät hat Übertemperatur</Message>
+			<Message LcId="1033">Incoming diagnosis: Device temperature exceed the limit</Message>
+		</Event>
+		<Event>
+			<Id>259</Id>
+			<Message LcId="1031">Kommende Diagnose: Gesamtstrom ist zu hoch</Message>
+			<Message LcId="1033">Incoming diagnosis: Total current on main power rail exceed the limit</Message>
+		</Event>
+		<Event>
+			<Id>260</Id>
+			<Message LcId="1031">Kommende Diagnose: Gesamtstrom UA ist zu hoch</Message>
+			<Message LcId="1033">Incoming diagnosis: Total current on UA power rail exceed the limit</Message>
+		</Event>
+		<Event>
+			<Id>261</Id>
+			<Message LcId="1031">Kommende Diagnose: Gerät hat Untertemperatur</Message>
+			<Message LcId="1033">Incoming diagnosis: Device temperature dropped below the limit</Message>
+		</Event>
+		<Event>
+			<Id>262</Id>
+			<Message LcId="1031">Kommende Diagnose: Gerät hat Unterspannung UA</Message>
+			<Message LcId="1033">Incoming diagnosis: UA power supply dropped below the voltage limit</Message>
+		</Event>
+		<Event>
+			<Id>263</Id>
+			<Message LcId="1031">Kommende Diagnose: Gerät hat Überspannung UA</Message>
+			<Message LcId="1033">Incoming diagnosis: UA power supply exceed the voltage limit</Message>
+		</Event>
+		<Event>
+			<Id>264</Id>
+			<Message LcId="1031">Kommende Diagnose: Force Mode ist aktiviert (von WebClient oder OPCUAClient)</Message>
+			<Message LcId="1033">Incoming diagnosis: Force mode is active (caused by WebClient or OPCUAClient)</Message>
+		</Event>
+		<Event>
+			<Id>265</Id>
+			<Message LcId="1031">Kommende Diagnose: Kurzschluss an Port S{0} Pin 4 detektiert</Message>
+			<Message LcId="1033">Incoming diagnosis: Short Circuit at Port S{0} Pin 4 detected</Message>
+		</Event>
+		<Event>
+			<Id>266</Id>
+			<Message LcId="1031">Kommende Diagnose: Kurzschluss an Port S{0} Pin 2 detektiert</Message>
+			<Message LcId="1033">Incoming diagnosis: Short Circuit at Port S{0} Pin 2 detected</Message>
+		</Event>
+		<Event>
+			<Id>267</Id>
+			<Message LcId="1031">Kommende Diagnose: Kurzschluss an Port S{0} Pin 1 detektiert</Message>
+			<Message LcId="1033">Incoming diagnosis: Short Circuit at Port S{0} Pin 1 detected</Message>
+		</Event>
+		<Event>
+			<Id>4097</Id>
+			<Message LcId="1031">Gehende Diagnose: Fehler Startupparameter, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Startup parametrization error, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4098</Id>
+			<Message LcId="1031">Gehende Diagnose: Falsche VendorID, - Diskrepanz beim Vergleich, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Incorrect VendorID – Inspection Level mismatch, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4099</Id>
+			<Message LcId="1031">Gehende Diagnose: Falsche DeviceID – Diskrepanz beim Vergleich, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Incorrect DeviceID – Inspection Level mismatch, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4100</Id>
+			<Message LcId="1031">Gehende Diagnose: Kurzschluss an C/Q, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Short circuit at C/Q, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4101</Id>
+			<Message LcId="1031">Gehende Diagnose: PHY Übertemperatur, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: PHY overtemperature, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4102</Id>
+			<Message LcId="1031">Gehende Diagnose: Kurzschluss an L+, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Short circuit at L+, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4103</Id>
+			<Message LcId="1031">Gehende Diagnose: Überstrom an L+, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Overcurrent at L+, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4104</Id>
+			<Message LcId="1031">Gehende Diagnose: Geräteereignisüberlauf, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Device Event overflow, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4105</Id>
+			<Message LcId="1031">Gehende Diagnose: Backup Inkonsistenz – Speichergröße überschritten (2048 Octets), Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Backup inconsistency – memory out of range (2048 octets), port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4106</Id>
+			<Message LcId="1031">Gehende Diagnose: Backup Inkonsistenz – Identifikationsfehler, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Backup inconsistency – identity fault, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4107</Id>
+			<Message LcId="1031">Gehende Diagnose: Backup Inkonsistenz – Unspezifischer Data Storage Fehler, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Backup inconsistency – Data Storage unspecific error, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4108</Id>
+			<Message LcId="1031">Kommende Diagnose: Backup Inkonsistenz – Fehler beim Upload, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Backup inconsistency – upload fault, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4109</Id>
+			<Message LcId="1031">Gehende Diagnose: Parameter Inkonsistenz – Fehler beim Download, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Parameter inconsistency – download fault, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4110</Id>
+			<Message LcId="1031">Gehende Diagnose: P24 (Class B) fehlende oder Unterspannung, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: P24 (Class B) missing or undervoltage, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4111</Id>
+			<Message LcId="1031">Gehende Diagnose: Kurzschluss an P24 (Class B), Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Short circuit at P24 (Class B), port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4112</Id>
+			<Message LcId="1031">Gehende Diagnose: Kurzschluss an I/Q, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Short circuit at I/Q, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4113</Id>
+			<Message LcId="1031">Gehende Diagnose: Kurzschluss an C/Q (wenn digitaler Ausgang), Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Short circuit at C/Q (if digital output), port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4114</Id>
+			<Message LcId="1031">Gehende Diagnose: Überspannung an I/Q, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Overcurrent at I/Q, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4115</Id>
+			<Message LcId="1031">Gehende Diagnose: Überspannung an C/Q (wenn digitaler Ausgang), Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Overcurrent at C/Q (if digital output), port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4116</Id>
+			<Message LcId="1031">Gehende Diagnose: Ungültige Zykluszeit, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Invalid cycle time, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4117</Id>
+			<Message LcId="1031">Gehende Diagnose: Revisionsfehler – inkompatible Protokollversion, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Revision fault – incompatible protocol version, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4118</Id>
+			<Message LcId="1031">Gehende Diagnose: ISDU batch fehlgeschlagen – Parameter inkonsistent?, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: ISDU batch failed – parameter inconsistency?, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4120</Id>
+			<Message LcId="1031">Gehende Diagnose: Allgemeine Fehlfunktion- Ursache unbekannt, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: General malfunction – unknown error, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4121</Id>
+			<Message LcId="1031">Gehende Diagnose: Temperaturfehler - Überlastung, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Temperature fault – Overload, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4122</Id>
+			<Message LcId="1031">Gehende Diagnose: Übertemperatur, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Device temperature overrun, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4123</Id>
+			<Message LcId="1031">Gehende Diagnose: Untertemperatur, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Device temperature underrun, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4124</Id>
+			<Message LcId="1031">Gehende Diagnose: Hardwarefehler, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Device hardware fault, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4125</Id>
+			<Message LcId="1031">Gehende Diagnose: Fehlfunktion Komponente, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Component malfunction, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4126</Id>
+			<Message LcId="1031">Gehende Diagnose: Speicherverlust Remanentspeicher, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Non volatile memory loss, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4127</Id>
+			<Message LcId="1031">Gehende Diagnose: Batterie schwach, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Batteries low , port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4128</Id>
+			<Message LcId="1031">Gehende Diagnose: Allgemeiner Fehler Spannungsversorgung, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: General power supply fault, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4129</Id>
+			<Message LcId="1031">Gehende Diagnose: Sicherung ausgelöst, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Fuse blown/open, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4130</Id>
+			<Message LcId="1031">Gehende Diagnose: Primäre Versorgungsspannung zu hoch, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Primary supply voltage overrun, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4131</Id>
+			<Message LcId="1031">Gehende Diagnose: Primäre Versorgungsspannung zu niedrig, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Primary supply voltage underrun, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4132</Id>
+			<Message LcId="1031">Gehende Diagnose: Sekundäre Versorgungsspannung fehlerhaft (Port Class B), Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Secondary supply voltage fault (Port Class B), port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4133</Id>
+			<Message LcId="1031">Gehende Diagnose: Gerätesoftwarefehler, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Device software fault, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4134</Id>
+			<Message LcId="1031">Gehende Diagnose: Parameterfehler, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Parameter error, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4135</Id>
+			<Message LcId="1031">Gehende Diagnose: Parameter fehlt, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Parameter missing, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4136</Id>
+			<Message LcId="1031">Gehende Diagnose: Kabelbruch unterlagertes Gerät, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Wire break of a subordinate device, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4137</Id>
+			<Message LcId="1031">Gehende Diagnose: Kabelbruch unterlagertes Gerät 1, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Wire break of subordinate device 1, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4138</Id>
+			<Message LcId="1031">Gehende Diagnose: Kabelbruch unterlagertes Gerät 2, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Wire break of subordinate device 2, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4139</Id>
+			<Message LcId="1031">Gehende Diagnose: Kabelbruch unterlagertes Gerät 3, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Wire break of subordinate device 3, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4140</Id>
+			<Message LcId="1031">Gehende Diagnose: Kabelbruch unterlagertes Gerät 4, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Wire break of subordinate device 4, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4141</Id>
+			<Message LcId="1031">Gehende Diagnose: Kabelbruch unterlagertes Gerät 5, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Wire break of subordinate device 5, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4142</Id>
+			<Message LcId="1031">Gehende Diagnose: Kabelbruch unterlagertes Gerät 6, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Wire break of subordinate device 6, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4143</Id>
+			<Message LcId="1031">Gehende Diagnose: Kabelbruch unterlagertes Gerät 7, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Wire break of subordinate device 7, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4144</Id>
+			<Message LcId="1031">Gehende Diagnose: Kabelbruch unterlagertes Gerät 8, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Wire break of subordinate device 8, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4145</Id>
+			<Message LcId="1031">Gehende Diagnose: Kabelbruch unterlagertes Gerät 9, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Wire break of subordinate device 9, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4146</Id>
+			<Message LcId="1031">Gehende Diagnose: Kabelbruch unterlagertes Gerät 10, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Wire break of subordinate device 10, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4147</Id>
+			<Message LcId="1031">Gehende Diagnose: Kabelbruch unterlagertes Gerät 11, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Wire break of subordinate device 11, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4148</Id>
+			<Message LcId="1031">Gehende Diagnose: Kabelbruch unterlagertes Gerät 12, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Wire break of subordinate device 12, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4149</Id>
+			<Message LcId="1031">Gehende Diagnose: Kabelbruch unterlagertes Gerät 13, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Wire break of subordinate device 13, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4150</Id>
+			<Message LcId="1031">Gehende Diagnose: Kabelbruch unterlagertes Gerät 14, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Wire break of subordinate device 14, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4151</Id>
+			<Message LcId="1031">Gehende Diagnose: Kabelbruch unterlagertes Gerät 15, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Wire break of subordinate device 15, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4152</Id>
+			<Message LcId="1031">Gehende Diagnose: Kurzschluss, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Short circuit, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4153</Id>
+			<Message LcId="1031">Gehende Diagnose: Erdungsfehler, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Ground fault, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4154</Id>
+			<Message LcId="1031">Gehende Diagnose: Technologiespezifischer Anwendungsfehler, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Technology specific application fault, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4155</Id>
+			<Message LcId="1031">Gehende Diagnose: Simulation aktiv, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Simulation active, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4156</Id>
+			<Message LcId="1031">Gehende Diagnose: Bereichsüberschreitung Prozessvariable, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Process variable range overrun, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4157</Id>
+			<Message LcId="1031">Gehende Diagnose: Messbereichsüberlauf, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Measurement range exceeded , port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4158</Id>
+			<Message LcId="1031">Gehende Diagnose: Bereichsunterschreitung Prozessvariable, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Process variable range underrun, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4159</Id>
+			<Message LcId="1031">Gehende Diagnose: Wartung benötigt, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Maintenance required, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4160</Id>
+			<Message LcId="1031">Gehende Diagnose: Wartung benötigt, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Maintenance required, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4161</Id>
+			<Message LcId="1031">Gehende Diagnose: Wartung benötigt, Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Maintenance required, port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4163</Id>
+			<Message LcId="1031">Gehende Diagnose: Unbekannter Fehlercode vom Gerät am Port S{0} EventCode 0x{1,X}</Message>
+			<Message LcId="1033">Outgoing diagnosis: Unknown Error identifier received from device on port S{0} EventCode 0x{1,X}</Message>
+			<Detail>
+				<Name LcId="1033">Info</Name>
+				<Text LcId="1031">Siehe Anleitung des gesteckten IO-Link Gerätes oder IO-Link Spezifikation</Text>
+				<Text LcId="1033">See manual of plugged IO-Link Device or IO-Link Specification.</Text>
+			</Detail>
+		</Event>
+		<Event>
+			<Id>4164</Id>
+			<Message LcId="1031">Gehende Diagnose: Kein Gerät (keine Kommunikation), Port S{0}</Message>
+			<Message LcId="1033">Outgoing diagnosis: No Device (communication), port S{0}</Message>
+		</Event>
+		<Event>
+			<Id>4352</Id>
+			<Message LcId="1031">Gehende Diagnose: Gerät hat Unterspannung</Message>
+			<Message LcId="1033">Outgoing diagnosis: Main power supply dropped below the voltage limit</Message>
+		</Event>
+		<Event>
+			<Id>4353</Id>
+			<Message LcId="1031">Gehende Diagnose: Gerät hat Überspannung</Message>
+			<Message LcId="1033">Outgoing diagnosis: Main power supply exceed the voltage limit</Message>
+		</Event>
+		<Event>
+			<Id>4354</Id>
+			<Message LcId="1031">Gehende Diagnose: Gerät hat Übertemperatur</Message>
+			<Message LcId="1033">Outgoing diagnosis: Device temperature exceed the limit</Message>
+		</Event>
+		<Event>
+			<Id>4355</Id>
+			<Message LcId="1031">Gehende Diagnose: Gesamtstrom ist zu hoch</Message>
+			<Message LcId="1033">Outgoing diagnosis: Total current on main power rail exceed the limit</Message>
+		</Event>
+		<Event>
+			<Id>4356</Id>
+			<Message LcId="1031">Gehende Diagnose: Gesamtstrom UA ist zu hoch</Message>
+			<Message LcId="1033">Outgoing diagnosis: Total current on UA power rail exceed the limit</Message>
+		</Event>
+		<Event>
+			<Id>4357</Id>
+			<Message LcId="1031">Gehende Diagnose: Gerät hat Untertemperatur</Message>
+			<Message LcId="1033">Outgoing diagnosis: Device temperature dropped below the limit</Message>
+		</Event>
+		<Event>
+			<Id>4358</Id>
+			<Message LcId="1031">Gehende Diagnose: Gerät hat Unterspannung UA</Message>
+			<Message LcId="1033">Outgoing diagnosis: UA power supply dropped below the voltage limit</Message>
+		</Event>
+		<Event>
+			<Id>4359</Id>
+			<Message LcId="1031">Gehende Diagnose: Gerät hat Überspannung UA</Message>
+			<Message LcId="1033">Outgoing diagnosis: UA power supply exceed the voltage limit</Message>
+		</Event>
+		<Event>
+			<Id>4360</Id>
+			<Message LcId="1031">Gehende Diagnose: Force Mode ist aktiviert (von WebClient oder OPCUAClient)</Message>
+			<Message LcId="1033">Outgoing diagnosis: Force mode is active (caused by WebClient or OPCUAClient)</Message>
+		</Event>
+		<Event>
+			<Id>4361</Id>
+			<Message LcId="1031">Gehende Diagnose: Kurzschluss an Port S{0} Pin 4 detektiert</Message>
+			<Message LcId="1033">Outgoing diagnosis: Short Circuit at Port S{0} Pin 4 detected</Message>
+		</Event>
+		<Event>
+			<Id>4362</Id>
+			<Message LcId="1031">Gehende Diagnose: Kurzschluss an Port S{0} Pin 2 detektiert</Message>
+			<Message LcId="1033">Outgoing diagnosis: Short Circuit at Port S{0} Pin 2 detected</Message>
+		</Event>
+		<Event>
+			<Id>4363</Id>
+			<Message LcId="1031">Gehende Diagnose: Kurzschluss an Port S{0} Pin 1 detektiert</Message>
+			<Message LcId="1033">Outgoing diagnosis: Short Circuit at Port S{0} Pin 1 detected</Message>
+		</Event>
+		<Property>
+			<Name>DisplayTxtId</Name>
+			<Value>true</Value>
+		</Property>
+	</Source>
+</TcEventSources>

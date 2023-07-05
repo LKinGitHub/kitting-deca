@@ -60,14 +60,14 @@ GVL.fbAxisCtrl_Lift[3](stAxisCtrl:=GVL.stAxisCtrl_Lift[3],IN_OUT:=GVL.rem[1].lif
 
 
 GVL.fb_rmIOmapping[0](iRm:= 0);
-GVL.fb_rmIOmapping[0](iRm:= 1);
-GVL.fb_rmIOmapping[0](iRm:= 2);
-GVL.fb_rmIOmapping[0](iRm:= 3);
-GVL.fb_rmIOmapping[0](iRm:= 4);
-//GVL.fb_pmAxisMapping[0](iPM :=0,iBuffer:=0,sNetID:='192.168.11.159.7.2',nSlaveAddr:=2002);
-//GVL.fb_pmAxisMapping[1](iPM :=0,iBuffer:=1,sNetID:='192.168.11.159.7.2',nSlaveAddr:=2003);
-//GVL.fb_pmAxisMapping[2](iPM :=1,iBuffer:=0,sNetID:='192.168.11.159.7.2',nSlaveAddr:=2006);
-//GVL.fb_pmAxisMapping[3](iPM :=1,iBuffer:=1,sNetID:='192.168.11.159.7.2',nSlaveAddr:=2007);
+GVL.fb_rmIOmapping[1](iRm:= 1);
+GVL.fb_rmIOmapping[2](iRm:= 2);
+GVL.fb_rmIOmapping[3](iRm:= 3);
+GVL.fb_rmIOmapping[4](iRm:= 4);
+GVL.fb_pmAxisMapping[0](iPM :=0,iBuffer:=0,sNetID:='192.168.11.159.7.2',nSlaveAddr:=2002);
+GVL.fb_pmAxisMapping[1](iPM :=0,iBuffer:=1,sNetID:='192.168.11.159.7.2',nSlaveAddr:=2003);
+GVL.fb_pmAxisMapping[2](iPM :=1,iBuffer:=0,sNetID:='192.168.11.159.7.2',nSlaveAddr:=2006);
+GVL.fb_pmAxisMapping[3](iPM :=1,iBuffer:=1,sNetID:='192.168.11.159.7.2',nSlaveAddr:=2007);
 GVL.fbAxisCtrl_Buffer[0](stAxisCtrl:=GVL.stAxisCtrl_Buffer[0],IN_OUT:=GVL.pm[0].buffer[0].st_mcAxis);
 GVL.fbAxisCtrl_Buffer[1](stAxisCtrl:=GVL.stAxisCtrl_Buffer[1],IN_OUT:=GVL.pm[0].buffer[1].st_mcAxis);
 GVL.fbAxisCtrl_Buffer[2](stAxisCtrl:=GVL.stAxisCtrl_Buffer[2],IN_OUT:=GVL.pm[1].buffer[0].st_mcAxis);

@@ -36,7 +36,7 @@ VAR_GLOBAL
 	stAxisCtrl_Buffer	: ARRAY[0..19]OF ST_axisCtrl;
 	fbAxisCtrl_Buffer	: ARRAY [0..19] OF FB_axisCtrl;
 	
-
+	
 	
 END_VAR]]></Declaration>
   </GVL>
