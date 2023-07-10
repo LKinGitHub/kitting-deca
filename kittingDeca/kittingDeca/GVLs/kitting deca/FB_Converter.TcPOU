@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_Converter" Id="{50ef3601-3b6d-4adf-a463-ac58da8032a1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Converter
+VAR_INPUT
+	iMotor	: WORD;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR_IN_OUT
+	stConverter	: ST_Converter;
+	
+END_VAR
+VAR
+	iCase	: INT;
+	i : INT;
+	CoeWrt		:	FB_EcCoESdoWrite;
+	nSubIndex	: BYTE;
+	nIndex		: WORD;
+	iSdoWrite	: INT; 
+	offset: WORD;
+	ton_delay	: TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[CoeWrt(
+	sNetId:= stConverter.sNetID, 
+	nSlaveAddr:= stConverter.nSlaveAddr, 
+	nSubIndex:= nSubIndex, 
+	nIndex:= nIndex, 
+	pSrcBuf:= ADR(iSdoWrite), 
+	cbBufLen:= SIZEOF(iSdoWrite), 
+	bExecute:= , 
+	tTimeout:= , 
+	bBusy=> , 
+	bError=> , 
+	nErrId=> );
+]]></ST>
+    </Implementation>
+    <Method Name="M_SetPara" Id="{91f69ed3-b089-494c-b183-d69bb531850e}">
+      <Declaration><![CDATA[METHOD M_SetPara : BOOL
+VAR_INPUT
+	iMotor	: WORD;
+	
+END_VAR
+VAR_IN_OUT
+	
+END_VAR
+VAR
+
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[offset	:= 16#800*iMotor;
+(*
+addr		valve					comment	
+整流单元								
+FD-10		3					通信协议选择(面板设定)	
+逆变单元								
+F0:02		2					control mode	
+F0:03		2					command source selection	
+F0:04		9					main frequency source X selection	
+F0:0B		6000					maximum frequency	
+F0:0D		6000					frequency upper limit	
+F0:12		5					acceleration time 1	
+F0:13		5					deceleration time 1	
+F0:14		1					acceleration/deceleration time unit	
+F1:01		1					motor type	
+F1:02		1					rated motor power	
+F1:03		220					rated motor voltage	
+F1:04		6					rated motor current	
+F1:05		6000					rated motor frequency	
+F1:06		1600					rated motor speed	
+*)
+//control mode
+stConverter.nIndex[0]	:= 16#20F0+offset;
+stConverter.nSubIndex[0]	:= 16#02;
+stConverter.iSdoWrite[0]	:= 2;
+//command source selection
+stConverter.nIndex[1]	:= 16#20F0+offset;
+stConverter.nSubIndex[1]	:= 16#03;
+stConverter.iSdoWrite[1]	:= 2;
+//main frequency source X selection
+stConverter.nIndex[2]	:= 16#20F0+offset;
+stConverter.nSubIndex[2]	:= 16#04;
+stConverter.iSdoWrite[2]	:= 9;
+//maximum frequency
+stConverter.nIndex[3]	:= 16#20F0+offset;
+stConverter.nSubIndex[3]	:= 16#0B;
+stConverter.iSdoWrite[3]	:= 6000;
+//frequency upper limit
+stConverter.nIndex[4]	:= 16#20F0+offset;
+stConverter.nSubIndex[4]	:= 16#0D;
+stConverter.iSdoWrite[4]	:= 6000;
+//acceleration time 1
+stConverter.nIndex[5]	:= 16#20F0+offset;
+stConverter.nSubIndex[5]	:= 16#12;
+stConverter.iSdoWrite[5]	:= 5;
+//deceleration time 1
+stConverter.nIndex[6]	:= 16#20F0+offset;
+stConverter.nSubIndex[6]	:= 16#13;
+stConverter.iSdoWrite[6]	:= 5;
+//acceleration/deceleration time unit	
+stConverter.nIndex[7]	:= 16#20F0+offset;
+stConverter.nSubIndex[7]	:= 16#14;
+stConverter.iSdoWrite[7]	:= 1;
+//motor type	
+stConverter.nIndex[8]	:= 16#20F1+offset;
+stConverter.nSubIndex[8]	:= 16#01;
+stConverter.iSdoWrite[8]	:= 1;
+//rated motor power	
+stConverter.nIndex[9]	:= 16#20F1+offset;
+stConverter.nSubIndex[9]	:= 16#02;
+stConverter.iSdoWrite[9]	:= 1;
+//rated motor voltage		
+stConverter.nIndex[10]	:= 16#20F1+offset;
+stConverter.nSubIndex[10]	:= 16#03;
+stConverter.iSdoWrite[10]	:= 220;
+//rated motor current		
+stConverter.nIndex[11]	:= 16#20F1+offset;
+stConverter.nSubIndex[11]	:= 16#04;
+stConverter.iSdoWrite[11]	:= 6;
+//rated motor frequency		
+stConverter.nIndex[12]	:= 16#20F1+offset;
+stConverter.nSubIndex[12]	:= 16#05;
+stConverter.iSdoWrite[12]	:= 6000;
+//rated motor speed		
+stConverter.nIndex[13]	:= 16#20F1+offset;
+stConverter.nSubIndex[13]	:= 16#06;
+stConverter.iSdoWrite[13]	:= 1600;
+CoeWrt.bExecute	:= FALSE;
+(*FOR i:=0 TO 13 DO
+	nIndex	:= stConverter.nIndex[i];
+	nSubIndex	:= stConverter.nSubIndex[i];
+	iSdoWrite	:= stConverter.iSdoWrite[i];
+	CoeWrt.bExecute	:= TRUE;
+END_FOR*)
+ton_delay(PT:= T#0.1S);
+CASE iCase OF
+	0:
+		CoeWrt.bExecute	:= FALSE;
+		ton_delay.IN	:= FALSE;
+		i:=0;
+		M_SetPara	:= FALSE;
+		iCase	:= 1;
+	1: 
+		nIndex	:= stConverter.nIndex[i];
+		nSubIndex	:= stConverter.nSubIndex[i];
+		iSdoWrite	:= stConverter.iSdoWrite[i];
+		i	:= i+1;
+		CoeWrt.bExecute	:= TRUE;
+		iCase	:= 2;
+	2:
+	
+		ton_delay.IN	:= TRUE;
+		IF ton_delay.Q THEN
+			iCase	:= 3;
+		END_IF		
+	3:
+		ton_delay.IN	:= FALSE;
+		CoeWrt.bExecute	:= FALSE;
+		IF i >13 THEN
+			iCase	:= 0;
+			M_SetPara	:= TRUE;
+			//RETURN ;
+		ELSE
+			iCase	:= 1;
+		END_IF
+	
+		
+END_CASE
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_Converter">
+      <LineId Id="20" Count="10" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="41" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Converter.M_SetPara">
+      <LineId Id="161" Count="76" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="100" Count="0" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="105" Count="2" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="137" Count="0" />
+      <LineId Id="118" Count="0" />
+      <LineId Id="140" Count="1" />
+      <LineId Id="246" Count="0" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="252" Count="0" />
+      <LineId Id="159" Count="0" />
+      <LineId Id="138" Count="0" />
+      <LineId Id="143" Count="2" />
+      <LineId Id="148" Count="0" />
+      <LineId Id="142" Count="0" />
+      <LineId Id="245" Count="0" />
+      <LineId Id="151" Count="0" />
+      <LineId Id="248" Count="3" />
+      <LineId Id="240" Count="0" />
+      <LineId Id="149" Count="0" />
+      <LineId Id="247" Count="0" />
+      <LineId Id="150" Count="0" />
+      <LineId Id="153" Count="0" />
+      <LineId Id="157" Count="0" />
+      <LineId Id="238" Count="0" />
+      <LineId Id="241" Count="0" />
+      <LineId Id="155" Count="0" />
+      <LineId Id="152" Count="0" />
+      <LineId Id="154" Count="0" />
+      <LineId Id="147" Count="0" />
+      <LineId Id="146" Count="0" />
+      <LineId Id="139" Count="0" />
+      <LineId Id="112" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

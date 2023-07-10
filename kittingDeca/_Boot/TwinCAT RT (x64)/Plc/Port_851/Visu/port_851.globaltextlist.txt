@@ -132,6 +132,7 @@ Id;Default
 462;Replenishment
 199;Reset
 481;Retract
+1651;retract
 934;retracted
 1226;RFID[0]
 453;RFID[1]

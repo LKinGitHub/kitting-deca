@@ -49,6 +49,9 @@
     <Compile Include="GVLs\kitting deca\DigitalInputStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GVLs\kitting deca\FB_Converter.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GVLs\kitting deca\FB_DigitalInput.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -104,6 +107,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GVLs\kitting deca\Sensor.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\kitting deca\ST_Converter.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GVLs\kitting deca\Valve.TcDUT">
@@ -304,11 +310,6 @@
       <DefaultResolution>VisuDialogs, * (System)</DefaultResolution>
       <Namespace>VisuDialogs</Namespace>
     </PlaceholderReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="AdsTest.tmc">
-      <SubType>Content</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <LibraryReference Include="VisuSymbols,3.5.10.0,System">
