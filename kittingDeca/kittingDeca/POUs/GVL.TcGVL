@@ -36,8 +36,9 @@ VAR_GLOBAL
 	stAxisCtrl_Buffer	: ARRAY[0..19]OF ST_axisCtrl;
 	fbAxisCtrl_Buffer	: ARRAY [0..19] OF FB_axisCtrl;
 	
-	fbconverter	: FB_Converter;
-	stConverter	: ST_Converter;
+	fbconverter	:ARRAY [0..13] OF  FB_Converter;
+	stConverter	:ARRAY [0..13] OF  ST_Converter;
+	fbconverterMoter	:ARRAY [0..57] OF  FB_Converter;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

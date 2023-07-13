@@ -1,0 +1,517 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.35" ClassName="CDevEtherCATDef" SubType="111">
+	<ImageDatas>
+		<ImageData Id="1000">424dd8020000000000003600000028000000100000000e0000000100180000000000a2020000120b0000120b00000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffebebebe9e9e9e1e1e1e8e8e8bfbfbff2f2f2e3e3e3e4e4e4bfbfbfdbdbdbdcdcdce6e6e6bfbfbfe2e2e2d0d0d0d4d4d4b7b7b7b0b0b08d8d8d909090777777b9b9b9747474a8a8a85a5a5a8282827878788b8b8b7e7e7ebdbdbd767676a0a0a0b2b2b2aaaaaa6b6b6b909090969696a2a2a2848484b0b0b07777778a8a8b5c5c5c838383a0a0a0cfcfcf8686869b9b9badadaddbdbdbddddddeeeeeed7d7d7e2e1e1efefefe9e9ead3d3d4f2f2f3d5d6d6eaeaebd6d6d6eaeaebdfdfdfe3e3e3e5e5e5f9f9f9fffffffffffffffffffffffffdfffffffffffffffffcfcfafefffffefffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdfefffafdfdc7ae8bab7d44a37134a77135aa804dd9c8a7fffffffafffffdfefefffffffffffffefffffffffffffffffdfdfcc6a579854600854500915912a06925a87230a7783ccdb699eae9e3fcfefee2ddcbd8c4acfafffffdfffffdfefef5f4f0a17033ac783daa804aba946ad9c1a4ddd4becfb8a1bea482ded2bffefef9f2f1eeb38e62c9af8df8faf7fffffffffffff5f2e9d1bea5a78355e6d6bdf0f3ecf2f5efefebe7c4a277ba976af8f7f3fdfff9f6f6f3d4be9eb7986dc3a881c5a780c1996dccaf8cd0bb9ac1ad8bf8f7eefdfffffefffffffffcd0ba9acfbc9ffdfefce4dccecab698e0d2b8ceb99dd2b896c1a684b387569153088f4700eedec7fffffffffffefcffffffffffeceae0fefefbf5f7f4c7ad87a17236905a16965d13894b008941008c4d00b78b5bfafaf4fffffffffffffefdfffefefdfffffffefefafcfdfafdfffff2f0e4c5aa86ae8551ab7d44b28d5cd1c2a9fdfdfefdfffefffffffffffffffcfdfdfefffafeff0000</ImageData>
+		<ImageData Id="1001">424df8010000000000003600000028000000100000000e0000000100100000000000c2010000202e0000202e00000000000000000000590a590a5a0a3906390239065906390239023906590639063902590a59065a0e1902190219027a167a125a12f8017a169a163906390639065a12390219023906390239021802db325d53db32be73db2e1c433c4b9a1e3c4b5d53f80139023906390239021802fb327d5bfb36ff7fbb26390a7d5fdb329e63db36f8013902390639023902f801db2edf777d5b9e675d5339027d5f9e679e675a16190239023906390239021802db2ebe6ffc3abe6ffb369a221c439e677d5ffb3618023902390639023902390219065a1a1806590e1902f801f8015a0e190239023902390239063902390219029b225912bb26fc36db2edb2a7a1a19027a169a1e39023902390639023902f8011c3f9e671c3fbb267a163c473c479a1e5d4f5d5319023902390639023902f801bb26df73bb2eb701d801bb2a3c4bbb265d4f3c4f19023902390639023902f801db2ede6fbb2eb701d801bb2a3d4bbb265d4f5d4f19023902390639023902f801db2e7e5f3d4b1c3fdb32db2e1c43bb263d4b3d4b1902390239063902390239025a0e59069a16db2ebb265a0a590659065a0a590a39023902390639023902390219021902190218021802190219023902190219023902390239060000</ImageData>
+	</ImageDatas>
+	<Device Id="7" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28679" AmsNetId="172.18.236.248.8.1" RemoteName="LB Test (EtherCAT)" InfoImageId="15">
+		<Name>__FILENAME__</Name>
+		<AddressInfo>
+			<Pnp>
+				<DeviceDesc>Ethernet 2 (TwinCAT-Intel PCI Ethernet Adapter (Gig</DeviceDesc>
+				<DeviceName>\DEVICE\{931CBA35-6A33-4E21-A09B-7411C52BD7E1}</DeviceName>
+				<DeviceData>0001056ec21b</DeviceData>
+			</Pnp>
+		</AddressInfo>
+		<Image Id="14" AddrType="9" ImageType="3">
+			<Name>Image</Name>
+		</Image>
+		<Box Id="19" BoxType="9099" BoxFlags="#x00000020">
+			<Name>Box 19 (GL20-RTU-ECT)</Name>
+			<ImageId>1000</ImageId>
+			<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x00ffffff">
+				<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
+				<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
+				<SyncMan>001804006400010003000000000000000000001864010000</SyncMan>
+				<SyncMan>001c06006000010004000000000000000000001c60010000</SyncMan>
+				<Fmmu>0000000000000000001800020100000001000000000000000000000000000000</Fmmu>
+				<Fmmu>0000000000000000001c00010100000002000000000000000000000000000000</Fmmu>
+				<DcMode>53796e6368726f6e0000000000000000534d2d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000</DcMode>
+				<DcMode>4443000000000000000000000000000044432d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000030100000000000000000000000000000000000000000000000000000000000000</DcMode>
+				<MBoxUserCmdData>02000300090000001d00000003001000000000000000000000000000000000002000f8010100000000436f6e66696775726174696f6e204572726f722072756e20737461746500</MBoxUserCmdData>
+				<MBoxUserCmdData>02000300090000002000000003001000000000000000000000000000000000002000f8020100000000536c61766520616e64206d6f64756c65204572726f722072756e20737461746500</MBoxUserCmdData>
+				<MBoxUserCmdData>02000300090000001f00000003001000000000000000000000000000000000002000f8030100000001457468657243415420436f6d6d75636174696f6e206572726f72206d6f646500</MBoxUserCmdData>
+				<MBoxUserCmdData>02000300090000001900000003001000000000000000000000000000000000002000f8040100000000455343206572726f7220636f756e7465722062656861766f7200</MBoxUserCmdData>
+				<MBoxUserCmdData>020003000a000000190000000300100012000903000000000000000000000000200080010200000004004449206d6f64756c65204348302066696c7465722074696d6500</MBoxUserCmdData>
+				<MBoxUserCmdData>020003000a000000190000000300100012000903000000000000000000000000200080020200000004004449206d6f64756c65204348312066696c7465722074696d6500</MBoxUserCmdData>
+				<MBoxUserCmdData>02000300090000002f00000003001000140009030000000000000000000000002040800101000000ff444f206d6f64756c65204348302073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
+				<MBoxUserCmdData>02000300090000002f00000003001000140009030000000000000000000000002040800201000000ff444f206d6f64756c65204348312073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
+				<MBoxUserCmdData>0200030009000000300000000300100014000903000000000000000000000000204180010100000000444f206d6f64756c65204348302073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
+				<MBoxUserCmdData>0200030009000000300000000300100014000903000000000000000000000000204180020100000000444f206d6f64756c65204348312073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
+				<Pdo Name="Device TPDO Mapping parameter" Index="#x1ba0" Flags="#x0010" SyncMan="3">
+					<Entry Name="LBus status" Index="#xf100" Sub="#x01">
+						<Type>UINT</Type>
+					</Entry>
+					<Entry Name="Fault ID" Index="#xf100" Sub="#x02">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="ErrorSolt TPDO Mapping parameter" Index="#x1ba1" Flags="#x0010">
+					<Entry Name="ErrorSolt1" Index="#xf110" Sub="#x01">
+						<Type>UDINT</Type>
+					</Entry>
+					<Entry Name="ErrorSolt2" Index="#xf110" Sub="#x02">
+						<Type>UDINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Device RPDO Mapping parameter" Index="#x17a0" InOut="1" Flags="#x0010" SyncMan="2">
+					<Entry Name="Device control" Index="#xfb00">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="1600END input-8bit maping" Index="#x1a01" Flags="#x0290" SyncMan="3">
+					<ExcludePdo>#x9a00</ExcludePdo>
+					<ExcludePdo>#x9a02</ExcludePdo>
+					<Entry Name="Digital input CH0-8bit" Index="#x6001" Sub="#x01" Flags="#x00001000">
+						<Type>USINT</Type>
+					</Entry>
+					<Entry Name="Digital input CH1-8bit" Index="#x6001" Sub="#x02" Flags="#x00001000">
+						<Type>USINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="1600END input-16bit maping" Index="#x1a02" Flags="#x0290">
+					<ExcludePdo>#x9a00</ExcludePdo>
+					<ExcludePdo>#x9a01</ExcludePdo>
+					<Entry Name="Digital input 16bit" Index="#x6002" Sub="#x01" Flags="#x00001000">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="1600END input-bit maping" Index="#x1a00" Flags="#x0290">
+					<ExcludePdo>#x9a01</ExcludePdo>
+					<ExcludePdo>#x9a02</ExcludePdo>
+					<Entry Name="Digital input CH1-bit0" Index="#x6000" Sub="#x01" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital input CH1-bit1" Index="#x6000" Sub="#x02" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital input CH1-bit2" Index="#x6000" Sub="#x03" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital input CH1-bit3" Index="#x6000" Sub="#x04" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital input CH1-bit4" Index="#x6000" Sub="#x05" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital input CH1-bit5" Index="#x6000" Sub="#x06" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital input CH1-bit6" Index="#x6000" Sub="#x07" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital input CH1-bit7" Index="#x6000" Sub="#x08" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital input CH2-bit0" Index="#x6000" Sub="#x09" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital input CH2-bit1" Index="#x6000" Sub="#x0a" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital input CH2-bit2" Index="#x6000" Sub="#x0b" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital input CH2-bit3" Index="#x6000" Sub="#x0c" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital input CH2-bit4" Index="#x6000" Sub="#x0d" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital input CH2-bit5" Index="#x6000" Sub="#x0e" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital input CH2-bit6" Index="#x6000" Sub="#x0f" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital input CH2-bit7" Index="#x6000" Sub="#x10" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="0016ETP Output-8bit maping" Index="#x1609" InOut="1" Flags="#x0290" SyncMan="2">
+					<ExcludePdo>#x9608</ExcludePdo>
+					<ExcludePdo>#x960a</ExcludePdo>
+					<Entry Name="Digital output CH0-8bit" Index="#x7041" Sub="#x01" Flags="#x00001000">
+						<Type>USINT</Type>
+					</Entry>
+					<Entry Name="Digital output CH1-8bit" Index="#x7041" Sub="#x02" Flags="#x00001000">
+						<Type>USINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="0016ETP Output-16bit maping" Index="#x160a" InOut="1" Flags="#x0290">
+					<ExcludePdo>#x9608</ExcludePdo>
+					<ExcludePdo>#x9609</ExcludePdo>
+					<Entry Name="Digital output 16bit" Index="#x7042" Sub="#x01" Flags="#x00001000">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="0016ETP Output-bit maping" Index="#x1608" InOut="1" Flags="#x0290">
+					<ExcludePdo>#x9609</ExcludePdo>
+					<ExcludePdo>#x960a</ExcludePdo>
+					<Entry Name="Digital output CH1-bit0" Index="#x7040" Sub="#x01" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital output CH1-bit1" Index="#x7040" Sub="#x02" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital output CH1-bit2" Index="#x7040" Sub="#x03" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital output CH1-bit3" Index="#x7040" Sub="#x04" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital output CH1-bit4" Index="#x7040" Sub="#x05" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital output CH1-bit5" Index="#x7040" Sub="#x06" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital output CH1-bit6" Index="#x7040" Sub="#x07" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital output CH1-bit7" Index="#x7040" Sub="#x08" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital output CH2-bit0" Index="#x7040" Sub="#x09" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital output CH2-bit1" Index="#x7040" Sub="#x0a" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital output CH2-bit2" Index="#x7040" Sub="#x0b" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital output CH2-bit3" Index="#x7040" Sub="#x0c" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital output CH2-bit4" Index="#x7040" Sub="#x0d" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital output CH2-bit5" Index="#x7040" Sub="#x0e" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital output CH2-bit6" Index="#x7040" Sub="#x0f" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+					<Entry Name="Digital output CH2-bit7" Index="#x7040" Sub="#x10" Flags="#x00001000">
+						<Type>BIT</Type>
+					</Entry>
+				</Pdo>
+				<CoeProfile ProfileNo="5001"/>
+				<Slot Name="Terminals">
+					<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
+					<ModuleClass Class="GL20-Digital In" Name="Digital Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Digital Out" Name="Digital Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog In" Name="Analog Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+					<Module Id="#x03090012" Type="GL20-1600END" Class="GL20-Digital In">
+						<Name>Module 1 (GL20-1600END)</Name>
+						<ImageId>65</ImageId>
+						<ModuleData>000010001010f410000004000000000000000000000000000000000000000000</ModuleData>
+						<PdoIndex>6657</PdoIndex>
+						<PdoIndex>6658</PdoIndex>
+						<PdoIndex>6656</PdoIndex>
+					</Module>
+				</Slot>
+				<Slot Name="Terminals">
+					<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
+					<ModuleClass Class="GL20-Digital In" Name="Digital Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Digital Out" Name="Digital Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog In" Name="Analog Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+					<Module Id="#x03090014" Type="GL20-0016ETP" Class="Digital Out">
+						<Name>Module 2 (GL20-0016ETP)</Name>
+						<ImageId>65</ImageId>
+						<ModuleData>000010002410f410000004000000000000000000000000000000000000000000</ModuleData>
+						<PdoIndex>5641</PdoIndex>
+						<PdoIndex>5642</PdoIndex>
+						<PdoIndex>5640</PdoIndex>
+					</Module>
+				</Slot>
+				<Slot Name="Terminals">
+					<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
+					<ModuleClass Class="GL20-Digital In" Name="Digital Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Digital Out" Name="Digital Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog In" Name="Analog Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+				</Slot>
+				<Slot Name="Terminals">
+					<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
+					<ModuleClass Class="GL20-Digital In" Name="Digital Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Digital Out" Name="Digital Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog In" Name="Analog Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+				</Slot>
+				<Slot Name="Terminals">
+					<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
+					<ModuleClass Class="GL20-Digital In" Name="Digital Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Digital Out" Name="Digital Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog In" Name="Analog Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+				</Slot>
+				<Slot Name="Terminals">
+					<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
+					<ModuleClass Class="GL20-Digital In" Name="Digital Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Digital Out" Name="Digital Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog In" Name="Analog Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+				</Slot>
+				<Slot Name="Terminals">
+					<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
+					<ModuleClass Class="GL20-Digital In" Name="Digital Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Digital Out" Name="Digital Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog In" Name="Analog Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+				</Slot>
+				<Slot Name="Terminals">
+					<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
+					<ModuleClass Class="GL20-Digital In" Name="Digital Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Digital Out" Name="Digital Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog In" Name="Analog Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+				</Slot>
+				<Slot Name="Terminals">
+					<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
+					<ModuleClass Class="GL20-Digital In" Name="Digital Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Digital Out" Name="Digital Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog In" Name="Analog Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+				</Slot>
+				<Slot Name="Terminals">
+					<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
+					<ModuleClass Class="GL20-Digital In" Name="Digital Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Digital Out" Name="Digital Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog In" Name="Analog Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+				</Slot>
+				<Slot Name="Terminals">
+					<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
+					<ModuleClass Class="GL20-Digital In" Name="Digital Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Digital Out" Name="Digital Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog In" Name="Analog Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+				</Slot>
+				<Slot Name="Terminals">
+					<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
+					<ModuleClass Class="GL20-Digital In" Name="Digital Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Digital Out" Name="Digital Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog In" Name="Analog Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+				</Slot>
+				<Slot Name="Terminals">
+					<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
+					<ModuleClass Class="GL20-Digital In" Name="Digital Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Digital Out" Name="Digital Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog In" Name="Analog Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+				</Slot>
+				<Slot Name="Terminals">
+					<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
+					<ModuleClass Class="GL20-Digital In" Name="Digital Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Digital Out" Name="Digital Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog In" Name="Analog Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+				</Slot>
+				<Slot Name="Terminals">
+					<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
+					<ModuleClass Class="GL20-Digital In" Name="Digital Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Digital Out" Name="Digital Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog In" Name="Analog Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+				</Slot>
+				<Slot Name="Terminals">
+					<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
+					<ModuleClass Class="GL20-Digital In" Name="Digital Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Digital Out" Name="Digital Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog In" Name="Analog Input Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
+					<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+				</Slot>
+			</EtherCAT>
+		</Box>
+		<Box Id="20" BoxType="9099" BoxFlags="#x00000020">
+			<Name>Drive 20 (InoMD800)</Name>
+			<ImageId>1001</ImageId>
+			<EtherCAT SlaveType="2" PdiType="#x0c08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="13" VendorId="#x00100000" ProductCode="#x000b0118" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="MD800_ECAT_9Axis_V0.19" Desc="InoMD800" PortABoxInfo="#x01000013">
+				<SyncMan>0010800026000100010000002200c0008000001026010000</SyncMan>
+				<SyncMan>0014800022000100020000002200c0008000001422010000</SyncMan>
+				<SyncMan>00180c006400010003000000000000000400001864010000</SyncMan>
+				<SyncMan>001c0c002000010004000000000000000400001c20010000</SyncMan>
+				<Fmmu>0000000000000000001800020100000001000000000000000000000000000000</Fmmu>
+				<Fmmu>0000000000000000001c00010100000002000000000000000000000000000000</Fmmu>
+				<DcData>0003000000000000000000000000000001000000000000000000000000000000</DcData>
+				<DcMode>4443000000000000000000000000000044432d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000030100000000000000000000000000000000000000000000000000000000000000</DcMode>
+				<DcMode>534d0000000000000000000000000000534d2d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000</DcMode>
+				<Pdo Name="Axis#1 Iutputs" Index="#x1a01" Flags="#x0000" SyncMan="3">
+					<Entry Name="Axis1 AC drive running status word 2" Index="#x2070" Sub="#x45">
+						<Type>UINT</Type>
+					</Entry>
+					<Entry Name="Axis1 Running frequency" Index="#x2070" Sub="#x01">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Axis#2 Iutputs" Index="#x1a02" Flags="#x0000" SyncMan="3">
+					<Entry Name="Axis2 AC drive running status word 2" Index="#x2870" Sub="#x45">
+						<Type>UINT</Type>
+					</Entry>
+					<Entry Name="Axis2 Running frequency" Index="#x2870" Sub="#x01">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Axis#3 Iutputs" Index="#x1a03" Flags="#x0000" SyncMan="3">
+					<Entry Name="Axis3 AC drive running status word 2" Index="#x3070" Sub="#x45">
+						<Type>UINT</Type>
+					</Entry>
+					<Entry Name="Axis3 Running frequency" Index="#x3070" Sub="#x01">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Axis#4 Iutputs" Index="#x1a04" Flags="#x0000">
+					<Entry Name="Axis4 AC drive running status word 2" Index="#x3870" Sub="#x45">
+						<Type>UINT</Type>
+					</Entry>
+					<Entry Name="Axis4 Running frequency" Index="#x3870" Sub="#x01">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Axis#5 Iutputs" Index="#x1a05" Flags="#x0000">
+					<Entry Name="Axis5 AC drive running status word 2" Index="#x4070" Sub="#x45">
+						<Type>UINT</Type>
+					</Entry>
+					<Entry Name="Axis5 Running frequency" Index="#x4070" Sub="#x01">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Axis#6 Iutputs" Index="#x1a06" Flags="#x0000">
+					<Entry Name="Axis6 AC drive running status word 2" Index="#x4870" Sub="#x45">
+						<Type>UINT</Type>
+					</Entry>
+					<Entry Name="Axis6 Running frequency" Index="#x4870" Sub="#x01">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Axis#7 Iutputs" Index="#x1a07" Flags="#x0000">
+					<Entry Name="Axis7 AC drive running status word 2" Index="#x5070" Sub="#x45">
+						<Type>UINT</Type>
+					</Entry>
+					<Entry Name="Axis7 Running frequency" Index="#x5070" Sub="#x01">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Axis#8 Iutputs" Index="#x1a08" Flags="#x0000">
+					<Entry Name="Axis8 AC drive running status word 2" Index="#x5870" Sub="#x45">
+						<Type>UINT</Type>
+					</Entry>
+					<Entry Name="Axis8 Running frequency" Index="#x5870" Sub="#x01">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Axis#16 Iutputs" Index="#x1a10" Flags="#x0000">
+					<Entry Name="Axis 16 Bus voltage" Index="#x2170" Sub="#x01">
+						<Type>UINT</Type>
+					</Entry>
+					<Entry Name="Axis16 Heatsink temperature" Index="#x2170" Sub="#x02">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Axis#1 Outputs" Index="#x1601" InOut="1" Flags="#x0000" SyncMan="2">
+					<Entry Name="Axis1 Communication control command" Index="#x2073" Sub="#x12">
+						<Type>UINT</Type>
+					</Entry>
+					<Entry Name="Axis1 Frequency set through communication" Index="#x2073" Sub="#x11">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Axis#2 Outputs" Index="#x1602" InOut="1" Flags="#x0000" SyncMan="2">
+					<Entry Name="Axis2 Communication control command" Index="#x2873" Sub="#x12">
+						<Type>UINT</Type>
+					</Entry>
+					<Entry Name="Axis2 Frequency set through communication" Index="#x2873" Sub="#x11">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Axis#3 Outputs" Index="#x1603" InOut="1" Flags="#x0000" SyncMan="2">
+					<Entry Name="Axis3 Communication control command" Index="#x3073" Sub="#x12">
+						<Type>UINT</Type>
+					</Entry>
+					<Entry Name="Axis3 Frequency set through communication" Index="#x3073" Sub="#x11">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Axis#4 Outputs" Index="#x1604" InOut="1" Flags="#x0000">
+					<Entry Name="Axis4 Communication control command" Index="#x3873" Sub="#x12">
+						<Type>UINT</Type>
+					</Entry>
+					<Entry Name="Axis4 Frequency set through communication" Index="#x3873" Sub="#x11">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Axis#5 Outputs" Index="#x1605" InOut="1" Flags="#x0000">
+					<Entry Name="Axis5 Communication control command" Index="#x4073" Sub="#x12">
+						<Type>UINT</Type>
+					</Entry>
+					<Entry Name="Axis5 Frequency set through communication" Index="#x4073" Sub="#x11">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Axis#6 Outputs" Index="#x1606" InOut="1" Flags="#x0000">
+					<Entry Name="Axis6 Communication control command" Index="#x4873" Sub="#x12">
+						<Type>UINT</Type>
+					</Entry>
+					<Entry Name="Axis6 Frequency set through communication" Index="#x4873" Sub="#x11">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Axis#7 Outputs" Index="#x1607" InOut="1" Flags="#x0000">
+					<Entry Name="Axis7 Communication control command" Index="#x5073" Sub="#x12">
+						<Type>UINT</Type>
+					</Entry>
+					<Entry Name="Axis7 Frequency set through communication" Index="#x5073" Sub="#x11">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<Pdo Name="Axis#8 Outputs" Index="#x1608" InOut="1" Flags="#x0000">
+					<Entry Name="Axis8 Communication control command" Index="#x5873" Sub="#x12">
+						<Type>UINT</Type>
+					</Entry>
+					<Entry Name="Axis8 Frequency set through communication" Index="#x5873" Sub="#x11">
+						<Type>UINT</Type>
+					</Entry>
+				</Pdo>
+				<CoeProfile ProfileNo="402"/>
+			</EtherCAT>
+		</Box>
+		<EtherCAT DcSyncMode="3"/>
+	</Device>
+</TcSmItem>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<TcLicenseInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2011/11/TcLicenseInfo">
+	<LicenseInfo>
+		<SystemId>{33471489-A18E-C550-6815-2BF722D0B412}</SystemId>
+		<IssueTime>2023-07-10T10:24:00</IssueTime>
+		<ExpireTime>2023-07-18T00:00:00</ExpireTime>
+		<LicenseKey>4df23e5ac13826f893e1896d2fd7e302b27747acba9724d4b96a7e575b9c7cb39f398960b22de5e95686aefbc120117dbc5bc013661dea1d795f0df6dc23a868fb74561596f52212174746edc5949fd0eff1f84ba81688677039a8c70e6684b050d388de25708318fd0d6e9536f3362020092a2eb2c5ab04005b618c475930f4350a836d8ca86d92dce33cb5f250036df9f3db9ceb6aff1b29772f179a9114eb6a4543a4f278f6eff6f0415b2d9ad325b557400fd026e094c4fa0ccdaa09ead4868121cd141adf03ab9e1940fc3d483ebae53f8ebfafd1a8e1ff6a120377daa72b0d0678b9d1bc8290b2af234ab4947238e59a27ec85e9a27db4a332573cf88d</LicenseKey>
+		<License>
+			<LicenseId>{103F30C9-DF25-439E-837B-9DF80CB9356C}</LicenseId>
+			<Name>TC3 EtherCAT Redundancy 250</Name>
+			<OrderNo>TF6220</OrderNo>
+			<Instances>250</Instances>
+		</License>
+		<License>
+			<LicenseId>{D4390DEA-A64D-494D-9E09-275326DBB0CB}</LicenseId>
+			<Name>TC3 PLC-HMI (RT)</Name>
+		</License>
+		<License>
+			<LicenseId>{FDE02854-39A7-440C-9EAE-C234A16A3CED}</LicenseId>
+			<Name>TC3 PLC-HMI</Name>
+			<OrderNo>TF1800</OrderNo>
+		</License>
+	</LicenseInfo>
+</TcLicenseInfo>

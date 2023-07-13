@@ -19,7 +19,8 @@ VAR
 	string1 :STRING;
 
 	iInit	: int;
-	
+	i	: INT;
+	j	: INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -31,22 +32,120 @@ M_rfid();
 runEveryCycle();
 M_ReM();
 
-GVL.fbconverter(stConverter:= GVL.stConverter);
+//GVL.fbconverter[0](stConverter:= GVL.stConverter[0]);
 //GVL.fbconverter.M_SetPara(iMotor:=0,iCmd:=1);
 
-GVL.stConverter.sNetID	:= '192.168.11.159.11.1';
-GVL.stConverter.nSlaveAddr	:= 1003;
-CASE iInit OF
+//GVL.stConverter[0].sNetID	:= '192.168.11.159.5.1';
+//GVL.stConverter[0].nSlaveAddr	:= 1058;
+(*CASE iInit OF
 	0:
 
 	;
 	1:
-	IF GVL.fbconverter.M_SetPara(iMotor:=0) THEN
+	IF GVL.fbconverter[0].M_SetPara(iMotor:=0) THEN
 		iInit	:= 0;
 		;
 	END_IF
 
-END_CASE]]></ST>
+END_CASE*)
+
+GVL.stConverter[0].sNetID	:= '192.168.11.159.5.1';
+GVL.stConverter[0].nSlaveAddr	:= 1003;//lb[0]
+GVL.stConverter[1].sNetID	:= '192.168.11.159.5.1';
+GVL.stConverter[1].nSlaveAddr	:= 1005;//lc[0]
+GVL.stConverter[2].sNetID	:= '192.168.11.159.5.1';
+GVL.stConverter[2].nSlaveAddr	:= 1008;//pm[0]_inner
+GVL.stConverter[3].sNetID	:= '192.168.11.159.5.1';
+GVL.stConverter[3].nSlaveAddr	:= 1009;//pm[0]_outer
+GVL.stConverter[4].sNetID	:= '192.168.11.159.5.1';
+GVL.stConverter[4].nSlaveAddr	:= 1018;//pm[1]_inner
+GVL.stConverter[5].sNetID	:= '192.168.11.159.5.1';
+GVL.stConverter[5].nSlaveAddr	:= 1019;//pm[1]_outer
+GVL.stConverter[6].sNetID	:= '192.168.11.159.5.1';
+GVL.stConverter[6].nSlaveAddr	:= 1026;//pm[2]_inner
+GVL.stConverter[7].sNetID	:= '192.168.11.159.5.1';
+GVL.stConverter[7].nSlaveAddr	:= 1027;//pm[2]_outer
+GVL.stConverter[8].sNetID	:= '192.168.11.159.5.1';
+GVL.stConverter[8].nSlaveAddr	:= 1034;//pm[3]_inner
+GVL.stConverter[9].sNetID	:= '192.168.11.159.5.1';
+GVL.stConverter[9].nSlaveAddr	:= 1035;//pm[3]_outer
+GVL.stConverter[10].sNetID	:= '192.168.11.159.5.1';
+GVL.stConverter[10].nSlaveAddr	:= 1044;//pm[4]_inner
+GVL.stConverter[11].sNetID	:= '192.168.11.159.5.1';
+GVL.stConverter[11].nSlaveAddr	:= 1045;//pm[4]_outer
+GVL.stConverter[12].sNetID	:= '192.168.11.159.5.1';
+GVL.stConverter[12].nSlaveAddr	:= 1052;//lb[1]
+GVL.stConverter[13].sNetID	:= '192.168.11.159.5.1';
+GVL.stConverter[13].nSlaveAddr	:= 1054;//lc[1]
+
+
+GVL.pm[0].inConv.belt[0].fbconverter(stConverter:= GVL.stConverter[2],iMotor:=0);
+GVL.pm[0].inConv.belt[1].fbconverter(stConverter:= GVL.stConverter[2],iMotor:=1);
+GVL.pm[0].inConv.belt[2].fbconverter(stConverter:= GVL.stConverter[2],iMotor:=2);
+GVL.pm[1].inConv.belt[0].fbconverter(stConverter:= GVL.stConverter[2],iMotor:=3);
+GVL.pm[1].inConv.belt[1].fbconverter(stConverter:= GVL.stConverter[2],iMotor:=4);
+GVL.pm[1].inConv.belt[2].fbconverter(stConverter:= GVL.stConverter[2],iMotor:=5);
+GVL.pm[0].outConv.belt[0].fbconverter(stConverter:= GVL.stConverter[3],iMotor:=0);
+GVL.pm[0].outConv.belt[1].fbconverter(stConverter:= GVL.stConverter[3],iMotor:=1);
+GVL.pm[1].outConv.belt[0].fbconverter(stConverter:= GVL.stConverter[3],iMotor:=2);
+GVL.pm[1].outConv.belt[1].fbconverter(stConverter:= GVL.stConverter[3],iMotor:=3);
+GVL.pm[2].inConv.belt[0].fbconverter(stConverter:= GVL.stConverter[4],iMotor:=0);
+GVL.pm[2].inConv.belt[1].fbconverter(stConverter:= GVL.stConverter[4],iMotor:=1);
+GVL.pm[2].inConv.belt[2].fbconverter(stConverter:= GVL.stConverter[4],iMotor:=2);
+GVL.pm[3].inConv.belt[0].fbconverter(stConverter:= GVL.stConverter[4],iMotor:=3);
+GVL.pm[3].inConv.belt[1].fbconverter(stConverter:= GVL.stConverter[4],iMotor:=4);
+GVL.pm[3].inConv.belt[2].fbconverter(stConverter:= GVL.stConverter[4],iMotor:=5);
+GVL.pm[2].outConv.belt[0].fbconverter(stConverter:= GVL.stConverter[5],iMotor:=0);
+GVL.pm[2].outConv.belt[1].fbconverter(stConverter:= GVL.stConverter[5],iMotor:=1);
+GVL.pm[3].outConv.belt[0].fbconverter(stConverter:= GVL.stConverter[5],iMotor:=2);
+GVL.pm[3].outConv.belt[1].fbconverter(stConverter:= GVL.stConverter[5],iMotor:=3);
+GVL.pm[4].inConv.belt[0].fbconverter(stConverter:= GVL.stConverter[6],iMotor:=0);
+GVL.pm[4].inConv.belt[1].fbconverter(stConverter:= GVL.stConverter[6],iMotor:=1);
+GVL.pm[4].inConv.belt[2].fbconverter(stConverter:= GVL.stConverter[6],iMotor:=2);
+GVL.pm[5].inConv.belt[0].fbconverter(stConverter:= GVL.stConverter[6],iMotor:=3);
+GVL.pm[5].inConv.belt[1].fbconverter(stConverter:= GVL.stConverter[6],iMotor:=4);
+GVL.pm[5].inConv.belt[2].fbconverter(stConverter:= GVL.stConverter[6],iMotor:=5);
+GVL.pm[4].outConv.belt[0].fbconverter(stConverter:= GVL.stConverter[7],iMotor:=0);
+GVL.pm[4].outConv.belt[1].fbconverter(stConverter:= GVL.stConverter[7],iMotor:=1);
+GVL.pm[5].outConv.belt[0].fbconverter(stConverter:= GVL.stConverter[7],iMotor:=2);
+GVL.pm[5].outConv.belt[1].fbconverter(stConverter:= GVL.stConverter[7],iMotor:=3);
+GVL.pm[6].inConv.belt[0].fbconverter(stConverter:= GVL.stConverter[8],iMotor:=0);
+GVL.pm[6].inConv.belt[1].fbconverter(stConverter:= GVL.stConverter[8],iMotor:=1);
+GVL.pm[6].inConv.belt[2].fbconverter(stConverter:= GVL.stConverter[8],iMotor:=2);
+GVL.pm[7].inConv.belt[0].fbconverter(stConverter:= GVL.stConverter[8],iMotor:=3);
+GVL.pm[7].inConv.belt[1].fbconverter(stConverter:= GVL.stConverter[8],iMotor:=4);
+GVL.pm[7].inConv.belt[2].fbconverter(stConverter:= GVL.stConverter[8],iMotor:=5);
+GVL.pm[6].outConv.belt[0].fbconverter(stConverter:= GVL.stConverter[9],iMotor:=0);
+GVL.pm[6].outConv.belt[1].fbconverter(stConverter:= GVL.stConverter[9],iMotor:=1);
+GVL.pm[7].outConv.belt[0].fbconverter(stConverter:= GVL.stConverter[9],iMotor:=2);
+GVL.pm[7].outConv.belt[1].fbconverter(stConverter:= GVL.stConverter[9],iMotor:=3);
+GVL.pm[8].inConv.belt[0].fbconverter(stConverter:= GVL.stConverter[10],iMotor:=0);
+GVL.pm[8].inConv.belt[1].fbconverter(stConverter:= GVL.stConverter[10],iMotor:=1);
+GVL.pm[8].inConv.belt[2].fbconverter(stConverter:= GVL.stConverter[10],iMotor:=2);
+GVL.pm[9].inConv.belt[0].fbconverter(stConverter:= GVL.stConverter[10],iMotor:=3);
+GVL.pm[9].inConv.belt[1].fbconverter(stConverter:= GVL.stConverter[10],iMotor:=4);
+GVL.pm[9].inConv.belt[2].fbconverter(stConverter:= GVL.stConverter[10],iMotor:=5);
+GVL.pm[8].outConv.belt[0].fbconverter(stConverter:= GVL.stConverter[11],iMotor:=0);
+GVL.pm[8].outConv.belt[1].fbconverter(stConverter:= GVL.stConverter[11],iMotor:=1);
+GVL.pm[9].outConv.belt[0].fbconverter(stConverter:= GVL.stConverter[11],iMotor:=2);
+GVL.pm[9].outConv.belt[1].fbconverter(stConverter:= GVL.stConverter[11],iMotor:=3);
+
+
+CASE iInit OF
+	0:
+	;
+	1:
+		GVL.pm[0].inConv.belt[1].fbconverter.bSetParaEx	:= TRUE;
+		IF GVL.pm[0].inConv.belt[1].fbconverter.xDone THEN
+			GVL.pm[0].inConv.belt[1].fbconverter.bSetParaEx	:= FALSE;
+			iInit	:=0;
+		END_IF
+	
+
+END_CASE
+
+
+]]></ST>
     </Implementation>
     <Method Name="M_mappingIO" Id="{e0caa2a2-200b-484a-9495-8cf8901a2628}">
       <Declaration><![CDATA[METHOD M_mappingIO 
@@ -54,7 +153,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GVL.fb_remIOmapping[0](iReM:= 0);
+        <ST><![CDATA[////////////////////////////////////////////////////ReM////////////////////////////////////////////////////////////////
+GVL.fb_remIOmapping[0](iReM:= 0);
 GVL.fb_remIOmapping[1](iReM:= 1);
 GVL.fb_remIOmapping[2](iReM:= 2);
 GVL.fb_remIOmapping[3](iReM:= 3);
@@ -64,30 +164,98 @@ GVL.fb_remIOmapping[6](iReM:= 6);
 GVL.fb_remIOmapping[7](iReM:= 7);
 GVL.fb_remIOmapping[8](iReM:= 8);
 GVL.fb_remIOmapping[9](iReM:= 9);
-GVL.fb_remAxisMapping[0](iReM :=0,iLift:=0,sNetID:='192.168.11.159.7.2',nSlaveAddr:=1002);
-GVL.fb_remAxisMapping[1](iReM :=0,iLift:=1,sNetID:='192.168.11.159.7.2',nSlaveAddr:=1003);
-GVL.fb_remAxisMapping[2](iReM :=1,iLift:=0,sNetID:='192.168.11.159.7.2',nSlaveAddr:=1006);
-GVL.fb_remAxisMapping[3](iReM :=1,iLift:=1,sNetID:='192.168.11.159.7.2',nSlaveAddr:=1007);
-
+GVL.fb_remAxisMapping[0](iReM :=0,iLift:=0,sNetID:='192.168.11.159.4.1',nSlaveAddr:=1005);
+GVL.fb_remAxisMapping[1](iReM :=0,iLift:=1,sNetID:='192.168.11.159.4.1',nSlaveAddr:=1006);
+GVL.fb_remAxisMapping[2](iReM :=1,iLift:=0,sNetID:='192.168.11.159.4.1',nSlaveAddr:=1009);
+GVL.fb_remAxisMapping[3](iReM :=1,iLift:=1,sNetID:='192.168.11.159.4.1',nSlaveAddr:=1010);
+GVL.fb_remAxisMapping[4](iReM :=2,iLift:=0,sNetID:='192.168.11.159.4.1',nSlaveAddr:=1013);
+GVL.fb_remAxisMapping[5](iReM :=2,iLift:=1,sNetID:='192.168.11.159.4.1',nSlaveAddr:=1014);
+GVL.fb_remAxisMapping[6](iReM :=3,iLift:=0,sNetID:='192.168.11.159.4.1',nSlaveAddr:=1017);
+GVL.fb_remAxisMapping[7](iReM :=3,iLift:=1,sNetID:='192.168.11.159.4.1',nSlaveAddr:=1018);
+GVL.fb_remAxisMapping[8](iReM :=4,iLift:=0,sNetID:='192.168.11.159.4.1',nSlaveAddr:=1021);
+GVL.fb_remAxisMapping[9](iReM :=4,iLift:=1,sNetID:='192.168.11.159.4.1',nSlaveAddr:=1022);
+GVL.fb_remAxisMapping[10](iReM :=5,iLift:=0,sNetID:='192.168.11.159.4.1',nSlaveAddr:=1025);
+GVL.fb_remAxisMapping[11](iReM :=5,iLift:=1,sNetID:='192.168.11.159.4.1',nSlaveAddr:=1026);
+GVL.fb_remAxisMapping[12](iReM :=6,iLift:=0,sNetID:='192.168.11.159.4.1',nSlaveAddr:=1029);
+GVL.fb_remAxisMapping[13](iReM :=6,iLift:=1,sNetID:='192.168.11.159.4.1',nSlaveAddr:=1030);
+GVL.fb_remAxisMapping[14](iReM :=7,iLift:=0,sNetID:='192.168.11.159.4.1',nSlaveAddr:=1033);
+GVL.fb_remAxisMapping[15](iReM :=7,iLift:=1,sNetID:='192.168.11.159.4.1',nSlaveAddr:=1034);
+GVL.fb_remAxisMapping[16](iReM :=8,iLift:=0,sNetID:='192.168.11.159.4.1',nSlaveAddr:=1037);
+GVL.fb_remAxisMapping[17](iReM :=8,iLift:=1,sNetID:='192.168.11.159.4.1',nSlaveAddr:=1038);
+GVL.fb_remAxisMapping[18](iReM :=9,iLift:=0,sNetID:='192.168.11.159.4.1',nSlaveAddr:=1041);
+GVL.fb_remAxisMapping[19](iReM :=9,iLift:=1,sNetID:='192.168.11.159.4.1',nSlaveAddr:=1042);
 GVL.fbAxisCtrl_Lift[0](stAxisCtrl:=GVL.stAxisCtrl_Lift[0],IN_OUT:=GVL.rem[0].lift[0].st_mcAxis);
 GVL.fbAxisCtrl_Lift[1](stAxisCtrl:=GVL.stAxisCtrl_Lift[1],IN_OUT:=GVL.rem[0].lift[1].st_mcAxis);
 GVL.fbAxisCtrl_Lift[2](stAxisCtrl:=GVL.stAxisCtrl_Lift[2],IN_OUT:=GVL.rem[1].lift[0].st_mcAxis);
 GVL.fbAxisCtrl_Lift[3](stAxisCtrl:=GVL.stAxisCtrl_Lift[3],IN_OUT:=GVL.rem[1].lift[1].st_mcAxis);
+GVL.fbAxisCtrl_Lift[4](stAxisCtrl:=GVL.stAxisCtrl_Lift[4],IN_OUT:=GVL.rem[2].lift[0].st_mcAxis);
+GVL.fbAxisCtrl_Lift[5](stAxisCtrl:=GVL.stAxisCtrl_Lift[5],IN_OUT:=GVL.rem[2].lift[1].st_mcAxis);
+GVL.fbAxisCtrl_Lift[6](stAxisCtrl:=GVL.stAxisCtrl_Lift[6],IN_OUT:=GVL.rem[3].lift[0].st_mcAxis);
+GVL.fbAxisCtrl_Lift[7](stAxisCtrl:=GVL.stAxisCtrl_Lift[7],IN_OUT:=GVL.rem[3].lift[1].st_mcAxis);
+GVL.fbAxisCtrl_Lift[8](stAxisCtrl:=GVL.stAxisCtrl_Lift[8],IN_OUT:=GVL.rem[4].lift[0].st_mcAxis);
+GVL.fbAxisCtrl_Lift[9](stAxisCtrl:=GVL.stAxisCtrl_Lift[9],IN_OUT:=GVL.rem[4].lift[1].st_mcAxis);
+GVL.fbAxisCtrl_Lift[10](stAxisCtrl:=GVL.stAxisCtrl_Lift[10],IN_OUT:=GVL.rem[5].lift[0].st_mcAxis);
+GVL.fbAxisCtrl_Lift[11](stAxisCtrl:=GVL.stAxisCtrl_Lift[11],IN_OUT:=GVL.rem[5].lift[1].st_mcAxis);
+GVL.fbAxisCtrl_Lift[12](stAxisCtrl:=GVL.stAxisCtrl_Lift[12],IN_OUT:=GVL.rem[6].lift[0].st_mcAxis);
+GVL.fbAxisCtrl_Lift[13](stAxisCtrl:=GVL.stAxisCtrl_Lift[13],IN_OUT:=GVL.rem[6].lift[1].st_mcAxis);
+GVL.fbAxisCtrl_Lift[14](stAxisCtrl:=GVL.stAxisCtrl_Lift[14],IN_OUT:=GVL.rem[7].lift[0].st_mcAxis);
+GVL.fbAxisCtrl_Lift[15](stAxisCtrl:=GVL.stAxisCtrl_Lift[15],IN_OUT:=GVL.rem[7].lift[1].st_mcAxis);
+GVL.fbAxisCtrl_Lift[16](stAxisCtrl:=GVL.stAxisCtrl_Lift[16],IN_OUT:=GVL.rem[8].lift[0].st_mcAxis);
+GVL.fbAxisCtrl_Lift[17](stAxisCtrl:=GVL.stAxisCtrl_Lift[17],IN_OUT:=GVL.rem[8].lift[1].st_mcAxis);
+GVL.fbAxisCtrl_Lift[18](stAxisCtrl:=GVL.stAxisCtrl_Lift[18],IN_OUT:=GVL.rem[9].lift[0].st_mcAxis);
+GVL.fbAxisCtrl_Lift[19](stAxisCtrl:=GVL.stAxisCtrl_Lift[19],IN_OUT:=GVL.rem[9].lift[1].st_mcAxis);
 
 
+////////////////////////////////////////////////////PM////////////////////////////////////////////////////////////////
 GVL.fb_rmIOmapping[0](iRm:= 0);
 GVL.fb_rmIOmapping[1](iRm:= 1);
 GVL.fb_rmIOmapping[2](iRm:= 2);
 GVL.fb_rmIOmapping[3](iRm:= 3);
 GVL.fb_rmIOmapping[4](iRm:= 4);
-GVL.fb_pmAxisMapping[0](iPM :=0,iBuffer:=0,sNetID:='192.168.11.159.7.2',nSlaveAddr:=2002);
-GVL.fb_pmAxisMapping[1](iPM :=0,iBuffer:=1,sNetID:='192.168.11.159.7.2',nSlaveAddr:=2003);
-GVL.fb_pmAxisMapping[2](iPM :=1,iBuffer:=0,sNetID:='192.168.11.159.7.2',nSlaveAddr:=2006);
-GVL.fb_pmAxisMapping[3](iPM :=1,iBuffer:=1,sNetID:='192.168.11.159.7.2',nSlaveAddr:=2007);
+GVL.fb_pmAxisMapping[0](iPM :=0,iBuffer:=0,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1010);
+GVL.fb_pmAxisMapping[1](iPM :=0,iBuffer:=1,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1011);
+GVL.fb_pmAxisMapping[2](iPM :=1,iBuffer:=0,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1012);
+GVL.fb_pmAxisMapping[3](iPM :=1,iBuffer:=1,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1013);
+GVL.fb_pmAxisMapping[4](iPM :=2,iBuffer:=0,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1020);
+GVL.fb_pmAxisMapping[5](iPM :=2,iBuffer:=1,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1021);
+GVL.fb_pmAxisMapping[6](iPM :=3,iBuffer:=0,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1022);
+GVL.fb_pmAxisMapping[7](iPM :=3,iBuffer:=1,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1023);
+GVL.fb_pmAxisMapping[8](iPM :=4,iBuffer:=0,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1028);
+GVL.fb_pmAxisMapping[9](iPM :=4,iBuffer:=1,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1029);
+GVL.fb_pmAxisMapping[10](iPM :=5,iBuffer:=0,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1030);
+GVL.fb_pmAxisMapping[11](iPM :=5,iBuffer:=1,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1031);
+GVL.fb_pmAxisMapping[12](iPM :=6,iBuffer:=0,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1036);
+GVL.fb_pmAxisMapping[13](iPM :=6,iBuffer:=1,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1047);
+GVL.fb_pmAxisMapping[14](iPM :=7,iBuffer:=0,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1038);
+GVL.fb_pmAxisMapping[15](iPM :=7,iBuffer:=1,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1039);
+GVL.fb_pmAxisMapping[16](iPM :=8,iBuffer:=0,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1046);
+GVL.fb_pmAxisMapping[17](iPM :=8,iBuffer:=1,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1047);
+GVL.fb_pmAxisMapping[18](iPM :=9,iBuffer:=0,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1048);
+GVL.fb_pmAxisMapping[19](iPM :=9,iBuffer:=1,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1049);
+
 GVL.fbAxisCtrl_Buffer[0](stAxisCtrl:=GVL.stAxisCtrl_Buffer[0],IN_OUT:=GVL.pm[0].buffer[0].st_mcAxis);
 GVL.fbAxisCtrl_Buffer[1](stAxisCtrl:=GVL.stAxisCtrl_Buffer[1],IN_OUT:=GVL.pm[0].buffer[1].st_mcAxis);
 GVL.fbAxisCtrl_Buffer[2](stAxisCtrl:=GVL.stAxisCtrl_Buffer[2],IN_OUT:=GVL.pm[1].buffer[0].st_mcAxis);
 GVL.fbAxisCtrl_Buffer[3](stAxisCtrl:=GVL.stAxisCtrl_Buffer[3],IN_OUT:=GVL.pm[1].buffer[1].st_mcAxis);
+GVL.fbAxisCtrl_Buffer[4](stAxisCtrl:=GVL.stAxisCtrl_Buffer[4],IN_OUT:=GVL.pm[2].buffer[0].st_mcAxis);
+GVL.fbAxisCtrl_Buffer[5](stAxisCtrl:=GVL.stAxisCtrl_Buffer[5],IN_OUT:=GVL.pm[2].buffer[1].st_mcAxis);
+GVL.fbAxisCtrl_Buffer[6](stAxisCtrl:=GVL.stAxisCtrl_Buffer[6],IN_OUT:=GVL.pm[3].buffer[0].st_mcAxis);
+GVL.fbAxisCtrl_Buffer[7](stAxisCtrl:=GVL.stAxisCtrl_Buffer[7],IN_OUT:=GVL.pm[3].buffer[1].st_mcAxis);
+GVL.fbAxisCtrl_Buffer[8](stAxisCtrl:=GVL.stAxisCtrl_Buffer[8],IN_OUT:=GVL.pm[4].buffer[0].st_mcAxis);
+GVL.fbAxisCtrl_Buffer[9](stAxisCtrl:=GVL.stAxisCtrl_Buffer[9],IN_OUT:=GVL.pm[4].buffer[1].st_mcAxis);
+GVL.fbAxisCtrl_Buffer[10](stAxisCtrl:=GVL.stAxisCtrl_Buffer[10],IN_OUT:=GVL.pm[5].buffer[0].st_mcAxis);
+GVL.fbAxisCtrl_Buffer[11](stAxisCtrl:=GVL.stAxisCtrl_Buffer[11],IN_OUT:=GVL.pm[5].buffer[1].st_mcAxis);
+GVL.fbAxisCtrl_Buffer[12](stAxisCtrl:=GVL.stAxisCtrl_Buffer[12],IN_OUT:=GVL.pm[6].buffer[0].st_mcAxis);
+GVL.fbAxisCtrl_Buffer[13](stAxisCtrl:=GVL.stAxisCtrl_Buffer[13],IN_OUT:=GVL.pm[6].buffer[1].st_mcAxis);
+GVL.fbAxisCtrl_Buffer[14](stAxisCtrl:=GVL.stAxisCtrl_Buffer[14],IN_OUT:=GVL.pm[7].buffer[0].st_mcAxis);
+GVL.fbAxisCtrl_Buffer[15](stAxisCtrl:=GVL.stAxisCtrl_Buffer[15],IN_OUT:=GVL.pm[7].buffer[1].st_mcAxis);
+GVL.fbAxisCtrl_Buffer[16](stAxisCtrl:=GVL.stAxisCtrl_Buffer[16],IN_OUT:=GVL.pm[8].buffer[0].st_mcAxis);
+GVL.fbAxisCtrl_Buffer[17](stAxisCtrl:=GVL.stAxisCtrl_Buffer[17],IN_OUT:=GVL.pm[8].buffer[1].st_mcAxis);
+GVL.fbAxisCtrl_Buffer[18](stAxisCtrl:=GVL.stAxisCtrl_Buffer[18],IN_OUT:=GVL.pm[9].buffer[0].st_mcAxis);
+GVL.fbAxisCtrl_Buffer[19](stAxisCtrl:=GVL.stAxisCtrl_Buffer[19],IN_OUT:=GVL.pm[9].buffer[1].st_mcAxis);
+
+
+
 
 (*GVL.arrSenDetect[1] := G_IO.arDI[4].Ch[0];
 GVL.arrSenDetect[2] := G_IO.arDI[4].Ch[1];
@@ -575,8 +743,63 @@ END_CASE
       <LineId Id="836" Count="0" />
       <LineId Id="831" Count="0" />
       <LineId Id="830" Count="0" />
+      <LineId Id="899" Count="0" />
+      <LineId Id="860" Count="1" />
+      <LineId Id="868" Count="0" />
+      <LineId Id="864" Count="0" />
+      <LineId Id="870" Count="0" />
+      <LineId Id="869" Count="0" />
+      <LineId Id="872" Count="0" />
+      <LineId Id="871" Count="0" />
+      <LineId Id="874" Count="0" />
+      <LineId Id="873" Count="0" />
+      <LineId Id="876" Count="0" />
+      <LineId Id="875" Count="0" />
+      <LineId Id="878" Count="0" />
+      <LineId Id="877" Count="0" />
+      <LineId Id="880" Count="0" />
+      <LineId Id="879" Count="0" />
+      <LineId Id="882" Count="0" />
+      <LineId Id="881" Count="0" />
+      <LineId Id="884" Count="0" />
+      <LineId Id="883" Count="0" />
+      <LineId Id="893" Count="0" />
+      <LineId Id="885" Count="0" />
+      <LineId Id="894" Count="0" />
+      <LineId Id="891" Count="0" />
+      <LineId Id="896" Count="0" />
+      <LineId Id="895" Count="0" />
+      <LineId Id="898" Count="0" />
+      <LineId Id="897" Count="0" />
+      <LineId Id="863" Count="0" />
+      <LineId Id="862" Count="0" />
+      <LineId Id="859" Count="0" />
+      <LineId Id="901" Count="0" />
+      <LineId Id="904" Count="5" />
+      <LineId Id="913" Count="0" />
+      <LineId Id="902" Count="0" />
+      <LineId Id="914" Count="8" />
+      <LineId Id="903" Count="0" />
+      <LineId Id="930" Count="8" />
+      <LineId Id="924" Count="0" />
+      <LineId Id="939" Count="8" />
+      <LineId Id="925" Count="0" />
+      <LineId Id="948" Count="8" />
+      <LineId Id="926" Count="1" />
+      <LineId Id="957" Count="2" />
+      <LineId Id="961" Count="1" />
+      <LineId Id="966" Count="0" />
+      <LineId Id="970" Count="1" />
+      <LineId Id="973" Count="0" />
+      <LineId Id="972" Count="0" />
+      <LineId Id="969" Count="0" />
+      <LineId Id="967" Count="0" />
+      <LineId Id="928" Count="1" />
+      <LineId Id="923" Count="0" />
+      <LineId Id="900" Count="0" />
     </LineIds>
     <LineIds Name="MAIN.M_mappingIO">
+      <LineId Id="322" Count="0" />
       <LineId Id="212" Count="5" />
       <LineId Id="219" Count="0" />
       <LineId Id="218" Count="0" />
@@ -584,11 +807,29 @@ END_CASE
       <LineId Id="223" Count="1" />
       <LineId Id="230" Count="0" />
       <LineId Id="225" Count="0" />
-      <LineId Id="231" Count="0" />
+      <LineId Id="289" Count="2" />
+      <LineId Id="273" Count="0" />
+      <LineId Id="292" Count="2" />
+      <LineId Id="274" Count="0" />
+      <LineId Id="295" Count="0" />
+      <LineId Id="275" Count="0" />
+      <LineId Id="297" Count="0" />
+      <LineId Id="296" Count="0" />
+      <LineId Id="298" Count="3" />
       <LineId Id="226" Count="0" />
       <LineId Id="229" Count="0" />
       <LineId Id="232" Count="0" />
       <LineId Id="222" Count="0" />
+      <LineId Id="309" Count="2" />
+      <LineId Id="303" Count="0" />
+      <LineId Id="312" Count="2" />
+      <LineId Id="305" Count="0" />
+      <LineId Id="315" Count="0" />
+      <LineId Id="306" Count="0" />
+      <LineId Id="316" Count="2" />
+      <LineId Id="307" Count="0" />
+      <LineId Id="319" Count="1" />
+      <LineId Id="308" Count="0" />
       <LineId Id="243" Count="1" />
       <LineId Id="246" Count="0" />
       <LineId Id="245" Count="0" />
@@ -596,11 +837,38 @@ END_CASE
       <LineId Id="242" Count="0" />
       <LineId Id="255" Count="0" />
       <LineId Id="254" Count="0" />
+      <LineId Id="264" Count="2" />
+      <LineId Id="260" Count="0" />
+      <LineId Id="328" Count="0" />
+      <LineId Id="324" Count="0" />
+      <LineId Id="329" Count="0" />
+      <LineId Id="325" Count="0" />
+      <LineId Id="330" Count="0" />
+      <LineId Id="326" Count="0" />
+      <LineId Id="331" Count="0" />
+      <LineId Id="327" Count="0" />
+      <LineId Id="336" Count="2" />
+      <LineId Id="333" Count="0" />
+      <LineId Id="323" Count="0" />
       <LineId Id="253" Count="0" />
       <LineId Id="252" Count="0" />
       <LineId Id="256" Count="0" />
       <LineId Id="251" Count="0" />
+      <LineId Id="267" Count="2" />
       <LineId Id="233" Count="0" />
+      <LineId Id="350" Count="0" />
+      <LineId Id="340" Count="0" />
+      <LineId Id="351" Count="0" />
+      <LineId Id="341" Count="0" />
+      <LineId Id="352" Count="0" />
+      <LineId Id="342" Count="0" />
+      <LineId Id="353" Count="2" />
+      <LineId Id="343" Count="0" />
+      <LineId Id="356" Count="0" />
+      <LineId Id="345" Count="1" />
+      <LineId Id="339" Count="0" />
+      <LineId Id="271" Count="0" />
+      <LineId Id="270" Count="0" />
       <LineId Id="5" Count="4" />
       <LineId Id="61" Count="0" />
       <LineId Id="50" Count="0" />

@@ -1,14 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_Converter" Id="{50ef3601-3b6d-4adf-a463-ac58da8032a1}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_Converter
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Converter 
 VAR_INPUT
+	
 	iMotor	: WORD;
+	bSetParaEx	: BOOL;
 END_VAR
 VAR_OUTPUT
+	xDone	: BOOL;
 END_VAR
 VAR_IN_OUT
 	stConverter	: ST_Converter;
+	//sNetID : STRING;
+	//nSlaveAddr	:UINT;
 	
 END_VAR
 VAR
@@ -19,13 +24,15 @@ VAR
 	nIndex		: WORD;
 	iSdoWrite	: INT; 
 	offset: WORD;
+	rtrig_bSetPara	: R_TRIG;
 	ton_delay	: TON;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[CoeWrt(
+      <ST><![CDATA[xDone	:= FALSE; 
+CoeWrt(
 	sNetId:= stConverter.sNetID, 
-	nSlaveAddr:= stConverter.nSlaveAddr, 
+	nSlaveAddr:=stConverter.nSlaveAddr, 
 	nSubIndex:= nSubIndex, 
 	nIndex:= nIndex, 
 	pSrcBuf:= ADR(iSdoWrite), 
@@ -35,23 +42,7 @@ END_VAR
 	bBusy=> , 
 	bError=> , 
 	nErrId=> );
-]]></ST>
-    </Implementation>
-    <Method Name="M_SetPara" Id="{91f69ed3-b089-494c-b183-d69bb531850e}">
-      <Declaration><![CDATA[METHOD M_SetPara : BOOL
-VAR_INPUT
-	iMotor	: WORD;
-	
-END_VAR
-VAR_IN_OUT
-	
-END_VAR
-VAR
 
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[offset	:= 16#800*iMotor;
 (*
 addr		valve					comment	
 整流单元								
@@ -72,6 +63,8 @@ F1:04		6					rated motor current
 F1:05		6000					rated motor frequency	
 F1:06		1600					rated motor speed	
 *)
+
+offset	:= 16#800*iMotor;
 //control mode
 stConverter.nIndex[0]	:= 16#20F0+offset;
 stConverter.nSubIndex[0]	:= 16#02;
@@ -128,21 +121,18 @@ stConverter.iSdoWrite[12]	:= 6000;
 stConverter.nIndex[13]	:= 16#20F1+offset;
 stConverter.nSubIndex[13]	:= 16#06;
 stConverter.iSdoWrite[13]	:= 1600;
-CoeWrt.bExecute	:= FALSE;
-(*FOR i:=0 TO 13 DO
-	nIndex	:= stConverter.nIndex[i];
-	nSubIndex	:= stConverter.nSubIndex[i];
-	iSdoWrite	:= stConverter.iSdoWrite[i];
-	CoeWrt.bExecute	:= TRUE;
-END_FOR*)
+
 ton_delay(PT:= T#0.1S);
+rtrig_bSetPara(CLK:=bSetParaEx);
 CASE iCase OF
 	0:
 		CoeWrt.bExecute	:= FALSE;
 		ton_delay.IN	:= FALSE;
 		i:=0;
-		M_SetPara	:= FALSE;
-		iCase	:= 1;
+		xDone	:= FALSE;
+		IF rtrig_bSetPara.Q THEN
+			iCase	:= 1;
+		END_IF		
 	1: 
 		nIndex	:= stConverter.nIndex[i];
 		nSubIndex	:= stConverter.nSubIndex[i];
@@ -151,7 +141,6 @@ CASE iCase OF
 		CoeWrt.bExecute	:= TRUE;
 		iCase	:= 2;
 	2:
-	
 		ton_delay.IN	:= TRUE;
 		IF ton_delay.Q THEN
 			iCase	:= 3;
@@ -161,7 +150,7 @@ CASE iCase OF
 		CoeWrt.bExecute	:= FALSE;
 		IF i >13 THEN
 			iCase	:= 0;
-			M_SetPara	:= TRUE;
+			xDone	:= TRUE;
 			//RETURN ;
 		ELSE
 			iCase	:= 1;
@@ -170,47 +159,58 @@ CASE iCase OF
 		
 END_CASE
 ]]></ST>
+    </Implementation>
+    <Method Name="M_SetPara" Id="{91f69ed3-b089-494c-b183-d69bb531850e}">
+      <Declaration><![CDATA[METHOD M_SetPara : BOOL
+VAR_INPUT
+	//iMotor	: WORD;
+	
+END_VAR
+VAR_IN_OUT
+	
+END_VAR
+VAR
+
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+(*FOR i:=0 TO 13 DO
+	nIndex	:= stConverter.nIndex[i];
+	nSubIndex	:= stConverter.nSubIndex[i];
+	iSdoWrite	:= stConverter.iSdoWrite[i];
+	CoeWrt.bExecute	:= TRUE;
+END_FOR*)
+
+]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_Converter">
+      <LineId Id="190" Count="0" />
       <LineId Id="20" Count="10" />
       <LineId Id="9" Count="0" />
+      <LineId Id="65" Count="20" />
+      <LineId Id="179" Count="0" />
+      <LineId Id="178" Count="0" />
+      <LineId Id="86" Count="40" />
+      <LineId Id="182" Count="0" />
+      <LineId Id="128" Count="13" />
+      <LineId Id="143" Count="1" />
+      <LineId Id="187" Count="0" />
+      <LineId Id="145" Count="5" />
+      <LineId Id="177" Count="0" />
+      <LineId Id="184" Count="1" />
+      <LineId Id="152" Count="7" />
+      <LineId Id="161" Count="15" />
+      <LineId Id="142" Count="0" />
       <LineId Id="41" Count="0" />
     </LineIds>
     <LineIds Name="FB_Converter.M_SetPara">
-      <LineId Id="161" Count="76" />
       <LineId Id="102" Count="0" />
       <LineId Id="100" Count="0" />
       <LineId Id="103" Count="0" />
       <LineId Id="105" Count="2" />
       <LineId Id="104" Count="0" />
-      <LineId Id="137" Count="0" />
-      <LineId Id="118" Count="0" />
-      <LineId Id="140" Count="1" />
-      <LineId Id="246" Count="0" />
-      <LineId Id="158" Count="0" />
-      <LineId Id="252" Count="0" />
-      <LineId Id="159" Count="0" />
-      <LineId Id="138" Count="0" />
-      <LineId Id="143" Count="2" />
-      <LineId Id="148" Count="0" />
-      <LineId Id="142" Count="0" />
-      <LineId Id="245" Count="0" />
-      <LineId Id="151" Count="0" />
-      <LineId Id="248" Count="3" />
-      <LineId Id="240" Count="0" />
-      <LineId Id="149" Count="0" />
-      <LineId Id="247" Count="0" />
-      <LineId Id="150" Count="0" />
-      <LineId Id="153" Count="0" />
-      <LineId Id="157" Count="0" />
-      <LineId Id="238" Count="0" />
-      <LineId Id="241" Count="0" />
-      <LineId Id="155" Count="0" />
-      <LineId Id="152" Count="0" />
-      <LineId Id="154" Count="0" />
-      <LineId Id="147" Count="0" />
-      <LineId Id="146" Count="0" />
       <LineId Id="139" Count="0" />
       <LineId Id="112" Count="0" />
     </LineIds>
