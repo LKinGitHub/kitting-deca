@@ -14,7 +14,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//========== Lift0 Axis Config ==========
+      <ST><![CDATA[//========== Axis Config ==========
 GVL.pm[iPM].buffer[iBuffer].mcAxis
 (
 	ZSN		:= TRUE,

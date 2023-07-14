@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_lbIOmapping" Id="{4848e81c-3fcd-4cac-8805-1ea8c3359cba}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_lbIOmapping
+VAR_INPUT
+	iLb	: INT;
+	//sNetID	: STRING;
+	//nSlaveAddr : UINT;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR_IN_OUT
+	
+END_VAR
+VAR
+	offset	: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[offset:= 87+iLb*3;
+GVL.lb[iLb].contactor_beltConv					:= G_IO.arDI[offset].Ch[0];
+GVL.lb[iLb].valve_stopper[0].extended			:= G_IO.arDI[offset].Ch[1];
+GVL.lb[iLb].valve_stopper[0].retracted			:= G_IO.arDI[offset].Ch[2];
+GVL.lb[iLb].valve_stopper[1].extended			:= G_IO.arDI[offset].Ch[3];
+GVL.lb[iLb].valve_stopper[1].retracted			:= G_IO.arDI[offset].Ch[4];
+GVL.lb[iLb].valve_stopper[2].extended			:= G_IO.arDI[offset].Ch[5];
+GVL.lb[iLb].valve_stopper[2].retracted			:= G_IO.arDI[offset].Ch[6];
+GVL.lb[iLb].valve_stopper[3].extended			:= G_IO.arDI[offset].Ch[7];
+GVL.lb[iLb].valve_stopper[3].retracted			:= G_IO.arDI[offset].Ch[8];
+GVL.lb[iLb].valve_stopper[4].extended			:= G_IO.arDI[offset].Ch[9];
+GVL.lb[iLb].valve_stopper[4].retracted			:= G_IO.arDI[offset].Ch[10];
+GVL.lb[iLb].valve_stopper[5].extended			:= G_IO.arDI[offset].Ch[11];
+GVL.lb[iLb].valve_stopper[5].retracted			:= G_IO.arDI[offset].Ch[12];
+GVL.lb[iLb].photo_sensor[0]						:= G_IO.arDI[offset].Ch[13];
+GVL.lb[iLb].photo_sensor[1]						:= G_IO.arDI[offset].Ch[14];
+GVL.lb[iLb].photo_sensor[2]						:= G_IO.arDI[offset].Ch[15];
+
+
+
+G_IO.arDO[offset].Ch[0]		:= GVL.lb[iLb].power_beltConv;
+G_IO.arDO[offset].Ch[1]		:= GVL.lb[iLb].valve_stopper[0].extend;
+G_IO.arDO[offset].Ch[2]		:= GVL.lb[iLb].valve_stopper[1].extend;
+G_IO.arDO[offset].Ch[3]		:= GVL.lb[iLb].valve_stopper[2].extend;
+G_IO.arDO[offset].Ch[4]		:= GVL.lb[iLb].valve_stopper[3].extend;
+G_IO.arDO[offset].Ch[5]		:= GVL.lb[iLb].valve_stopper[4].extend;
+G_IO.arDO[offset].Ch[6]		:= GVL.lb[iLb].valve_stopper[5].extend;
+
+
+
+
+
+
+
+
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_lbIOmapping">
+      <LineId Id="187" Count="0" />
+      <LineId Id="289" Count="0" />
+      <LineId Id="298" Count="1" />
+      <LineId Id="302" Count="0" />
+      <LineId Id="300" Count="0" />
+      <LineId Id="304" Count="0" />
+      <LineId Id="303" Count="0" />
+      <LineId Id="306" Count="0" />
+      <LineId Id="305" Count="0" />
+      <LineId Id="308" Count="0" />
+      <LineId Id="307" Count="0" />
+      <LineId Id="310" Count="0" />
+      <LineId Id="309" Count="0" />
+      <LineId Id="311" Count="0" />
+      <LineId Id="301" Count="0" />
+      <LineId Id="288" Count="0" />
+      <LineId Id="293" Count="0" />
+      <LineId Id="214" Count="0" />
+      <LineId Id="219" Count="0" />
+      <LineId Id="218" Count="0" />
+      <LineId Id="233" Count="0" />
+      <LineId Id="313" Count="0" />
+      <LineId Id="316" Count="3" />
+      <LineId Id="321" Count="0" />
+      <LineId Id="320" Count="0" />
+      <LineId Id="234" Count="1" />
+      <LineId Id="230" Count="0" />
+      <LineId Id="229" Count="0" />
+      <LineId Id="228" Count="0" />
+      <LineId Id="226" Count="0" />
+      <LineId Id="216" Count="0" />
+      <LineId Id="215" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

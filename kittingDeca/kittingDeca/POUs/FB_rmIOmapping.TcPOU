@@ -124,9 +124,9 @@ GVL.pm[iRm*2+1].contactor_inConv			:= G_IO.arDI[offsetIn+4].Ch[0];//pm[0] and pm
 GVL.pm[iRm*2+1].contactor_outConv			:= G_IO.arDI[offsetIn+4].Ch[1];//pm[0] and pm[1]
 
 rTrig_power_inConv(CLK:=GVL.pm[iRm*2].power_inConv OR GVL.pm[iRm*2+1].power_inConv);
-fTrig_power_inConv(CLK:=GVL.pm[iRm*2].power_inConv OR GVL.pm[iRm*2+1].power_inConv);
+fTrig_power_inConv(CLK:=GVL.pm[iRm*2].power_inConv AND GVL.pm[iRm*2+1].power_inConv);
 rTrig_power_outConv(CLK:=GVL.pm[iRm*2].power_outConv OR GVL.pm[iRm*2+1].power_outConv);
-fTrig_power_outConv(CLK:=GVL.pm[iRm*2].power_outConv OR GVL.pm[iRm*2+1].power_outConv);
+fTrig_power_outConv(CLK:=GVL.pm[iRm*2].power_outConv AND GVL.pm[iRm*2+1].power_outConv);
 
 IF rTrig_power_inConv.Q THEN
 	GVL.pm[iRm*2].power_inConv	:= TRUE;

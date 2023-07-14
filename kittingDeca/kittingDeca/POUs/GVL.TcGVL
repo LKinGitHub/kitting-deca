@@ -12,6 +12,8 @@ VAR_GLOBAL
 	rem : ARRAY[0..9] OF Replenishment_Module;
 	pm	: ARRAY[0..9] OF Picking_Module;
 	pmOthers	:ARRAY[0..4] OF PM_others;
+	lc	: ARRAY[0..1] OF LateralRecy_Module;
+	lb	: ARRAY[0..1] OF LateralBuf_Module;
 	
 	
 
@@ -38,7 +40,25 @@ VAR_GLOBAL
 	
 	fbconverter	:ARRAY [0..13] OF  FB_Converter;
 	stConverter	:ARRAY [0..13] OF  ST_Converter;
-	fbconverterMoter	:ARRAY [0..57] OF  FB_Converter;
+	
+	//ref_fbconverterMotors	:   REFERENCE TO ARRAY[0..57] OF FB_Converter;	
+	ref_fbconverterMotors	:   REFERENCE TO  FB_Converter;	
+	
+	fb_lcIOmappiing : ARRAY [0..1] OF FB_lcIOmapping;
+	fb_lcAxis	: ARRAY[0..1] OF FB_MotionAxis_MC;
+	stAxis_LC	: ARRAY[0..1] OF ST_MotionAxis_MC;
+	
+	fb_lbIOmappiing : ARRAY [0..1] OF FB_lbIOmapping;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

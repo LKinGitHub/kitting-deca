@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_lcIOmapping" Id="{7ed84407-17a3-4fb8-bf31-0cb539852def}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_lcIOmapping
+VAR_INPUT
+	iLc	: INT;
+	mcAxis	: FB_MotionAxis_MC;	
+	sNetID	: STRING;
+	nSlaveAddr : UINT;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR_IN_OUT
+	IN_OUT	: ST_MotionAxis_MC;
+END_VAR
+VAR
+	offset	: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[offset:= 85+iLc*3;
+GVL.lc[iLc].rollerIn.roller.err					:= G_IO.arDI[offset].Ch[0];
+GVL.lc[iLc].rollerIn.photo_sensor				:= G_IO.arDI[offset].Ch[1];
+GVL.lc[iLc].rollerOut.roller.err				:= G_IO.arDI[offset].Ch[2];
+GVL.lc[iLc].rollerOut.photo_sensor				:= G_IO.arDI[offset].Ch[3];
+GVL.lc[iLc].contactor_beltConv					:= G_IO.arDI[offset].Ch[4];
+GVL.lc[iLc].belt_out.photo_sensor[0]			:= G_IO.arDI[offset].Ch[5];
+GVL.lc[iLc].belt_out.photo_sensor[1]			:= G_IO.arDI[offset].Ch[6];
+GVL.lc[iLc].belt_out.photo_sensor[2]			:= G_IO.arDI[offset].Ch[7];
+GVL.lc[iLc].lateral.contactor_axis				:= G_IO.arDI[offset].Ch[8];
+GVL.lc[iLc].lateral.limit_sensor[0]				:= G_IO.arDI[offset].Ch[9];
+GVL.lc[iLc].lateral.limit_sensor[1]				:= G_IO.arDI[offset].Ch[10];
+GVL.lc[iLc].lateral.limit_sensor[2]				:= G_IO.arDI[offset].Ch[11];
+GVL.lc[iLc].lateral.valve_lift.extended			:= G_IO.arDI[offset].Ch[12];
+GVL.lc[iLc].lateral.valve_lift.retracted		:= G_IO.arDI[offset].Ch[13];
+GVL.lc[iLc].lateral.valve_clamp[0].extended			:= G_IO.arDI[offset].Ch[14];
+GVL.lc[iLc].lateral.valve_clamp[0].retracted		:= G_IO.arDI[offset].Ch[15];
+GVL.lc[iLc].lateral.valve_clamp[1].extended			:= G_IO.arDI[offset+1].Ch[0];
+GVL.lc[iLc].lateral.valve_clamp[1].retracted		:= G_IO.arDI[offset+1].Ch[1];
+GVL.lc[iLc].valve_stopper[0].extended			:= G_IO.arDI[offset+1].Ch[2];
+GVL.lc[iLc].valve_stopper[0].retracted			:= G_IO.arDI[offset+1].Ch[3];
+GVL.lc[iLc].valve_stopper[1].extended			:= G_IO.arDI[offset+1].Ch[4];
+GVL.lc[iLc].valve_stopper[1].retracted			:= G_IO.arDI[offset+1].Ch[5];
+GVL.lc[iLc].valve_guide[0].extended				:= G_IO.arDI[offset+1].Ch[6];
+GVL.lc[iLc].valve_guide[0].retracted			:= G_IO.arDI[offset+1].Ch[7];
+GVL.lc[iLc].valve_guide[1].extended				:= G_IO.arDI[offset+1].Ch[8];
+GVL.lc[iLc].valve_guide[1].retracted			:= G_IO.arDI[offset+1].Ch[9];
+GVL.lc[iLc].pressure_sensor						:= G_IO.arDI[offset+1].Ch[10];
+
+G_IO.arDO[offset].Ch[0]		:= GVL.lc[iLc].rollerIn.roller.Power;
+G_IO.arDO[offset].Ch[1]		:= GVL.lc[iLc].rollerIn.roller.forward;
+G_IO.arDO[offset].Ch[2]		:= GVL.lc[iLc].rollerIn.roller.backward;
+G_IO.arDO[offset].Ch[3]		:= GVL.lc[iLc].rollerOut.roller.Power;
+G_IO.arDO[offset].Ch[4]		:= GVL.lc[iLc].rollerOut.roller.forward;
+G_IO.arDO[offset].Ch[5]		:= GVL.lc[iLc].rollerOut.roller.backward;
+G_IO.arDO[offset].Ch[6]		:= GVL.lc[iLc].power_beltConv;
+G_IO.arDO[offset].Ch[7]		:= GVL.lc[iLc].lateral.power_axis;
+G_IO.arDO[offset].Ch[8]		:= GVL.lc[iLc].lateral.valve_lift.extend;
+G_IO.arDO[offset].Ch[9]		:= GVL.lc[iLc].lateral.valve_lift.retract;
+G_IO.arDO[offset].Ch[10]	:= GVL.lc[iLc].lateral.valve_clamp[0].extend;
+G_IO.arDO[offset].Ch[11]	:= GVL.lc[iLc].lateral.valve_clamp[1].extend;
+G_IO.arDO[offset].Ch[12]	:= GVL.lc[iLc].valve_stopper[0].extend;
+G_IO.arDO[offset].Ch[13]	:= GVL.lc[iLc].valve_stopper[1].extend;
+G_IO.arDO[offset].Ch[14]	:= GVL.lc[iLc].valve_guide[0].extend;
+G_IO.arDO[offset].Ch[15]	:= GVL.lc[iLc].valve_guide[1].extend;
+
+mcAxis
+(
+	ZSN		:= GVL.lc[iLc].lateral.limit_sensor[2]	 OR IN_OUT.xHoming,
+	ZSP		:= GVL.lc[iLc].lateral.limit_sensor[1]		OR IN_OUT.xHoming,
+	IN_OUT	:= IN_OUT, 
+	AXIS	:= GVL.lc[iLc].lateral.AxisRef, 
+);
+IN_OUT.bPosSensorShow	:= TRUE;
+IN_OUT.bNegSensorShow	:= TRUE;
+IN_OUT.bStopButtonShow	:= TRUE;
+IN_OUT.rMaxAcceleration	:= 50000;
+IN_OUT.rMaxDeceleration	:= 50000;
+IN_OUT.rMaxJerk			:= 500000;
+IN_OUT.rAcceleration	:= 2500;
+IN_OUT.rDeceleration	:= 2500;
+IN_OUT.rJerk			:= 12500;
+IN_OUT.rMaxVelocity		:= 100;
+IN_OUT.rMaxDistance		:= 50;
+IN_OUT.bPosSen	:= GVL.lc[iLc].lateral.limit_sensor[1] ;
+IN_OUT.bNegSen	:= GVL.lc[iLc].lateral.limit_sensor[2] ;
+IN_OUT.mcHome.bCalibrationCam	:= GVL.lc[iLc].lateral.limit_sensor[0];
+IN_OUT.bPositionSensor	:= GVL.lc[iLc].lateral.limit_sensor[0];
+IN_OUT.bdirFW	:= TRUE;
+IN_OUT.rSetPos	:= 0;
+IN_OUT.sNetID := sNetID;
+IN_OUT.nSlaveAddr	:= nSlaveAddr;
+
+
+
+
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_lcIOmapping">
+      <LineId Id="187" Count="0" />
+      <LineId Id="191" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="192" Count="0" />
+      <LineId Id="188" Count="1" />
+      <LineId Id="194" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="195" Count="6" />
+      <LineId Id="203" Count="0" />
+      <LineId Id="202" Count="0" />
+      <LineId Id="205" Count="0" />
+      <LineId Id="204" Count="0" />
+      <LineId Id="207" Count="0" />
+      <LineId Id="206" Count="0" />
+      <LineId Id="209" Count="0" />
+      <LineId Id="208" Count="0" />
+      <LineId Id="211" Count="2" />
+      <LineId Id="210" Count="0" />
+      <LineId Id="214" Count="0" />
+      <LineId Id="219" Count="0" />
+      <LineId Id="218" Count="0" />
+      <LineId Id="217" Count="0" />
+      <LineId Id="220" Count="0" />
+      <LineId Id="223" Count="1" />
+      <LineId Id="222" Count="0" />
+      <LineId Id="221" Count="0" />
+      <LineId Id="227" Count="0" />
+      <LineId Id="231" Count="1" />
+      <LineId Id="236" Count="1" />
+      <LineId Id="240" Count="0" />
+      <LineId Id="239" Count="0" />
+      <LineId Id="241" Count="0" />
+      <LineId Id="233" Count="1" />
+      <LineId Id="242" Count="24" />
+      <LineId Id="235" Count="0" />
+      <LineId Id="230" Count="0" />
+      <LineId Id="229" Count="0" />
+      <LineId Id="228" Count="0" />
+      <LineId Id="226" Count="0" />
+      <LineId Id="216" Count="0" />
+      <LineId Id="215" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

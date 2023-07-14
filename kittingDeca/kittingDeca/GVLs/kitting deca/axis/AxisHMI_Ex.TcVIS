@@ -6619,7 +6619,8 @@ encoder as linear"</v>
                       <v n="STSnippet">"(*stAxisHMI.CoeWrt.bExecute := TRUE;
 stAxisHMI.nIndex	:= 16#2002;
 stAxisHMI.nSubIndex	:= 16#02;
-stAxisHMI.iSdoWrite	:= 1;//linear mode*)"</v>
+stAxisHMI.iSdoWrite	:= 1;//linear mode*)
+stAxisHMI.mcPower.Enable	:= FALSE;"</v>
                     </o>
                   </a>
                   <v>OnMouseUp</v>
@@ -6819,7 +6820,8 @@ encoder as rotation"</v>
                       <v n="STSnippet">"(*stAxisHMI.CoeWrt.bExecute := TRUE;
 stAxisHMI.nIndex	:= 16#2002;
 stAxisHMI.nSubIndex	:= 16#02;
-stAxisHMI.iSdoWrite	:= 2;//rotate mode*)"</v>
+stAxisHMI.iSdoWrite	:= 2;//rotate mode*)
+stAxisHMI.mcPower.Enable	:= FALSE;"</v>
                     </o>
                   </a>
                   <v>OnMouseUp</v>

@@ -21,6 +21,7 @@ VAR
 	iInit	: int;
 	i	: INT;
 	j	: INT;
+
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -78,7 +79,10 @@ GVL.stConverter[12].nSlaveAddr	:= 1052;//lb[1]
 GVL.stConverter[13].sNetID	:= '192.168.11.159.5.1';
 GVL.stConverter[13].nSlaveAddr	:= 1054;//lc[1]
 
-
+GVL.lb[0].belt[0].fbconverter(stConverter:=GVL.stConverter[0],iMotor:=0);
+GVL.lb[0].belt[1].fbconverter(stConverter:=GVL.stConverter[0],iMotor:=1);
+GVL.lb[0].belt[2].fbconverter(stConverter:=GVL.stConverter[0],iMotor:=2);
+GVL.lc[0].belt_out.belt.fbconverter(stConverter:=GVL.stConverter[1],iMotor:=0);
 GVL.pm[0].inConv.belt[0].fbconverter(stConverter:= GVL.stConverter[2],iMotor:=0);
 GVL.pm[0].inConv.belt[1].fbconverter(stConverter:= GVL.stConverter[2],iMotor:=1);
 GVL.pm[0].inConv.belt[2].fbconverter(stConverter:= GVL.stConverter[2],iMotor:=2);
@@ -129,21 +133,152 @@ GVL.pm[8].outConv.belt[0].fbconverter(stConverter:= GVL.stConverter[11],iMotor:=
 GVL.pm[8].outConv.belt[1].fbconverter(stConverter:= GVL.stConverter[11],iMotor:=1);
 GVL.pm[9].outConv.belt[0].fbconverter(stConverter:= GVL.stConverter[11],iMotor:=2);
 GVL.pm[9].outConv.belt[1].fbconverter(stConverter:= GVL.stConverter[11],iMotor:=3);
+GVL.lb[1].belt[0].fbconverter(stConverter:=GVL.stConverter[12],iMotor:=0);
+GVL.lb[1].belt[1].fbconverter(stConverter:=GVL.stConverter[12],iMotor:=1);
+GVL.lb[1].belt[2].fbconverter(stConverter:=GVL.stConverter[12],iMotor:=2);
+GVL.lc[1].belt_out.belt.fbconverter(stConverter:=GVL.stConverter[13],iMotor:=0);
+(*
+GVL.lb[0].belt[0].fbconverter 				:=GVL.fbconverterMoter[0];
+GVL.lb[0].belt[1].fbconverter				:=GVL.fbconverterMoter[1];
+GVL.lb[0].belt[2].fbconverter				:=GVL.fbconverterMoter[2];
+GVL.lc[0].belt_out.belt.fbconverter			:=GVL.fbconverterMoter[3];
+GVL.pm[0].inConv.belt[0].fbconverter		:=GVL.fbconverterMoter[4];
+GVL.pm[0].inConv.belt[1].fbconverter		:=GVL.fbconverterMoter[5];
+GVL.pm[0].inConv.belt[2].fbconverter		:=GVL.fbconverterMoter[6];
+GVL.pm[1].inConv.belt[0].fbconverter		:=GVL.fbconverterMoter[7];
+GVL.pm[1].inConv.belt[1].fbconverter		:=GVL.fbconverterMoter[8];
+GVL.pm[1].inConv.belt[2].fbconverter		:=GVL.fbconverterMoter[9];
+GVL.pm[0].outConv.belt[0].fbconverter		:=GVL.fbconverterMoter[10];
+GVL.pm[0].outConv.belt[1].fbconverter		:=GVL.fbconverterMoter[11];
+GVL.pm[1].outConv.belt[0].fbconverter		:=GVL.fbconverterMoter[12];
+GVL.pm[1].outConv.belt[1].fbconverter		:=GVL.fbconverterMoter[13];
+GVL.pm[2].inConv.belt[0].fbconverter		:=GVL.fbconverterMoter[14];
+GVL.pm[2].inConv.belt[1].fbconverter		:=GVL.fbconverterMoter[15];
+GVL.pm[2].inConv.belt[2].fbconverter		:=GVL.fbconverterMoter[16];
+GVL.pm[3].inConv.belt[0].fbconverter		:=GVL.fbconverterMoter[17];
+GVL.pm[3].inConv.belt[1].fbconverter		:=GVL.fbconverterMoter[18];
+GVL.pm[3].inConv.belt[2].fbconverter		:=GVL.fbconverterMoter[19];
+GVL.pm[2].outConv.belt[0].fbconverter		:=GVL.fbconverterMoter[20];
+GVL.pm[2].outConv.belt[1].fbconverter		:=GVL.fbconverterMoter[21];
+GVL.pm[3].outConv.belt[0].fbconverter		:=GVL.fbconverterMoter[22];
+GVL.pm[3].outConv.belt[1].fbconverter		:=GVL.fbconverterMoter[23];
+GVL.pm[4].inConv.belt[0].fbconverter		:=GVL.fbconverterMoter[24];
+GVL.pm[4].inConv.belt[1].fbconverter		:=GVL.fbconverterMoter[25];
+GVL.pm[4].inConv.belt[2].fbconverter		:=GVL.fbconverterMoter[26];
+GVL.pm[5].inConv.belt[0].fbconverter		:=GVL.fbconverterMoter[27];
+GVL.pm[5].inConv.belt[1].fbconverter		:=GVL.fbconverterMoter[28];
+GVL.pm[5].inConv.belt[2].fbconverter		:=GVL.fbconverterMoter[29];
+GVL.pm[4].outConv.belt[0].fbconverter		:=GVL.fbconverterMoter[30];
+GVL.pm[4].outConv.belt[1].fbconverter		:=GVL.fbconverterMoter[31];
+GVL.pm[5].outConv.belt[0].fbconverter		:=GVL.fbconverterMoter[32];
+GVL.pm[5].outConv.belt[1].fbconverter		:=GVL.fbconverterMoter[33];
+GVL.pm[6].inConv.belt[0].fbconverter		:=GVL.fbconverterMoter[34];
+GVL.pm[6].inConv.belt[1].fbconverter		:=GVL.fbconverterMoter[35];
+GVL.pm[6].inConv.belt[2].fbconverter		:=GVL.fbconverterMoter[36];
+GVL.pm[7].inConv.belt[0].fbconverter		:=GVL.fbconverterMoter[37];
+GVL.pm[7].inConv.belt[1].fbconverter		:=GVL.fbconverterMoter[38];
+GVL.pm[7].inConv.belt[2].fbconverter		:=GVL.fbconverterMoter[39];
+GVL.pm[6].outConv.belt[0].fbconverter		:=GVL.fbconverterMoter[40];
+GVL.pm[6].outConv.belt[1].fbconverter		:=GVL.fbconverterMoter[41];
+GVL.pm[7].outConv.belt[0].fbconverter		:=GVL.fbconverterMoter[42];
+GVL.pm[7].outConv.belt[1].fbconverter		:=GVL.fbconverterMoter[43];
+GVL.pm[8].inConv.belt[0].fbconverter		:=GVL.fbconverterMoter[44];
+GVL.pm[8].inConv.belt[1].fbconverter		:=GVL.fbconverterMoter[45];
+GVL.pm[8].inConv.belt[2].fbconverter		:=GVL.fbconverterMoter[46];
+GVL.pm[9].inConv.belt[0].fbconverter		:=GVL.fbconverterMoter[47];
+GVL.pm[9].inConv.belt[1].fbconverter		:=GVL.fbconverterMoter[48];
+GVL.pm[9].inConv.belt[2].fbconverter		:=GVL.fbconverterMoter[49];
+GVL.pm[8].outConv.belt[0].fbconverter		:=GVL.fbconverterMoter[50];
+GVL.pm[8].outConv.belt[1].fbconverter		:=GVL.fbconverterMoter[51];
+GVL.pm[9].outConv.belt[0].fbconverter		:=GVL.fbconverterMoter[52];
+GVL.pm[9].outConv.belt[1].fbconverter		:=GVL.fbconverterMoter[53];
+GVL.lb[1].belt[0].fbconverter				:=GVL.fbconverterMoter[54];
+GVL.lb[1].belt[1].fbconverter				:=GVL.fbconverterMoter[55];
+GVL.lb[1].belt[2].fbconverter				:=GVL.fbconverterMoter[56];
+GVL.lc[1].belt_out.belt.fbconverter			:=GVL.fbconverterMoter[57];*)
+(*
+GVL.fbconverterMoter[0]		REF= GVL.lb[0].belt[0].fbconverter;
+GVL.fbconverterMoter[1]		REF= GVL.lb[0].belt[1].fbconverter;
+GVL.fbconverterMoter[2]		REF= GVL.lb[0].belt[2].fbconverter;
+GVL.fbconverterMoter[3]		REF= GVL.lc[0].belt_out.belt.fbconverter;
+GVL.fbconverterMoter[4]		REF= GVL.pm[0].inConv.belt[0].fbconverter;
+GVL.fbconverterMoter[5]		REF= GVL.pm[0].inConv.belt[1].fbconverter;
+GVL.fbconverterMoter[6]		REF= GVL.pm[0].inConv.belt[2].fbconverter;
+GVL.fbconverterMoter[7]		REF= GVL.pm[1].inConv.belt[0].fbconverter;
+GVL.fbconverterMoter[8]		REF= GVL.pm[1].inConv.belt[1].fbconverter;
+GVL.fbconverterMoter[9]		REF= GVL.pm[1].inConv.belt[2].fbconverter;
+GVL.fbconverterMoter[10]	REF= GVL.pm[0].outConv.belt[0].fbconverter;
+GVL.fbconverterMoter[11]	REF= GVL.pm[0].outConv.belt[1].fbconverter;
+GVL.fbconverterMoter[12]	REF= GVL.pm[1].outConv.belt[0].fbconverter;
+GVL.fbconverterMoter[13]	REF= GVL.pm[1].outConv.belt[1].fbconverter;
+GVL.fbconverterMoter[14]	REF= GVL.pm[2].inConv.belt[0].fbconverter;
+GVL.fbconverterMoter[15]	REF= GVL.pm[2].inConv.belt[1].fbconverter;
+GVL.fbconverterMoter[16]	REF= GVL.pm[2].inConv.belt[2].fbconverter;
+GVL.fbconverterMoter[17]	REF= GVL.pm[3].inConv.belt[0].fbconverter;
+GVL.fbconverterMoter[18]	REF= GVL.pm[3].inConv.belt[1].fbconverter;
+GVL.fbconverterMoter[19]	REF= GVL.pm[3].inConv.belt[2].fbconverter;
+GVL.fbconverterMoter[20]	REF= GVL.pm[2].outConv.belt[0].fbconverter;
+GVL.fbconverterMoter[21]	REF= GVL.pm[2].outConv.belt[1].fbconverter;
+GVL.fbconverterMoter[22]	REF= GVL.pm[3].outConv.belt[0].fbconverter;
+GVL.fbconverterMoter[23]	REF= GVL.pm[3].outConv.belt[1].fbconverter;
+GVL.fbconverterMoter[24]	REF= GVL.pm[4].inConv.belt[0].fbconverter;
+GVL.fbconverterMoter[25]	REF= GVL.pm[4].inConv.belt[1].fbconverter;
+GVL.fbconverterMoter[26]	REF= GVL.pm[4].inConv.belt[2].fbconverter;
+GVL.fbconverterMoter[27]	REF= GVL.pm[5].inConv.belt[0].fbconverter;
+GVL.fbconverterMoter[28]	REF= GVL.pm[5].inConv.belt[1].fbconverter;
+GVL.fbconverterMoter[29]	REF= GVL.pm[5].inConv.belt[2].fbconverter;
+GVL.fbconverterMoter[30]	REF= GVL.pm[4].outConv.belt[0].fbconverter;
+GVL.fbconverterMoter[31]	REF= GVL.pm[4].outConv.belt[1].fbconverter;
+GVL.fbconverterMoter[32]	REF= GVL.pm[5].outConv.belt[0].fbconverter;
+GVL.fbconverterMoter[33]	REF= GVL.pm[5].outConv.belt[1].fbconverter;
+GVL.fbconverterMoter[34]	REF= GVL.pm[6].inConv.belt[0].fbconverter;
+GVL.fbconverterMoter[35]	REF= GVL.pm[6].inConv.belt[1].fbconverter;
+GVL.fbconverterMoter[36]	REF= GVL.pm[6].inConv.belt[2].fbconverter;
+GVL.fbconverterMoter[37]	REF= GVL.pm[7].inConv.belt[0].fbconverter;
+GVL.fbconverterMoter[38]	REF= GVL.pm[7].inConv.belt[1].fbconverter;
+GVL.fbconverterMoter[39]	REF= GVL.pm[7].inConv.belt[2].fbconverter;
+GVL.fbconverterMoter[40]	REF= GVL.pm[6].outConv.belt[0].fbconverter;
+GVL.fbconverterMoter[41]	REF= GVL.pm[6].outConv.belt[1].fbconverter;
+GVL.fbconverterMoter[42]	REF= GVL.pm[7].outConv.belt[0].fbconverter;
+GVL.fbconverterMoter[43]	REF= GVL.pm[7].outConv.belt[1].fbconverter;
+GVL.fbconverterMoter[44]	REF= GVL.pm[8].inConv.belt[0].fbconverter;
+GVL.fbconverterMoter[45]	REF= GVL.pm[8].inConv.belt[1].fbconverter;
+GVL.fbconverterMoter[46]	REF= GVL.pm[8].inConv.belt[2].fbconverter;
+GVL.fbconverterMoter[47]	REF= GVL.pm[9].inConv.belt[0].fbconverter;
+GVL.fbconverterMoter[48]	REF= GVL.pm[9].inConv.belt[1].fbconverter;
+GVL.fbconverterMoter[49]	REF= GVL.pm[9].inConv.belt[2].fbconverter;
+GVL.fbconverterMoter[50]	REF= GVL.pm[8].outConv.belt[0].fbconverter;
+GVL.fbconverterMoter[51]	REF= GVL.pm[8].outConv.belt[1].fbconverter;
+GVL.fbconverterMoter[52]	REF= GVL.pm[9].outConv.belt[0].fbconverter;
+GVL.fbconverterMoter[53]	REF= GVL.pm[9].outConv.belt[1].fbconverter;
+GVL.fbconverterMoter[54]	REF= GVL.lb[1].belt[0].fbconverter;
+GVL.fbconverterMoter[55]	REF= GVL.lb[1].belt[1].fbconverter;
+GVL.fbconverterMoter[56]	REF= GVL.lb[1].belt[2].fbconverter;
+GVL.fbconverterMoter[57]	REF= GVL.lc[1].belt_out.belt.fbconverter;
+*)
+GVL.ref_fbconverterMotors	REF= GVL.lc[1].belt_out.belt.fbconverter;
 
 
-CASE iInit OF
+(*CASE iInit OF
 	0:
-	;
+		FOR i:=0 TO 57 DO
+			GVL.fbconverterMoter[i].bSetParaEx	:= FALSE;
+		END_FOR
 	1:
-		GVL.pm[0].inConv.belt[1].fbconverter.bSetParaEx	:= TRUE;
-		IF GVL.pm[0].inConv.belt[1].fbconverter.xDone THEN
-			GVL.pm[0].inConv.belt[1].fbconverter.bSetParaEx	:= FALSE;
-			iInit	:=0;
+		FOR i:=0 TO 57 DO
+			GVL.fbconverterMoter[i].bSetParaEx	:= TRUE;
+		END_FOR
+		IF GVL.fbconverterMoter[57].xDone THEN
+			iInit	:=2;
 		END_IF
-	
+	2:
+		FOR i:=0 TO 57 DO
+			GVL.fbconverterMoter[i].bSetParaEx	:= FALSE;
+		END_FOR
+		iInit	:=0;
 
 END_CASE
-
+*)
 
 ]]></ST>
     </Implementation>
@@ -255,8 +390,11 @@ GVL.fbAxisCtrl_Buffer[18](stAxisCtrl:=GVL.stAxisCtrl_Buffer[18],IN_OUT:=GVL.pm[9
 GVL.fbAxisCtrl_Buffer[19](stAxisCtrl:=GVL.stAxisCtrl_Buffer[19],IN_OUT:=GVL.pm[9].buffer[1].st_mcAxis);
 
 
-
-
+////////////////////////////////////////////////////LC&LB&FR////////////////////////////////////////////////////////////////
+GVL.fb_lcIOmappiing[0](iLc:= 0,mcAxis:=GVL.fb_lcAxis[0],IN_OUT:=GVL.stAxis_LC[0],nSlaveAddr:=1006,sNetID:='192.168.11.159.5.1');
+GVL.fb_lcIOmappiing[1](iLc:= 1,mcAxis:=GVL.fb_lcAxis[1],IN_OUT:=GVL.stAxis_LC[1],nSlaveAddr:=1055,sNetID:='192.168.11.159.5.1');
+GVL.fb_lbIOmappiing[0](iLb:=0);
+GVL.fb_lbIOmappiing[1](iLb:=1);
 (*GVL.arrSenDetect[1] := G_IO.arDI[4].Ch[0];
 GVL.arrSenDetect[2] := G_IO.arDI[4].Ch[1];
 GVL.arrSenDetect[3] := G_IO.arDI[4].Ch[2];
@@ -771,6 +909,10 @@ END_CASE
       <LineId Id="895" Count="0" />
       <LineId Id="898" Count="0" />
       <LineId Id="897" Count="0" />
+      <LineId Id="1057" Count="57" />
+      <LineId Id="974" Count="0" />
+      <LineId Id="1115" Count="0" />
+      <LineId Id="980" Count="1" />
       <LineId Id="863" Count="0" />
       <LineId Id="862" Count="0" />
       <LineId Id="859" Count="0" />
@@ -786,11 +928,23 @@ END_CASE
       <LineId Id="925" Count="0" />
       <LineId Id="948" Count="8" />
       <LineId Id="926" Count="1" />
-      <LineId Id="957" Count="2" />
+      <LineId Id="978" Count="1" />
+      <LineId Id="957" Count="0" />
+      <LineId Id="983" Count="0" />
+      <LineId Id="1139" Count="16" />
+      <LineId Id="1197" Count="0" />
+      <LineId Id="1157" Count="11" />
+      <LineId Id="1200" Count="0" />
+      <LineId Id="1170" Count="26" />
+      <LineId Id="984" Count="2" />
+      <LineId Id="976" Count="0" />
+      <LineId Id="958" Count="1" />
+      <LineId Id="1055" Count="1" />
       <LineId Id="961" Count="1" />
-      <LineId Id="966" Count="0" />
-      <LineId Id="970" Count="1" />
-      <LineId Id="973" Count="0" />
+      <LineId Id="1045" Count="2" />
+      <LineId Id="1050" Count="2" />
+      <LineId Id="1048" Count="0" />
+      <LineId Id="1053" Count="1" />
       <LineId Id="972" Count="0" />
       <LineId Id="969" Count="0" />
       <LineId Id="967" Count="0" />
@@ -869,6 +1023,8 @@ END_CASE
       <LineId Id="339" Count="0" />
       <LineId Id="271" Count="0" />
       <LineId Id="270" Count="0" />
+      <LineId Id="358" Count="1" />
+      <LineId Id="357" Count="0" />
       <LineId Id="5" Count="4" />
       <LineId Id="61" Count="0" />
       <LineId Id="50" Count="0" />

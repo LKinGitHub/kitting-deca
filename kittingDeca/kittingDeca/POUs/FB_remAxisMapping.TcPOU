@@ -14,7 +14,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//========== Lift0 Axis Config ==========
+      <ST><![CDATA[//========== Axis Config ==========
 GVL.rem[iReM].lift[iLift].mcAxis
 (
 	ZSN		:= GVL.rem[iReM].lift[iLift].limit_sensor[2] OR GVL.rem[iReM].lift[iLift].st_mcAxis.xHoming,

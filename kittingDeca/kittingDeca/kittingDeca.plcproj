@@ -61,6 +61,21 @@
     <Compile Include="GVLs\kitting deca\FB_PhotoSensor.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GVLs\kitting deca\lateral conveyor\BeltOut.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\kitting deca\lateral conveyor\Lateral.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\kitting deca\lateral conveyor\LateralBuf_Module.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\kitting deca\lateral conveyor\Roller_LC.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\kitting deca\lateral conveyor\LateralRecy_Module.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GVLs\kitting deca\measuring\ST_byte.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -136,6 +151,9 @@
     <Compile Include="POUs\FB_axisCtrl.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\FB_lbIOmapping.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\FB_remAxisMapping.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -143,6 +161,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FB_remIOmapping.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FB_lcIOmapping.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FB_rmIOmapping.TcPOU">
@@ -234,6 +255,7 @@
     <Folder Include="GVLs\kitting deca" />
     <Folder Include="GVLs\kitting deca\axis" />
     <Folder Include="GVLs\kitting deca\measuring" />
+    <Folder Include="GVLs\kitting deca\lateral conveyor" />
     <Folder Include="GVLs\kitting deca\picking module" />
     <Folder Include="GVLs\kitting deca\replenishment module" />
     <Folder Include="VISUs" />

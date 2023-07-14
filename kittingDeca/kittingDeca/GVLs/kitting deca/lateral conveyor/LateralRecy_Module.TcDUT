@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="LateralRecy_Module" Id="{6c624af4-1b1f-416e-a38b-e9d750751397}">
+    <Declaration><![CDATA[TYPE LateralRecy_Module :
+STRUCT
+	pressure_sensor	: BOOL;
+	power_beltConv		: BOOL;
+	contactor_beltConv	: BOOL;	
+	rollerIn : Roller_LC;
+	rollerOut : Roller_LC;
+	belt_out : BeltOut;
+	lateral	: Lateral;
+	valve_stopper : ARRAY [0..1] OF Valve;
+	valve_guide : ARRAY [0..1] OF Valve;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

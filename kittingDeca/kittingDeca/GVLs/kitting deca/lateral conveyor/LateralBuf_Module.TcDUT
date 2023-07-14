@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="LateralBuf_Module" Id="{7ffbfc2b-346e-404a-89c2-8a6a6ec97916}">
+    <Declaration><![CDATA[TYPE LateralBuf_Module :
+STRUCT
+
+	power_beltConv		: BOOL;
+	contactor_beltConv	: BOOL;	
+
+	belt	: ARRAY[0..2] OF Belt;
+	photo_sensor :ARRAY[0..2]OF BOOL;
+	valve_stopper : ARRAY [0..5] OF Valve;
+	
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
