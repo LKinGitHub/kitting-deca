@@ -6,6 +6,10 @@ VAR_GLOBAL
 	iMainFrame : INT;
 	iReM: INT;
 	iPM	: INT;
+	iOthers	: INT;
+	iLc	: INT;
+	iLb	: INT;
+	iFr	: INT;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

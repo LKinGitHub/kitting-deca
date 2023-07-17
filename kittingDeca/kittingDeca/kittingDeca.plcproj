@@ -61,6 +61,9 @@
     <Compile Include="GVLs\kitting deca\FB_PhotoSensor.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GVLs\kitting deca\fixture rotation\fixtureRotation_Module.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GVLs\kitting deca\lateral conveyor\BeltOut.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -154,6 +157,9 @@
     <Compile Include="POUs\FB_lbIOmapping.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\FB_frIOmapping.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\FB_remAxisMapping.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -194,6 +200,18 @@
       <SubType>Code</SubType>
       <DependentUpon>视图管理器.TcVMO</DependentUpon>
     </Compile>
+    <Compile Include="VISUs\visu_LC.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>视图管理器.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="VISUs\visu_FR.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>视图管理器.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="VISUs\visu_LB.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>视图管理器.TcVMO</DependentUpon>
+    </Compile>
     <Compile Include="VISUs\visu_PM.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>视图管理器.TcVMO</DependentUpon>
@@ -226,7 +244,19 @@
       <SubType>Code</SubType>
       <DependentUpon>视图管理器.TcVMO</DependentUpon>
     </Compile>
+    <Compile Include="VISUs\v_IO_FR.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>视图管理器.TcVMO</DependentUpon>
+    </Compile>
     <Compile Include="VISUs\v_IO_ReM.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>视图管理器.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="VISUs\v_IO_LC.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>视图管理器.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="VISUs\v_LB.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>视图管理器.TcVMO</DependentUpon>
     </Compile>
@@ -256,6 +286,7 @@
     <Folder Include="GVLs\kitting deca\axis" />
     <Folder Include="GVLs\kitting deca\measuring" />
     <Folder Include="GVLs\kitting deca\lateral conveyor" />
+    <Folder Include="GVLs\kitting deca\fixture rotation" />
     <Folder Include="GVLs\kitting deca\picking module" />
     <Folder Include="GVLs\kitting deca\replenishment module" />
     <Folder Include="VISUs" />

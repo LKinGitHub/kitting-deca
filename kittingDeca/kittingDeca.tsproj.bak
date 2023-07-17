@@ -7169,7 +7169,7 @@ External Setpoint Generation:
 						</Var>
 					</Vars>
 				</Axis>
-				<Axis Id="40" CreateSymbols="true" AxisType="1">
+				<Axis Id="40" CreateSymbols="true" AxisType="1" GroupId="34">
 					<Name>pm9_buf1</Name>
 					<AxisPara>
 						<Dynamic Acceleration="15000" Deceleration="15000" Jerk="150000"/>
@@ -7313,11 +7313,301 @@ External Setpoint Generation:
 						</Var>
 					</Vars>
 				</Axis>
+				<Axis Id="41" CreateSymbols="true" AxisType="1" GroupId="36">
+					<Name>fr0</Name>
+					<AxisPara>
+						<Dynamic Acceleration="15000" Deceleration="15000" Jerk="150000"/>
+						<Velo Maximum="3000"/>
+						<OtherSettings AllowMotionCmdToSlave="true"/>
+					</AxisPara>
+					<Encoder Name="Enc" EncType="19">
+						<EncPara ScaleFactorNumerator="7.2" ScaleFactorDenominator="262144" MaxCount="#xffffffff">
+							<Inc RefSoftSyncMask="#x00040000"/>
+							<ParameterChanged>35</ParameterChanged>
+						</EncPara>
+						<Vars VarGrpType="1">
+							<Name>Inputs</Name>
+							<Var>
+								<Name>In</Name>
+								<Type GUID="{901C2423-655B-45CE-B7E3-21F174F0F99F}" Namespace="MC">NCENCODERSTRUCT_IN2B</Type>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn1</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn2</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn3</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn4</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn5</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn6</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn7</Name>
+									<Comment><![CDATA[Drive Velocity Actual Value
+]]></Comment>
+								</SubVar>
+							</Var>
+						</Vars>
+						<Vars VarGrpType="2">
+							<Name>Outputs</Name>
+							<Var>
+								<Name>Out</Name>
+								<Type GUID="{9CC50AB2-5D79-4869-A3C2-1FA7761BAFEA}" Namespace="MC">NCENCODERSTRUCT_OUT2</Type>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut1</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut2</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut3</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut4</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut5</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut6</Name>
+								</SubVar>
+							</Var>
+						</Vars>
+					</Encoder>
+					<Drive Name="Drive" DrvType="16">
+						<DrvPara MaxCount="#xffffffff" DriveControlDWord="#x00020100">
+							<Analog VeloReferenz="500" TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
+							<TimeComp TaskDelayCycles="1"/>
+						</DrvPara>
+						<Vars VarGrpType="1">
+							<Name>Inputs</Name>
+							<Var>
+								<Name>In</Name>
+								<Type GUID="{F95C7C69-0C87-46C4-9559-1285CCA5B23A}" Namespace="MC">NCDRIVESTRUCT_IN2</Type>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn1</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn2</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn3</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn4</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn5</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn6</Name>
+								</SubVar>
+							</Var>
+						</Vars>
+						<Vars VarGrpType="2">
+							<Name>Outputs</Name>
+							<Var>
+								<Name>Out</Name>
+								<Type GUID="{644DC4BD-3D15-4DCB-94C7-24F3A5D579AA}" Namespace="MC">NCDRIVESTRUCT_OUT2</Type>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut1</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut2</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut3</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut4</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut5</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut6</Name>
+								</SubVar>
+							</Var>
+						</Vars>
+					</Drive>
+					<Controller Name="Ctrl" CtrType="1">
+						<CtrPara PriorControlFactor="1">
+							<PosDiffControl Range="30"/>
+							<Observer BandWidth="20"/>
+						</CtrPara>
+					</Controller>
+					<Vars VarGrpType="1" InsertType="1">
+						<Name>Inputs</Name>
+						<Var>
+							<Name>FromPlc</Name>
+							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="2" InsertType="1">
+						<Name>Outputs</Name>
+						<Var>
+							<Name>ToPlc</Name>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
+					</Vars>
+				</Axis>
+				<Axis Id="42" CreateSymbols="true" AxisType="1" GroupId="35">
+					<Name>fr1</Name>
+					<AxisPara>
+						<Dynamic Acceleration="15000" Deceleration="15000" Jerk="150000"/>
+						<Velo Maximum="3000"/>
+						<OtherSettings AllowMotionCmdToSlave="true"/>
+					</AxisPara>
+					<Encoder Name="Enc" EncType="19">
+						<EncPara ScaleFactorNumerator="7.2" ScaleFactorDenominator="262144" MaxCount="#xffffffff">
+							<Inc RefSoftSyncMask="#x00040000"/>
+							<ParameterChanged>35</ParameterChanged>
+						</EncPara>
+						<Vars VarGrpType="1">
+							<Name>Inputs</Name>
+							<Var>
+								<Name>In</Name>
+								<Type GUID="{901C2423-655B-45CE-B7E3-21F174F0F99F}" Namespace="MC">NCENCODERSTRUCT_IN2B</Type>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn1</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn2</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn3</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn4</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn5</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn6</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn7</Name>
+									<Comment><![CDATA[Drive Velocity Actual Value
+]]></Comment>
+								</SubVar>
+							</Var>
+						</Vars>
+						<Vars VarGrpType="2">
+							<Name>Outputs</Name>
+							<Var>
+								<Name>Out</Name>
+								<Type GUID="{9CC50AB2-5D79-4869-A3C2-1FA7761BAFEA}" Namespace="MC">NCENCODERSTRUCT_OUT2</Type>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut1</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut2</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut3</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut4</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut5</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut6</Name>
+								</SubVar>
+							</Var>
+						</Vars>
+					</Encoder>
+					<Drive Name="Drive" DrvType="16">
+						<DrvPara MaxCount="#xffffffff" DriveControlDWord="#x00020100">
+							<Analog VeloReferenz="500" TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
+							<TimeComp TaskDelayCycles="1"/>
+						</DrvPara>
+						<Vars VarGrpType="1">
+							<Name>Inputs</Name>
+							<Var>
+								<Name>In</Name>
+								<Type GUID="{F95C7C69-0C87-46C4-9559-1285CCA5B23A}" Namespace="MC">NCDRIVESTRUCT_IN2</Type>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn1</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn2</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn3</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn4</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn5</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn6</Name>
+								</SubVar>
+							</Var>
+						</Vars>
+						<Vars VarGrpType="2">
+							<Name>Outputs</Name>
+							<Var>
+								<Name>Out</Name>
+								<Type GUID="{644DC4BD-3D15-4DCB-94C7-24F3A5D579AA}" Namespace="MC">NCDRIVESTRUCT_OUT2</Type>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut1</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut2</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut3</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut4</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut5</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut6</Name>
+								</SubVar>
+							</Var>
+						</Vars>
+					</Drive>
+					<Controller Name="Ctrl" CtrType="1">
+						<CtrPara PriorControlFactor="1">
+							<PosDiffControl Range="30"/>
+							<Observer BandWidth="20"/>
+						</CtrPara>
+					</Controller>
+					<Vars VarGrpType="1" InsertType="1">
+						<Name>Inputs</Name>
+						<Var>
+							<Name>FromPlc</Name>
+							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="2" InsertType="1">
+						<Name>Outputs</Name>
+						<Var>
+							<Name>ToPlc</Name>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
+					</Vars>
+				</Axis>
 			</NC>
 		</Motion>
 		<Plc>
 			<Project GUID="{2354DE8C-DE54-4E07-94D7-E848733F7762}" Name="kittingDeca" PrjFilePath="kittingDeca\kittingDeca.plcproj" TmcFilePath="kittingDeca\kittingDeca.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="kittingDeca\kittingDeca.tmc" TmcHash="{3959219F-6C46-B3A9-A638-4295D07001BB}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="kittingDeca\kittingDeca.tmc" TmcHash="{7B4DF364-2DDE-1161-C187-BDD98156CE4A}">
 					<Name>kittingDeca Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -7491,6 +7781,14 @@ External Setpoint Generation:
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
+							<Name>GVL.fr[0].AxisRef.NcToPlc</Name>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fr[1].AxisRef.NcToPlc</Name>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
+						<Var>
 							<Name>GVL.byteLC</Name>
 							<Type GUID="{F0FA53F5-E220-F475-FF85-78B194435716}">ARRAY [1..32] OF BYTE</Type>
 						</Var>
@@ -7595,43 +7893,43 @@ External Setpoint Generation:
 							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[0].inConv.belt[0].cmd</Name>
+							<Name>GVL.pm[0].inConv.belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[0].inConv.belt[0].freq</Name>
+							<Name>GVL.pm[0].inConv.belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[0].inConv.belt[1].cmd</Name>
+							<Name>GVL.pm[0].inConv.belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[0].inConv.belt[1].freq</Name>
+							<Name>GVL.pm[0].inConv.belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[0].inConv.belt[2].cmd</Name>
+							<Name>GVL.pm[0].inConv.belt[2].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[0].inConv.belt[2].freq</Name>
+							<Name>GVL.pm[0].inConv.belt[2].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[0].outConv.belt[0].cmd</Name>
+							<Name>GVL.pm[0].outConv.belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[0].outConv.belt[0].freq</Name>
+							<Name>GVL.pm[0].outConv.belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[0].outConv.belt[1].cmd</Name>
+							<Name>GVL.pm[0].outConv.belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[0].outConv.belt[1].freq</Name>
+							<Name>GVL.pm[0].outConv.belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
@@ -7643,43 +7941,43 @@ External Setpoint Generation:
 							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[1].inConv.belt[0].cmd</Name>
+							<Name>GVL.pm[1].inConv.belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[1].inConv.belt[0].freq</Name>
+							<Name>GVL.pm[1].inConv.belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[1].inConv.belt[1].cmd</Name>
+							<Name>GVL.pm[1].inConv.belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[1].inConv.belt[1].freq</Name>
+							<Name>GVL.pm[1].inConv.belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[1].inConv.belt[2].cmd</Name>
+							<Name>GVL.pm[1].inConv.belt[2].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[1].inConv.belt[2].freq</Name>
+							<Name>GVL.pm[1].inConv.belt[2].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[1].outConv.belt[0].cmd</Name>
+							<Name>GVL.pm[1].outConv.belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[1].outConv.belt[0].freq</Name>
+							<Name>GVL.pm[1].outConv.belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[1].outConv.belt[1].cmd</Name>
+							<Name>GVL.pm[1].outConv.belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[1].outConv.belt[1].freq</Name>
+							<Name>GVL.pm[1].outConv.belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
@@ -7691,43 +7989,43 @@ External Setpoint Generation:
 							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[2].inConv.belt[0].cmd</Name>
+							<Name>GVL.pm[2].inConv.belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[2].inConv.belt[0].freq</Name>
+							<Name>GVL.pm[2].inConv.belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[2].inConv.belt[1].cmd</Name>
+							<Name>GVL.pm[2].inConv.belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[2].inConv.belt[1].freq</Name>
+							<Name>GVL.pm[2].inConv.belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[2].inConv.belt[2].cmd</Name>
+							<Name>GVL.pm[2].inConv.belt[2].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[2].inConv.belt[2].freq</Name>
+							<Name>GVL.pm[2].inConv.belt[2].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[2].outConv.belt[0].cmd</Name>
+							<Name>GVL.pm[2].outConv.belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[2].outConv.belt[0].freq</Name>
+							<Name>GVL.pm[2].outConv.belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[2].outConv.belt[1].cmd</Name>
+							<Name>GVL.pm[2].outConv.belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[2].outConv.belt[1].freq</Name>
+							<Name>GVL.pm[2].outConv.belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
@@ -7739,43 +8037,43 @@ External Setpoint Generation:
 							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[3].inConv.belt[0].cmd</Name>
+							<Name>GVL.pm[3].inConv.belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[3].inConv.belt[0].freq</Name>
+							<Name>GVL.pm[3].inConv.belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[3].inConv.belt[1].cmd</Name>
+							<Name>GVL.pm[3].inConv.belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[3].inConv.belt[1].freq</Name>
+							<Name>GVL.pm[3].inConv.belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[3].inConv.belt[2].cmd</Name>
+							<Name>GVL.pm[3].inConv.belt[2].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[3].inConv.belt[2].freq</Name>
+							<Name>GVL.pm[3].inConv.belt[2].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[3].outConv.belt[0].cmd</Name>
+							<Name>GVL.pm[3].outConv.belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[3].outConv.belt[0].freq</Name>
+							<Name>GVL.pm[3].outConv.belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[3].outConv.belt[1].cmd</Name>
+							<Name>GVL.pm[3].outConv.belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[3].outConv.belt[1].freq</Name>
+							<Name>GVL.pm[3].outConv.belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
@@ -7787,43 +8085,43 @@ External Setpoint Generation:
 							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[4].inConv.belt[0].cmd</Name>
+							<Name>GVL.pm[4].inConv.belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[4].inConv.belt[0].freq</Name>
+							<Name>GVL.pm[4].inConv.belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[4].inConv.belt[1].cmd</Name>
+							<Name>GVL.pm[4].inConv.belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[4].inConv.belt[1].freq</Name>
+							<Name>GVL.pm[4].inConv.belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[4].inConv.belt[2].cmd</Name>
+							<Name>GVL.pm[4].inConv.belt[2].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[4].inConv.belt[2].freq</Name>
+							<Name>GVL.pm[4].inConv.belt[2].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[4].outConv.belt[0].cmd</Name>
+							<Name>GVL.pm[4].outConv.belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[4].outConv.belt[0].freq</Name>
+							<Name>GVL.pm[4].outConv.belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[4].outConv.belt[1].cmd</Name>
+							<Name>GVL.pm[4].outConv.belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[4].outConv.belt[1].freq</Name>
+							<Name>GVL.pm[4].outConv.belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
@@ -7835,43 +8133,43 @@ External Setpoint Generation:
 							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[5].inConv.belt[0].cmd</Name>
+							<Name>GVL.pm[5].inConv.belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[5].inConv.belt[0].freq</Name>
+							<Name>GVL.pm[5].inConv.belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[5].inConv.belt[1].cmd</Name>
+							<Name>GVL.pm[5].inConv.belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[5].inConv.belt[1].freq</Name>
+							<Name>GVL.pm[5].inConv.belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[5].inConv.belt[2].cmd</Name>
+							<Name>GVL.pm[5].inConv.belt[2].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[5].inConv.belt[2].freq</Name>
+							<Name>GVL.pm[5].inConv.belt[2].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[5].outConv.belt[0].cmd</Name>
+							<Name>GVL.pm[5].outConv.belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[5].outConv.belt[0].freq</Name>
+							<Name>GVL.pm[5].outConv.belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[5].outConv.belt[1].cmd</Name>
+							<Name>GVL.pm[5].outConv.belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[5].outConv.belt[1].freq</Name>
+							<Name>GVL.pm[5].outConv.belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
@@ -7883,43 +8181,43 @@ External Setpoint Generation:
 							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[6].inConv.belt[0].cmd</Name>
+							<Name>GVL.pm[6].inConv.belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[6].inConv.belt[0].freq</Name>
+							<Name>GVL.pm[6].inConv.belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[6].inConv.belt[1].cmd</Name>
+							<Name>GVL.pm[6].inConv.belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[6].inConv.belt[1].freq</Name>
+							<Name>GVL.pm[6].inConv.belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[6].inConv.belt[2].cmd</Name>
+							<Name>GVL.pm[6].inConv.belt[2].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[6].inConv.belt[2].freq</Name>
+							<Name>GVL.pm[6].inConv.belt[2].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[6].outConv.belt[0].cmd</Name>
+							<Name>GVL.pm[6].outConv.belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[6].outConv.belt[0].freq</Name>
+							<Name>GVL.pm[6].outConv.belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[6].outConv.belt[1].cmd</Name>
+							<Name>GVL.pm[6].outConv.belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[6].outConv.belt[1].freq</Name>
+							<Name>GVL.pm[6].outConv.belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
@@ -7931,43 +8229,43 @@ External Setpoint Generation:
 							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[7].inConv.belt[0].cmd</Name>
+							<Name>GVL.pm[7].inConv.belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[7].inConv.belt[0].freq</Name>
+							<Name>GVL.pm[7].inConv.belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[7].inConv.belt[1].cmd</Name>
+							<Name>GVL.pm[7].inConv.belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[7].inConv.belt[1].freq</Name>
+							<Name>GVL.pm[7].inConv.belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[7].inConv.belt[2].cmd</Name>
+							<Name>GVL.pm[7].inConv.belt[2].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[7].inConv.belt[2].freq</Name>
+							<Name>GVL.pm[7].inConv.belt[2].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[7].outConv.belt[0].cmd</Name>
+							<Name>GVL.pm[7].outConv.belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[7].outConv.belt[0].freq</Name>
+							<Name>GVL.pm[7].outConv.belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[7].outConv.belt[1].cmd</Name>
+							<Name>GVL.pm[7].outConv.belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[7].outConv.belt[1].freq</Name>
+							<Name>GVL.pm[7].outConv.belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
@@ -7979,43 +8277,43 @@ External Setpoint Generation:
 							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[8].inConv.belt[0].cmd</Name>
+							<Name>GVL.pm[8].inConv.belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[8].inConv.belt[0].freq</Name>
+							<Name>GVL.pm[8].inConv.belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[8].inConv.belt[1].cmd</Name>
+							<Name>GVL.pm[8].inConv.belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[8].inConv.belt[1].freq</Name>
+							<Name>GVL.pm[8].inConv.belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[8].inConv.belt[2].cmd</Name>
+							<Name>GVL.pm[8].inConv.belt[2].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[8].inConv.belt[2].freq</Name>
+							<Name>GVL.pm[8].inConv.belt[2].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[8].outConv.belt[0].cmd</Name>
+							<Name>GVL.pm[8].outConv.belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[8].outConv.belt[0].freq</Name>
+							<Name>GVL.pm[8].outConv.belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[8].outConv.belt[1].cmd</Name>
+							<Name>GVL.pm[8].outConv.belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[8].outConv.belt[1].freq</Name>
+							<Name>GVL.pm[8].outConv.belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
@@ -8027,51 +8325,51 @@ External Setpoint Generation:
 							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[9].inConv.belt[0].cmd</Name>
+							<Name>GVL.pm[9].inConv.belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[9].inConv.belt[0].freq</Name>
+							<Name>GVL.pm[9].inConv.belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[9].inConv.belt[1].cmd</Name>
+							<Name>GVL.pm[9].inConv.belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[9].inConv.belt[1].freq</Name>
+							<Name>GVL.pm[9].inConv.belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[9].inConv.belt[2].cmd</Name>
+							<Name>GVL.pm[9].inConv.belt[2].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[9].inConv.belt[2].freq</Name>
+							<Name>GVL.pm[9].inConv.belt[2].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[9].outConv.belt[0].cmd</Name>
+							<Name>GVL.pm[9].outConv.belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[9].outConv.belt[0].freq</Name>
+							<Name>GVL.pm[9].outConv.belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[9].outConv.belt[1].cmd</Name>
+							<Name>GVL.pm[9].outConv.belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.pm[9].outConv.belt[1].freq</Name>
+							<Name>GVL.pm[9].outConv.belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.lc[0].belt_out.belt.cmd</Name>
+							<Name>GVL.lc[0].belt_out.belt.fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.lc[0].belt_out.belt.freq</Name>
+							<Name>GVL.lc[0].belt_out.belt.fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
@@ -8079,11 +8377,11 @@ External Setpoint Generation:
 							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>GVL.lc[1].belt_out.belt.cmd</Name>
+							<Name>GVL.lc[1].belt_out.belt.fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.lc[1].belt_out.belt.freq</Name>
+							<Name>GVL.lc[1].belt_out.belt.fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
@@ -8091,56 +8389,176 @@ External Setpoint Generation:
 							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>GVL.lb[0].belt[0].cmd</Name>
+							<Name>GVL.lb[0].belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.lb[0].belt[0].freq</Name>
+							<Name>GVL.lb[0].belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.lb[0].belt[1].cmd</Name>
+							<Name>GVL.lb[0].belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.lb[0].belt[1].freq</Name>
+							<Name>GVL.lb[0].belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.lb[0].belt[2].cmd</Name>
+							<Name>GVL.lb[0].belt[2].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.lb[0].belt[2].freq</Name>
+							<Name>GVL.lb[0].belt[2].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.lb[1].belt[0].cmd</Name>
+							<Name>GVL.lb[1].belt[0].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.lb[1].belt[0].freq</Name>
+							<Name>GVL.lb[1].belt[0].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.lb[1].belt[1].cmd</Name>
+							<Name>GVL.lb[1].belt[1].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.lb[1].belt[1].freq</Name>
+							<Name>GVL.lb[1].belt[1].fbconverter.freq</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.lb[1].belt[2].cmd</Name>
+							<Name>GVL.lb[1].belt[2].fbconverter.cmd</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.lb[1].belt[2].freq</Name>
+							<Name>GVL.lb[1].belt[2].fbconverter.freq</Name>
 							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fr[0].AxisRef.PlcToNc</Name>
+							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fr[1].AxisRef.PlcToNc</Name>
+							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
 							<Name>GVL.rfidOut</Name>
 							<Type GUID="{A6CC6AFE-FE37-C02D-2C0C-FB1479660FEB}">ARRAY [0..31] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[0].cmd</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[0].freq</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[1].cmd</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[1].freq</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[2].cmd</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[2].freq</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[3].cmd</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[3].freq</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[4].cmd</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[4].freq</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[5].cmd</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[5].freq</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[6].cmd</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[6].freq</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[7].cmd</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[7].freq</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[8].cmd</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[8].freq</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[9].cmd</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[9].freq</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[10].cmd</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[10].freq</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[11].cmd</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[11].freq</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[12].cmd</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[12].freq</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[13].cmd</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[13].freq</Name>
+							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>G_IO.arDO</Name>
@@ -8214,9 +8632,6 @@ External Setpoint Generation:
 				</AddressInfo>
 				<Image Id="3" AddrType="9" ImageType="3">
 					<Name>Image</Name>
-				</Image>
-				<Image Id="11" AddrType="10" ImageType="3">
-					<Name>Image-2</Name>
 				</Image>
 				<Box Id="1" BoxType="9099">
 					<Name>Box 1 (CU2508)</Name>
@@ -8747,7 +9162,7 @@ External Setpoint Generation:
 						</Pdo>
 					</EtherCAT>
 				</Box>
-				<Box Id="4" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="4" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem0_dio</Name>
 					<ImageId>1001</ImageId>
 					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000003">
@@ -9409,10 +9824,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="5" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="5" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem0_Lift0</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000004">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -9748,10 +10163,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="6" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="6" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem0_Lift1</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000005">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -10087,10 +10502,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="7" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="7" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem0_valve</Name>
 					<ImageId>1004</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000006">
+					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000003">
 						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
 						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
 						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
@@ -10177,10 +10592,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="110" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="110" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem1_dio</Name>
 					<ImageId>1001</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000007">
+					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000003">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001806006400010003000000000000000000001864010000</SyncMan>
@@ -10839,10 +11254,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="9" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="9" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem1_Lift0</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x0100006e">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -11178,10 +11593,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="10" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="10" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem1_Lift1</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000009">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -11517,10 +11932,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="11" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="11" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem1_valve</Name>
 					<ImageId>1004</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x0100000a">
+					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000003">
 						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
 						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
 						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
@@ -11607,10 +12022,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="8" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="8" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem2_dio</Name>
 					<ImageId>1001</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x0100000b">
+					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000003">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001806006400010003000000000000000000001864010000</SyncMan>
@@ -12269,10 +12684,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="13" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="13" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem2_Lift0</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000008">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -12608,10 +13023,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="14" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="14" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem2_Lift1</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x0100000d">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -12947,10 +13362,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="15" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="15" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem2_valve</Name>
 					<ImageId>1004</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x0100000e">
+					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000003">
 						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
 						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
 						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
@@ -13037,10 +13452,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="111" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="111" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem3_dio</Name>
 					<ImageId>1001</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x0100000f">
+					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000003">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001806006400010003000000000000000000001864010000</SyncMan>
@@ -13699,10 +14114,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="17" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="17" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem3_Lift0</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x0100006f">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -14038,10 +14453,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="18" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="18" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem3_Lift1</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000011">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -14377,10 +14792,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="19" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="19" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem3_valve</Name>
 					<ImageId>1004</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000012">
+					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000003">
 						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
 						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
 						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
@@ -14467,10 +14882,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="12" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="12" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem4_dio</Name>
 					<ImageId>1001</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000013">
+					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000003">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001806006400010003000000000000000000001864010000</SyncMan>
@@ -15129,10 +15544,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="21" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="21" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem4_Lift0</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x0100000c">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -15468,10 +15883,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="22" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="22" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem4_Lift1</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000015">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -15807,10 +16222,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="23" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="23" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem4_valve</Name>
 					<ImageId>1004</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000016">
+					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000003">
 						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
 						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
 						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
@@ -15897,10 +16312,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="16" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="16" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem5_dio</Name>
 					<ImageId>1001</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000017">
+					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000003">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001806006400010003000000000000000000001864010000</SyncMan>
@@ -16559,10 +16974,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="25" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="25" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem5_Lift0</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000010">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -16898,10 +17313,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="26" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="26" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem5_Lift1</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000019">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -17237,10 +17652,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="27" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="27" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem5_valve</Name>
 					<ImageId>1004</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x0100001a">
+					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000003">
 						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
 						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
 						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
@@ -17327,10 +17742,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="20" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="20" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem6_dio</Name>
 					<ImageId>1001</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x0100001b">
+					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000003">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001806006400010003000000000000000000001864010000</SyncMan>
@@ -17989,10 +18404,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="29" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="29" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem6_Lift0</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000014">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -18328,10 +18743,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="30" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="30" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem6_Lift1</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x0100001d">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -18667,10 +19082,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="31" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="31" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem6_valve</Name>
 					<ImageId>1004</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x0100001e">
+					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000003">
 						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
 						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
 						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
@@ -18757,10 +19172,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="24" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="24" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem7_dio</Name>
 					<ImageId>1001</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x0100001f">
+					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000003">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001806006400010003000000000000000000001864010000</SyncMan>
@@ -19419,10 +19834,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="33" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="33" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem7_Lift0</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000018">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -19758,10 +20173,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="34" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="34" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem7_Lift1</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000021">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -20097,10 +20512,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="35" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="35" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem7_valve</Name>
 					<ImageId>1004</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000022">
+					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000003">
 						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
 						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
 						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
@@ -20187,10 +20602,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="28" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="28" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem8_dio</Name>
 					<ImageId>1001</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000023">
+					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000003">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001806006400010003000000000000000000001864010000</SyncMan>
@@ -20849,10 +21264,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="37" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="37" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem8_Lift0</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x0100001c">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -21188,10 +21603,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="38" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="38" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem8_Lift1</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000025">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -21527,10 +21942,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="39" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="39" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem8_valve</Name>
 					<ImageId>1004</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000026">
+					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000003">
 						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
 						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
 						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
@@ -24372,7 +24787,7 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<EtherCAT DcSyncMode="3" EnableVirtualSwitch="true" MaxSwitchPorts="22" MaxSwitchFrames="520"/>
+				<EtherCAT EnableVirtualSwitch="true" MaxSwitchPorts="22" MaxSwitchFrames="520"/>
 			</Device>
 			<Device Id="4" DevType="111" DevFlags="#x0003" AmsPort="28676" AmsNetId="192.168.11.159.5.1" RemoteName="pm side" InfoImageId="6">
 				<Name>pm side</Name>
@@ -47708,7 +48123,7 @@ External Setpoint Generation:
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="1600END input-8bit maping" Index="#x1a01" Flags="#x0290" SyncMan="3">
+						<Pdo Name="1600END input-8bit maping" Index="#x1a01" Flags="#x0290">
 							<ExcludePdo>#x9a00</ExcludePdo>
 							<ExcludePdo>#x9a02</ExcludePdo>
 							<Entry Name="Digital input CH0-8bit" Index="#x6001" Sub="#x01" Flags="#x00001000">
@@ -47725,7 +48140,7 @@ External Setpoint Generation:
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="1600END input-bit maping" Index="#x1a00" Flags="#x0290">
+						<Pdo Name="1600END input-bit maping" Index="#x1a00" Flags="#x0290" SyncMan="3">
 							<ExcludePdo>#x9a01</ExcludePdo>
 							<ExcludePdo>#x9a02</ExcludePdo>
 							<Entry Name="Digital input CH1-bit0" Index="#x6000" Sub="#x01" Flags="#x00001000">
@@ -47777,7 +48192,7 @@ External Setpoint Generation:
 								<Type>BIT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-8bit maping" Index="#x1609" InOut="1" Flags="#x0290" SyncMan="2">
+						<Pdo Name="0016ETP Output-8bit maping" Index="#x1609" InOut="1" Flags="#x0290">
 							<ExcludePdo>#x9608</ExcludePdo>
 							<ExcludePdo>#x960a</ExcludePdo>
 							<Entry Name="Digital output CH0-8bit" Index="#x7041" Sub="#x01" Flags="#x00001000">
@@ -47794,7 +48209,7 @@ External Setpoint Generation:
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-bit maping" Index="#x1608" InOut="1" Flags="#x0290">
+						<Pdo Name="0016ETP Output-bit maping" Index="#x1608" InOut="1" Flags="#x0290" SyncMan="2">
 							<ExcludePdo>#x9609</ExcludePdo>
 							<ExcludePdo>#x960a</ExcludePdo>
 							<Entry Name="Digital output CH1-bit0" Index="#x7040" Sub="#x01" Flags="#x00001000">
@@ -48210,7 +48625,7 @@ External Setpoint Generation:
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="1600END input-8bit maping" Index="#x1a01" Flags="#x0290" SyncMan="3">
+						<Pdo Name="1600END input-8bit maping" Index="#x1a01" Flags="#x0290">
 							<ExcludePdo>#x9a00</ExcludePdo>
 							<ExcludePdo>#x9a02</ExcludePdo>
 							<Entry Name="Digital input CH0-8bit" Index="#x6001" Sub="#x01" Flags="#x00001000">
@@ -48227,7 +48642,7 @@ External Setpoint Generation:
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="1600END input-bit maping" Index="#x1a00" Flags="#x0290">
+						<Pdo Name="1600END input-bit maping" Index="#x1a00" Flags="#x0290" SyncMan="3">
 							<ExcludePdo>#x9a01</ExcludePdo>
 							<ExcludePdo>#x9a02</ExcludePdo>
 							<Entry Name="Digital input CH1-bit0" Index="#x6000" Sub="#x01" Flags="#x00001000">
@@ -48279,7 +48694,7 @@ External Setpoint Generation:
 								<Type>BIT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="1600END input-8bit maping" Index="#x1a09" Flags="#x0290" SyncMan="3">
+						<Pdo Name="1600END input-8bit maping" Index="#x1a09" Flags="#x0290">
 							<ExcludePdo>#x9a08</ExcludePdo>
 							<ExcludePdo>#x9a0a</ExcludePdo>
 							<Entry Name="Digital input CH0-8bit" Index="#x6041" Sub="#x01" Flags="#x00001000">
@@ -48296,7 +48711,7 @@ External Setpoint Generation:
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="1600END input-bit maping" Index="#x1a08" Flags="#x0290">
+						<Pdo Name="1600END input-bit maping" Index="#x1a08" Flags="#x0290" SyncMan="3">
 							<ExcludePdo>#x9a09</ExcludePdo>
 							<ExcludePdo>#x9a0a</ExcludePdo>
 							<Entry Name="Digital input CH1-bit0" Index="#x6040" Sub="#x01" Flags="#x00001000">
@@ -48348,7 +48763,7 @@ External Setpoint Generation:
 								<Type>BIT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-8bit maping" Index="#x1611" InOut="1" Flags="#x0290" SyncMan="2">
+						<Pdo Name="0016ETP Output-8bit maping" Index="#x1611" InOut="1" Flags="#x0290">
 							<ExcludePdo>#x9610</ExcludePdo>
 							<ExcludePdo>#x9612</ExcludePdo>
 							<Entry Name="Digital output CH0-8bit" Index="#x7081" Sub="#x01" Flags="#x00001000">
@@ -48365,7 +48780,7 @@ External Setpoint Generation:
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-bit maping" Index="#x1610" InOut="1" Flags="#x0290">
+						<Pdo Name="0016ETP Output-bit maping" Index="#x1610" InOut="1" Flags="#x0290" SyncMan="2">
 							<ExcludePdo>#x9611</ExcludePdo>
 							<ExcludePdo>#x9612</ExcludePdo>
 							<Entry Name="Digital output CH1-bit0" Index="#x7080" Sub="#x01" Flags="#x00001000">
@@ -48417,7 +48832,7 @@ External Setpoint Generation:
 								<Type>BIT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-8bit maping" Index="#x1619" InOut="1" Flags="#x0290" SyncMan="2">
+						<Pdo Name="0016ETP Output-8bit maping" Index="#x1619" InOut="1" Flags="#x0290">
 							<ExcludePdo>#x9618</ExcludePdo>
 							<ExcludePdo>#x961a</ExcludePdo>
 							<Entry Name="Digital output CH0-8bit" Index="#x70c1" Sub="#x01" Flags="#x00001000">
@@ -48434,7 +48849,7 @@ External Setpoint Generation:
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-bit maping" Index="#x1618" InOut="1" Flags="#x0290">
+						<Pdo Name="0016ETP Output-bit maping" Index="#x1618" InOut="1" Flags="#x0290" SyncMan="2">
 							<ExcludePdo>#x9619</ExcludePdo>
 							<ExcludePdo>#x961a</ExcludePdo>
 							<Entry Name="Digital output CH1-bit0" Index="#x70c0" Sub="#x01" Flags="#x00001000">
@@ -49156,7 +49571,7 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<EtherCAT DcSyncMode="2" EnableVirtualSwitch="true" MaxSwitchPorts="36" MaxSwitchFrames="800" MaxSwitchMACs="100"/>
+				<EtherCAT DcSyncMode="3" EnableVirtualSwitch="true" MaxSwitchPorts="36" MaxSwitchFrames="800" MaxSwitchMACs="100"/>
 			</Device>
 			<Device Id="5" DevType="57" AmsPort="28677">
 				<Name>Device 5 (USB)</Name>
@@ -49253,11 +49668,57 @@ External Setpoint Generation:
 	<Mappings>
 		<MappingInfo Identifier="{00000000-2003-0850-0020-500830000403}" Id="#x02030010"/>
 		<MappingInfo Identifier="{00000000-2003-0850-0020-500850000403}" Id="#x02030040"/>
-		<MappingInfo Identifier="{00000000-0040-0304-1000-040342000403}" Id="#x02030030"/>
 		<MappingInfo Identifier="{00000000-0060-0304-1000-040362000403}" Id="#x02030070"/>
 		<MappingInfo Identifier="{00000000-00A0-0304-1000-0403A1000403}" Id="#x02030050"/>
-		<MappingInfo Identifier="{00000000-00B0-0304-1000-0403B1000403}" Id="#x02030020"/>
 		<MappingInfo Identifier="{08502003-0010-0500-0020-500810000403}" Id="#x02030060" Watchdog="20000000040000000400000004000000"/>
+		<OwnerA Name="TINC^NC-Task 1 SAF^Axes^fr0">
+			<OwnerB Name="TIID^pm side^fr0_servermotor">
+				<Link VarA="Drive^Inputs^In^nDataIn1" VarB="Inputs^Following error actual value"/>
+				<Link VarA="Drive^Inputs^In^nDataIn3[0]" VarB="Inputs^Torque actual value"/>
+				<Link VarA="Drive^Inputs^In^nDcOutputTime" VarB="InfoData^DcOutputShift"/>
+				<Link VarA="Drive^Inputs^In^nState1" VarB="Inputs^Statusword"/>
+				<Link VarA="Drive^Inputs^In^nState2" VarB="Inputs^Statusword" Size="8" OffsB="8"/>
+				<Link VarA="Drive^Inputs^In^nState4" VarB="WcState^InputToggle" Size="1" OffsA="1"/>
+				<Link VarA="Drive^Inputs^In^nState4" VarB="WcState^WcState"/>
+				<Link VarA="Drive^Outputs^Out^nCtrl1" VarB="Outputs^Controlword"/>
+				<Link VarA="Drive^Outputs^Out^nCtrl2" VarB="Outputs^Controlword" Size="8" OffsB="8"/>
+				<Link VarA="Drive^Outputs^Out^nDataOut1" VarB="Outputs^Target position"/>
+				<Link VarA="Enc^Inputs^In^nDataIn1" VarB="Inputs^Position actual value"/>
+				<Link VarA="Enc^Inputs^In^nDataIn3" VarB="Inputs^Touch probe pos1 pos value"/>
+				<Link VarA="Enc^Inputs^In^nDataIn5" VarB="Inputs^Touch probe pos2 pos value"/>
+				<Link VarA="Enc^Inputs^In^nDcInputTime" VarB="InfoData^DcInputShift"/>
+				<Link VarA="Enc^Inputs^In^nState4" VarB="WcState^InputToggle" Size="1" OffsA="1"/>
+				<Link VarA="Enc^Inputs^In^nState4" VarB="WcState^WcState"/>
+				<Link VarA="Enc^Inputs^In^nState5" VarB="Inputs^Touch probe status"/>
+				<Link VarA="Enc^Inputs^In^nState6" VarB="Inputs^Touch probe status" Size="8" OffsB="8"/>
+				<Link VarA="Enc^Outputs^Out^nCtrl5" VarB="Outputs^Touch probe function"/>
+				<Link VarA="Enc^Outputs^Out^nCtrl6" VarB="Outputs^Touch probe function" Size="8" OffsB="8"/>
+			</OwnerB>
+		</OwnerA>
+		<OwnerA Name="TINC^NC-Task 1 SAF^Axes^fr1">
+			<OwnerB Name="TIID^pm side^fr1_servermotor">
+				<Link VarA="Drive^Inputs^In^nDataIn1" VarB="Inputs^Following error actual value"/>
+				<Link VarA="Drive^Inputs^In^nDataIn3[0]" VarB="Inputs^Torque actual value"/>
+				<Link VarA="Drive^Inputs^In^nDcOutputTime" VarB="InfoData^DcOutputShift"/>
+				<Link VarA="Drive^Inputs^In^nState1" VarB="Inputs^Statusword"/>
+				<Link VarA="Drive^Inputs^In^nState2" VarB="Inputs^Statusword" Size="8" OffsB="8"/>
+				<Link VarA="Drive^Inputs^In^nState4" VarB="WcState^InputToggle" Size="1" OffsA="1"/>
+				<Link VarA="Drive^Inputs^In^nState4" VarB="WcState^WcState"/>
+				<Link VarA="Drive^Outputs^Out^nCtrl1" VarB="Outputs^Controlword"/>
+				<Link VarA="Drive^Outputs^Out^nCtrl2" VarB="Outputs^Controlword" Size="8" OffsB="8"/>
+				<Link VarA="Drive^Outputs^Out^nDataOut1" VarB="Outputs^Target position"/>
+				<Link VarA="Enc^Inputs^In^nDataIn1" VarB="Inputs^Position actual value"/>
+				<Link VarA="Enc^Inputs^In^nDataIn3" VarB="Inputs^Touch probe pos1 pos value"/>
+				<Link VarA="Enc^Inputs^In^nDataIn5" VarB="Inputs^Touch probe pos2 pos value"/>
+				<Link VarA="Enc^Inputs^In^nDcInputTime" VarB="InfoData^DcInputShift"/>
+				<Link VarA="Enc^Inputs^In^nState4" VarB="WcState^InputToggle" Size="1" OffsA="1"/>
+				<Link VarA="Enc^Inputs^In^nState4" VarB="WcState^WcState"/>
+				<Link VarA="Enc^Inputs^In^nState5" VarB="Inputs^Touch probe status"/>
+				<Link VarA="Enc^Inputs^In^nState6" VarB="Inputs^Touch probe status" Size="8" OffsB="8"/>
+				<Link VarA="Enc^Outputs^Out^nCtrl5" VarB="Outputs^Touch probe function"/>
+				<Link VarA="Enc^Outputs^Out^nCtrl6" VarB="Outputs^Touch probe function" Size="8" OffsB="8"/>
+			</OwnerB>
+		</OwnerA>
 		<OwnerA Name="TINC^NC-Task 1 SAF^Axes^pm0_buf0">
 			<OwnerB Name="TIID^pm side^pm0_buf0">
 				<Link VarA="Drive^Inputs^In^nDataIn1" VarB="Inputs^Following error actual value"/>
@@ -50287,6 +50748,14 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^G_IO.arDO[76]^Ch[8]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit0"/>
 				<Link VarA="PlcTask Outputs^G_IO.arDO[76]^Ch[9]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
 			</OwnerB>
+			<OwnerB Name="TIID^pm side^lb0_converter">
+				<Link VarA="PlcTask Outputs^GVL.lb[0].belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.lb[0].belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.lb[0].belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.lb[0].belt[1].fbconverter.freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.lb[0].belt[2].fbconverter.cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.lb[0].belt[2].fbconverter.freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
+			</OwnerB>
 			<OwnerB Name="TIID^pm side^lb0_dio">
 				<Link VarA="PlcTask Inputs^G_IO.arDI[87]^Ch[0]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit0"/>
 				<Link VarA="PlcTask Inputs^G_IO.arDI[87]^Ch[10]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit2"/>
@@ -50320,6 +50789,52 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^G_IO.arDO[87]^Ch[7]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit7"/>
 				<Link VarA="PlcTask Outputs^G_IO.arDO[87]^Ch[8]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit0"/>
 				<Link VarA="PlcTask Outputs^G_IO.arDO[87]^Ch[9]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^pm side^lb1_converter">
+				<Link VarA="PlcTask Outputs^GVL.lb[1].belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.lb[1].belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.lb[1].belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.lb[1].belt[1].fbconverter.freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.lb[1].belt[2].fbconverter.cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.lb[1].belt[2].fbconverter.freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
+			</OwnerB>
+			<OwnerB Name="TIID^pm side^lb1_dio">
+				<Link VarA="PlcTask Inputs^G_IO.arDI[90]^Ch[0]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit0"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[90]^Ch[10]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit2"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[90]^Ch[11]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit3"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[90]^Ch[12]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit4"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[90]^Ch[13]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit5"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[90]^Ch[14]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit6"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[90]^Ch[15]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit7"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[90]^Ch[1]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit1"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[90]^Ch[2]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit2"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[90]^Ch[3]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit3"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[90]^Ch[4]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit4"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[90]^Ch[5]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit5"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[90]^Ch[6]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit6"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[90]^Ch[7]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit7"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[90]^Ch[8]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit0"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[90]^Ch[9]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit1"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[90]^Ch[0]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit0"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[90]^Ch[10]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit2"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[90]^Ch[11]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit3"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[90]^Ch[12]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit4"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[90]^Ch[13]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit5"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[90]^Ch[14]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit6"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[90]^Ch[15]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit7"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[90]^Ch[1]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit1"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[90]^Ch[2]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit2"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[90]^Ch[3]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit3"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[90]^Ch[4]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit4"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[90]^Ch[5]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit5"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[90]^Ch[6]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit6"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[90]^Ch[7]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit7"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[90]^Ch[8]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit0"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[90]^Ch[9]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^pm side^lc0_converter">
+				<Link VarA="PlcTask Outputs^GVL.lc[0].belt_out.belt.fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.lc[0].belt_out.belt.fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^lc0_dio">
 				<Link VarA="PlcTask Inputs^G_IO.arDI[85]^Ch[0]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit0"/>
@@ -50386,6 +50901,76 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^G_IO.arDO[86]^Ch[7]" VarB="Module 4 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit7"/>
 				<Link VarA="PlcTask Outputs^G_IO.arDO[86]^Ch[8]" VarB="Module 4 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit0"/>
 				<Link VarA="PlcTask Outputs^G_IO.arDO[86]^Ch[9]" VarB="Module 4 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^pm side^lc1_converter">
+				<Link VarA="PlcTask Outputs^GVL.lc[1].belt_out.belt.fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.lc[1].belt_out.belt.fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
+			</OwnerB>
+			<OwnerB Name="TIID^pm side^lc1_dio">
+				<Link VarA="PlcTask Inputs^G_IO.arDI[88]^Ch[0]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit0"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[88]^Ch[10]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit2"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[88]^Ch[11]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit3"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[88]^Ch[12]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit4"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[88]^Ch[13]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit5"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[88]^Ch[14]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit6"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[88]^Ch[15]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit7"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[88]^Ch[1]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit1"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[88]^Ch[2]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit2"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[88]^Ch[3]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit3"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[88]^Ch[4]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit4"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[88]^Ch[5]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit5"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[88]^Ch[6]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit6"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[88]^Ch[7]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit7"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[88]^Ch[8]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit0"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[88]^Ch[9]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit1"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[89]^Ch[0]" VarB="Module 2 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit0"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[89]^Ch[10]" VarB="Module 2 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit2"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[89]^Ch[11]" VarB="Module 2 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit3"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[89]^Ch[12]" VarB="Module 2 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit4"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[89]^Ch[13]" VarB="Module 2 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit5"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[89]^Ch[14]" VarB="Module 2 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit6"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[89]^Ch[15]" VarB="Module 2 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit7"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[89]^Ch[1]" VarB="Module 2 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit1"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[89]^Ch[2]" VarB="Module 2 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit2"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[89]^Ch[3]" VarB="Module 2 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit3"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[89]^Ch[4]" VarB="Module 2 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit4"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[89]^Ch[5]" VarB="Module 2 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit5"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[89]^Ch[6]" VarB="Module 2 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit6"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[89]^Ch[7]" VarB="Module 2 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit7"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[89]^Ch[8]" VarB="Module 2 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit0"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[89]^Ch[9]" VarB="Module 2 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit1"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[88]^Ch[0]" VarB="Module 3 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit0"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[88]^Ch[10]" VarB="Module 3 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit2"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[88]^Ch[11]" VarB="Module 3 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit3"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[88]^Ch[12]" VarB="Module 3 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit4"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[88]^Ch[13]" VarB="Module 3 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit5"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[88]^Ch[14]" VarB="Module 3 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit6"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[88]^Ch[15]" VarB="Module 3 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit7"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[88]^Ch[1]" VarB="Module 3 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit1"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[88]^Ch[2]" VarB="Module 3 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit2"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[88]^Ch[3]" VarB="Module 3 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit3"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[88]^Ch[4]" VarB="Module 3 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit4"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[88]^Ch[5]" VarB="Module 3 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit5"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[88]^Ch[6]" VarB="Module 3 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit6"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[88]^Ch[7]" VarB="Module 3 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit7"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[88]^Ch[8]" VarB="Module 3 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit0"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[88]^Ch[9]" VarB="Module 3 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[89]^Ch[0]" VarB="Module 4 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit0"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[89]^Ch[10]" VarB="Module 4 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit2"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[89]^Ch[11]" VarB="Module 4 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit3"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[89]^Ch[12]" VarB="Module 4 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit4"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[89]^Ch[13]" VarB="Module 4 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit5"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[89]^Ch[14]" VarB="Module 4 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit6"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[89]^Ch[15]" VarB="Module 4 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit7"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[89]^Ch[1]" VarB="Module 4 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit1"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[89]^Ch[2]" VarB="Module 4 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit2"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[89]^Ch[3]" VarB="Module 4 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit3"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[89]^Ch[4]" VarB="Module 4 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit4"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[89]^Ch[5]" VarB="Module 4 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit5"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[89]^Ch[6]" VarB="Module 4 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit6"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[89]^Ch[7]" VarB="Module 4 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit7"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[89]^Ch[8]" VarB="Module 4 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit0"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[89]^Ch[9]" VarB="Module 4 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm0_1_dio">
 				<Link VarA="PlcTask Inputs^G_IO.arDI[50]^Ch[0]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit0"/>
@@ -50502,28 +51087,28 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^G_IO.arDO[51]^Ch[9]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm0_1_innerConv">
-				<Link VarA="PlcTask Outputs^GVL.pm[0].inConv.belt[0].cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[0].inConv.belt[0].freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[0].inConv.belt[1].cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[0].inConv.belt[1].freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[0].inConv.belt[2].cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[0].inConv.belt[2].freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[1].inConv.belt[0].cmd" VarB="Axis#4 Outputs^Axis4 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[1].inConv.belt[0].freq" VarB="Axis#4 Outputs^Axis4 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[1].inConv.belt[1].cmd" VarB="Axis#5 Outputs^Axis5 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[1].inConv.belt[1].freq" VarB="Axis#5 Outputs^Axis5 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[1].inConv.belt[2].cmd" VarB="Axis#6 Outputs^Axis6 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[1].inConv.belt[2].freq" VarB="Axis#6 Outputs^Axis6 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[0].inConv.belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[0].inConv.belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[0].inConv.belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[0].inConv.belt[1].fbconverter.freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[0].inConv.belt[2].fbconverter.cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[0].inConv.belt[2].fbconverter.freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[1].inConv.belt[0].fbconverter.cmd" VarB="Axis#4 Outputs^Axis4 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[1].inConv.belt[0].fbconverter.freq" VarB="Axis#4 Outputs^Axis4 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[1].inConv.belt[1].fbconverter.cmd" VarB="Axis#5 Outputs^Axis5 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[1].inConv.belt[1].fbconverter.freq" VarB="Axis#5 Outputs^Axis5 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[1].inConv.belt[2].fbconverter.cmd" VarB="Axis#6 Outputs^Axis6 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[1].inConv.belt[2].fbconverter.freq" VarB="Axis#6 Outputs^Axis6 Frequency set through communication"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm0_1_outerConv">
-				<Link VarA="PlcTask Outputs^GVL.pm[0].outConv.belt[0].cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[0].outConv.belt[0].freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[0].outConv.belt[1].cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[0].outConv.belt[1].freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[1].outConv.belt[0].cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[1].outConv.belt[0].freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[1].outConv.belt[1].cmd" VarB="Axis#4 Outputs^Axis4 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[1].outConv.belt[1].freq" VarB="Axis#4 Outputs^Axis4 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[0].outConv.belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[0].outConv.belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[0].outConv.belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[0].outConv.belt[1].fbconverter.freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[1].outConv.belt[0].fbconverter.cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[1].outConv.belt[0].fbconverter.freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[1].outConv.belt[1].fbconverter.cmd" VarB="Axis#4 Outputs^Axis4 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[1].outConv.belt[1].fbconverter.freq" VarB="Axis#4 Outputs^Axis4 Frequency set through communication"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm2_3_dio">
 				<Link VarA="PlcTask Inputs^G_IO.arDI[55]^Ch[0]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit0"/>
@@ -50640,28 +51225,28 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[9]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm2_3_innerConv">
-				<Link VarA="PlcTask Outputs^GVL.pm[2].inConv.belt[0].cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[2].inConv.belt[0].freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[2].inConv.belt[1].cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[2].inConv.belt[1].freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[2].inConv.belt[2].cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[2].inConv.belt[2].freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[3].inConv.belt[0].cmd" VarB="Axis#4 Outputs^Axis4 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[3].inConv.belt[0].freq" VarB="Axis#4 Outputs^Axis4 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[3].inConv.belt[1].cmd" VarB="Axis#5 Outputs^Axis5 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[3].inConv.belt[1].freq" VarB="Axis#5 Outputs^Axis5 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[3].inConv.belt[2].cmd" VarB="Axis#6 Outputs^Axis6 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[3].inConv.belt[2].freq" VarB="Axis#6 Outputs^Axis6 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[2].inConv.belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[2].inConv.belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[2].inConv.belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[2].inConv.belt[1].fbconverter.freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[2].inConv.belt[2].fbconverter.cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[2].inConv.belt[2].fbconverter.freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[3].inConv.belt[0].fbconverter.cmd" VarB="Axis#4 Outputs^Axis4 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[3].inConv.belt[0].fbconverter.freq" VarB="Axis#4 Outputs^Axis4 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[3].inConv.belt[1].fbconverter.cmd" VarB="Axis#5 Outputs^Axis5 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[3].inConv.belt[1].fbconverter.freq" VarB="Axis#5 Outputs^Axis5 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[3].inConv.belt[2].fbconverter.cmd" VarB="Axis#6 Outputs^Axis6 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[3].inConv.belt[2].fbconverter.freq" VarB="Axis#6 Outputs^Axis6 Frequency set through communication"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm2_3_outerConv">
-				<Link VarA="PlcTask Outputs^GVL.pm[2].outConv.belt[0].cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[2].outConv.belt[0].freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[2].outConv.belt[1].cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[2].outConv.belt[1].freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[3].outConv.belt[0].cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[3].outConv.belt[0].freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[3].outConv.belt[1].cmd" VarB="Axis#4 Outputs^Axis4 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[3].outConv.belt[1].freq" VarB="Axis#4 Outputs^Axis4 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[2].outConv.belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[2].outConv.belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[2].outConv.belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[2].outConv.belt[1].fbconverter.freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[3].outConv.belt[0].fbconverter.cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[3].outConv.belt[0].fbconverter.freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[3].outConv.belt[1].fbconverter.cmd" VarB="Axis#4 Outputs^Axis4 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[3].outConv.belt[1].fbconverter.freq" VarB="Axis#4 Outputs^Axis4 Frequency set through communication"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm4_5_dio">
 				<Link VarA="PlcTask Inputs^G_IO.arDI[60]^Ch[0]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit0"/>
@@ -50778,28 +51363,28 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[9]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm4_5_innerConv">
-				<Link VarA="PlcTask Outputs^GVL.pm[4].inConv.belt[0].cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[4].inConv.belt[0].freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[4].inConv.belt[1].cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[4].inConv.belt[1].freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[4].inConv.belt[2].cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[4].inConv.belt[2].freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[5].inConv.belt[0].cmd" VarB="Axis#4 Outputs^Axis4 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[5].inConv.belt[0].freq" VarB="Axis#4 Outputs^Axis4 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[5].inConv.belt[1].cmd" VarB="Axis#5 Outputs^Axis5 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[5].inConv.belt[1].freq" VarB="Axis#5 Outputs^Axis5 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[5].inConv.belt[2].cmd" VarB="Axis#6 Outputs^Axis6 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[5].inConv.belt[2].freq" VarB="Axis#6 Outputs^Axis6 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[4].inConv.belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[4].inConv.belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[4].inConv.belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[4].inConv.belt[1].fbconverter.freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[4].inConv.belt[2].fbconverter.cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[4].inConv.belt[2].fbconverter.freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[5].inConv.belt[0].fbconverter.cmd" VarB="Axis#4 Outputs^Axis4 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[5].inConv.belt[0].fbconverter.freq" VarB="Axis#4 Outputs^Axis4 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[5].inConv.belt[1].fbconverter.cmd" VarB="Axis#5 Outputs^Axis5 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[5].inConv.belt[1].fbconverter.freq" VarB="Axis#5 Outputs^Axis5 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[5].inConv.belt[2].fbconverter.cmd" VarB="Axis#6 Outputs^Axis6 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[5].inConv.belt[2].fbconverter.freq" VarB="Axis#6 Outputs^Axis6 Frequency set through communication"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm4_5_outerConv">
-				<Link VarA="PlcTask Outputs^GVL.pm[4].outConv.belt[0].cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[4].outConv.belt[0].freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[4].outConv.belt[1].cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[4].outConv.belt[1].freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[5].outConv.belt[0].cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[5].outConv.belt[0].freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[5].outConv.belt[1].cmd" VarB="Axis#4 Outputs^Axis4 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[5].outConv.belt[1].freq" VarB="Axis#4 Outputs^Axis4 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[4].outConv.belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[4].outConv.belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[4].outConv.belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[4].outConv.belt[1].fbconverter.freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[5].outConv.belt[0].fbconverter.cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[5].outConv.belt[0].fbconverter.freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[5].outConv.belt[1].fbconverter.cmd" VarB="Axis#4 Outputs^Axis4 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[5].outConv.belt[1].fbconverter.freq" VarB="Axis#4 Outputs^Axis4 Frequency set through communication"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm6_7_dio">
 				<Link VarA="PlcTask Inputs^G_IO.arDI[65]^Ch[0]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit0"/>
@@ -50916,28 +51501,28 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^G_IO.arDO[63]^Ch[9]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm6_7_innerConv">
-				<Link VarA="PlcTask Outputs^GVL.pm[6].inConv.belt[0].cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[6].inConv.belt[0].freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[6].inConv.belt[1].cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[6].inConv.belt[1].freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[6].inConv.belt[2].cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[6].inConv.belt[2].freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[7].inConv.belt[0].cmd" VarB="Axis#4 Outputs^Axis4 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[7].inConv.belt[0].freq" VarB="Axis#4 Outputs^Axis4 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[7].inConv.belt[1].cmd" VarB="Axis#5 Outputs^Axis5 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[7].inConv.belt[1].freq" VarB="Axis#5 Outputs^Axis5 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[7].inConv.belt[2].cmd" VarB="Axis#6 Outputs^Axis6 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[7].inConv.belt[2].freq" VarB="Axis#6 Outputs^Axis6 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[6].inConv.belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[6].inConv.belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[6].inConv.belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[6].inConv.belt[1].fbconverter.freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[6].inConv.belt[2].fbconverter.cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[6].inConv.belt[2].fbconverter.freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[7].inConv.belt[0].fbconverter.cmd" VarB="Axis#4 Outputs^Axis4 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[7].inConv.belt[0].fbconverter.freq" VarB="Axis#4 Outputs^Axis4 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[7].inConv.belt[1].fbconverter.cmd" VarB="Axis#5 Outputs^Axis5 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[7].inConv.belt[1].fbconverter.freq" VarB="Axis#5 Outputs^Axis5 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[7].inConv.belt[2].fbconverter.cmd" VarB="Axis#6 Outputs^Axis6 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[7].inConv.belt[2].fbconverter.freq" VarB="Axis#6 Outputs^Axis6 Frequency set through communication"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm6_7_outerConv">
-				<Link VarA="PlcTask Outputs^GVL.pm[6].outConv.belt[0].cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[6].outConv.belt[0].freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[6].outConv.belt[1].cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[6].outConv.belt[1].freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[7].outConv.belt[0].cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[7].outConv.belt[0].freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[7].outConv.belt[1].cmd" VarB="Axis#4 Outputs^Axis4 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[7].outConv.belt[1].freq" VarB="Axis#4 Outputs^Axis4 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[6].outConv.belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[6].outConv.belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[6].outConv.belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[6].outConv.belt[1].fbconverter.freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[7].outConv.belt[0].fbconverter.cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[7].outConv.belt[0].fbconverter.freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[7].outConv.belt[1].fbconverter.cmd" VarB="Axis#4 Outputs^Axis4 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[7].outConv.belt[1].fbconverter.freq" VarB="Axis#4 Outputs^Axis4 Frequency set through communication"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm8_9_dio">
 				<Link VarA="PlcTask Inputs^G_IO.arDI[70]^Ch[0]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit0"/>
@@ -51054,28 +51639,28 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^G_IO.arDO[67]^Ch[9]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm8_9_innerConv">
-				<Link VarA="PlcTask Outputs^GVL.pm[8].inConv.belt[0].cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[8].inConv.belt[0].freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[8].inConv.belt[1].cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[8].inConv.belt[1].freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[8].inConv.belt[2].cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[8].inConv.belt[2].freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[9].inConv.belt[0].cmd" VarB="Axis#4 Outputs^Axis4 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[9].inConv.belt[0].freq" VarB="Axis#4 Outputs^Axis4 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[9].inConv.belt[1].cmd" VarB="Axis#5 Outputs^Axis5 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[9].inConv.belt[1].freq" VarB="Axis#5 Outputs^Axis5 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[9].inConv.belt[2].cmd" VarB="Axis#6 Outputs^Axis6 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[9].inConv.belt[2].freq" VarB="Axis#6 Outputs^Axis6 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[8].inConv.belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[8].inConv.belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[8].inConv.belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[8].inConv.belt[1].fbconverter.freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[8].inConv.belt[2].fbconverter.cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[8].inConv.belt[2].fbconverter.freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[9].inConv.belt[0].fbconverter.cmd" VarB="Axis#4 Outputs^Axis4 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[9].inConv.belt[0].fbconverter.freq" VarB="Axis#4 Outputs^Axis4 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[9].inConv.belt[1].fbconverter.cmd" VarB="Axis#5 Outputs^Axis5 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[9].inConv.belt[1].fbconverter.freq" VarB="Axis#5 Outputs^Axis5 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[9].inConv.belt[2].fbconverter.cmd" VarB="Axis#6 Outputs^Axis6 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[9].inConv.belt[2].fbconverter.freq" VarB="Axis#6 Outputs^Axis6 Frequency set through communication"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm8_9_outerConv">
-				<Link VarA="PlcTask Outputs^GVL.pm[8].outConv.belt[0].cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[8].outConv.belt[0].freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[8].outConv.belt[1].cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[8].outConv.belt[1].freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[9].outConv.belt[0].cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[9].outConv.belt[0].freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[9].outConv.belt[1].cmd" VarB="Axis#4 Outputs^Axis4 Communication control command"/>
-				<Link VarA="PlcTask Outputs^GVL.pm[9].outConv.belt[1].freq" VarB="Axis#4 Outputs^Axis4 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[8].outConv.belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[8].outConv.belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[8].outConv.belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[8].outConv.belt[1].fbconverter.freq" VarB="Axis#2 Outputs^Axis2 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[9].outConv.belt[0].fbconverter.cmd" VarB="Axis#3 Outputs^Axis3 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[9].outConv.belt[0].fbconverter.freq" VarB="Axis#3 Outputs^Axis3 Frequency set through communication"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[9].outConv.belt[1].fbconverter.cmd" VarB="Axis#4 Outputs^Axis4 Communication control command"/>
+				<Link VarA="PlcTask Outputs^GVL.pm[9].outConv.belt[1].fbconverter.freq" VarB="Axis#4 Outputs^Axis4 Frequency set through communication"/>
 			</OwnerB>
 			<OwnerB Name="TIID^rem_wf^Box 2 (GL20-RTU-ECT)">
 				<Link VarA="PlcTask Inputs^G_IO.arDI[95]^Ch[0]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit0"/>
@@ -52350,6 +52935,14 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^G_IO.arDO[39]^Ch[5]" VarB="Module 1 (C2S-EC-24B)^Outputs^valve[9..12][5]"/>
 				<Link VarA="PlcTask Outputs^G_IO.arDO[39]^Ch[6]" VarB="Module 1 (C2S-EC-24B)^Outputs^valve[9..12][6]"/>
 				<Link VarA="PlcTask Outputs^G_IO.arDO[39]^Ch[7]" VarB="Module 1 (C2S-EC-24B)^Outputs^valve[9..12][7]"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^fr0">
+				<Link VarA="PlcTask Inputs^GVL.fr[0].AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^GVL.fr[0].AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^fr1">
+				<Link VarA="PlcTask Inputs^GVL.fr[1].AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^GVL.fr[1].AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^pm0_buf0">
 				<Link VarA="PlcTask Inputs^GVL.pm[0].buffer[0].AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>

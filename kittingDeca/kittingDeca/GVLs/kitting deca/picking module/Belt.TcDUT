@@ -3,8 +3,8 @@
   <DUT Name="Belt" Id="{6625f086-4162-4780-bb7b-f5160f2f835b}">
     <Declaration><![CDATA[TYPE Belt :
 STRUCT
-	cmd  AT%Q*	: UINT;
-	freq AT%Q*	: UINT;
+	//cmd  AT%Q*	: UINT;
+	//freq AT%Q*	: UINT;
 	fbconverter	: FB_Converter;
 END_STRUCT
 END_TYPE

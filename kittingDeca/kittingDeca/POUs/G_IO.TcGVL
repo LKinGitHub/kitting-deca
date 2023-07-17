@@ -23,7 +23,7 @@ VAR_GLOBAL
 		
 	{attribute 'TcContextName':='PlcTask1'}
    	
-
+	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

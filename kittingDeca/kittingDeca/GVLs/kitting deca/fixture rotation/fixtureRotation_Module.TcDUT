@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="fixtureRotation_Module" Id="{5a2381c6-ef41-4ad6-80d3-378aea870f97}">
+    <Declaration><![CDATA[TYPE fixtureRotation_Module :
+STRUCT
+	power_axis	: BOOL;
+	contactor_axis : BOOL;	
+	mcAxis 					: FB_MotionAxis_MC;
+	st_mcAxis 				: ST_MotionAxis_MC;
+	AxisRef					: AXIS_REF;
+	valve	:Valve;
+	limit_sensor : ARRAY[0..2]OF BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

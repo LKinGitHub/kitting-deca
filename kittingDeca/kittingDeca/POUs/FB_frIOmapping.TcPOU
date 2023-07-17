@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_frIOmapping" Id="{631a20e2-c182-4ff0-8623-3c00ae5023a9}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_frIOmapping
+VAR_INPUT
+	iFR	: INT;
+	mcAxis	: FB_MotionAxis_MC;	
+	sNetID	: STRING;
+	nSlaveAddr : UINT;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR_IN_OUT
+	IN_OUT	: ST_MotionAxis_MC;
+END_VAR
+VAR
+	offset	: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[offset:= 75+iFR;
+
+GVL.fr[iFR].contactor_axis	:= G_IO.arDI[offset].Ch[0];
+GVL.fr[iFR].limit_sensor[0]	:= G_IO.arDI[offset].Ch[1];
+GVL.fr[iFR].limit_sensor[1]	:= G_IO.arDI[offset].Ch[2];
+GVL.fr[iFR].limit_sensor[2]	:= G_IO.arDI[offset].Ch[3];
+GVL.fr[iFR].valve.extended	:= G_IO.arDI[offset].Ch[4];
+GVL.fr[iFR].valve.retracted	:= G_IO.arDI[offset].Ch[5];
+
+G_IO.arDO[offset].Ch[0]		:= GVL.fr[iFR].power_axis;	
+G_IO.arDO[offset].Ch[1]		:= GVL.fr[iFR].valve.extend;	
+
+
+mcAxis
+(
+	ZSN		:= GVL.fr[iFR].limit_sensor[2]	 OR IN_OUT.xHoming,
+	ZSP		:= GVL.fr[iFR].limit_sensor[1]		OR IN_OUT.xHoming,
+	IN_OUT	:= IN_OUT, 
+	AXIS	:= GVL.fr[iFR].AxisRef, 
+);
+IN_OUT.bPosSensorShow	:= TRUE;
+IN_OUT.bNegSensorShow	:= TRUE;
+IN_OUT.bStopButtonShow	:= TRUE;
+IN_OUT.rMaxAcceleration	:= 50000;
+IN_OUT.rMaxDeceleration	:= 50000;
+IN_OUT.rMaxJerk			:= 500000;
+IN_OUT.rAcceleration	:= 2500;
+IN_OUT.rDeceleration	:= 2500;
+IN_OUT.rJerk			:= 12500;
+IN_OUT.rMaxVelocity		:= 100;
+IN_OUT.rMaxDistance		:= 50;
+IN_OUT.bPosSen	:= GVL.fr[iFR].limit_sensor[1] ;
+IN_OUT.bNegSen	:= GVL.fr[iFR].limit_sensor[2] ;
+IN_OUT.mcHome.bCalibrationCam	:= GVL.fr[iFR].limit_sensor[0];
+IN_OUT.bPositionSensor	:= GVL.fr[iFR].limit_sensor[0];
+IN_OUT.bdirFW	:= TRUE;
+IN_OUT.rSetPos	:= 0;
+IN_OUT.sNetID := sNetID;
+IN_OUT.nSlaveAddr	:= nSlaveAddr;
+
+
+
+
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_frIOmapping">
+      <LineId Id="187" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="192" Count="0" />
+      <LineId Id="298" Count="0" />
+      <LineId Id="214" Count="0" />
+      <LineId Id="299" Count="1" />
+      <LineId Id="297" Count="0" />
+      <LineId Id="301" Count="0" />
+      <LineId Id="219" Count="0" />
+      <LineId Id="217" Count="0" />
+      <LineId Id="233" Count="1" />
+      <LineId Id="242" Count="24" />
+      <LineId Id="235" Count="0" />
+      <LineId Id="230" Count="0" />
+      <LineId Id="229" Count="0" />
+      <LineId Id="228" Count="0" />
+      <LineId Id="226" Count="0" />
+      <LineId Id="216" Count="0" />
+      <LineId Id="215" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

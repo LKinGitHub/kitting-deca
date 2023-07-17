@@ -15,16 +15,19 @@ Id;Default
 381;aboveFixture_light_curtain
 602;Acc
 843;Actual Position
+998;air pressure
 667;axis
 203;Axis Error 
 89;Belt
 1107;belt
+144;Belt Out
 633;belt test
 117;Belt test
 411;Belt Test
 476;belt[0]
 143;belt[1]
 1145;belt[2]
+1131;Belt_out
 388;Breaker
 808;Breaker OFF
 486;Breaker ON
@@ -50,7 +53,11 @@ Id;Default
 614;extended
 625;FR test
 174;FR Test
+1488;FR0
+251;FR1
 1075;freq
+1168;FR_axis
+433;FR_IO
 841;HOME
 248;HomeDone
 986;Infeed[0]
@@ -60,7 +67,16 @@ Id;Default
 99;Jerk
 839;JOG BW
 840;JOG FW
+1019;LB
+557;LB0
+1635;LB1
+1826;LC0
+975;LC0_axis
+253;LC1
+1342;LC1_axis
 79;LCS0307-E15
+408;LC_axis
+1539;LC_IO
 250;Lift0
 698;Lift1
 382;Lift[0]
@@ -86,9 +102,11 @@ Id;Default
 494;outter_conveyor
 223;page1
 737;page2
+102;perturbation[0]
 1439;photo_sensor
 70;photo_sensor[0]
 865;photo_sensor[1]
+895;photo_sensor[2]
 876;PM
 413;PM0
 1418;PM1
@@ -138,6 +156,11 @@ Id;Default
 453;RFID[1]
 186;robot
 72;roller
+81;Roller IN
+1437;Roller In
+1787;Roller OUT
+1125;Roller Out
+499;Servo
 983;Set absolute$R$Nencoder as line
 622;Set absolute$R$Nencoder as linear
 454;Set absolute$R$Nencoder as rotation
@@ -158,10 +181,16 @@ Id;Default
 198;Stop
 336;surface_light_curtain
 379;time
+1753;valve
 637;valve_clamp
+863;valve_clamp[0]
+712;valve_clamp[1]
+1456;valve_guide[0]
+1699;valve_guide[1]
 1384;valve_inner[0]
 67;valve_inner[1]
 1359;valve_inner[2]
+668;valve_lift
 1180;valve_outer[0]
 1288;valve_outer[1]
 728;valve_outter[0]
@@ -170,6 +199,12 @@ Id;Default
 970;valve_perturbation[2]
 148;valve_perturbation[3]
 227;valve_stopper
+192;valve_stopper[0]
+1065;valve_stopper[1]
+1212;valve_stopper[2]
+1778;valve_stopper[3]
+1546;valve_stopper[4]
+1487;valve_stopper[5]
 200;Velocity
 794;Write
 729;Write 

@@ -86,6 +86,11 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"998"</v>
+              <v n="TextDefault">"air pressure"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"667"</v>
               <v n="TextDefault">"axis"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -103,6 +108,11 @@
             <o>
               <v n="TextID">"1107"</v>
               <v n="TextDefault">"belt"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"144"</v>
+              <v n="TextDefault">"Belt Out"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -133,6 +143,11 @@
             <o>
               <v n="TextID">"1145"</v>
               <v n="TextDefault">"belt[2]"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1131"</v>
+              <v n="TextDefault">"Belt_out"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -261,8 +276,28 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"1488"</v>
+              <v n="TextDefault">"FR0"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"251"</v>
+              <v n="TextDefault">"FR1"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"1075"</v>
               <v n="TextDefault">"freq"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1168"</v>
+              <v n="TextDefault">"FR_axis"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"433"</v>
+              <v n="TextDefault">"FR_IO"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -311,8 +346,53 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"1019"</v>
+              <v n="TextDefault">"LB"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"557"</v>
+              <v n="TextDefault">"LB0"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1635"</v>
+              <v n="TextDefault">"LB1"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1826"</v>
+              <v n="TextDefault">"LC0"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"975"</v>
+              <v n="TextDefault">"LC0_axis"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"253"</v>
+              <v n="TextDefault">"LC1"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1342"</v>
+              <v n="TextDefault">"LC1_axis"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"79"</v>
               <v n="TextDefault">"LCS0307-E15"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"408"</v>
+              <v n="TextDefault">"LC_axis"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1539"</v>
+              <v n="TextDefault">"LC_IO"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -441,6 +521,11 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"102"</v>
+              <v n="TextDefault">"perturbation[0]"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"1439"</v>
               <v n="TextDefault">"photo_sensor"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -453,6 +538,11 @@
             <o>
               <v n="TextID">"865"</v>
               <v n="TextDefault">"photo_sensor[1]"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"895"</v>
+              <v n="TextDefault">"photo_sensor[2]"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -702,6 +792,31 @@ On"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"81"</v>
+              <v n="TextDefault">"Roller IN"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1437"</v>
+              <v n="TextDefault">"Roller In"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1787"</v>
+              <v n="TextDefault">"Roller OUT"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1125"</v>
+              <v n="TextDefault">"Roller Out"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"499"</v>
+              <v n="TextDefault">"Servo"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"983"</v>
               <v n="TextDefault">"Set absolute
 encoder as line"</v>
@@ -809,8 +924,33 @@ as line"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"1753"</v>
+              <v n="TextDefault">"valve"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"637"</v>
               <v n="TextDefault">"valve_clamp"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"863"</v>
+              <v n="TextDefault">"valve_clamp[0]"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"712"</v>
+              <v n="TextDefault">"valve_clamp[1]"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1456"</v>
+              <v n="TextDefault">"valve_guide[0]"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1699"</v>
+              <v n="TextDefault">"valve_guide[1]"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -826,6 +966,11 @@ as line"</v>
             <o>
               <v n="TextID">"1359"</v>
               <v n="TextDefault">"valve_inner[2]"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"668"</v>
+              <v n="TextDefault">"valve_lift"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -866,6 +1011,36 @@ as line"</v>
             <o>
               <v n="TextID">"227"</v>
               <v n="TextDefault">"valve_stopper"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"192"</v>
+              <v n="TextDefault">"valve_stopper[0]"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1065"</v>
+              <v n="TextDefault">"valve_stopper[1]"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1212"</v>
+              <v n="TextDefault">"valve_stopper[2]"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1778"</v>
+              <v n="TextDefault">"valve_stopper[3]"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1546"</v>
+              <v n="TextDefault">"valve_stopper[4]"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1487"</v>
+              <v n="TextDefault">"valve_stopper[5]"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>

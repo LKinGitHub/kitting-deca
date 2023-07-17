@@ -64,8 +64,8 @@ G_IO.arDO[offset].Ch[13]	:= GVL.lc[iLc].valve_stopper[1].extend;
 G_IO.arDO[offset].Ch[14]	:= GVL.lc[iLc].valve_guide[0].extend;
 G_IO.arDO[offset].Ch[15]	:= GVL.lc[iLc].valve_guide[1].extend;
 
-mcAxis
-(
+
+mcAxis(
 	ZSN		:= GVL.lc[iLc].lateral.limit_sensor[2]	 OR IN_OUT.xHoming,
 	ZSP		:= GVL.lc[iLc].lateral.limit_sensor[1]		OR IN_OUT.xHoming,
 	IN_OUT	:= IN_OUT, 

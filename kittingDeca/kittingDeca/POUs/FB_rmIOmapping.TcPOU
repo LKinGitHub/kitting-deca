@@ -62,11 +62,11 @@ G_IO.arDO[offsetOut].Ch[4]	:= GVL.pm[iRm*2].power_robot;
 G_IO.arDO[offsetOut].Ch[12]	:= GVL.pm[iRm*2].buffer[0].lamp_button;
 G_IO.arDO[offsetOut].Ch[13]	:= GVL.pm[iRm*2].buffer[1].lamp_button;
 	
-G_IO.arDO[offsetOut+2].Ch[0]	:= GVL.pm[iRm*2].inConv.valve[0].extend;
-G_IO.arDO[offsetOut+2].Ch[2]	:= GVL.pm[iRm*2].inConv.valve[1].extend;
-G_IO.arDO[offsetOut+2].Ch[4]	:= GVL.pm[iRm*2].inConv.valve[2].extend;
-G_IO.arDO[offsetOut+2].Ch[6]	:= GVL.pm[iRm*2].outConv.valve[0].extend;
-G_IO.arDO[offsetOut+2].Ch[8]	:= GVL.pm[iRm*2].outConv.valve[1].extend;
+G_IO.arDO[offsetOut+1].Ch[0]	:= GVL.pm[iRm*2].inConv.valve[0].extend;
+G_IO.arDO[offsetOut+1].Ch[1]	:= GVL.pm[iRm*2].inConv.valve[1].extend;
+G_IO.arDO[offsetOut+1].Ch[2]	:= GVL.pm[iRm*2].inConv.valve[2].extend;
+G_IO.arDO[offsetOut+1].Ch[3]	:= GVL.pm[iRm*2].outConv.valve[0].extend;
+G_IO.arDO[offsetOut+1].Ch[4]	:= GVL.pm[iRm*2].outConv.valve[1].extend;
 
 
 
@@ -112,11 +112,11 @@ G_IO.arDO[offsetOut].Ch[9]	:= GVL.pm[iRm*2+1].power_robot;
 G_IO.arDO[offsetOut].Ch[14]	:= GVL.pm[iRm*2+1].buffer[0].lamp_button;
 G_IO.arDO[offsetOut].Ch[15]	:= GVL.pm[iRm*2+1].buffer[1].lamp_button;
 	
-G_IO.arDO[offsetOut+2].Ch[10]	:= GVL.pm[iRm*2+1].inConv.valve[0].extend;
-G_IO.arDO[offsetOut+2].Ch[12]	:= GVL.pm[iRm*2+1].inConv.valve[1].extend;
-G_IO.arDO[offsetOut+2].Ch[14]	:= GVL.pm[iRm*2+1].inConv.valve[2].extend;
-G_IO.arDO[offsetOut+3].Ch[0]	:= GVL.pm[iRm*2+1].outConv.valve[0].extend;
-G_IO.arDO[offsetOut+3].Ch[2]	:= GVL.pm[iRm*2+1].outConv.valve[1].extend;	
+G_IO.arDO[offsetOut+1].Ch[5]	:= GVL.pm[iRm*2+1].inConv.valve[0].extend;
+G_IO.arDO[offsetOut+1].Ch[6]	:= GVL.pm[iRm*2+1].inConv.valve[1].extend;
+G_IO.arDO[offsetOut+1].Ch[7]	:= GVL.pm[iRm*2+1].inConv.valve[2].extend;
+G_IO.arDO[offsetOut+1].Ch[8]	:= GVL.pm[iRm*2+1].outConv.valve[0].extend;
+G_IO.arDO[offsetOut+1].Ch[9]	:= GVL.pm[iRm*2+1].outConv.valve[1].extend;	
 
 GVL.pm[iRm*2].contactor_inConv			:= G_IO.arDI[offsetIn+4].Ch[0];//pm[0] and pm[1]
 GVL.pm[iRm*2].contactor_outConv			:= G_IO.arDI[offsetIn+4].Ch[1];//pm[0] and pm[1]

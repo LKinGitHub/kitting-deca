@@ -17650,7 +17650,7 @@ dIO_PM.inConv.valve[0].retract := TRUE;"</v>
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"dIO_PM.inConv.belt[0].cmd"</v>
+                      <v n="Value">"dIO_PM.inConv.belt[0].fbconverter.cmd"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
@@ -17824,7 +17824,7 @@ dIO_PM.inConv.valve[0].retract := TRUE;"</v>
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"dIO_PM.inConv.belt[0].freq"</v>
+                      <v n="Value">"dIO_PM.inConv.belt[0].fbconverter.freq"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
@@ -19056,7 +19056,7 @@ dIO_PM.inConv.valve[0].retract := TRUE;"</v>
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"dIO_PM.inConv.belt[1].cmd"</v>
+                      <v n="Value">"dIO_PM.inConv.belt[1].fbconverter.cmd"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
@@ -19230,7 +19230,7 @@ dIO_PM.inConv.valve[0].retract := TRUE;"</v>
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"dIO_PM.inConv.belt[1].freq"</v>
+                      <v n="Value">"dIO_PM.inConv.belt[1].fbconverter.freq"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
@@ -20462,7 +20462,7 @@ dIO_PM.inConv.valve[0].retract := TRUE;"</v>
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"dIO_PM.inConv.belt[2].cmd"</v>
+                      <v n="Value">"dIO_PM.inConv.belt[2].fbconverter.cmd"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
@@ -20636,7 +20636,7 @@ dIO_PM.inConv.valve[0].retract := TRUE;"</v>
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"dIO_PM.inConv.belt[2].freq"</v>
+                      <v n="Value">"dIO_PM.inConv.belt[2].fbconverter.freq"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
@@ -27637,7 +27637,7 @@ dIO_PM.outConv.valve[0].retract := TRUE;"</v>
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"dIO_PM.outConv.belt[0].cmd"</v>
+                      <v n="Value">"dIO_PM.outConv.belt[0].fbconverter.cmd"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
@@ -27811,7 +27811,7 @@ dIO_PM.outConv.valve[0].retract := TRUE;"</v>
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"dIO_PM.outConv.belt[0].freq"</v>
+                      <v n="Value">"dIO_PM.outConv.belt[0].fbconverter.freq"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
@@ -29043,7 +29043,7 @@ dIO_PM.outConv.valve[0].retract := TRUE;"</v>
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"dIO_PM.outConv.belt[1].cmd"</v>
+                      <v n="Value">"dIO_PM.outConv.belt[1].fbconverter.cmd"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
@@ -29217,7 +29217,7 @@ dIO_PM.outConv.valve[0].retract := TRUE;"</v>
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"dIO_PM.outConv.belt[1].freq"</v>
+                      <v n="Value">"dIO_PM.outConv.belt[1].fbconverter.freq"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>

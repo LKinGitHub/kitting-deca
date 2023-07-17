@@ -14,6 +14,7 @@ VAR_GLOBAL
 	pmOthers	:ARRAY[0..4] OF PM_others;
 	lc	: ARRAY[0..1] OF LateralRecy_Module;
 	lb	: ARRAY[0..1] OF LateralBuf_Module;
+	fr	: ARRAY[0..1] OF fixtureRotation_Module;
 	
 	
 
@@ -41,8 +42,9 @@ VAR_GLOBAL
 	fbconverter	:ARRAY [0..13] OF  FB_Converter;
 	stConverter	:ARRAY [0..13] OF  ST_Converter;
 	
-	//ref_fbconverterMotors	:   REFERENCE TO ARRAY[0..57] OF FB_Converter;	
-	ref_fbconverterMotors	:   REFERENCE TO  FB_Converter;	
+	ref_fbconverterMotor	:   ARRAY[0..57] OF POINTER TO FB_Converter;	
+	
+
 	
 	fb_lcIOmappiing : ARRAY [0..1] OF FB_lcIOmapping;
 	fb_lcAxis	: ARRAY[0..1] OF FB_MotionAxis_MC;
@@ -52,7 +54,9 @@ VAR_GLOBAL
 	
 	
 	
-	
+	fb_frIOmappiing : ARRAY [0..1] OF FB_frIOmapping;
+	fb_frAxis	: ARRAY[0..1] OF FB_MotionAxis_MC;
+	stAxis_FR	: ARRAY[0..1] OF ST_MotionAxis_MC;	
 	
 	
 	

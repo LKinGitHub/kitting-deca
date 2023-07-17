@@ -6,6 +6,8 @@ VAR_INPUT
 	
 	iMotor	: WORD;
 	bSetParaEx	: BOOL;
+	cmd  AT%Q*	: UINT;
+	freq AT%Q*	: UINT;
 END_VAR
 VAR_OUTPUT
 	xDone	: BOOL;
