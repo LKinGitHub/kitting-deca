@@ -38,12 +38,12 @@ GVL.lb[iLb].photo_sensor[2]						:= G_IO.arDI[offset].Ch[15];
 
 
 G_IO.arDO[offset].Ch[0]		:= GVL.lb[iLb].power_beltConv;
-G_IO.arDO[offset].Ch[1]		:= GVL.lb[iLb].valve_stopper[0].extend;
-G_IO.arDO[offset].Ch[2]		:= GVL.lb[iLb].valve_stopper[1].extend;
-G_IO.arDO[offset].Ch[3]		:= GVL.lb[iLb].valve_stopper[2].extend;
-G_IO.arDO[offset].Ch[4]		:= GVL.lb[iLb].valve_stopper[3].extend;
-G_IO.arDO[offset].Ch[5]		:= GVL.lb[iLb].valve_stopper[4].extend;
-G_IO.arDO[offset].Ch[6]		:= GVL.lb[iLb].valve_stopper[5].extend;
+G_IO.arDO[offset].Ch[1]		:= GVL.lb[iLb].valve_stopper[0].retract;
+G_IO.arDO[offset].Ch[2]		:= GVL.lb[iLb].valve_stopper[1].retract;
+G_IO.arDO[offset].Ch[3]		:= GVL.lb[iLb].valve_stopper[2].retract;
+G_IO.arDO[offset].Ch[4]		:= GVL.lb[iLb].valve_stopper[3].retract;
+G_IO.arDO[offset].Ch[5]		:= GVL.lb[iLb].valve_stopper[4].retract;
+G_IO.arDO[offset].Ch[6]		:= GVL.lb[iLb].valve_stopper[5].retract;
 
 
 

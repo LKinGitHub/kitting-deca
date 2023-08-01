@@ -1442,6 +1442,15 @@ External Setpoint Generation:
 			</ArrayInfo>
 		</DataType>
 		<DataType>
+			<Name GUID="{B97C0B48-8EFC-239C-9934-B1B7427F5260}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..49] OF BYTE</Name>
+			<BitSize>400</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>50</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
 			<Name GUID="{96E58E73-E3F3-3227-1848-F7F6AB281E2C}" AutoDeleteType="true">ST_IO_16</Name>
 			<BitSize>128</BitSize>
 			<SubItem>
@@ -1519,7 +1528,7 @@ External Setpoint Generation:
 			<Settings MaxCpus="2">
 				<Cpu/>
 				<Cpu CpuId="1"/>
-				<IoIdleTask Priority="6" Affinity="#x00000001"/>
+				<IoIdleTask Priority="5" CycleTime="80000" Affinity="#x00000001"/>
 			</Settings>
 			<Licenses>
 				<Target BkhfOrder="01100683">
@@ -1528,7 +1537,7 @@ External Setpoint Generation:
 				</Target>
 			</Licenses>
 			<Tasks>
-				<Task Id="3" Priority="4" CycleTime="10000" AmsPort="350" Affinity="#x00000001" AdtTasks="true">
+				<Task Id="3" Priority="8" CycleTime="120000" AmsPort="350" Affinity="#x00000001" AdtTasks="true">
 					<Name>PlcTask</Name>
 				</Task>
 				<Task Id="4" Priority="12" CycleTime="2000000" AmsPort="351" Affinity="#x00000001" DisableFpExceptions="true" AdtTasks="true">
@@ -1538,7 +1547,7 @@ External Setpoint Generation:
 		</System>
 		<Motion>
 			<NC>
-				<SafTask Priority="8" CycleTime="80000" AmsPort="501" Affinity="#x00000002" IoAtBegin="true" SafTaskInfo="256">
+				<SafTask Priority="4" CycleTime="60000" AmsPort="501" Affinity="#x00000002" IoAtBegin="true" SafTaskInfo="256">
 					<Name>NC-Task 1 SAF</Name>
 					<Vars VarGrpType="1" InsertType="1">
 						<Name>Inputs</Name>
@@ -1550,7 +1559,7 @@ External Setpoint Generation:
 						<Name>Image</Name>
 					</Image>
 				</SafTask>
-				<SvbTask Priority="10" CycleTime="100000" AmsPort="511" Affinity="#x00000002">
+				<SvbTask Priority="6" CycleTime="100000" AmsPort="511" Affinity="#x00000002">
 					<Name>NC-Task 1 SVB</Name>
 				</SvbTask>
 				<Axis Id="4" CreateSymbols="true" AxisType="1" GroupId="1">
@@ -7323,7 +7332,6 @@ External Setpoint Generation:
 					<Encoder Name="Enc" EncType="19">
 						<EncPara ScaleFactorNumerator="7.2" ScaleFactorDenominator="262144" MaxCount="#xffffffff">
 							<Inc RefSoftSyncMask="#x00040000"/>
-							<ParameterChanged>35</ParameterChanged>
 						</EncPara>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
@@ -7468,7 +7476,294 @@ External Setpoint Generation:
 					<Encoder Name="Enc" EncType="19">
 						<EncPara ScaleFactorNumerator="7.2" ScaleFactorDenominator="262144" MaxCount="#xffffffff">
 							<Inc RefSoftSyncMask="#x00040000"/>
-							<ParameterChanged>35</ParameterChanged>
+						</EncPara>
+						<Vars VarGrpType="1">
+							<Name>Inputs</Name>
+							<Var>
+								<Name>In</Name>
+								<Type GUID="{901C2423-655B-45CE-B7E3-21F174F0F99F}" Namespace="MC">NCENCODERSTRUCT_IN2B</Type>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn1</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn2</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn3</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn4</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn5</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn6</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn7</Name>
+									<Comment><![CDATA[Drive Velocity Actual Value
+]]></Comment>
+								</SubVar>
+							</Var>
+						</Vars>
+						<Vars VarGrpType="2">
+							<Name>Outputs</Name>
+							<Var>
+								<Name>Out</Name>
+								<Type GUID="{9CC50AB2-5D79-4869-A3C2-1FA7761BAFEA}" Namespace="MC">NCENCODERSTRUCT_OUT2</Type>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut1</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut2</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut3</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut4</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut5</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut6</Name>
+								</SubVar>
+							</Var>
+						</Vars>
+					</Encoder>
+					<Drive Name="Drive" DrvType="16">
+						<DrvPara MaxCount="#xffffffff" DriveControlDWord="#x00020100">
+							<Analog VeloReferenz="500" TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
+							<TimeComp TaskDelayCycles="1"/>
+						</DrvPara>
+						<Vars VarGrpType="1">
+							<Name>Inputs</Name>
+							<Var>
+								<Name>In</Name>
+								<Type GUID="{F95C7C69-0C87-46C4-9559-1285CCA5B23A}" Namespace="MC">NCDRIVESTRUCT_IN2</Type>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn1</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn2</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn3</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn4</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn5</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn6</Name>
+								</SubVar>
+							</Var>
+						</Vars>
+						<Vars VarGrpType="2">
+							<Name>Outputs</Name>
+							<Var>
+								<Name>Out</Name>
+								<Type GUID="{644DC4BD-3D15-4DCB-94C7-24F3A5D579AA}" Namespace="MC">NCDRIVESTRUCT_OUT2</Type>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut1</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut2</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut3</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut4</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut5</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut6</Name>
+								</SubVar>
+							</Var>
+						</Vars>
+					</Drive>
+					<Controller Name="Ctrl" CtrType="1">
+						<CtrPara PriorControlFactor="1">
+							<PosDiffControl Range="30"/>
+							<Observer BandWidth="20"/>
+						</CtrPara>
+					</Controller>
+					<Vars VarGrpType="1" InsertType="1">
+						<Name>Inputs</Name>
+						<Var>
+							<Name>FromPlc</Name>
+							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="2" InsertType="1">
+						<Name>Outputs</Name>
+						<Var>
+							<Name>ToPlc</Name>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
+					</Vars>
+				</Axis>
+				<Axis Id="43" CreateSymbols="true" AxisType="1" GroupId="24">
+					<Name>lc0</Name>
+					<AxisPara>
+						<Dynamic Acceleration="15000" Deceleration="15000" Jerk="150000"/>
+						<Velo Maximum="3000"/>
+						<OtherSettings AllowMotionCmdToSlave="true"/>
+					</AxisPara>
+					<Encoder Name="Enc" EncType="19">
+						<EncPara ScaleFactorNumerator="20" ScaleFactorDenominator="262144" MaxCount="#xffffffff">
+							<Inc RefSoftSyncMask="#x00040000"/>
+						</EncPara>
+						<Vars VarGrpType="1">
+							<Name>Inputs</Name>
+							<Var>
+								<Name>In</Name>
+								<Type GUID="{901C2423-655B-45CE-B7E3-21F174F0F99F}" Namespace="MC">NCENCODERSTRUCT_IN2B</Type>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn1</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn2</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn3</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn4</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn5</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn6</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn7</Name>
+									<Comment><![CDATA[Drive Velocity Actual Value
+]]></Comment>
+								</SubVar>
+							</Var>
+						</Vars>
+						<Vars VarGrpType="2">
+							<Name>Outputs</Name>
+							<Var>
+								<Name>Out</Name>
+								<Type GUID="{9CC50AB2-5D79-4869-A3C2-1FA7761BAFEA}" Namespace="MC">NCENCODERSTRUCT_OUT2</Type>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut1</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut2</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut3</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut4</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut5</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut6</Name>
+								</SubVar>
+							</Var>
+						</Vars>
+					</Encoder>
+					<Drive Name="Drive" DrvType="16">
+						<DrvPara MaxCount="#xffffffff" DriveControlDWord="#x00020100">
+							<Analog VeloReferenz="500" TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
+							<TimeComp TaskDelayCycles="1"/>
+						</DrvPara>
+						<Vars VarGrpType="1">
+							<Name>Inputs</Name>
+							<Var>
+								<Name>In</Name>
+								<Type GUID="{F95C7C69-0C87-46C4-9559-1285CCA5B23A}" Namespace="MC">NCDRIVESTRUCT_IN2</Type>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn1</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn2</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn3</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn4</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn5</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataIn6</Name>
+								</SubVar>
+							</Var>
+						</Vars>
+						<Vars VarGrpType="2">
+							<Name>Outputs</Name>
+							<Var>
+								<Name>Out</Name>
+								<Type GUID="{644DC4BD-3D15-4DCB-94C7-24F3A5D579AA}" Namespace="MC">NCDRIVESTRUCT_OUT2</Type>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut1</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut2</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut3</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut4</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut5</Name>
+								</SubVar>
+								<SubVar TypeFormatIndex="2">
+									<Name>nDataOut6</Name>
+								</SubVar>
+							</Var>
+						</Vars>
+					</Drive>
+					<Controller Name="Ctrl" CtrType="1">
+						<CtrPara PriorControlFactor="1">
+							<PosDiffControl Range="30"/>
+							<Observer BandWidth="20"/>
+						</CtrPara>
+					</Controller>
+					<Vars VarGrpType="1" InsertType="1">
+						<Name>Inputs</Name>
+						<Var>
+							<Name>FromPlc</Name>
+							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="2" InsertType="1">
+						<Name>Outputs</Name>
+						<Var>
+							<Name>ToPlc</Name>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
+					</Vars>
+				</Axis>
+				<Axis Id="44" CreateSymbols="true" AxisType="1" GroupId="40">
+					<Name>lc1</Name>
+					<AxisPara>
+						<Dynamic Acceleration="15000" Deceleration="15000" Jerk="150000"/>
+						<Velo Maximum="3000"/>
+						<OtherSettings AllowMotionCmdToSlave="true"/>
+					</AxisPara>
+					<Encoder Name="Enc" EncType="19">
+						<EncPara ScaleFactorNumerator="20" ScaleFactorDenominator="262144" MaxCount="#xffffffff">
+							<Inc RefSoftSyncMask="#x00040000"/>
 						</EncPara>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
@@ -7607,7 +7902,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{2354DE8C-DE54-4E07-94D7-E848733F7762}" Name="kittingDeca" PrjFilePath="kittingDeca\kittingDeca.plcproj" TmcFilePath="kittingDeca\kittingDeca.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="kittingDeca\kittingDeca.tmc" TmcHash="{7B4DF364-2DDE-1161-C187-BDD98156CE4A}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="kittingDeca\kittingDeca.tmc" TmcHash="{933012B4-A033-125A-6D03-144A72547B64}">
 					<Name>kittingDeca Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -7795,6 +8090,10 @@ External Setpoint Generation:
 						<Var>
 							<Name>GVL.rfidIn</Name>
 							<Type GUID="{A6CC6AFE-FE37-C02D-2C0C-FB1479660FEB}">ARRAY [0..31] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>GVL.safetyin</Name>
+							<Type GUID="{B97C0B48-8EFC-239C-9934-B1B7427F5260}">ARRAY [0..49] OF BYTE</Type>
 						</Var>
 						<Var>
 							<Name>G_IO.arDI</Name>
@@ -8561,6 +8860,10 @@ External Setpoint Generation:
 							<Type>UINT</Type>
 						</Var>
 						<Var>
+							<Name>GVL.safetyOut</Name>
+							<Type GUID="{B97C0B48-8EFC-239C-9934-B1B7427F5260}">ARRAY [0..49] OF BYTE</Type>
+						</Var>
+						<Var>
 							<Name>G_IO.arDO</Name>
 							<Comment><![CDATA[  links to Digital output Modules]]></Comment>
 							<Type GUID="{EAAAC0F1-5FBA-7D10-E37C-E7C59CC4664E}">ARRAY [0..100] OF ST_IO_16</Type>
@@ -8573,8 +8876,8 @@ External Setpoint Generation:
 							<ManualConfig>
 								<OTCID>#x02010030</OTCID>
 							</ManualConfig>
-							<Priority>4</Priority>
-							<CycleTime>1000000</CycleTime>
+							<Priority>8</Priority>
+							<CycleTime>12000000</CycleTime>
 						</Context>
 						<Context>
 							<Id NeedCalleeCall="true">1</Id>
@@ -8587,7 +8890,7 @@ External Setpoint Generation:
 						</Context>
 					</Contexts>
 					<TaskPouOids>
-						<TaskPouOid Prio="4" OTCID="#x08502003"/>
+						<TaskPouOid Prio="8" OTCID="#x08502003"/>
 						<TaskPouOid Prio="12" OTCID="#x08502002"/>
 					</TaskPouOids>
 				</Instance>
@@ -8595,7 +8898,7 @@ External Setpoint Generation:
 			<PlcAuxTask Affinity="#x00000001"/>
 		</Plc>
 		<Io>
-			<Device Id="1" DevType="112" AmsPort="28673" AmsNetId="192.168.11.159.2.1" RemoteName="Device 1 (EtherCAT Automation Protocol)">
+			<Device Id="1" Disabled="true" DevType="112" AmsPort="28673" AmsNetId="192.168.11.159.2.1" RemoteName="Device 1 (EtherCAT Automation Protocol)">
 				<Name>Device 1 (EtherCAT Automation Protocol)</Name>
 				<AddressInfo>
 					<Pnp>
@@ -8610,7 +8913,7 @@ External Setpoint Generation:
 				<Ethernet DeviceDesc="X000 (TwinCAT-Intel PCI Ethernet Adapter (Gigabit))"/>
 				<Eap EapDeviceGuid="{F08A719F-A7B6-47AC-AF2E-490DFCCA9AE8}"/>
 			</Device>
-			<Device Id="2" DevType="109" DevFlags="#x0004">
+			<Device Id="2" Disabled="true" DevType="109" DevFlags="#x0004">
 				<Name>Device 2 (RT-Ethernet Adapter)</Name>
 				<AddressInfo>
 					<Pnp>
@@ -8623,7 +8926,7 @@ External Setpoint Generation:
 					<Esl SyncSlaveProtocolPort="-1"/>
 				</Ethernet>
 			</Device>
-			<Device Id="3" DevType="111" DevFlags="#x0003" AmsPort="28675" AmsNetId="192.168.11.159.4.1" RemoteName="rem_wf" InfoImageId="4">
+			<Device Id="3" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28675" AmsNetId="192.168.11.159.4.1" RemoteName="rem_wf" InfoImageId="4">
 				<Name>rem_wf</Name>
 				<AddressInfo>
 					<TcCom>
@@ -8633,13 +8936,16 @@ External Setpoint Generation:
 				<Image Id="3" AddrType="9" ImageType="3">
 					<Name>Image</Name>
 				</Image>
+				<Image Id="11" AddrType="10" ImageType="3">
+					<Name>Image-2</Name>
+				</Image>
 				<Box Id="1" BoxType="9099">
 					<Name>Box 1 (CU2508)</Name>
 					<ImageId>1000</ImageId>
 					<EtherCAT SlaveType="1" PdiType="#x0100" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x09cc5432" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="CU2508 Ethernet Port" Desc="CU2508" PortABoxInfo="#x00ffffff"/>
 				</Box>
 				<Box Id="2" BoxType="9099" BoxFlags="#x00000020">
-					<Name>Box 2 (GL20-RTU-ECT)</Name>
+					<Name>mcp_dio</Name>
 					<ImageId>1001</ImageId>
 					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000001">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
@@ -8983,19 +9289,19 @@ External Setpoint Generation:
 					</EtherCAT>
 				</Box>
 				<Box Id="3" BoxType="9099" BoxFlags="#x00000020">
-					<Name>Box 3 (Flexi Soft EtherCAT Gateway)</Name>
+					<Name>safetyPLC</Name>
 					<ImageId>1002</ImageId>
 					<EtherCAT SlaveType="2" PdiType="#x0006" MboxDataLinkLayer="true" StateMBoxPolling="true" UseLrdLwrInsteadOfLrw="true" CycleMBoxPollingTime="0" CoeType="39" EoeType="1" FoeType="1" VendorId="#x01000056" ProductCode="#x00002301" RevisionNo="#x00010000" InfoDataAddr="true" TimeoutStateChange1="5000" TimeoutStateChange2="15000" TimeoutStateChange4="5000" TimeoutMailbox1="5000" TimeoutMailbox2="5000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="Flexi Soft EtherCAT Gateway" Desc="Flexi Soft EtherCAT Gateway" PortABoxInfo="#x01000002">
 						<SyncMan>001080003600010001000000800080008000001036010000</SyncMan>
 						<SyncMan>801080003200010002000000800080008000801032010000</SyncMan>
-						<SyncMan>00110a007400010003000000000032003200001174010000</SyncMan>
-						<SyncMan>00120b003000010004000000000033003300001230010000</SyncMan>
+						<SyncMan>001132007400010003000000000032003200001174010000</SyncMan>
+						<SyncMan>001233003000010004000000000033003300001230010000</SyncMan>
 						<Fmmu>0000000000000000001100020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001200010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<SwitchPortData>00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</SwitchPortData>
 						<BootStrapData>0010800080108000</BootStrapData>
-						<Pdo Name="In" Index="#x1a00" Flags="#x0000" SyncMan="3">
+						<Pdo Name="In" Index="#x1a00" Flags="#x0000">
 							<ExcludePdo>#x1a01</ExcludePdo>
 							<ExcludePdo>#x1a02</ExcludePdo>
 							<ExcludePdo>#x1a03</ExcludePdo>
@@ -9061,7 +9367,7 @@ External Setpoint Generation:
 								<Type GUID="{18071995-0000-0000-0000-00030000000A}">ARRAY [0..9] OF BYTE</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="In" Index="#x1a04" Flags="#x0000">
+						<Pdo Name="In" Index="#x1a04" Flags="#x0000" SyncMan="3">
 							<ExcludePdo>#x1a00</ExcludePdo>
 							<ExcludePdo>#x1a01</ExcludePdo>
 							<ExcludePdo>#x1a02</ExcludePdo>
@@ -9085,7 +9391,7 @@ External Setpoint Generation:
 								<Type GUID="{18071995-0000-0000-0000-00030000000A}">ARRAY [0..9] OF BYTE</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="Out" Index="#x1600" InOut="1" Flags="#x0000" SyncMan="2">
+						<Pdo Name="Out" Index="#x1600" InOut="1" Flags="#x0000">
 							<ExcludePdo>#x1601</ExcludePdo>
 							<ExcludePdo>#x1602</ExcludePdo>
 							<ExcludePdo>#x1603</ExcludePdo>
@@ -9139,7 +9445,7 @@ External Setpoint Generation:
 								<Type GUID="{18071995-0000-0000-0000-00030000000A}">ARRAY [0..9] OF BYTE</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="Out" Index="#x1604" InOut="1" Flags="#x0000">
+						<Pdo Name="Out" Index="#x1604" InOut="1" Flags="#x0000" SyncMan="2">
 							<ExcludePdo>#x1600</ExcludePdo>
 							<ExcludePdo>#x1601</ExcludePdo>
 							<ExcludePdo>#x1602</ExcludePdo>
@@ -9162,7 +9468,7 @@ External Setpoint Generation:
 						</Pdo>
 					</EtherCAT>
 				</Box>
-				<Box Id="4" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="4" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem0_dio</Name>
 					<ImageId>1001</ImageId>
 					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000003">
@@ -9824,10 +10130,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="5" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="5" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem0_Lift0</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000004">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -10163,10 +10469,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="6" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="6" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem0_Lift1</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000005">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -10502,10 +10808,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="7" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="7" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem0_valve</Name>
 					<ImageId>1004</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000006">
 						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
 						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
 						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
@@ -10592,10 +10898,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="110" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="110" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem1_dio</Name>
 					<ImageId>1001</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000007">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001806006400010003000000000000000000001864010000</SyncMan>
@@ -11254,10 +11560,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="9" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="9" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem1_Lift0</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x0100006e">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -11593,10 +11899,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="10" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="10" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem1_Lift1</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000009">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -11932,10 +12238,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="11" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="11" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem1_valve</Name>
 					<ImageId>1004</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x0100000a">
 						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
 						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
 						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
@@ -12022,10 +12328,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="8" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="8" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem2_dio</Name>
 					<ImageId>1001</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x0100000b">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001806006400010003000000000000000000001864010000</SyncMan>
@@ -12684,10 +12990,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="13" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="13" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem2_Lift0</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000008">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -13023,10 +13329,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="14" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="14" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem2_Lift1</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x0100000d">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -13362,10 +13668,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="15" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="15" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem2_valve</Name>
 					<ImageId>1004</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x0100000e">
 						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
 						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
 						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
@@ -13452,10 +13758,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="111" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="111" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem3_dio</Name>
 					<ImageId>1001</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x0100000f">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001806006400010003000000000000000000001864010000</SyncMan>
@@ -14114,10 +14420,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="17" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="17" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem3_Lift0</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x0100006f">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -14453,10 +14759,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="18" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="18" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem3_Lift1</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000011">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -14792,10 +15098,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="19" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="19" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem3_valve</Name>
 					<ImageId>1004</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000012">
 						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
 						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
 						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
@@ -14882,10 +15188,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="12" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="12" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem4_dio</Name>
 					<ImageId>1001</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000013">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001806006400010003000000000000000000001864010000</SyncMan>
@@ -15544,10 +15850,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="21" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="21" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem4_Lift0</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x0100000c">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -15883,10 +16189,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="22" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="22" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem4_Lift1</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000015">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -16222,10 +16528,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="23" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="23" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem4_valve</Name>
 					<ImageId>1004</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000016">
 						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
 						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
 						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
@@ -16312,10 +16618,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="16" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="16" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem5_dio</Name>
 					<ImageId>1001</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000017">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001806006400010003000000000000000000001864010000</SyncMan>
@@ -16974,10 +17280,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="25" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="25" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem5_Lift0</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000010">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -17313,10 +17619,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="26" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="26" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem5_Lift1</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000019">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -17652,10 +17958,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="27" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="27" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem5_valve</Name>
 					<ImageId>1004</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x0100001a">
 						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
 						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
 						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
@@ -17742,10 +18048,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="20" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="20" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem6_dio</Name>
 					<ImageId>1001</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x0100001b">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001806006400010003000000000000000000001864010000</SyncMan>
@@ -18404,10 +18710,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="29" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="29" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem6_Lift0</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000014">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -18743,10 +19049,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="30" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="30" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem6_Lift1</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x0100001d">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -19082,10 +19388,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="31" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="31" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem6_valve</Name>
 					<ImageId>1004</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x0100001e">
 						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
 						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
 						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
@@ -19172,10 +19478,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="24" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="24" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem7_dio</Name>
 					<ImageId>1001</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x0100001f">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001806006400010003000000000000000000001864010000</SyncMan>
@@ -19834,10 +20140,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="33" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="33" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem7_Lift0</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000018">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -20173,10 +20479,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="34" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="34" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem7_Lift1</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000021">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -20512,10 +20818,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="35" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="35" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem7_valve</Name>
 					<ImageId>1004</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000022">
 						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
 						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
 						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
@@ -20602,10 +20908,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="28" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="28" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem8_dio</Name>
 					<ImageId>1001</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000023">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001806006400010003000000000000000000001864010000</SyncMan>
@@ -21264,10 +21570,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="37" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="37" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem8_Lift0</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x0100001c">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -21603,10 +21909,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="38" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="38" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem8_Lift1</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000025">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -21942,10 +22248,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="39" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="39" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem8_valve</Name>
 					<ImageId>1004</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000003">
+					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000026">
 						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
 						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
 						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
@@ -22032,7 +22338,7 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="32" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="32" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem9_dio</Name>
 					<ImageId>1001</ImageId>
 					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000027">
@@ -22694,10 +23000,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="41" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="41" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem9_Lift0</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000027">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000020">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -23033,10 +23339,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="42" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="42" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem9_Lift1</Name>
 					<ImageId>1003</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000027">
+					<EtherCAT SlaveType="2" PdiType="#x0c80" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="2" VendorId="#x00100000" ProductCode="#x000c0112" RevisionNo="#x00010000" InfoDataAddr="true" InfoDataSoeDS401="true" InfoDataDcTimes="true" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SV630_1Axis_03713" Desc="InoSV630N" PortABoxInfo="#x01000029">
 						<SyncMan>001000012600010001000000220000020001001026010000</SyncMan>
 						<SyncMan>001400012200010002000000220000020001001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000c00001864010000</SyncMan>
@@ -23372,10 +23678,10 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<Box Id="43" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="43" BoxType="9099" BoxFlags="#x00000020">
 					<Name>rem9_valve</Name>
 					<ImageId>1004</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000027">
+					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x0100002a">
 						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
 						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
 						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
@@ -23462,10 +23768,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="44" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="44" BoxType="9099" BoxFlags="#x00000020">
 					<Name>wf4_do</Name>
 					<ImageId>1001</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000027">
+					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x0100002b">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001804006400010003000000000000000000001864010000</SyncMan>
@@ -23727,10 +24033,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="45" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="45" BoxType="9099" BoxFlags="#x00000020">
 					<Name>wf3_do</Name>
 					<ImageId>1001</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000027">
+					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x0100002c">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001804006400010003000000000000000000001864010000</SyncMan>
@@ -23992,10 +24298,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="46" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="46" BoxType="9099" BoxFlags="#x00000020">
 					<Name>wf2_do</Name>
 					<ImageId>1001</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000027">
+					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x0100002d">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001804006400010003000000000000000000001864010000</SyncMan>
@@ -24257,10 +24563,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="47" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="47" BoxType="9099" BoxFlags="#x00000020">
 					<Name>wf1_do</Name>
 					<ImageId>1001</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000027">
+					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x0100002e">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001804006400010003000000000000000000001864010000</SyncMan>
@@ -24522,10 +24828,10 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="48" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
+				<Box Id="48" BoxType="9099" BoxFlags="#x00000020">
 					<Name>wf0_do</Name>
 					<ImageId>1001</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x01000027">
+					<EtherCAT SlaveType="2" PdiType="#x0e08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="15" FoeType="1" VendorId="#x00100000" ProductCode="#x10f41000" RevisionNo="#x01006000" InfoDataAddr="true" WdDivider0400="24998" WdTime0410="100" DdTime0420="100" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange1="2000" TimeoutStateChange2="50000" TimeoutMailbox2="2000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="8" SlotIndexIncrement="64" Type="GL20-RTU-ECT_1.3.5.0" Desc="GL20-RTU-ECT" PortABoxInfo="#x0100002f">
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001804006400010003000000000000000000001864010000</SyncMan>
@@ -24787,9 +25093,9 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<EtherCAT EnableVirtualSwitch="true" MaxSwitchPorts="22" MaxSwitchFrames="520"/>
+				<EtherCAT DcSyncMode="3" EnableVirtualSwitch="true" MaxSwitchPorts="22" MaxSwitchFrames="520"/>
 			</Device>
-			<Device Id="4" DevType="111" DevFlags="#x0003" AmsPort="28676" AmsNetId="192.168.11.159.5.1" RemoteName="pm side" InfoImageId="6">
+			<Device Id="4" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28676" AmsNetId="192.168.11.159.5.1" RemoteName="pm side" InfoImageId="6">
 				<Name>pm side</Name>
 				<AddressInfo>
 					<TcCom>
@@ -30284,96 +30590,6 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="63" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
-					<Name>pm0_1_valve</Name>
-					<ImageId>1004</ImageId>
-					<EtherCAT SlaveType="2" PdiType="#x0280" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" EnableWdDivider0400="true" EnableWdTime0410="true" EnableWdTime0420="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x0100003e">
-						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
-						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
-						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
-						<SyncMan>001c0c002000010004000000000000000c00001c20010000</SyncMan>
-						<Fmmu>0000000000000000001700020100000001000000000000000000000000000000</Fmmu>
-						<Fmmu>0000000000000000001c00010100000002000000000000000000000000000000</Fmmu>
-						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
-						<MBoxUserCmdData>020003000c0000001300000003000000830009030000000000000000000000002000800104000000010000004275734661756c745f436c6561722f486f6c6400</MBoxUserCmdData>
-						<MBoxUserCmdData>0200030009000000100000000300000083000903000000000000000000000000200082010100000000436c6561722f486f6c645b302e2e375d00</MBoxUserCmdData>
-						<MBoxUserCmdData>0200030009000000110000000300000083000903000000000000000000000000200082020100000000436c6561722f486f6c645b382e2e31355d00</MBoxUserCmdData>
-						<MBoxUserCmdData>0200030009000000120000000300000083000903000000000000000000000000200082030100000000436c6561722f486f6c645b31362e2e32335d00</MBoxUserCmdData>
-						<MBoxUserCmdData>0200030009000000120000000300000083000903000000000000000000000000200082040100000000436c6561722f486f6c645b32342e2e33315d00</MBoxUserCmdData>
-						<MBoxUserCmdData>0200030009000000120000000300000083000903000000000000000000000000200082050100000000436c6561722f486f6c645b33322e2e33395d00</MBoxUserCmdData>
-						<MBoxUserCmdData>0200030009000000120000000300000083000903000000000000000000000000200082060100000000436c6561722f486f6c645b34302e2e34375d00</MBoxUserCmdData>
-						<Pdo Name="Inputs" Index="#x1a00" Flags="#x0290" SyncMan="3">
-							<Entry Name="Open load[0..7]" Index="#x6000" Sub="#x01" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[8..15]" Index="#x6000" Sub="#x02" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[16..23]" Index="#x6000" Sub="#x03" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[24..31]" Index="#x6000" Sub="#x04" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[32..39]" Index="#x6000" Sub="#x05" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[40..47]" Index="#x6000" Sub="#x06" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[0..7]" Index="#x6000" Sub="#x07" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[8..15]" Index="#x6000" Sub="#x08" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[16..23]" Index="#x6000" Sub="#x09" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[24..31]" Index="#x6000" Sub="#x0a" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[32..39]" Index="#x6000" Sub="#x0b" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[40..47]" Index="#x6000" Sub="#x0c" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-						</Pdo>
-						<Pdo Name="Outputs" Index="#x1600" InOut="1" Flags="#x0290" SyncMan="2">
-							<Entry Name="valve[1..4]" Index="#x7000" Sub="#x01" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[5..8]" Index="#x7000" Sub="#x02" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[9..12]" Index="#x7000" Sub="#x03" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[13..16]" Index="#x7000" Sub="#x04" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[17..20]" Index="#x7000" Sub="#x05" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[21..24]" Index="#x7000" Sub="#x06" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-						</Pdo>
-						<CoeProfile ProfileNo="5001"/>
-						<Slot Name="C2S-EC">
-							<SlotData>0000010001000000010000001000000000000000000000000000000000000000</SlotData>
-							<ModuleClass Class="dig_out" Name="Digital Output Terminals" VendorId="8930371"/>
-							<Module Id="#x03090083" Type="C2S-EC-24B" Class="dig_out">
-								<Name>Module 1 (C2S-EC-24B)</Name>
-								<ImageId>1005</ImageId>
-								<ModuleData>4344880006200000000000000000000000000000000000000000000000000000</ModuleData>
-								<PdoIndex>6656</PdoIndex>
-								<PdoIndex>5632</PdoIndex>
-							</Module>
-						</Slot>
-					</EtherCAT>
-				</Box>
 				<Box Id="64" BoxType="9099" BoxFlags="#x00000020">
 					<Name>fr0_dio</Name>
 					<ImageId>1001</ImageId>
@@ -35043,96 +35259,6 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="74" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
-					<Name>pm2_3_valve</Name>
-					<ImageId>1004</ImageId>
-					<EtherCAT EtherCatAddr="1026" SlaveType="2" AdsServerAddress="0000000000000204" PdiType="#x0280" EtherCatAddrFixed="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000049">
-						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
-						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
-						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
-						<SyncMan>001c0c002000010004000000000000000c00001c20010000</SyncMan>
-						<Fmmu>0000000000000000001700020100000001000000000000000000000000000000</Fmmu>
-						<Fmmu>0000000000000000001c00010100000002000000000000000000000000000000</Fmmu>
-						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
-						<MBoxUserCmdData>020003000c00000013000000030000008d0009030000000000000000000000002000800104000000010000004275734661756c745f436c6561722f486f6c6400</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000010000000030000008d000903000000000000000000000000200082010100000000436c6561722f486f6c645b302e2e375d00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000011000000030000008d000903000000000000000000000000200082020100000000436c6561722f486f6c645b382e2e31355d00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000012000000030000008d000903000000000000000000000000200082030100000000436c6561722f486f6c645b31362e2e32335d00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000012000000030000008d000903000000000000000000000000200082040100000000436c6561722f486f6c645b32342e2e33315d00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000012000000030000008d000903000000000000000000000000200082050100000000436c6561722f486f6c645b33322e2e33395d00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000012000000030000008d000903000000000000000000000000200082060100000000436c6561722f486f6c645b34302e2e34375d00</MBoxUserCmdData>
-						<Pdo Name="Inputs" Index="#x1a00" Flags="#x0290" SyncMan="3">
-							<Entry Name="Open load[0..7]" Index="#x6000" Sub="#x01" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[8..15]" Index="#x6000" Sub="#x02" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[16..23]" Index="#x6000" Sub="#x03" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[24..31]" Index="#x6000" Sub="#x04" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[32..39]" Index="#x6000" Sub="#x05" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[40..47]" Index="#x6000" Sub="#x06" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[0..7]" Index="#x6000" Sub="#x07" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[8..15]" Index="#x6000" Sub="#x08" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[16..23]" Index="#x6000" Sub="#x09" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[24..31]" Index="#x6000" Sub="#x0a" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[32..39]" Index="#x6000" Sub="#x0b" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[40..47]" Index="#x6000" Sub="#x0c" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-						</Pdo>
-						<Pdo Name="Outputs" Index="#x1600" InOut="1" Flags="#x0290" SyncMan="2">
-							<Entry Name="valve[1..4]" Index="#x7000" Sub="#x01" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[5..8]" Index="#x7000" Sub="#x02" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[9..12]" Index="#x7000" Sub="#x03" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[13..16]" Index="#x7000" Sub="#x04" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[17..20]" Index="#x7000" Sub="#x05" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[21..24]" Index="#x7000" Sub="#x06" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-						</Pdo>
-						<CoeProfile ProfileNo="5001"/>
-						<Slot Name="C2S-EC">
-							<SlotData>0000010001000000010000001000000000000000000000000000000000000000</SlotData>
-							<ModuleClass Class="dig_out" Name="Digital Output Terminals" VendorId="8930371"/>
-							<Module Id="#x0309008d" Type="C2S-EC-24B" Class="dig_out">
-								<Name>Module 1 (C2S-EC-24B)</Name>
-								<ImageId>1005</ImageId>
-								<ModuleData>4344880006200000000000000000000000000000000000000000000000000000</ModuleData>
-								<PdoIndex>6656</PdoIndex>
-								<PdoIndex>5632</PdoIndex>
-							</Module>
-						</Slot>
-					</EtherCAT>
-				</Box>
 				<Box Id="112" BoxType="9099" BoxFlags="#x00000020">
 					<Name>pm4_5_dio</Name>
 					<ImageId>1001</ImageId>
@@ -39137,96 +39263,6 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="120" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
-					<Name>pm4_5_valve</Name>
-					<ImageId>1004</ImageId>
-					<EtherCAT EtherCatAddr="1035" SlaveType="2" AdsServerAddress="0000000000000b04" PdiType="#x0280" EtherCatAddrFixed="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000077">
-						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
-						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
-						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
-						<SyncMan>001c0c002000010004000000000000000c00001c20010000</SyncMan>
-						<Fmmu>0000000000000000001700020100000001000000000000000000000000000000</Fmmu>
-						<Fmmu>0000000000000000001c00010100000002000000000000000000000000000000</Fmmu>
-						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
-						<MBoxUserCmdData>020003000c00000013000000030000008d0009030000000000000000000000002000800104000000010000004275734661756c745f436c6561722f486f6c6400</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000010000000030000008d000903000000000000000000000000200082010100000000436c6561722f486f6c645b302e2e375d00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000011000000030000008d000903000000000000000000000000200082020100000000436c6561722f486f6c645b382e2e31355d00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000012000000030000008d000903000000000000000000000000200082030100000000436c6561722f486f6c645b31362e2e32335d00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000012000000030000008d000903000000000000000000000000200082040100000000436c6561722f486f6c645b32342e2e33315d00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000012000000030000008d000903000000000000000000000000200082050100000000436c6561722f486f6c645b33322e2e33395d00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000012000000030000008d000903000000000000000000000000200082060100000000436c6561722f486f6c645b34302e2e34375d00</MBoxUserCmdData>
-						<Pdo Name="Inputs" Index="#x1a00" Flags="#x0290" SyncMan="3">
-							<Entry Name="Open load[0..7]" Index="#x6000" Sub="#x01" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[8..15]" Index="#x6000" Sub="#x02" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[16..23]" Index="#x6000" Sub="#x03" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[24..31]" Index="#x6000" Sub="#x04" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[32..39]" Index="#x6000" Sub="#x05" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[40..47]" Index="#x6000" Sub="#x06" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[0..7]" Index="#x6000" Sub="#x07" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[8..15]" Index="#x6000" Sub="#x08" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[16..23]" Index="#x6000" Sub="#x09" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[24..31]" Index="#x6000" Sub="#x0a" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[32..39]" Index="#x6000" Sub="#x0b" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[40..47]" Index="#x6000" Sub="#x0c" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-						</Pdo>
-						<Pdo Name="Outputs" Index="#x1600" InOut="1" Flags="#x0290" SyncMan="2">
-							<Entry Name="valve[1..4]" Index="#x7000" Sub="#x01" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[5..8]" Index="#x7000" Sub="#x02" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[9..12]" Index="#x7000" Sub="#x03" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[13..16]" Index="#x7000" Sub="#x04" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[17..20]" Index="#x7000" Sub="#x05" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[21..24]" Index="#x7000" Sub="#x06" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-						</Pdo>
-						<CoeProfile ProfileNo="5001"/>
-						<Slot Name="C2S-EC">
-							<SlotData>0000010001000000010000001000000000000000000000000000000000000000</SlotData>
-							<ModuleClass Class="dig_out" Name="Digital Output Terminals" VendorId="8930371"/>
-							<Module Id="#x030900bf" Type="C2S-EC-24B" Class="dig_out">
-								<Name>Module 1 (C2S-EC-24B)</Name>
-								<ImageId>1005</ImageId>
-								<ModuleData>4344880006200000000000000000000000000000000000000000000000000000</ModuleData>
-								<PdoIndex>6656</PdoIndex>
-								<PdoIndex>5632</PdoIndex>
-							</Module>
-						</Slot>
-					</EtherCAT>
-				</Box>
 				<Box Id="84" BoxType="9099" BoxFlags="#x00000020">
 					<Name>pm6_7_dio</Name>
 					<ImageId>1001</ImageId>
@@ -43209,96 +43245,6 @@ External Setpoint Generation:
 								<Name>Module 8 (Slot Empty)</Name>
 								<ImageId>1007</ImageId>
 								<ModuleData>5600000100210000000000000000000000000000000000000000000000000000</ModuleData>
-							</Module>
-						</Slot>
-					</EtherCAT>
-				</Box>
-				<Box Id="92" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
-					<Name>pm6_7_valve</Name>
-					<ImageId>1004</ImageId>
-					<EtherCAT EtherCatAddr="1044" SlaveType="2" AdsServerAddress="0000000000001404" PdiType="#x0280" EtherCatAddrFixed="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x0100005b">
-						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
-						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
-						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
-						<SyncMan>001c0c002000010004000000000000000c00001c20010000</SyncMan>
-						<Fmmu>0000000000000000001700020100000001000000000000000000000000000000</Fmmu>
-						<Fmmu>0000000000000000001c00010100000002000000000000000000000000000000</Fmmu>
-						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
-						<MBoxUserCmdData>020003000c00000013000000030000009d0009030000000000000000000000002000800104000000010000004275734661756c745f436c6561722f486f6c6400</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000010000000030000009d000903000000000000000000000000200082010100000000436c6561722f486f6c645b302e2e375d00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000011000000030000009d000903000000000000000000000000200082020100000000436c6561722f486f6c645b382e2e31355d00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000012000000030000009d000903000000000000000000000000200082030100000000436c6561722f486f6c645b31362e2e32335d00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000012000000030000009d000903000000000000000000000000200082040100000000436c6561722f486f6c645b32342e2e33315d00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000012000000030000009d000903000000000000000000000000200082050100000000436c6561722f486f6c645b33322e2e33395d00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000012000000030000009d000903000000000000000000000000200082060100000000436c6561722f486f6c645b34302e2e34375d00</MBoxUserCmdData>
-						<Pdo Name="Inputs" Index="#x1a00" Flags="#x0290" SyncMan="3">
-							<Entry Name="Open load[0..7]" Index="#x6000" Sub="#x01" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[8..15]" Index="#x6000" Sub="#x02" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[16..23]" Index="#x6000" Sub="#x03" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[24..31]" Index="#x6000" Sub="#x04" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[32..39]" Index="#x6000" Sub="#x05" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[40..47]" Index="#x6000" Sub="#x06" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[0..7]" Index="#x6000" Sub="#x07" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[8..15]" Index="#x6000" Sub="#x08" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[16..23]" Index="#x6000" Sub="#x09" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[24..31]" Index="#x6000" Sub="#x0a" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[32..39]" Index="#x6000" Sub="#x0b" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[40..47]" Index="#x6000" Sub="#x0c" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-						</Pdo>
-						<Pdo Name="Outputs" Index="#x1600" InOut="1" Flags="#x0290" SyncMan="2">
-							<Entry Name="valve[1..4]" Index="#x7000" Sub="#x01" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[5..8]" Index="#x7000" Sub="#x02" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[9..12]" Index="#x7000" Sub="#x03" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[13..16]" Index="#x7000" Sub="#x04" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[17..20]" Index="#x7000" Sub="#x05" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[21..24]" Index="#x7000" Sub="#x06" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-						</Pdo>
-						<CoeProfile ProfileNo="5001"/>
-						<Slot Name="C2S-EC">
-							<SlotData>0000010001000000010000001000000000000000000000000000000000000000</SlotData>
-							<ModuleClass Class="dig_out" Name="Digital Output Terminals" VendorId="8930371"/>
-							<Module Id="#x0309009d" Type="C2S-EC-24B" Class="dig_out">
-								<Name>Module 1 (C2S-EC-24B)</Name>
-								<ImageId>1005</ImageId>
-								<ModuleData>4344880006200000000000000000000000000000000000000000000000000000</ModuleData>
-								<PdoIndex>6656</PdoIndex>
-								<PdoIndex>5632</PdoIndex>
 							</Module>
 						</Slot>
 					</EtherCAT>
@@ -47990,96 +47936,6 @@ External Setpoint Generation:
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<Box Id="81" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
-					<Name>pm8_9_valve</Name>
-					<ImageId>1004</ImageId>
-					<EtherCAT EtherCatAddr="1055" SlaveType="2" AdsServerAddress="0000000000001f04" PdiType="#x0280" EtherCatAddrFixed="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x00884443" ProductCode="#x0000c148" RevisionNo="#x00000001" InfoDataAddr="true" TimeoutStateChange2="9000" TimeoutMailbox1="200" TimeoutMailbox2="6000" DownloadSlotCfg="true" PortPhys="17" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="C2S-EC" Desc="C2S-EC" PortABoxInfo="#x01000050">
-						<SyncMan>001080002600010001000000220000008000001026010000</SyncMan>
-						<SyncMan>001280002200010002000000220000008000001222010000</SyncMan>
-						<SyncMan>001706006400010003000000000000000600001764010000</SyncMan>
-						<SyncMan>001c0c002000010004000000000000000c00001c20010000</SyncMan>
-						<Fmmu>0000000000000000001700020100000001000000000000000000000000000000</Fmmu>
-						<Fmmu>0000000000000000001c00010100000002000000000000000000000000000000</Fmmu>
-						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
-						<MBoxUserCmdData>020003000c0000001300000003000000830009030000000000000000000000002000800104000000010000004275734661756c745f436c6561722f486f6c6400</MBoxUserCmdData>
-						<MBoxUserCmdData>0200030009000000100000000300000083000903000000000000000000000000200082010100000000436c6561722f486f6c645b302e2e375d00</MBoxUserCmdData>
-						<MBoxUserCmdData>0200030009000000110000000300000083000903000000000000000000000000200082020100000000436c6561722f486f6c645b382e2e31355d00</MBoxUserCmdData>
-						<MBoxUserCmdData>0200030009000000120000000300000083000903000000000000000000000000200082030100000000436c6561722f486f6c645b31362e2e32335d00</MBoxUserCmdData>
-						<MBoxUserCmdData>0200030009000000120000000300000083000903000000000000000000000000200082040100000000436c6561722f486f6c645b32342e2e33315d00</MBoxUserCmdData>
-						<MBoxUserCmdData>0200030009000000120000000300000083000903000000000000000000000000200082050100000000436c6561722f486f6c645b33322e2e33395d00</MBoxUserCmdData>
-						<MBoxUserCmdData>0200030009000000120000000300000083000903000000000000000000000000200082060100000000436c6561722f486f6c645b34302e2e34375d00</MBoxUserCmdData>
-						<Pdo Name="Inputs" Index="#x1a00" Flags="#x0290" SyncMan="3">
-							<Entry Name="Open load[0..7]" Index="#x6000" Sub="#x01" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[8..15]" Index="#x6000" Sub="#x02" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[16..23]" Index="#x6000" Sub="#x03" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[24..31]" Index="#x6000" Sub="#x04" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[32..39]" Index="#x6000" Sub="#x05" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Open load[40..47]" Index="#x6000" Sub="#x06" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[0..7]" Index="#x6000" Sub="#x07" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[8..15]" Index="#x6000" Sub="#x08" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[16..23]" Index="#x6000" Sub="#x09" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[24..31]" Index="#x6000" Sub="#x0a" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[32..39]" Index="#x6000" Sub="#x0b" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="Short circuit or overtemperature[40..47]" Index="#x6000" Sub="#x0c" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-						</Pdo>
-						<Pdo Name="Outputs" Index="#x1600" InOut="1" Flags="#x0290" SyncMan="2">
-							<Entry Name="valve[1..4]" Index="#x7000" Sub="#x01" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[5..8]" Index="#x7000" Sub="#x02" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[9..12]" Index="#x7000" Sub="#x03" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[13..16]" Index="#x7000" Sub="#x04" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[17..20]" Index="#x7000" Sub="#x05" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-							<Entry Name="valve[21..24]" Index="#x7000" Sub="#x06" Flags="#x00001000">
-								<Type>BITARR8</Type>
-							</Entry>
-						</Pdo>
-						<CoeProfile ProfileNo="5001"/>
-						<Slot Name="C2S-EC">
-							<SlotData>0000010001000000010000001000000000000000000000000000000000000000</SlotData>
-							<ModuleClass Class="dig_out" Name="Digital Output Terminals" VendorId="8930371"/>
-							<Module Id="#x03090093" Type="C2S-EC-24B" Class="dig_out">
-								<Name>Module 1 (C2S-EC-24B)</Name>
-								<ImageId>1005</ImageId>
-								<ModuleData>4344880006200000000000000000000000000000000000000000000000000000</ModuleData>
-								<PdoIndex>6656</PdoIndex>
-								<PdoIndex>5632</PdoIndex>
-							</Module>
-						</Slot>
-					</EtherCAT>
-				</Box>
 				<Box Id="104" BoxType="9099" BoxFlags="#x00000020">
 					<Name>lb1_dio</Name>
 					<ImageId>1001</ImageId>
@@ -49571,9 +49427,9 @@ External Setpoint Generation:
 						<CoeProfile ProfileNo="402"/>
 					</EtherCAT>
 				</Box>
-				<EtherCAT DcSyncMode="3" EnableVirtualSwitch="true" MaxSwitchPorts="36" MaxSwitchFrames="800" MaxSwitchMACs="100"/>
+				<EtherCAT DcSyncMode="2" EnableVirtualSwitch="true" MaxSwitchPorts="36" MaxSwitchFrames="800" MaxSwitchMACs="100"/>
 			</Device>
-			<Device Id="5" DevType="57" AmsPort="28677">
+			<Device Id="5" Disabled="true" DevType="57" AmsPort="28677">
 				<Name>Device 5 (USB)</Name>
 				<Image Id="7" AddrType="1" ImageType="3">
 					<Name>Image</Name>
@@ -49625,7 +49481,7 @@ External Setpoint Generation:
 				</Box>
 				<Usb VirtualDeviceName="true"/>
 			</Device>
-			<Device Id="6" DevType="11" AmsPort="28678">
+			<Device Id="6" Disabled="true" DevType="11" AmsPort="28678">
 				<Name>Device 6 (COM Port)</Name>
 				<AddressInfo>
 					<Pnp>
@@ -49639,7 +49495,7 @@ External Setpoint Generation:
 				</Image>
 				<Serial Baud="38400" Parity="1" StopBit="1" RsType="1" WaitTimeToShutdown="60" BufSize="4096" DataBit="8" ComPortNo="1" Timeout="300"/>
 			</Device>
-			<Device Id="7" DevType="121">
+			<Device Id="7" Disabled="true" DevType="121">
 				<Name>Device 7 (NOV-DP-RAM)</Name>
 				<AddressInfo>
 					<Pci>
@@ -49666,11 +49522,7 @@ External Setpoint Generation:
 		</Io>
 	</Project>
 	<Mappings>
-		<MappingInfo Identifier="{00000000-2003-0850-0020-500830000403}" Id="#x02030010"/>
-		<MappingInfo Identifier="{00000000-2003-0850-0020-500850000403}" Id="#x02030040"/>
-		<MappingInfo Identifier="{00000000-0060-0304-1000-040362000403}" Id="#x02030070"/>
-		<MappingInfo Identifier="{00000000-00A0-0304-1000-0403A1000403}" Id="#x02030050"/>
-		<MappingInfo Identifier="{08502003-0010-0500-0020-500810000403}" Id="#x02030060" Watchdog="20000000040000000400000004000000"/>
+		<MappingInfo Identifier="{05000010-2003-0850-1000-040300205008}" Id="#x02030070" Watchdog="08000000040000000400000004000000"/>
 		<OwnerA Name="TINC^NC-Task 1 SAF^Axes^fr0">
 			<OwnerB Name="TIID^pm side^fr0_servermotor">
 				<Link VarA="Drive^Inputs^In^nDataIn1" VarB="Inputs^Following error actual value"/>
@@ -49697,6 +49549,54 @@ External Setpoint Generation:
 		</OwnerA>
 		<OwnerA Name="TINC^NC-Task 1 SAF^Axes^fr1">
 			<OwnerB Name="TIID^pm side^fr1_servermotor">
+				<Link VarA="Drive^Inputs^In^nDataIn1" VarB="Inputs^Following error actual value"/>
+				<Link VarA="Drive^Inputs^In^nDataIn3[0]" VarB="Inputs^Torque actual value"/>
+				<Link VarA="Drive^Inputs^In^nDcOutputTime" VarB="InfoData^DcOutputShift"/>
+				<Link VarA="Drive^Inputs^In^nState1" VarB="Inputs^Statusword"/>
+				<Link VarA="Drive^Inputs^In^nState2" VarB="Inputs^Statusword" Size="8" OffsB="8"/>
+				<Link VarA="Drive^Inputs^In^nState4" VarB="WcState^InputToggle" Size="1" OffsA="1"/>
+				<Link VarA="Drive^Inputs^In^nState4" VarB="WcState^WcState"/>
+				<Link VarA="Drive^Outputs^Out^nCtrl1" VarB="Outputs^Controlword"/>
+				<Link VarA="Drive^Outputs^Out^nCtrl2" VarB="Outputs^Controlword" Size="8" OffsB="8"/>
+				<Link VarA="Drive^Outputs^Out^nDataOut1" VarB="Outputs^Target position"/>
+				<Link VarA="Enc^Inputs^In^nDataIn1" VarB="Inputs^Position actual value"/>
+				<Link VarA="Enc^Inputs^In^nDataIn3" VarB="Inputs^Touch probe pos1 pos value"/>
+				<Link VarA="Enc^Inputs^In^nDataIn5" VarB="Inputs^Touch probe pos2 pos value"/>
+				<Link VarA="Enc^Inputs^In^nDcInputTime" VarB="InfoData^DcInputShift"/>
+				<Link VarA="Enc^Inputs^In^nState4" VarB="WcState^InputToggle" Size="1" OffsA="1"/>
+				<Link VarA="Enc^Inputs^In^nState4" VarB="WcState^WcState"/>
+				<Link VarA="Enc^Inputs^In^nState5" VarB="Inputs^Touch probe status"/>
+				<Link VarA="Enc^Inputs^In^nState6" VarB="Inputs^Touch probe status" Size="8" OffsB="8"/>
+				<Link VarA="Enc^Outputs^Out^nCtrl5" VarB="Outputs^Touch probe function"/>
+				<Link VarA="Enc^Outputs^Out^nCtrl6" VarB="Outputs^Touch probe function" Size="8" OffsB="8"/>
+			</OwnerB>
+		</OwnerA>
+		<OwnerA Name="TINC^NC-Task 1 SAF^Axes^lc0">
+			<OwnerB Name="TIID^pm side^lc0_servermoter">
+				<Link VarA="Drive^Inputs^In^nDataIn1" VarB="Inputs^Following error actual value"/>
+				<Link VarA="Drive^Inputs^In^nDataIn3[0]" VarB="Inputs^Torque actual value"/>
+				<Link VarA="Drive^Inputs^In^nDcOutputTime" VarB="InfoData^DcOutputShift"/>
+				<Link VarA="Drive^Inputs^In^nState1" VarB="Inputs^Statusword"/>
+				<Link VarA="Drive^Inputs^In^nState2" VarB="Inputs^Statusword" Size="8" OffsB="8"/>
+				<Link VarA="Drive^Inputs^In^nState4" VarB="WcState^InputToggle" Size="1" OffsA="1"/>
+				<Link VarA="Drive^Inputs^In^nState4" VarB="WcState^WcState"/>
+				<Link VarA="Drive^Outputs^Out^nCtrl1" VarB="Outputs^Controlword"/>
+				<Link VarA="Drive^Outputs^Out^nCtrl2" VarB="Outputs^Controlword" Size="8" OffsB="8"/>
+				<Link VarA="Drive^Outputs^Out^nDataOut1" VarB="Outputs^Target position"/>
+				<Link VarA="Enc^Inputs^In^nDataIn1" VarB="Inputs^Position actual value"/>
+				<Link VarA="Enc^Inputs^In^nDataIn3" VarB="Inputs^Touch probe pos1 pos value"/>
+				<Link VarA="Enc^Inputs^In^nDataIn5" VarB="Inputs^Touch probe pos2 pos value"/>
+				<Link VarA="Enc^Inputs^In^nDcInputTime" VarB="InfoData^DcInputShift"/>
+				<Link VarA="Enc^Inputs^In^nState4" VarB="WcState^InputToggle" Size="1" OffsA="1"/>
+				<Link VarA="Enc^Inputs^In^nState4" VarB="WcState^WcState"/>
+				<Link VarA="Enc^Inputs^In^nState5" VarB="Inputs^Touch probe status"/>
+				<Link VarA="Enc^Inputs^In^nState6" VarB="Inputs^Touch probe status" Size="8" OffsB="8"/>
+				<Link VarA="Enc^Outputs^Out^nCtrl5" VarB="Outputs^Touch probe function"/>
+				<Link VarA="Enc^Outputs^Out^nCtrl6" VarB="Outputs^Touch probe function" Size="8" OffsB="8"/>
+			</OwnerB>
+		</OwnerA>
+		<OwnerA Name="TINC^NC-Task 1 SAF^Axes^lc1">
+			<OwnerB Name="TIID^pm side^lc1_servermoter">
 				<Link VarA="Drive^Inputs^In^nDataIn1" VarB="Inputs^Following error actual value"/>
 				<Link VarA="Drive^Inputs^In^nDataIn3[0]" VarB="Inputs^Torque actual value"/>
 				<Link VarA="Drive^Inputs^In^nDcOutputTime" VarB="InfoData^DcOutputShift"/>
@@ -51662,7 +51562,7 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^GVL.pm[9].outConv.belt[1].fbconverter.cmd" VarB="Axis#4 Outputs^Axis4 Communication control command"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[9].outConv.belt[1].fbconverter.freq" VarB="Axis#4 Outputs^Axis4 Frequency set through communication"/>
 			</OwnerB>
-			<OwnerB Name="TIID^rem_wf^Box 2 (GL20-RTU-ECT)">
+			<OwnerB Name="TIID^rem_wf^mcp_dio">
 				<Link VarA="PlcTask Inputs^G_IO.arDI[95]^Ch[0]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit0"/>
 				<Link VarA="PlcTask Inputs^G_IO.arDI[95]^Ch[10]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit2"/>
 				<Link VarA="PlcTask Inputs^G_IO.arDI[95]^Ch[11]" VarB="Module 1 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit3"/>
@@ -52936,6 +52836,108 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^G_IO.arDO[39]^Ch[6]" VarB="Module 1 (C2S-EC-24B)^Outputs^valve[9..12][6]"/>
 				<Link VarA="PlcTask Outputs^G_IO.arDO[39]^Ch[7]" VarB="Module 1 (C2S-EC-24B)^Outputs^valve[9..12][7]"/>
 			</OwnerB>
+			<OwnerB Name="TIID^rem_wf^safetyPLC">
+				<Link VarA="PlcTask Inputs^GVL.safetyin[0]" VarB="In^In_Dataset1[0]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[10]" VarB="In^In_Dataset2[0]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[11]" VarB="In^In_Dataset2[1]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[12]" VarB="In^In_Dataset2[2]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[13]" VarB="In^In_Dataset2[3]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[14]" VarB="In^In_Dataset2[4]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[15]" VarB="In^In_Dataset2[5]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[16]" VarB="In^In_Dataset2[6]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[17]" VarB="In^In_Dataset2[7]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[18]" VarB="In^In_Dataset2[8]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[19]" VarB="In^In_Dataset2[9]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[1]" VarB="In^In_Dataset1[1]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[20]" VarB="In^In_Dataset3[0]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[21]" VarB="In^In_Dataset3[1]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[22]" VarB="In^In_Dataset3[2]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[23]" VarB="In^In_Dataset3[3]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[24]" VarB="In^In_Dataset3[4]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[25]" VarB="In^In_Dataset3[5]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[26]" VarB="In^In_Dataset3[6]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[27]" VarB="In^In_Dataset3[7]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[28]" VarB="In^In_Dataset3[8]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[29]" VarB="In^In_Dataset3[9]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[2]" VarB="In^In_Dataset1[2]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[30]" VarB="In^In_Dataset4[0]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[31]" VarB="In^In_Dataset4[1]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[32]" VarB="In^In_Dataset4[2]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[33]" VarB="In^In_Dataset4[3]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[34]" VarB="In^In_Dataset4[4]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[35]" VarB="In^In_Dataset4[5]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[36]" VarB="In^In_Dataset4[6]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[37]" VarB="In^In_Dataset4[7]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[38]" VarB="In^In_Dataset4[8]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[39]" VarB="In^In_Dataset4[9]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[3]" VarB="In^In_Dataset1[3]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[40]" VarB="In^In_Dataset5[0]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[41]" VarB="In^In_Dataset5[1]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[42]" VarB="In^In_Dataset5[2]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[43]" VarB="In^In_Dataset5[3]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[44]" VarB="In^In_Dataset5[4]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[45]" VarB="In^In_Dataset5[5]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[46]" VarB="In^In_Dataset5[6]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[47]" VarB="In^In_Dataset5[7]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[48]" VarB="In^In_Dataset5[8]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[49]" VarB="In^In_Dataset5[9]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[4]" VarB="In^In_Dataset1[4]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[5]" VarB="In^In_Dataset1[5]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[6]" VarB="In^In_Dataset1[6]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[7]" VarB="In^In_Dataset1[7]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[8]" VarB="In^In_Dataset1[8]"/>
+				<Link VarA="PlcTask Inputs^GVL.safetyin[9]" VarB="In^In_Dataset1[9]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[0]" VarB="Out^Out_Dataset1[0]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[10]" VarB="Out^Out_Dataset2[0]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[11]" VarB="Out^Out_Dataset2[1]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[12]" VarB="Out^Out_Dataset2[2]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[13]" VarB="Out^Out_Dataset2[3]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[14]" VarB="Out^Out_Dataset2[4]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[15]" VarB="Out^Out_Dataset2[5]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[16]" VarB="Out^Out_Dataset2[6]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[17]" VarB="Out^Out_Dataset2[7]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[18]" VarB="Out^Out_Dataset2[8]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[19]" VarB="Out^Out_Dataset2[9]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[1]" VarB="Out^Out_Dataset1[1]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[20]" VarB="Out^Out_Dataset3[0]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[21]" VarB="Out^Out_Dataset3[1]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[22]" VarB="Out^Out_Dataset3[2]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[23]" VarB="Out^Out_Dataset3[3]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[24]" VarB="Out^Out_Dataset3[4]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[25]" VarB="Out^Out_Dataset3[5]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[26]" VarB="Out^Out_Dataset3[6]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[27]" VarB="Out^Out_Dataset3[7]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[28]" VarB="Out^Out_Dataset3[8]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[29]" VarB="Out^Out_Dataset3[9]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[2]" VarB="Out^Out_Dataset1[2]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[30]" VarB="Out^Out_Dataset4[0]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[31]" VarB="Out^Out_Dataset4[1]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[32]" VarB="Out^Out_Dataset4[2]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[33]" VarB="Out^Out_Dataset4[3]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[34]" VarB="Out^Out_Dataset4[4]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[35]" VarB="Out^Out_Dataset4[5]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[36]" VarB="Out^Out_Dataset4[6]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[37]" VarB="Out^Out_Dataset4[7]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[38]" VarB="Out^Out_Dataset4[8]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[39]" VarB="Out^Out_Dataset4[9]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[3]" VarB="Out^Out_Dataset1[3]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[40]" VarB="Out^Out_Dataset5[0]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[41]" VarB="Out^Out_Dataset5[1]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[42]" VarB="Out^Out_Dataset5[2]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[43]" VarB="Out^Out_Dataset5[3]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[44]" VarB="Out^Out_Dataset5[4]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[45]" VarB="Out^Out_Dataset5[5]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[46]" VarB="Out^Out_Dataset5[6]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[47]" VarB="Out^Out_Dataset5[7]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[48]" VarB="Out^Out_Dataset5[8]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[49]" VarB="Out^Out_Dataset5[9]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[4]" VarB="Out^Out_Dataset1[4]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[5]" VarB="Out^Out_Dataset1[5]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[6]" VarB="Out^Out_Dataset1[6]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[7]" VarB="Out^Out_Dataset1[7]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[8]" VarB="Out^Out_Dataset1[8]"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOut[9]" VarB="Out^Out_Dataset1[9]"/>
+			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^fr0">
 				<Link VarA="PlcTask Inputs^GVL.fr[0].AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
 				<Link VarA="PlcTask Outputs^GVL.fr[0].AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
@@ -52943,6 +52945,14 @@ External Setpoint Generation:
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^fr1">
 				<Link VarA="PlcTask Inputs^GVL.fr[1].AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
 				<Link VarA="PlcTask Outputs^GVL.fr[1].AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^lc0">
+				<Link VarA="PlcTask Inputs^GVL.lc[0].lateral.AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^GVL.lc[0].lateral.AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^lc1">
+				<Link VarA="PlcTask Inputs^GVL.lc[1].lateral.AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^GVL.lc[1].lateral.AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^pm0_buf0">
 				<Link VarA="PlcTask Inputs^GVL.pm[0].buffer[0].AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>

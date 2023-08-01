@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_BagCloser" Id="{b1a4b7a4-8278-4d10-b586-c9ec08090bc9}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_BagCloser
+VAR_INPUT
+  ams_net_id: STRING;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	adsread				: ADSREAD;
+	adswrite			: ADSWRITE;
+	status				: BagMachineStatus;
+	iMethodTest			: BagMachineStatus;
+	bagCloseStatus 		: BagMachineStatus;
+  	error_code			: UINT;
+
+	adsArr				: AdsArr;
+	iState				: INT;
+	iAds				: INT;
+	ton_ms				: TON;
+
+	iMachineStatus		: INT;//inArr[0]
+	iBagStatus			: INT;//inArr[1]
+	
+	iBagCmd				: INT;//outArr[1]
+	iBagDetectCmd		: INT;//outArr[2] RESULT FROM DECA TO BAG_CLOSER
+	
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[	adsread(
+			NETID:=ams_net_id , 
+			PORT:=851 , 
+			IDXGRP:=16#00004020 , 
+			IDXOFFS:=100 , 
+			LEN:= SIZEOF(adsArr.inArr), 
+			DESTADDR:= ADR(adsArr.inArr), 
+			READ:=, 
+			TMOUT:=T#2S , 
+			BUSY=> , 
+			ERR=> , 
+			ERRID=> );
+	adswrite(
+			NETID:=ams_net_id , 
+			PORT:=851, 
+			IDXGRP:=16#00004020, 
+			IDXOFFS:=200, 
+			LEN:=SIZEOF(adsArr.outArr) , 
+			SRCADDR:=ADR(adsArr.outArr) , 
+			WRITE:= , 
+			TMOUT:=T#2S , 
+			BUSY=> , 
+			ERR=> , 
+			ERRID=> );
+ton_ms(PT:=T#2MS);			
+CASE iAds OF 
+	0:
+		adsread.READ	:= FALSE;
+		adswrite.WRITE	:= FALSE;	
+		iAds	:=1;
+	1:
+		ton_ms.IN	:= TRUE;
+		IF ton_ms.Q THEN
+			ton_ms.IN	:= FALSE;
+			iAds	:=2;
+		END_IF
+	2:
+		adsread.READ	:= TRUE;
+		adswrite.WRITE	:= TRUE;
+		iAds	:=3;
+	3:
+		ton_ms.IN	:= TRUE;
+		IF ton_ms.Q THEN
+			ton_ms.IN	:= FALSE;
+			iAds	:=0;
+		END_IF	
+END_CASE
+//inputArr:
+//		[0]:machine status;
+//		[1]:bag status(3:UNLOAD_READY,4:BAG_TAKEN,5:BAG_REMOVED);
+//outputArr:
+//		[0]:line status;
+//		[1]:bag cmd(1:take_bag,2:bag_done_unclamping;);
+//		[2]:height detect cmd(0:idle,1:ok,2:ng)
+iMachineStatus	:= WORD_TO_INT(adsArr.inArr[0]);
+iBagStatus := WORD_TO_INT(adsArr.inArr[1]);
+
+adsArr.outArr[1]	:= INT_TO_WORD(iBagCmd);
+adsArr.outArr[2]	:= INT_TO_WORD(iBagDetectCmd);
+
+CASE iMachineStatus OF
+	0:
+		status	:= BagMachineStatus.OFF;
+	1:
+		status	:= BagMachineStatus.READY;
+	2:
+		status	:= BagMachineStatus.BUSY;
+	3:
+		status	:= BagMachineStatus.ERROR;
+END_CASE
+CASE iMethodTest OF
+	BagMachineStatus.OFF:
+		iState	:= BagMachineStatus.OFF;
+	BagMachineStatus.BAG_INSERTED:
+		IF GVL.fb_bagCloser.take_bag() THEN
+			iMethodTest	:=0;
+		END_IF		
+	BagMachineStatus.BAG_REMOVED:
+		IF GVL.fb_bagCloser.fixture_ready() THEN
+			iMethodTest	:=0;
+		END_IF		
+END_CASE
+
+
+]]></ST>
+    </Implementation>
+    <Property Name="bag_removed" Id="{42fdd4c2-b1b0-40fd-b9d0-6bc8b59e8947}">
+      <Declaration><![CDATA[PROPERTY bag_removed : BOOL]]></Declaration>
+      <Get Name="Get" Id="{d52869db-1d62-4dd3-96ce-888cb2f81a29}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[bag_removed	:= (WORD_TO_INT(adsArr.inArr[1])	= BagMachineStatus.BAG_REMOVED);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="fixture_ready" Id="{38c86974-e5a7-4331-a074-f2b44f4137b9}">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD PUBLIC fixture_ready : BOOL
+VAR_INPUT
+
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fixture_ready	:= FALSE;
+iBagCmd	:= BagCmd.REMOVE_ENABLE;
+IF bag_removed OR unload_ready THEN//avoid not catch signal of removed
+	fixture_ready	:= TRUE;
+	iBagCmd	:= BagCmd.OFF;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Init" Id="{c7122a50-0b88-4965-9082-2579505fb32a}">
+      <Declaration><![CDATA[METHOD M_Init : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[M_Init	:= FALSE;
+iState	:= BagMachineStatus.OFF;
+iBagCmd	:= 	BagCmd.OFF;
+M_Init	:= TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="machine_inserted" Id="{8b3bbd2f-7f3d-4679-9bd2-27237076212b}">
+      <Declaration><![CDATA[PROPERTY machine_inserted : BOOL]]></Declaration>
+      <Get Name="Get" Id="{70820c96-6148-49c5-a139-06a614438dd7}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[machine_inserted	:= (WORD_TO_INT(adsArr.inArr[1])	= BagMachineStatus.BAG_INSERTED);
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="take_bag" Id="{c71e51df-8fa3-4035-a0b1-6c7eb0a5f252}">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD PUBLIC take_bag : BOOL
+VAR_INPUT
+
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[take_bag	:= FALSE;
+CASE iState OF
+	BagMachineStatus.OFF:
+		iState	:= BagMachineStatus.BAG_READY;
+	BagMachineStatus.BAG_READY:
+		IF unload_ready THEN			
+			iState	:= BagMachineStatus.BAG_INSERTED;
+		END_IF		
+	BagMachineStatus.BAG_INSERTED:
+		iBagCmd	:= 	BagCmd.INSERT_ENABLE;
+		IF machine_inserted THEN
+			take_bag	:= TRUE;
+			iState	:= BagMachineStatus.OFF;
+			iBagCmd	:= 	BagCmd.OFF;
+		END_IF	
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="unload_ready" Id="{c36c0a27-bfee-4b89-9e12-141da2b9c8c6}">
+      <Declaration><![CDATA[PROPERTY unload_ready : BOOL]]></Declaration>
+      <Get Name="Get" Id="{b0b68d0c-36a7-4abb-b777-e5a55260dddb}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[unload_ready	:= (WORD_TO_INT(adsArr.inArr[1])	= BagMachineStatus.BAG_READY);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <LineIds Name="FB_BagCloser">
+      <LineId Id="248" Count="83" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BagCloser.bag_removed.Get">
+      <LineId Id="6" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BagCloser.fixture_ready">
+      <LineId Id="89" Count="0" />
+      <LineId Id="94" Count="2" />
+      <LineId Id="98" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_BagCloser.M_Init">
+      <LineId Id="7" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="9" Count="1" />
+      <LineId Id="6" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BagCloser.machine_inserted.Get">
+      <LineId Id="5" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BagCloser.take_bag">
+      <LineId Id="56" Count="14" />
+      <LineId Id="45" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BagCloser.unload_ready.Get">
+      <LineId Id="6" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

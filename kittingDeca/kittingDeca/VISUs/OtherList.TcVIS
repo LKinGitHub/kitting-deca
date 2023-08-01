@@ -329,7 +329,7 @@
                     </o>
                     <o>
                       <v n="Id">1999528970L</v>
-                      <v n="Value">"G_HMI.iLc =0"</v>
+                      <v n="Value">"G_HMI.iOthers =0"</v>
                     </o>
                     <o>
                       <v n="Id">573394764L</v>
@@ -353,6 +353,7 @@
                     <o>
                       <v n="STSnippet">"G_HMI.iLc  := 0;
 G_HMI.iMainFrame	:= 2;
+G_HMI.iOthers	:= 0;
 "</v>
                     </o>
                   </a>
@@ -512,7 +513,7 @@ G_HMI.iMainFrame	:= 2;
                     </o>
                     <o>
                       <v n="Id">1999528970L</v>
-                      <v n="Value">"G_HMI.iLb =0"</v>
+                      <v n="Value">"G_HMI.iOthers =2"</v>
                     </o>
                     <o>
                       <v n="Id">573394764L</v>
@@ -536,6 +537,7 @@ G_HMI.iMainFrame	:= 2;
                     <o>
                       <v n="STSnippet">"G_HMI.iLb  := 0;
 G_HMI.iMainFrame	:= 3;
+G_HMI.iOthers	:= 2;
 "</v>
                     </o>
                   </a>
@@ -695,7 +697,7 @@ G_HMI.iMainFrame	:= 3;
                     </o>
                     <o>
                       <v n="Id">1999528970L</v>
-                      <v n="Value">"G_HMI.iLc =1"</v>
+                      <v n="Value">"G_HMI.iOthers =1"</v>
                     </o>
                     <o>
                       <v n="Id">573394764L</v>
@@ -719,6 +721,8 @@ G_HMI.iMainFrame	:= 3;
                     <o>
                       <v n="STSnippet">"G_HMI.iLc  := 1;
 G_HMI.iMainFrame	:= 2;
+G_HMI.iOthers	:= 1;
+
 "</v>
                     </o>
                   </a>
@@ -878,7 +882,7 @@ G_HMI.iMainFrame	:= 2;
                     </o>
                     <o>
                       <v n="Id">1999528970L</v>
-                      <v n="Value">"G_HMI.iLb =1"</v>
+                      <v n="Value">"G_HMI.iOthers =3"</v>
                     </o>
                     <o>
                       <v n="Id">573394764L</v>
@@ -902,6 +906,8 @@ G_HMI.iMainFrame	:= 2;
                     <o>
                       <v n="STSnippet">"G_HMI.iLb  := 1;
 G_HMI.iMainFrame	:= 3;
+G_HMI.iOthers	:= 3;
+
 "</v>
                     </o>
                   </a>
@@ -1061,7 +1067,7 @@ G_HMI.iMainFrame	:= 3;
                     </o>
                     <o>
                       <v n="Id">1999528970L</v>
-                      <v n="Value">"G_HMI.iFr =0"</v>
+                      <v n="Value">"G_HMI.iOthers =4"</v>
                     </o>
                     <o>
                       <v n="Id">573394764L</v>
@@ -1084,7 +1090,9 @@ G_HMI.iMainFrame	:= 3;
                   <a cet="STSnippetInputAction">
                     <o>
                       <v n="STSnippet">"G_HMI.iFr  := 0;
-G_HMI.iMainFrame	:= 4;"</v>
+G_HMI.iMainFrame	:= 4;
+G_HMI.iOthers	:= 4;
+"</v>
                     </o>
                   </a>
                 </d>
@@ -1243,7 +1251,7 @@ G_HMI.iMainFrame	:= 4;"</v>
                     </o>
                     <o>
                       <v n="Id">1999528970L</v>
-                      <v n="Value">"G_HMI.iFr =1"</v>
+                      <v n="Value">"G_HMI.iOthers =5"</v>
                     </o>
                     <o>
                       <v n="Id">573394764L</v>
@@ -1267,6 +1275,7 @@ G_HMI.iMainFrame	:= 4;"</v>
                     <o>
                       <v n="STSnippet">"G_HMI.iFr  := 1;
 G_HMI.iMainFrame	:= 4;
+G_HMI.iOthers	:= 5;
 "</v>
                     </o>
                   </a>

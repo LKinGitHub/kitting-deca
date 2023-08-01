@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="AdsArr" Id="{3fc014fd-a98e-410c-9627-5afb476e5179}">
+    <Declaration><![CDATA[TYPE AdsArr :
+STRUCT
+	inArr	: ARRAY[0..31] OF WORD;
+	outArr	: ARRAY[0..31] OF WORD;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

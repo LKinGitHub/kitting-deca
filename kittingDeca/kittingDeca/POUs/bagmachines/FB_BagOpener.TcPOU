@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_BagOpener" Id="{d990ddd1-9606-4745-b80b-134d02663290}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_BagOpener
+VAR_INPUT
+  ams_net_id	: STRING;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	adsread				: ADSREAD;
+	adswrite			: ADSWRITE;
+	status				: BagMachineStatus;
+	iMethodTest			: BagMachineStatus;
+	bagOpenStatus 		: BagMachineStatus;
+  	error_code			: UINT;
+
+	adsArr				: AdsArr;
+	iState				: INT;
+	iAds				: INT;
+	ton_ms				: TON;
+	iMachineStatus		: INT;//inArr[0]
+	iBagStatus			: INT;//inArr[1]
+	iBagDetectStatus	: INT;//inArr[2]
+	iBagCmd				: INT;//outArr[1]
+	iBagDetectCmd		: INT;//outArr[2]
+	
+	
+	
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[	adsread(
+			NETID:=ams_net_id , 
+			PORT:=851 , 
+			IDXGRP:=16#00004020 , 
+			IDXOFFS:=100 , 
+			LEN:= SIZEOF(adsArr.inArr), 
+			DESTADDR:= ADR(adsArr.inArr), 
+			READ:=, 
+			TMOUT:=T#2S , 
+			BUSY=> , 
+			ERR=> , 
+			ERRID=> );
+	adswrite(
+			NETID:=ams_net_id , 
+			PORT:=851, 
+			IDXGRP:=16#00004020, 
+			IDXOFFS:=200, 
+			LEN:=SIZEOF(adsArr.outArr) , 
+			SRCADDR:=ADR(adsArr.outArr) , 
+			WRITE:= , 
+			TMOUT:=T#2S , 
+			BUSY=> , 
+			ERR=> , 
+			ERRID=> );
+ton_ms(PT:=T#2MS);			
+CASE iAds OF 
+	0:
+		adsread.READ	:= FALSE;
+		adswrite.WRITE	:= FALSE;	
+		iAds	:=1;
+	1:
+		ton_ms.IN	:= TRUE;
+		IF ton_ms.Q THEN
+			ton_ms.IN	:= FALSE;
+			iAds	:=2;
+		END_IF
+	2:
+		adsread.READ	:= TRUE;
+		adswrite.WRITE	:= TRUE;
+		iAds	:=3;
+	3:
+		ton_ms.IN	:= TRUE;
+		IF ton_ms.Q THEN
+			ton_ms.IN	:= FALSE;
+			iAds	:=0;
+		END_IF	
+END_CASE
+//inputArr:
+//		[0]:machine status;
+//		[1]:bag status(3:BAG_READY,4:BAG_INSERTED,5:BAG_REMOVED,6:camera_ok,7:camera_ng);
+//		[2]:bag detect status(0:idle,1:ok,2:ng);	
+//outputArr:
+//		[0]:line status;
+//		[1]:bag cmd(1:insert_bag,2:bag_done_clamping,3:camera_trigger,4:camera_reset);
+//	    [2]:bag detect cmd(0:idle,1:trigger,2:reset);
+iMachineStatus		:= WORD_TO_INT(adsArr.inArr[0]);
+iBagStatus 			:= WORD_TO_INT(adsArr.inArr[1]);
+iBagDetectStatus	:= WORD_TO_INT(adsArr.inArr[2]);
+adsArr.outArr[1]	:= INT_TO_WORD(iBagCmd);
+adsArr.outArr[2]	:= INT_TO_WORD(iBagDetectCmd);
+
+CASE iMachineStatus OF
+	0:
+		status	:= BagMachineStatus.OFF;
+	1:
+		status	:= BagMachineStatus.READY;
+	2:
+		status	:= BagMachineStatus.BUSY;
+	3:
+		status	:= BagMachineStatus.ERROR;
+END_CASE
+CASE iMethodTest OF
+	BagMachineStatus.OFF:
+		iState	:= BagMachineStatus.OFF;
+	BagMachineStatus.BAG_INSERTED:
+		IF GVL.fb_bagOpener.insert_bag() THEN
+			iMethodTest	:=0;
+		END_IF		
+	BagMachineStatus.BAG_REMOVED:
+		IF GVL.fb_bagOpener.bag_done_clamping() THEN
+			iMethodTest	:=0;
+		END_IF	
+	BagMachineStatus.GET_RESULT_FROM_CAMERA:
+		IF GVL.fb_bagOpener.getResultFromCamera() THEN
+			iMethodTest	:=0;
+		END_IF
+	BagMachineStatus.RESET_CAMERA:
+		IF GVL.fb_bagOpener.resetCamera() THEN
+			iMethodTest	:=0;
+		END_IF	
+END_CASE
+IF bag_ready THEN
+	;
+END_IF
+
+]]></ST>
+    </Implementation>
+    <Method Name="bag_done_clamping" Id="{106afa9e-1515-436b-93db-b6ae6b065e5a}">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD PUBLIC bag_done_clamping : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bag_done_clamping	:= FALSE;
+iBagCmd	:= BagCmd.REMOVE_ENABLE;
+IF bag_removed OR bag_ready THEN//avoid not catch signal of removed
+	bag_done_clamping	:= TRUE;
+	iBagCmd	:= BagCmd.OFF;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="bag_inserted" Id="{5d05c0dc-651b-47e9-9738-a91b3f9d748c}">
+      <Declaration><![CDATA[PROPERTY bag_inserted : BOOL]]></Declaration>
+      <Get Name="Get" Id="{555689cb-662e-416b-955b-dd411e528cee}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[bag_inserted	:= (WORD_TO_INT(adsArr.inArr[1])	= BagMachineStatus.BAG_INSERTED);
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="bag_ready" Id="{997ca967-3d37-4a66-b58f-b695ba6a31b6}">
+      <Declaration><![CDATA[PROPERTY bag_ready : BOOL]]></Declaration>
+      <Get Name="Get" Id="{b4c37c5a-b78e-4308-ae60-eb17b4b6f6ab}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[bag_ready	:= (WORD_TO_INT(adsArr.inArr[1])	= BagMachineStatus.BAG_READY);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="bag_removed" Id="{ac688585-3c93-428b-aa37-7290a5716161}">
+      <Declaration><![CDATA[PROPERTY bag_removed : BOOL]]></Declaration>
+      <Get Name="Get" Id="{398bd56f-f747-4f00-8c7a-3a6dc6d977b0}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[bag_removed	:= (WORD_TO_INT(adsArr.inArr[1])	= BagMachineStatus.BAG_REMOVED);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="getResultFromCamera" Id="{e17a1061-a312-4c90-ae11-f2c84b35ac55}">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD PUBLIC getResultFromCamera : BOOL
+VAR_INPUT
+
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[getResultFromCamera	:= FALSE;
+CASE iState OF
+	BagMachineStatus.OFF:
+		IF iBagDetectStatus = BagMachineStatus.OFF THEN
+			iState	:= BagMachineStatus.GET_RESULT_FROM_CAMERA;
+		END_IF
+	BagMachineStatus.GET_RESULT_FROM_CAMERA:
+		iBagDetectCmd	:= 	BagCmd.GET_RESULT_FROM_CAMERA;
+		IF iBagDetectStatus <> BagMachineStatus.OFF THEN
+			getResultFromCamera	:= TRUE;
+			iState	:= BagMachineStatus.OFF;
+			iBagDetectCmd	:= 	BagCmd.OFF;
+		END_IF	
+	
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="insert_bag" Id="{025d8fde-bab8-4359-812a-e6e638b46921}">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD PUBLIC insert_bag : BOOL
+VAR_INPUT
+
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[insert_bag	:= FALSE;
+CASE iState OF
+	BagMachineStatus.OFF:
+		iState	:= BagMachineStatus.BAG_READY;
+	BagMachineStatus.BAG_READY:
+		IF bag_ready THEN			
+			iState	:= BagMachineStatus.BAG_INSERTED;
+		END_IF		
+	BagMachineStatus.BAG_INSERTED:
+		iBagCmd	:= 	BagCmd.INSERT_ENABLE;
+		IF bag_inserted THEN
+			insert_bag	:= TRUE;
+			iState	:= BagMachineStatus.OFF;
+			iBagCmd	:= 	BagCmd.OFF;
+		END_IF	
+END_CASE
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Init" Id="{ab5f3fbb-59b8-4828-aeda-825e8bbd1b52}">
+      <Declaration><![CDATA[METHOD M_Init : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[M_Init	:= FALSE;
+iState	:= BagMachineStatus.OFF;
+iBagDetectCmd	:= BagCmd.OFF;
+iBagCmd	:= 	BagCmd.OFF;
+M_Init	:= TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="resetCamera" Id="{ceb98418-f13a-4ed3-bbb0-590c0cc0059d}">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD PUBLIC resetCamera : BOOL
+VAR_INPUT
+
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[resetCamera	:= FALSE;
+iBagDetectCmd	:= 	BagCmd.RESET_CAMERA;
+IF iBagDetectStatus = BagMachineStatus.OFF THEN
+	resetCamera	:= TRUE;
+	iBagDetectCmd	:= 	BagCmd.OFF;
+END_IF	
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_BagOpener">
+      <LineId Id="17" Count="22" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="46" Count="1" />
+      <LineId Id="126" Count="1" />
+      <LineId Id="52" Count="7" />
+      <LineId Id="129" Count="0" />
+      <LineId Id="128" Count="0" />
+      <LineId Id="64" Count="1" />
+      <LineId Id="75" Count="3" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="156" Count="0" />
+      <LineId Id="158" Count="1" />
+      <LineId Id="181" Count="0" />
+      <LineId Id="163" Count="0" />
+      <LineId Id="157" Count="0" />
+      <LineId Id="161" Count="1" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="180" Count="0" />
+      <LineId Id="95" Count="0" />
+      <LineId Id="153" Count="0" />
+      <LineId Id="167" Count="0" />
+      <LineId Id="96" Count="0" />
+      <LineId Id="168" Count="0" />
+      <LineId Id="173" Count="0" />
+      <LineId Id="170" Count="0" />
+      <LineId Id="174" Count="0" />
+      <LineId Id="171" Count="0" />
+      <LineId Id="175" Count="0" />
+      <LineId Id="172" Count="0" />
+      <LineId Id="176" Count="0" />
+      <LineId Id="169" Count="0" />
+      <LineId Id="94" Count="0" />
+      <LineId Id="131" Count="0" />
+      <LineId Id="135" Count="0" />
+      <LineId Id="144" Count="2" />
+      <LineId Id="137" Count="0" />
+      <LineId Id="147" Count="2" />
+      <LineId Id="138" Count="0" />
+      <LineId Id="184" Count="0" />
+      <LineId Id="186" Count="1" />
+      <LineId Id="185" Count="0" />
+      <LineId Id="189" Count="2" />
+      <LineId Id="188" Count="0" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="182" Count="1" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="84" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BagOpener.bag_done_clamping">
+      <LineId Id="33" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BagOpener.bag_inserted.Get">
+      <LineId Id="5" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BagOpener.bag_ready.Get">
+      <LineId Id="6" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BagOpener.bag_removed.Get">
+      <LineId Id="6" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BagOpener.getResultFromCamera">
+      <LineId Id="79" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="52" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BagOpener.insert_bag">
+      <LineId Id="79" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="67" Count="1" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="85" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BagOpener.M_Init">
+      <LineId Id="7" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="8" Count="2" />
+      <LineId Id="6" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BagOpener.resetCamera">
+      <LineId Id="79" Count="0" />
+      <LineId Id="96" Count="0" />
+      <LineId Id="98" Count="1" />
+      <LineId Id="101" Count="1" />
+      <LineId Id="104" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

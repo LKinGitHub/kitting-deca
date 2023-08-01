@@ -3658,7 +3658,7 @@ dIO_PM.inConv.valve[0].retract := FALSE;"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"Extend"</v>
+                      <v n="Value">"retract"</v>
                     </o>
                     <o>
                       <v n="Id">1999528970L</v>
@@ -3670,7 +3670,7 @@ dIO_PM.inConv.valve[0].retract := FALSE;"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"924"</v>
+                      <v n="Value">"1651"</v>
                     </o>
                   </l>
                 </o>
@@ -15650,7 +15650,7 @@ dIO_PM.inConv.valve[0].retract := TRUE;"</v>
                     </o>
                     <o>
                       <v n="Id">1999528970L</v>
-                      <v n="Value">"dIO_PM.buffer[0].lamp_button"</v>
+                      <v n="Value">"dIO_PM.buffer[1].lamp_button"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -22063,7 +22063,7 @@ dIO_PM.inConv.valve[1].retract := FALSE;"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"Extend"</v>
+                      <v n="Value">"retract"</v>
                     </o>
                     <o>
                       <v n="Id">1999528970L</v>
@@ -22075,7 +22075,7 @@ dIO_PM.inConv.valve[1].retract := FALSE;"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"924"</v>
+                      <v n="Value">"1651"</v>
                     </o>
                   </l>
                 </o>
@@ -22867,7 +22867,7 @@ dIO_PM.inConv.valve[2].retract := FALSE;"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"Extend"</v>
+                      <v n="Value">"retract"</v>
                     </o>
                     <o>
                       <v n="Id">1999528970L</v>
@@ -22879,7 +22879,7 @@ dIO_PM.inConv.valve[2].retract := FALSE;"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"924"</v>
+                      <v n="Value">"1651"</v>
                     </o>
                   </l>
                 </o>
@@ -24854,7 +24854,7 @@ dIO_PM.outConv.valve[0].retract := FALSE;"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"Extend"</v>
+                      <v n="Value">"retract"</v>
                     </o>
                     <o>
                       <v n="Id">1999528970L</v>
@@ -24866,7 +24866,7 @@ dIO_PM.outConv.valve[0].retract := FALSE;"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"924"</v>
+                      <v n="Value">"1651"</v>
                     </o>
                   </l>
                 </o>
@@ -30644,7 +30644,7 @@ dIO_PM.outConv.valve[1].retract := FALSE;"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"Extend"</v>
+                      <v n="Value">"retract"</v>
                     </o>
                     <o>
                       <v n="Id">1999528970L</v>
@@ -30656,7 +30656,7 @@ dIO_PM.outConv.valve[1].retract := FALSE;"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"924"</v>
+                      <v n="Value">"1651"</v>
                     </o>
                   </l>
                 </o>

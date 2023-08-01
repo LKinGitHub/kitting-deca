@@ -57,10 +57,10 @@ G_IO.arDO[offset].Ch[6]		:= GVL.lc[iLc].power_beltConv;
 G_IO.arDO[offset].Ch[7]		:= GVL.lc[iLc].lateral.power_axis;
 G_IO.arDO[offset].Ch[8]		:= GVL.lc[iLc].lateral.valve_lift.extend;
 G_IO.arDO[offset].Ch[9]		:= GVL.lc[iLc].lateral.valve_lift.retract;
-G_IO.arDO[offset].Ch[10]	:= GVL.lc[iLc].lateral.valve_clamp[0].extend;
-G_IO.arDO[offset].Ch[11]	:= GVL.lc[iLc].lateral.valve_clamp[1].extend;
-G_IO.arDO[offset].Ch[12]	:= GVL.lc[iLc].valve_stopper[0].extend;
-G_IO.arDO[offset].Ch[13]	:= GVL.lc[iLc].valve_stopper[1].extend;
+G_IO.arDO[offset].Ch[10]	:= GVL.lc[iLc].lateral.valve_clamp[0].retract;
+G_IO.arDO[offset].Ch[11]	:= GVL.lc[iLc].lateral.valve_clamp[1].retract;
+G_IO.arDO[offset].Ch[12]	:= GVL.lc[iLc].valve_stopper[0].retract;
+G_IO.arDO[offset].Ch[13]	:= GVL.lc[iLc].valve_stopper[1].retract;
 G_IO.arDO[offset].Ch[14]	:= GVL.lc[iLc].valve_guide[0].extend;
 G_IO.arDO[offset].Ch[15]	:= GVL.lc[iLc].valve_guide[1].extend;
 

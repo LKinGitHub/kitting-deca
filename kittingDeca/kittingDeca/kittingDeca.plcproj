@@ -148,6 +148,24 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\bagmachines\AdsArr.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\bagmachines\BagCmd.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\bagmachines\BagMachineStatus.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\bagmachines\FB_BagCloser.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\bagmachines\FB_BagCompactor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\bagmachines\FB_BagOpener.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\E_RemIndex.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -289,6 +307,7 @@
     <Folder Include="GVLs\kitting deca\fixture rotation" />
     <Folder Include="GVLs\kitting deca\picking module" />
     <Folder Include="GVLs\kitting deca\replenishment module" />
+    <Folder Include="POUs\bagmachines" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>

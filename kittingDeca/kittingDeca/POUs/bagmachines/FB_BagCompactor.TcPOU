@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_BagCompactor" Id="{017b6eb5-a8fd-4f32-9753-e8dab8e3fb07}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_BagCompactor
+VAR_INPUT
+  ams_net_id: STRING;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+  status: BagMachineStatus;
+  error_code: UINT;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="compact_bag" Id="{d356716c-e9b9-41b0-91db-30267c691488}">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD PUBLIC compact_bag : BOOL
+VAR_INPUT
+
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_BagCompactor">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BagCompactor.compact_bag">
+      <LineId Id="45" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

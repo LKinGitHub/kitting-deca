@@ -12,11 +12,12 @@ VAR_IN_OUT
 	IN_OUT 		: ST_MotionAxis_MC	;//struct for each axis
 END_VAR
 VAR
-
+	ton_delay	: TON;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//add timeout for this fuction block
+ton_delay(PT:= T#2S);
 CASE stAxisCtrl.iCmd OF
 	0:
 		IN_OUT.mcReset.Execute	:= FALSE;
@@ -40,6 +41,40 @@ CASE stAxisCtrl.iCmd OF
 		IF IN_OUT.mcMoveAbsolute.Done THEN
 			stAxisCtrl.iCmd	:= 0;
 		END_IF
+		
+	10:
+		ton_delay.IN	:= FALSE;
+		IN_OUT.mcMoveAbsolute.Execute := TRUE;
+		IN_OUT.rActualPosSet	:= 324;
+		IN_OUT.rVelocitySet	:= 100;
+		IF IN_OUT.mcMoveAbsolute.Done THEN
+			IN_OUT.mcMoveAbsolute.Execute := FALSE;
+			stAxisCtrl.iCmd	:= 11;
+		END_IF
+	11:
+		ton_delay.IN	:= TRUE;
+		IF ton_delay.Q THEN
+			stAxisCtrl.iCmd	:= 12;
+		END_IF
+	12:
+		ton_delay.IN	:= FALSE;
+		IN_OUT.mcMoveAbsolute.Execute := TRUE;
+		IN_OUT.rActualPosSet	:= 10;
+		IN_OUT.rVelocitySet	:= 100;
+		IF IN_OUT.mcMoveAbsolute.Done THEN
+			IN_OUT.mcMoveAbsolute.Execute := FALSE;
+			stAxisCtrl.iCmd	:= 13;
+		END_IF
+	13:
+		ton_delay.IN	:= TRUE;
+		IF ton_delay.Q THEN
+			stAxisCtrl.iCmd	:= 10;
+		END_IF	
+	
+	100:
+		IN_OUT.mcMoveAbsolute.Execute := FALSE;
+		stAxisCtrl.iCmd	:= 0;
+		
 END_CASE;
 stAxisCtrl.iStatus := stAxisCtrl.iCmd;
 
@@ -48,6 +83,7 @@ stAxisCtrl.iStatus := stAxisCtrl.iCmd;
     </Implementation>
     <LineIds Name="FB_axisCtrl">
       <LineId Id="43" Count="0" />
+      <LineId Id="93" Count="0" />
       <LineId Id="25" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="27" Count="0" />
@@ -65,6 +101,26 @@ stAxisCtrl.iStatus := stAxisCtrl.iCmd;
       <LineId Id="39" Count="0" />
       <LineId Id="32" Count="0" />
       <LineId Id="44" Count="1" />
+      <LineId Id="115" Count="0" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="95" Count="0" />
+      <LineId Id="85" Count="3" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="94" Count="0" />
+      <LineId Id="90" Count="1" />
+      <LineId Id="96" Count="2" />
+      <LineId Id="111" Count="0" />
+      <LineId Id="103" Count="5" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="109" Count="0" />
+      <LineId Id="112" Count="2" />
+      <LineId Id="110" Count="0" />
+      <LineId Id="116" Count="1" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="119" Count="0" />
+      <LineId Id="118" Count="0" />
       <LineId Id="26" Count="0" />
       <LineId Id="33" Count="0" />
       <LineId Id="41" Count="1" />

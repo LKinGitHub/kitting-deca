@@ -21,6 +21,9 @@ VAR
 	iInit	: int;
 	i	: INT;
 	j	: INT;
+	
+	ton_1ms	: TON;
+	iAds: INT;
 
 END_VAR
 ]]></Declaration>
@@ -32,7 +35,8 @@ M_measuringLC();
 M_rfid();
 runEveryCycle();
 M_ReM();
-
+//M_ads_bagmachines();
+safetyConfig();
 //GVL.fbconverter[0](stConverter:= GVL.stConverter[0]);
 //GVL.fbconverter.M_SetPara(iMotor:=0,iCmd:=1);
 
@@ -206,34 +210,129 @@ CASE iInit OF
 		FOR i:=0 TO 57 DO
 			GVL.ref_fbconverterMotor[i]^.bSetParaEx	:= FALSE;
 		END_FOR
-	1:
+	1://set parameters for all converter motors
 		FOR i:=0 TO 57 DO
 			GVL.ref_fbconverterMotor[i]^.bSetParaEx	:= TRUE;
 		END_FOR
 		IF GVL.ref_fbconverterMotor[57]^.xDone THEN
 			iInit	:=2;
 		END_IF
-	2:
+	2://set parameters for all converter motors
 		FOR i:=0 TO 57 DO
 			GVL.ref_fbconverterMotor[i]^.bSetParaEx	:= FALSE;
 		END_FOR
 		iInit	:=0;
-	3:
+	3://run all converter motors
 		FOR i:=0 TO 57 DO
 			GVL.ref_fbconverterMotor[i]^.cmd	:= 2;
 			GVL.ref_fbconverterMotor[i]^.freq	:= 2000;
 		END_FOR
-	4:
+	4://stop all converter moters
 		FOR i:=0 TO 57 DO
 			GVL.ref_fbconverterMotor[i]^.cmd	:= 0;
 			GVL.ref_fbconverterMotor[i]^.freq	:= 0;
 		END_FOR
 		iInit	:=0;
+	5://all lift axis servo on
+		FOR i:=0 TO 19 DO
+			GVL.stAxisCtrl_Lift[i].iCmd	:= 1;
+			GVL.stAxisCtrl_Buffer[i].iCmd	:= 10;
+		END_FOR
+		iInit	:=0;
+	6://all lift axis run
+		FOR i:=0 TO 19 DO
+			GVL.stAxisCtrl_Lift[i].iCmd	:= 10;
+			GVL.stAxisCtrl_Buffer[i].iCmd	:= 10;
+		END_FOR
+		iInit	:=0;
+	7://all buffer axis run
+		FOR i:=0 TO 19 DO
+			GVL.stAxisCtrl_Buffer[i].iCmd	:= 10;
+		END_FOR	
+	7://all lift axis stop
+		FOR i:=0 TO 19 DO
+			GVL.stAxisCtrl_Lift[i].iCmd	:= 100;
+			GVL.stAxisCtrl_Buffer[i].iCmd	:= 100;
+		END_FOR	
+		iInit	:=0;		
+	
+		
 END_CASE
 
+GVL.fb_bagOpener(ams_net_id:=GVL.netId_bagmachie[0]);
+GVL.fb_bagCloser(ams_net_id:=GVL.netId_bagmachie[1]);
+GVL.fb_bagCompactor(ams_net_id:=GVL.netId_bagmachie[2]);
 
 ]]></ST>
     </Implementation>
+    <Method Name="M_ads_bagmachines" Id="{e17f7489-04b4-4071-b5e7-5d660350d153}">
+      <Declaration><![CDATA[METHOD M_ads_bagmachines : BOOL
+VAR_INPUT
+END_VAR
+VAR
+	
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+ton_1ms(PT:=T#2MS);
+FOR i:=0 TO 2 DO
+	GVL.adsread[i](
+				NETID:=GVL.netId_bagmachie[i] , 
+				PORT:=851 , 
+				IDXGRP:=16#00004020 , 
+				IDXOFFS:=100 , 
+				LEN:= SIZEOF(GVL.adsArr_bagMachine[i].inArr), 
+				DESTADDR:= ADR(GVL.adsArr_bagMachine[i].inArr), 
+				READ:=GVL.bread[i] , 
+				TMOUT:=T#2S , 
+				BUSY=> , 
+				ERR=> , 
+				ERRID=> );
+	GVL.adswrite[i](
+				NETID:=GVL.netId_bagmachie[i] , 
+				PORT:=851, 
+				IDXGRP:=16#00004020, 
+				IDXOFFS:=200, 
+				LEN:=SIZEOF(GVL.adsArr_bagMachine[i].outArr) , 
+				SRCADDR:=ADR(GVL.adsArr_bagMachine[i].outArr) , 
+				WRITE:=GVL.bwrite[i] , 
+				TMOUT:=T#2S , 
+				BUSY=> , 
+				ERR=> , 
+				ERRID=> );
+		END_FOR
+CASE iAds OF 
+	0:
+		FOR i:=0 TO 2 DO
+			GVL.bread[i]	:=FALSE;
+			GVL.bwrite[i]	:=FALSE;
+		END_FOR
+		iAds	:=1;
+	1:
+		ton_1ms.IN	:= TRUE;
+		IF ton_1ms.Q THEN
+			ton_1ms.IN	:= FALSE;
+			iAds	:=2;
+		END_IF
+	2:
+		FOR i:=0 TO 2 DO
+			GVL.bread[i]	:=TRUE;
+			GVL.bwrite[i]	:=TRUE;
+		END_FOR
+		iAds	:=3;
+	3:
+		ton_1ms.IN	:= TRUE;
+		IF ton_1ms.Q THEN
+			ton_1ms.IN	:= FALSE;
+			iAds	:=0;
+		END_IF		
+END_CASE
+
+
+	]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="M_mappingIO" Id="{e0caa2a2-200b-484a-9495-8cf8901a2628}">
       <Declaration><![CDATA[METHOD M_mappingIO 
 VAR_INPUT
@@ -312,7 +411,7 @@ GVL.fb_pmAxisMapping[9](iPM :=4,iBuffer:=1,sNetID:='192.168.11.159.5.1',nSlaveAd
 GVL.fb_pmAxisMapping[10](iPM :=5,iBuffer:=0,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1030);
 GVL.fb_pmAxisMapping[11](iPM :=5,iBuffer:=1,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1031);
 GVL.fb_pmAxisMapping[12](iPM :=6,iBuffer:=0,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1036);
-GVL.fb_pmAxisMapping[13](iPM :=6,iBuffer:=1,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1047);
+GVL.fb_pmAxisMapping[13](iPM :=6,iBuffer:=1,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1037);
 GVL.fb_pmAxisMapping[14](iPM :=7,iBuffer:=0,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1038);
 GVL.fb_pmAxisMapping[15](iPM :=7,iBuffer:=1,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1039);
 GVL.fb_pmAxisMapping[16](iPM :=8,iBuffer:=0,sNetID:='192.168.11.159.5.1',nSlaveAddr:=1046);
@@ -522,7 +621,9 @@ VAR
 	j: INT;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[FOR i :=1 TO 32 DO
+        <ST><![CDATA[
+//IF Process Data In(BYTE1!=0) try Process Data Out(BYTE0=64:Teach-in)
+FOR i :=1 TO 32 DO
 	GVL.ibyteNum[i] := i;
 END_FOR
 FOR i:=1 TO 32 DO	
@@ -816,6 +917,12 @@ END_CASE
 ]]></ST>
       </Implementation>
     </Method>
+    <Action Name="safetyConfig" Id="{e2ea83c0-a742-46c9-9729-41e1721b92cb}">
+      <Implementation>
+        <ST><![CDATA[G_IO.arDO[95].Ch[2] := GVL.safetyin[28].0;//rst lamp
+GVL.safetyOut[0].0	:= G_IO.arDI[95].Ch[2];//btn_rst]]></ST>
+      </Implementation>
+    </Action>
     <LineIds Name="MAIN">
       <LineId Id="449" Count="0" />
       <LineId Id="797" Count="0" />
@@ -825,6 +932,7 @@ END_CASE
       <LineId Id="630" Count="0" />
       <LineId Id="712" Count="0" />
       <LineId Id="801" Count="0" />
+      <LineId Id="1309" Count="0" />
       <LineId Id="799" Count="0" />
       <LineId Id="824" Count="0" />
       <LineId Id="823" Count="0" />
@@ -891,9 +999,54 @@ END_CASE
       <LineId Id="1229" Count="3" />
       <LineId Id="967" Count="0" />
       <LineId Id="1233" Count="0" />
-      <LineId Id="928" Count="1" />
-      <LineId Id="923" Count="0" />
+      <LineId Id="1278" Count="2" />
+      <LineId Id="1282" Count="1" />
+      <LineId Id="1277" Count="0" />
+      <LineId Id="1257" Count="0" />
+      <LineId Id="1265" Count="2" />
+      <LineId Id="1260" Count="0" />
+      <LineId Id="1274" Count="0" />
+      <LineId Id="1348" Count="0" />
+      <LineId Id="1350" Count="0" />
+      <LineId Id="1352" Count="0" />
+      <LineId Id="1349" Count="0" />
+      <LineId Id="1256" Count="0" />
+      <LineId Id="1268" Count="2" />
+      <LineId Id="1264" Count="0" />
+      <LineId Id="1271" Count="0" />
+      <LineId Id="1339" Count="0" />
+      <LineId Id="1273" Count="0" />
+      <LineId Id="928" Count="0" />
+      <LineId Id="1307" Count="1" />
+      <LineId Id="1346" Count="1" />
+      <LineId Id="1336" Count="0" />
       <LineId Id="900" Count="0" />
+    </LineIds>
+    <LineIds Name="MAIN.M_ads_bagmachines">
+      <LineId Id="37" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="82" Count="24" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="38" Count="1" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="77" Count="1" />
+      <LineId Id="111" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="107" Count="3" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="115" Count="4" />
+      <LineId Id="113" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="124" Count="0" />
+      <LineId Id="120" Count="0" />
     </LineIds>
     <LineIds Name="MAIN.M_mappingIO">
       <LineId Id="322" Count="0" />
@@ -1055,6 +1208,7 @@ END_CASE
       <LineId Id="181" Count="0" />
     </LineIds>
     <LineIds Name="MAIN.M_measuringLC">
+      <LineId Id="34" Count="1" />
       <LineId Id="5" Count="2" />
       <LineId Id="14" Count="0" />
       <LineId Id="19" Count="7" />
@@ -1175,6 +1329,10 @@ END_CASE
       <LineId Id="33" Count="0" />
       <LineId Id="79" Count="1" />
       <LineId Id="38" Count="0" />
+    </LineIds>
+    <LineIds Name="MAIN.safetyConfig">
+      <LineId Id="3" Count="0" />
+      <LineId Id="1" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

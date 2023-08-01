@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="BagMachineStatus" Id="{cb7ae566-ce92-4914-a4d5-caf80dfbd1ff}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE BagMachineStatus:
+(
+    OFF := 0,
+    BUSY := 1,
+    READY := 2,
+    BAG_READY := 3,
+    BAG_INSERTED := 4,
+	BAG_REMOVED := 5,
+	GET_RESULT_FROM_CAMERA	:=6,
+	RESET_CAMERA	:= 7,
+	CAMERA_OK	:= 8,
+	CAMERA_NG	:= 9,
+    SUCCESS := 10,
+    ERROR := 11,
+	DONE	:=12
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
