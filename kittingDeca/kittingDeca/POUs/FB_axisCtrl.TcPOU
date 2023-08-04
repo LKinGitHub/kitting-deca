@@ -42,7 +42,7 @@ CASE stAxisCtrl.iCmd OF
 			stAxisCtrl.iCmd	:= 0;
 		END_IF
 		
-	10:
+	10://REM aging test start
 		ton_delay.IN	:= FALSE;
 		IN_OUT.mcMoveAbsolute.Execute := TRUE;
 		IN_OUT.rActualPosSet	:= 324;
@@ -70,6 +70,18 @@ CASE stAxisCtrl.iCmd OF
 		IF ton_delay.Q THEN
 			stAxisCtrl.iCmd	:= 10;
 		END_IF	
+	
+		
+	20://PM buffer aging test start
+		IN_OUT.mcSetpoint.Execute	:= 0;
+		stAxisCtrl.iCmd	:= 21;
+	21:
+		IN_OUT.mcMoveVelocity.Execute	:= TRUE;
+		
+		
+	
+	
+	
 	
 	100:
 		IN_OUT.mcMoveAbsolute.Execute := FALSE;
@@ -117,7 +129,13 @@ stAxisCtrl.iStatus := stAxisCtrl.iCmd;
       <LineId Id="109" Count="0" />
       <LineId Id="112" Count="2" />
       <LineId Id="110" Count="0" />
-      <LineId Id="116" Count="1" />
+      <LineId Id="116" Count="0" />
+      <LineId Id="133" Count="1" />
+      <LineId Id="139" Count="0" />
+      <LineId Id="141" Count="3" />
+      <LineId Id="140" Count="0" />
+      <LineId Id="135" Count="3" />
+      <LineId Id="117" Count="0" />
       <LineId Id="92" Count="0" />
       <LineId Id="119" Count="0" />
       <LineId Id="118" Count="0" />

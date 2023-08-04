@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="E_CMD_ConverterMotor" Id="{a05b3b20-fcd4-42ec-9b71-bbaf6c243338}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_CMD_ConverterMotor :
+(
+	STOP	:=0,
+	FORWARD	:=1,
+	BACKWARE	:=2,
+	JOG_POS	:=3,
+	JOG_NEG	:=4,
+	FREE_STOP	:=5,
+	SLOWDOWN_STOP	:=6,
+	RESET	:= 7
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

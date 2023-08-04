@@ -73,6 +73,8 @@ VAR_GLOBAL
 	fb_bagCloser	: FB_BagCloser;
 	fb_bagCompactor	: FB_BagCompactor;
 	
+	adsReadByName	: FB_ReadAdsSymByName;
+	adsReadEvents	: FB_AdsReadEvents;
 	
 END_VAR]]></Declaration>
   </GVL>

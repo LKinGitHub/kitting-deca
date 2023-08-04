@@ -1,44 +1,10 @@
 <?xml version="1.0"?>
 <TcLicenseInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2011/11/TcLicenseInfo">
 	<LicenseInfo>
-		<SystemId>{E591A448-518C-2BE8-1F91-B861DB0EADA1}</SystemId>
-		<IssueTime>2023-07-27T08:11:00</IssueTime>
-		<ExpireTime>2023-08-04T00:00:00</ExpireTime>
-		<LicenseKey>d7336950b8ccfa05252e4dbcf0fd8a4b64f1cd319ae95960558026ea369e8fb8d118638ce621f1d643652556b721765bbc8ef8ec659fe175c54dc376ae88492036ae91616592f2906cb7fdf8dc7803df23ba6e9fe239c08c0c6a97cd29e5426302b84222132856b04efff14668c24c6b9508e1c5329e10fd11cb2eee9d1c271be0caa029de2ad712549056e3b1db25a12c7409db0bfd513c2505d0dabbce4669c185082b8af06bf71163631a241a6ac1c27de8630ee306ebca6e010af0d8b1f5e25f66c755b4ba2ec39d364b59fd4093804a419810c319c18650ad750bbfed3583b691262a72f22aeed50b4f4403c917814a03b850757f9b74d8bb9ed6a54036</LicenseKey>
-		<License>
-			<LicenseId>{4C256767-E6E6-4AF5-BD68-9F7ABAD0C200}</LicenseId>
-			<Name>TC3 ADS</Name>
-			<OrderNo>TC1000</OrderNo>
-		</License>
-		<License>
-			<LicenseId>{3FF18E97-7754-401B-93FB-70544DE28A13}</LicenseId>
-			<Name>TC3 IO</Name>
-			<OrderNo>TC1100</OrderNo>
-		</License>
-		<License>
-			<LicenseId>{66689887-CCBD-452C-AC9A-039D997C6E66}</LicenseId>
-			<Name>TC3 PLC</Name>
-			<OrderNo>TC1200</OrderNo>
-		</License>
-		<License>
-			<LicenseId>{520DE751-9DB6-47CB-8240-BD5C466E7E64}</LicenseId>
-			<Name>TC3 NC PTP</Name>
-			<OrderNo>TF5000</OrderNo>
-		</License>
-		<License>
-			<LicenseId>{A19036CF-A53B-4E3A-99FF-023EF5C4798B}</LicenseId>
-			<Name>TC3 NC PTP Axis</Name>
-		</License>
-		<License>
-			<LicenseId>{8C57D0A8-BD63-4554-BAE1-E9C797EF0D0E}</LicenseId>
-			<Name>TC3 PLC / NC PTP 10</Name>
-			<OrderNo>TC1250</OrderNo>
-		</License>
-		<License>
-			<LicenseId>{57BD9670-089D-434A-85CF-90A857EE0EFF}</LicenseId>
-			<Name>TC3 NC PTP Axes Pack unlimited</Name>
-			<OrderNo>TF5020</OrderNo>
-		</License>
+		<SystemId>{33471489-A18E-C550-6815-2BF722D0B412}</SystemId>
+		<IssueTime>2023-08-03T08:09:00</IssueTime>
+		<ExpireTime>2023-08-11T00:00:00</ExpireTime>
+		<LicenseKey>78b27d8562624c76eaaa50d55e6b7540a5b86909ab9a50cd9706904501685d26f76d355e274f4a6ca78a5b23cb84b1b72b331c878edbf43ded950c4dc0e29e9b302612bb943e1bf7071e9324026c1b25dfb4da518252083bfca5514eedf93be0ecc8250d50f8b92de4955d35a3d606c6e2edf80859ccec279517387682cebac3ae4e8aba929e9ae5c36ebb02c8a290ba80c8b7e6363f41a2e362111a7ed21aea1e76d710967b5f054d04d5ebda9773375a22882e384b64dd8f5a62bea37a1651b04423049636e964761e9828317f4d2f2ccdb140ab173a63a26ebeaf700fc4b636f0c1b09a9374e2ebc3c938fd652d79b30bdd1cc3029a558696576772298faf</LicenseKey>
 		<License>
 			<LicenseId>{D4390DEA-A64D-494D-9E09-275326DBB0CB}</LicenseId>
 			<Name>TC3 PLC-HMI (RT)</Name>

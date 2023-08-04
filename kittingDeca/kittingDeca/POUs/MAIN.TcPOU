@@ -24,6 +24,16 @@ VAR
 	
 	ton_1ms	: TON;
 	iAds: INT;
+	
+	xErr_converterMotors	: BOOL;
+	xErr_servoMoters	: BOOL;
+	xError	: BOOL;
+
+	xReset	: BOOL;
+	
+	
+
+	iReset: INT;
 
 END_VAR
 ]]></Declaration>
@@ -224,7 +234,7 @@ CASE iInit OF
 		iInit	:=0;
 	3://run all converter motors
 		FOR i:=0 TO 57 DO
-			GVL.ref_fbconverterMotor[i]^.cmd	:= 2;
+			GVL.ref_fbconverterMotor[i]^.cmd	:=INT_TO_UINT(E_CMD_ConverterMotor.BACKWARE);
 			GVL.ref_fbconverterMotor[i]^.freq	:= 2000;
 		END_FOR
 	4://stop all converter moters
@@ -236,27 +246,36 @@ CASE iInit OF
 	5://all lift axis servo on
 		FOR i:=0 TO 19 DO
 			GVL.stAxisCtrl_Lift[i].iCmd	:= 1;
-			GVL.stAxisCtrl_Buffer[i].iCmd	:= 10;
+			GVL.stAxisCtrl_Buffer[i].iCmd	:= 1;
 		END_FOR
 		iInit	:=0;
 	6://all lift axis run
 		FOR i:=0 TO 19 DO
 			GVL.stAxisCtrl_Lift[i].iCmd	:= 10;
-			GVL.stAxisCtrl_Buffer[i].iCmd	:= 10;
 		END_FOR
 		iInit	:=0;
 	7://all buffer axis run
 		FOR i:=0 TO 19 DO
 			GVL.stAxisCtrl_Buffer[i].iCmd	:= 10;
 		END_FOR	
-	7://all lift axis stop
+		iInit	:=0;
+	8://all lift axis stop
 		FOR i:=0 TO 19 DO
 			GVL.stAxisCtrl_Lift[i].iCmd	:= 100;
 			GVL.stAxisCtrl_Buffer[i].iCmd	:= 100;
 		END_FOR	
 		iInit	:=0;		
+	9://check error
+		IF M_checkError() THEN
+			iInit	:=0;
+		END_IF
 	
-		
+	10://reset error
+		IF M_reset() THEN
+			iInit	:=0;
+		END_IF		
+
+	
 END_CASE
 
 GVL.fb_bagOpener(ams_net_id:=GVL.netId_bagmachie[0]);
@@ -274,7 +293,7 @@ VAR
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[
+        <ST><![CDATA[(*
 ton_1ms(PT:=T#2MS);
 FOR i:=0 TO 2 DO
 	GVL.adsread[i](
@@ -329,8 +348,28 @@ CASE iAds OF
 		END_IF		
 END_CASE
 
-
+*)
 	]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_checkError" Id="{7fd72e19-e986-48cb-880b-fcc78599fe02}">
+      <Declaration><![CDATA[METHOD M_checkError : BOOL
+VAR_INPUT
+END_VAR
+VAR
+	i	: INT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[M_checkError	:= FALSE;
+xErr_converterMotors	:= FALSE;
+FOR i:=0 TO 57 DO
+	IF GVL.ref_fbconverterMotor[i]^.xErr THEN
+		xErr_converterMotors	:= TRUE;
+	END_IF
+END_FOR
+M_checkError	:= TRUE;]]></ST>
       </Implementation>
     </Method>
     <Method Name="M_mappingIO" Id="{e0caa2a2-200b-484a-9495-8cf8901a2628}">
@@ -773,6 +812,39 @@ CASE GVL.iFRtest OF
 END_CASE*)]]></ST>
       </Implementation>
     </Method>
+    <Method Name="M_reset" Id="{6f7eefb6-ce44-4b5b-85e3-b8cc16ed9392}">
+      <Declaration><![CDATA[METHOD M_reset : BOOL
+VAR_INPUT
+
+END_VAR
+
+VAR
+	i	: INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+M_reset	:= FALSE;
+
+CASE iReset OF
+	0:
+		iReset	:= 1;
+	1:
+		FOR i:=0 TO 57 DO
+			GVL.ref_fbconverterMotor[i]^.reset	:= TRUE;
+		END_FOR
+		iReset	:=2;
+	2:
+		FOR i:=0 TO 57 DO
+			GVL.ref_fbconverterMotor[i]^.reset	:= FALSE;
+		END_FOR
+		M_reset	:= TRUE;
+		iReset	:=0;
+
+END_CASE
+
+]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="M_rfid" Id="{5c57c28f-978a-4ef1-8020-2ee35fe2b4f0}">
       <Declaration><![CDATA[METHOD M_rfid : BOOL
 VAR_INPUT
@@ -1003,19 +1075,26 @@ GVL.safetyOut[0].0	:= G_IO.arDI[95].Ch[2];//btn_rst]]></ST>
       <LineId Id="1282" Count="1" />
       <LineId Id="1277" Count="0" />
       <LineId Id="1257" Count="0" />
-      <LineId Id="1265" Count="2" />
+      <LineId Id="1265" Count="1" />
       <LineId Id="1260" Count="0" />
       <LineId Id="1274" Count="0" />
       <LineId Id="1348" Count="0" />
       <LineId Id="1350" Count="0" />
       <LineId Id="1352" Count="0" />
       <LineId Id="1349" Count="0" />
+      <LineId Id="1378" Count="0" />
       <LineId Id="1256" Count="0" />
       <LineId Id="1268" Count="2" />
       <LineId Id="1264" Count="0" />
       <LineId Id="1271" Count="0" />
       <LineId Id="1339" Count="0" />
+      <LineId Id="1409" Count="2" />
       <LineId Id="1273" Count="0" />
+      <LineId Id="1413" Count="0" />
+      <LineId Id="1416" Count="1" />
+      <LineId Id="1415" Count="0" />
+      <LineId Id="1414" Count="0" />
+      <LineId Id="1412" Count="0" />
       <LineId Id="928" Count="0" />
       <LineId Id="1307" Count="1" />
       <LineId Id="1346" Count="1" />
@@ -1047,6 +1126,14 @@ GVL.safetyOut[0].0	:= G_IO.arDI[95].Ch[2];//btn_rst]]></ST>
       <LineId Id="122" Count="0" />
       <LineId Id="124" Count="0" />
       <LineId Id="120" Count="0" />
+    </LineIds>
+    <LineIds Name="MAIN.M_checkError">
+      <LineId Id="9" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="6" Count="1" />
+      <LineId Id="12" Count="1" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="MAIN.M_mappingIO">
       <LineId Id="322" Count="0" />
@@ -1254,6 +1341,25 @@ GVL.safetyOut[0].0	:= G_IO.arDI[95].Ch[2];//btn_rst]]></ST>
       <LineId Id="166" Count="9" />
       <LineId Id="151" Count="2" />
       <LineId Id="61" Count="0" />
+    </LineIds>
+    <LineIds Name="MAIN.M_reset">
+      <LineId Id="50" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="40" Count="1" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="24" Count="1" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="32" Count="2" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="MAIN.M_rfid">
       <LineId Id="58" Count="0" />

@@ -1528,7 +1528,7 @@ External Setpoint Generation:
 			<Settings MaxCpus="2">
 				<Cpu/>
 				<Cpu CpuId="1"/>
-				<IoIdleTask Priority="5" CycleTime="80000" Affinity="#x00000001"/>
+				<IoIdleTask Priority="4" Affinity="#x00000001"/>
 			</Settings>
 			<Licenses>
 				<Target BkhfOrder="01100683">
@@ -1537,7 +1537,7 @@ External Setpoint Generation:
 				</Target>
 			</Licenses>
 			<Tasks>
-				<Task Id="3" Priority="8" CycleTime="120000" AmsPort="350" Affinity="#x00000001" AdtTasks="true">
+				<Task Id="3" Priority="6" CycleTime="20000" AmsPort="350" Affinity="#x00000001" AdtTasks="true">
 					<Name>PlcTask</Name>
 				</Task>
 				<Task Id="4" Priority="12" CycleTime="2000000" AmsPort="351" Affinity="#x00000001" DisableFpExceptions="true" AdtTasks="true">
@@ -1547,7 +1547,7 @@ External Setpoint Generation:
 		</System>
 		<Motion>
 			<NC>
-				<SafTask Priority="4" CycleTime="60000" AmsPort="501" Affinity="#x00000002" IoAtBegin="true" SafTaskInfo="256">
+				<SafTask Priority="8" CycleTime="80000" AmsPort="501" Affinity="#x00000002" IoAtBegin="true" SafTaskInfo="256">
 					<Name>NC-Task 1 SAF</Name>
 					<Vars VarGrpType="1" InsertType="1">
 						<Name>Inputs</Name>
@@ -1559,7 +1559,7 @@ External Setpoint Generation:
 						<Name>Image</Name>
 					</Image>
 				</SafTask>
-				<SvbTask Priority="6" CycleTime="100000" AmsPort="511" Affinity="#x00000002">
+				<SvbTask Priority="10" CycleTime="100000" AmsPort="511" Affinity="#x00000002">
 					<Name>NC-Task 1 SVB</Name>
 				</SvbTask>
 				<Axis Id="4" CreateSymbols="true" AxisType="1" GroupId="1">
@@ -7902,7 +7902,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{2354DE8C-DE54-4E07-94D7-E848733F7762}" Name="kittingDeca" PrjFilePath="kittingDeca\kittingDeca.plcproj" TmcFilePath="kittingDeca\kittingDeca.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="kittingDeca\kittingDeca.tmc" TmcHash="{F0F04BB6-2152-C882-EB02-B58E7A8D747A}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="kittingDeca\kittingDeca.tmc" TmcHash="{5A7129CF-70BC-CD07-C627-D0C89A38D57E}">
 					<Name>kittingDeca Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -7996,12 +7996,122 @@ External Setpoint Generation:
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
+							<Name>GVL.pm[0].inConv.belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[0].inConv.belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[0].inConv.belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[0].inConv.belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[0].inConv.belt[2].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[0].inConv.belt[2].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[0].outConv.belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[0].outConv.belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[0].outConv.belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[0].outConv.belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
 							<Name>GVL.pm[1].buffer[0].AxisRef.NcToPlc</Name>
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
 							<Name>GVL.pm[1].buffer[1].AxisRef.NcToPlc</Name>
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[1].inConv.belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[1].inConv.belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[1].inConv.belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[1].inConv.belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[1].inConv.belt[2].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[1].inConv.belt[2].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[1].outConv.belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[1].outConv.belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[1].outConv.belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[1].outConv.belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL.pm[2].buffer[0].AxisRef.NcToPlc</Name>
@@ -8012,12 +8122,122 @@ External Setpoint Generation:
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
+							<Name>GVL.pm[2].inConv.belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[2].inConv.belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[2].inConv.belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[2].inConv.belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[2].inConv.belt[2].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[2].inConv.belt[2].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[2].outConv.belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[2].outConv.belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[2].outConv.belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[2].outConv.belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
 							<Name>GVL.pm[3].buffer[0].AxisRef.NcToPlc</Name>
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
 							<Name>GVL.pm[3].buffer[1].AxisRef.NcToPlc</Name>
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[3].inConv.belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[3].inConv.belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[3].inConv.belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[3].inConv.belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[3].inConv.belt[2].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[3].inConv.belt[2].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[3].outConv.belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[3].outConv.belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[3].outConv.belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[3].outConv.belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL.pm[4].buffer[0].AxisRef.NcToPlc</Name>
@@ -8028,12 +8248,122 @@ External Setpoint Generation:
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
+							<Name>GVL.pm[4].inConv.belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[4].inConv.belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[4].inConv.belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[4].inConv.belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[4].inConv.belt[2].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[4].inConv.belt[2].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[4].outConv.belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[4].outConv.belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[4].outConv.belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[4].outConv.belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
 							<Name>GVL.pm[5].buffer[0].AxisRef.NcToPlc</Name>
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
 							<Name>GVL.pm[5].buffer[1].AxisRef.NcToPlc</Name>
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[5].inConv.belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[5].inConv.belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[5].inConv.belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[5].inConv.belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[5].inConv.belt[2].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[5].inConv.belt[2].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[5].outConv.belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[5].outConv.belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[5].outConv.belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[5].outConv.belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL.pm[6].buffer[0].AxisRef.NcToPlc</Name>
@@ -8044,12 +8374,122 @@ External Setpoint Generation:
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
+							<Name>GVL.pm[6].inConv.belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[6].inConv.belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[6].inConv.belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[6].inConv.belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[6].inConv.belt[2].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[6].inConv.belt[2].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[6].outConv.belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[6].outConv.belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[6].outConv.belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[6].outConv.belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
 							<Name>GVL.pm[7].buffer[0].AxisRef.NcToPlc</Name>
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
 							<Name>GVL.pm[7].buffer[1].AxisRef.NcToPlc</Name>
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[7].inConv.belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[7].inConv.belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[7].inConv.belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[7].inConv.belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[7].inConv.belt[2].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[7].inConv.belt[2].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[7].outConv.belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[7].outConv.belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[7].outConv.belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[7].outConv.belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL.pm[8].buffer[0].AxisRef.NcToPlc</Name>
@@ -8060,6 +8500,61 @@ External Setpoint Generation:
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
+							<Name>GVL.pm[8].inConv.belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[8].inConv.belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[8].inConv.belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[8].inConv.belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[8].inConv.belt[2].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[8].inConv.belt[2].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[8].outConv.belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[8].outConv.belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[8].outConv.belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[8].outConv.belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
 							<Name>GVL.pm[9].buffer[0].AxisRef.NcToPlc</Name>
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
@@ -8068,12 +8563,155 @@ External Setpoint Generation:
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
+							<Name>GVL.pm[9].inConv.belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[9].inConv.belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[9].inConv.belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[9].inConv.belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[9].inConv.belt[2].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[9].inConv.belt[2].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[9].outConv.belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[9].outConv.belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[9].outConv.belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.pm[9].outConv.belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.lc[0].belt_out.belt.fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.lc[0].belt_out.belt.fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
 							<Name>GVL.lc[0].lateral.AxisRef.NcToPlc</Name>
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
+							<Name>GVL.lc[1].belt_out.belt.fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.lc[1].belt_out.belt.fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
 							<Name>GVL.lc[1].lateral.AxisRef.NcToPlc</Name>
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>GVL.lb[0].belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.lb[0].belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.lb[0].belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.lb[0].belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.lb[0].belt[2].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.lb[0].belt[2].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.lb[1].belt[0].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.lb[1].belt[0].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.lb[1].belt[1].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.lb[1].belt[1].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.lb[1].belt[2].fbconverter.status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.lb[1].belt[2].fbconverter.running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL.fr[0].AxisRef.NcToPlc</Name>
@@ -8090,6 +8728,160 @@ External Setpoint Generation:
 						<Var>
 							<Name>GVL.rfidIn</Name>
 							<Type GUID="{A6CC6AFE-FE37-C02D-2C0C-FB1479660FEB}">ARRAY [0..31] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[0].status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[0].running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[1].status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[1].running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[2].status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[2].running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[3].status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[3].running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[4].status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[4].running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[5].status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[5].running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[6].status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[6].running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[7].status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[7].running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[8].status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[8].running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[9].status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[9].running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[10].status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[10].running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[11].status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[11].running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[12].status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[12].running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[13].status</Name>
+							<Comment><![CDATA[Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.fbconverter[13].running_freq</Name>
+							<Comment><![CDATA[Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
+							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL.safetyin</Name>
@@ -8876,8 +9668,8 @@ External Setpoint Generation:
 							<ManualConfig>
 								<OTCID>#x02010030</OTCID>
 							</ManualConfig>
-							<Priority>8</Priority>
-							<CycleTime>12000000</CycleTime>
+							<Priority>6</Priority>
+							<CycleTime>2000000</CycleTime>
 						</Context>
 						<Context>
 							<Id NeedCalleeCall="true">1</Id>
@@ -8890,7 +9682,7 @@ External Setpoint Generation:
 						</Context>
 					</Contexts>
 					<TaskPouOids>
-						<TaskPouOid Prio="8" OTCID="#x08502003"/>
+						<TaskPouOid Prio="6" OTCID="#x08502003"/>
 						<TaskPouOid Prio="12" OTCID="#x08502002"/>
 					</TaskPouOids>
 				</Instance>
@@ -8898,7 +9690,7 @@ External Setpoint Generation:
 			<PlcAuxTask Affinity="#x00000001"/>
 		</Plc>
 		<Io>
-			<Device Id="1" Disabled="true" DevType="112" AmsPort="28673" AmsNetId="192.168.11.159.2.1" RemoteName="Device 1 (EtherCAT Automation Protocol)">
+			<Device Id="1" DevType="112" AmsPort="28673" AmsNetId="192.168.11.159.2.1" RemoteName="Device 1 (EtherCAT Automation Protocol)">
 				<Name>Device 1 (EtherCAT Automation Protocol)</Name>
 				<AddressInfo>
 					<Pnp>
@@ -8913,7 +9705,7 @@ External Setpoint Generation:
 				<Ethernet DeviceDesc="X000 (TwinCAT-Intel PCI Ethernet Adapter (Gigabit))"/>
 				<Eap EapDeviceGuid="{F08A719F-A7B6-47AC-AF2E-490DFCCA9AE8}"/>
 			</Device>
-			<Device Id="2" Disabled="true" DevType="109" DevFlags="#x0004">
+			<Device Id="2" DevType="109" DevFlags="#x0004">
 				<Name>Device 2 (RT-Ethernet Adapter)</Name>
 				<AddressInfo>
 					<Pnp>
@@ -8926,7 +9718,7 @@ External Setpoint Generation:
 					<Esl SyncSlaveProtocolPort="-1"/>
 				</Ethernet>
 			</Device>
-			<Device Id="3" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28675" AmsNetId="192.168.11.159.4.1" RemoteName="rem_wf" InfoImageId="4">
+			<Device Id="3" DevType="111" DevFlags="#x0003" AmsPort="28675" AmsNetId="192.168.11.159.4.1" RemoteName="rem_wf" InfoImageId="4">
 				<Name>rem_wf</Name>
 				<AddressInfo>
 					<TcCom>
@@ -23775,7 +24567,7 @@ External Setpoint Generation:
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001804006400010003000000000000000000001864010000</SyncMan>
-						<SyncMan>001c04006000010004000000000000000000001c60010000</SyncMan>
+						<SyncMan>001c06006000010004000000000000000000001c60010000</SyncMan>
 						<Fmmu>0000000000000000001800020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001c00010100000002000000000000000000000000000000</Fmmu>
 						<DcMode>53796e6368726f6e0000000000000000534d2d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -23788,6 +24580,8 @@ External Setpoint Generation:
 						<MBoxUserCmdData>02000300090000002f00000003001000490009030000000000000000000000002000800201000000ff444f206d6f64756c65204348312073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>0200030009000000300000000300100049000903000000000000000000000000200180010100000000444f206d6f64756c65204348302073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>0200030009000000300000000300100049000903000000000000000000000000200180020100000000444f206d6f64756c65204348312073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a000000190000000300100083000903000000000000000000000000204080010200000004004449206d6f64756c65204348302066696c7465722074696d6500</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a000000190000000300100083000903000000000000000000000000204080020200000004004449206d6f64756c65204348312066696c7465722074696d6500</MBoxUserCmdData>
 						<Pdo Name="Device TPDO Mapping parameter" Index="#x1ba0" Flags="#x0010" SyncMan="3">
 							<Entry Name="LBus status" Index="#xf100" Sub="#x01">
 								<Type>UINT</Type>
@@ -23809,7 +24603,7 @@ External Setpoint Generation:
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-8bit maping" Index="#x1601" InOut="1" Flags="#x0290" SyncMan="2">
+						<Pdo Name="0016ETP Output-8bit maping" Index="#x1601" InOut="1" Flags="#x0290">
 							<ExcludePdo>#x9600</ExcludePdo>
 							<ExcludePdo>#x9602</ExcludePdo>
 							<Entry Name="Digital output CH0-8bit" Index="#x7001" Sub="#x01" Flags="#x00001000">
@@ -23826,7 +24620,7 @@ External Setpoint Generation:
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-bit maping" Index="#x1600" InOut="1" Flags="#x0290">
+						<Pdo Name="0016ETP Output-bit maping" Index="#x1600" InOut="1" Flags="#x0290" SyncMan="2">
 							<ExcludePdo>#x9601</ExcludePdo>
 							<ExcludePdo>#x9602</ExcludePdo>
 							<Entry Name="Digital output CH1-bit0" Index="#x7000" Sub="#x01" Flags="#x00001000">
@@ -23878,6 +24672,75 @@ External Setpoint Generation:
 								<Type>BIT</Type>
 							</Entry>
 						</Pdo>
+						<Pdo Name="1600END input-8bit maping" Index="#x1a09" Flags="#x0290">
+							<ExcludePdo>#x9a08</ExcludePdo>
+							<ExcludePdo>#x9a0a</ExcludePdo>
+							<Entry Name="Digital input CH0-8bit" Index="#x6041" Sub="#x01" Flags="#x00001000">
+								<Type>USINT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-8bit" Index="#x6041" Sub="#x02" Flags="#x00001000">
+								<Type>USINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="1600END input-16bit maping" Index="#x1a0a" Flags="#x0290">
+							<ExcludePdo>#x9a08</ExcludePdo>
+							<ExcludePdo>#x9a09</ExcludePdo>
+							<Entry Name="Digital input 16bit" Index="#x6042" Sub="#x01" Flags="#x00001000">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="1600END input-bit maping" Index="#x1a08" Flags="#x0290" SyncMan="3">
+							<ExcludePdo>#x9a09</ExcludePdo>
+							<ExcludePdo>#x9a0a</ExcludePdo>
+							<Entry Name="Digital input CH1-bit0" Index="#x6040" Sub="#x01" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit1" Index="#x6040" Sub="#x02" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit2" Index="#x6040" Sub="#x03" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit3" Index="#x6040" Sub="#x04" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit4" Index="#x6040" Sub="#x05" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit5" Index="#x6040" Sub="#x06" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit6" Index="#x6040" Sub="#x07" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit7" Index="#x6040" Sub="#x08" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit0" Index="#x6040" Sub="#x09" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit1" Index="#x6040" Sub="#x0a" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit2" Index="#x6040" Sub="#x0b" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit3" Index="#x6040" Sub="#x0c" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit4" Index="#x6040" Sub="#x0d" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit5" Index="#x6040" Sub="#x0e" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit6" Index="#x6040" Sub="#x0f" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit7" Index="#x6040" Sub="#x10" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
 						<CoeProfile ProfileNo="5001"/>
 						<Slot Name="Terminals">
 							<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
@@ -23904,6 +24767,14 @@ External Setpoint Generation:
 							<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
 							<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
 							<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+							<Module Id="#x03090083" Type="GL20-1600END" Class="GL20-Digital In">
+								<Name>Module 2 (GL20-1600END)</Name>
+								<ImageId>65</ImageId>
+								<ModuleData>000010001010f410000004000000000000000000000000000000000000000000</ModuleData>
+								<PdoIndex>6665</PdoIndex>
+								<PdoIndex>6666</PdoIndex>
+								<PdoIndex>6664</PdoIndex>
+							</Module>
 						</Slot>
 						<Slot Name="Terminals">
 							<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
@@ -24040,7 +24911,7 @@ External Setpoint Generation:
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001804006400010003000000000000000000001864010000</SyncMan>
-						<SyncMan>001c04006000010004000000000000000000001c60010000</SyncMan>
+						<SyncMan>001c06006000010004000000000000000000001c60010000</SyncMan>
 						<Fmmu>0000000000000000001800020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001c00010100000002000000000000000000000000000000</Fmmu>
 						<DcMode>53796e6368726f6e0000000000000000534d2d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -24053,6 +24924,8 @@ External Setpoint Generation:
 						<MBoxUserCmdData>02000300090000002f000000030010004a0009030000000000000000000000002000800201000000ff444f206d6f64756c65204348312073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000900000030000000030010004a000903000000000000000000000000200180010100000000444f206d6f64756c65204348302073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000900000030000000030010004a000903000000000000000000000000200180020100000000444f206d6f64756c65204348312073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a00000019000000030010008d000903000000000000000000000000204080010200000004004449206d6f64756c65204348302066696c7465722074696d6500</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a00000019000000030010008d000903000000000000000000000000204080020200000004004449206d6f64756c65204348312066696c7465722074696d6500</MBoxUserCmdData>
 						<Pdo Name="Device TPDO Mapping parameter" Index="#x1ba0" Flags="#x0010" SyncMan="3">
 							<Entry Name="LBus status" Index="#xf100" Sub="#x01">
 								<Type>UINT</Type>
@@ -24074,7 +24947,7 @@ External Setpoint Generation:
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-8bit maping" Index="#x1601" InOut="1" Flags="#x0290" SyncMan="2">
+						<Pdo Name="0016ETP Output-8bit maping" Index="#x1601" InOut="1" Flags="#x0290">
 							<ExcludePdo>#x9600</ExcludePdo>
 							<ExcludePdo>#x9602</ExcludePdo>
 							<Entry Name="Digital output CH0-8bit" Index="#x7001" Sub="#x01" Flags="#x00001000">
@@ -24091,7 +24964,7 @@ External Setpoint Generation:
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-bit maping" Index="#x1600" InOut="1" Flags="#x0290">
+						<Pdo Name="0016ETP Output-bit maping" Index="#x1600" InOut="1" Flags="#x0290" SyncMan="2">
 							<ExcludePdo>#x9601</ExcludePdo>
 							<ExcludePdo>#x9602</ExcludePdo>
 							<Entry Name="Digital output CH1-bit0" Index="#x7000" Sub="#x01" Flags="#x00001000">
@@ -24143,6 +25016,75 @@ External Setpoint Generation:
 								<Type>BIT</Type>
 							</Entry>
 						</Pdo>
+						<Pdo Name="1600END input-8bit maping" Index="#x1a09" Flags="#x0290">
+							<ExcludePdo>#x9a08</ExcludePdo>
+							<ExcludePdo>#x9a0a</ExcludePdo>
+							<Entry Name="Digital input CH0-8bit" Index="#x6041" Sub="#x01" Flags="#x00001000">
+								<Type>USINT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-8bit" Index="#x6041" Sub="#x02" Flags="#x00001000">
+								<Type>USINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="1600END input-16bit maping" Index="#x1a0a" Flags="#x0290">
+							<ExcludePdo>#x9a08</ExcludePdo>
+							<ExcludePdo>#x9a09</ExcludePdo>
+							<Entry Name="Digital input 16bit" Index="#x6042" Sub="#x01" Flags="#x00001000">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="1600END input-bit maping" Index="#x1a08" Flags="#x0290" SyncMan="3">
+							<ExcludePdo>#x9a09</ExcludePdo>
+							<ExcludePdo>#x9a0a</ExcludePdo>
+							<Entry Name="Digital input CH1-bit0" Index="#x6040" Sub="#x01" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit1" Index="#x6040" Sub="#x02" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit2" Index="#x6040" Sub="#x03" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit3" Index="#x6040" Sub="#x04" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit4" Index="#x6040" Sub="#x05" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit5" Index="#x6040" Sub="#x06" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit6" Index="#x6040" Sub="#x07" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit7" Index="#x6040" Sub="#x08" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit0" Index="#x6040" Sub="#x09" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit1" Index="#x6040" Sub="#x0a" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit2" Index="#x6040" Sub="#x0b" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit3" Index="#x6040" Sub="#x0c" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit4" Index="#x6040" Sub="#x0d" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit5" Index="#x6040" Sub="#x0e" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit6" Index="#x6040" Sub="#x0f" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit7" Index="#x6040" Sub="#x10" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
 						<CoeProfile ProfileNo="5001"/>
 						<Slot Name="Terminals">
 							<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
@@ -24169,6 +25111,14 @@ External Setpoint Generation:
 							<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
 							<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
 							<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+							<Module Id="#x0309008d" Type="GL20-1600END" Class="GL20-Digital In">
+								<Name>Module 2 (GL20-1600END)</Name>
+								<ImageId>65</ImageId>
+								<ModuleData>000010001010f410000004000000000000000000000000000000000000000000</ModuleData>
+								<PdoIndex>6665</PdoIndex>
+								<PdoIndex>6666</PdoIndex>
+								<PdoIndex>6664</PdoIndex>
+							</Module>
 						</Slot>
 						<Slot Name="Terminals">
 							<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
@@ -24305,7 +25255,7 @@ External Setpoint Generation:
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001804006400010003000000000000000000001864010000</SyncMan>
-						<SyncMan>001c04006000010004000000000000000000001c60010000</SyncMan>
+						<SyncMan>001c06006000010004000000000000000000001c60010000</SyncMan>
 						<Fmmu>0000000000000000001800020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001c00010100000002000000000000000000000000000000</Fmmu>
 						<DcMode>53796e6368726f6e0000000000000000534d2d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -24318,6 +25268,8 @@ External Setpoint Generation:
 						<MBoxUserCmdData>02000300090000002f000000030010004b0009030000000000000000000000002000800201000000ff444f206d6f64756c65204348312073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000900000030000000030010004b000903000000000000000000000000200180010100000000444f206d6f64756c65204348302073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000900000030000000030010004b000903000000000000000000000000200180020100000000444f206d6f64756c65204348312073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a000000190000000300100090000903000000000000000000000000204080010200000004004449206d6f64756c65204348302066696c7465722074696d6500</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a000000190000000300100090000903000000000000000000000000204080020200000004004449206d6f64756c65204348312066696c7465722074696d6500</MBoxUserCmdData>
 						<Pdo Name="Device TPDO Mapping parameter" Index="#x1ba0" Flags="#x0010" SyncMan="3">
 							<Entry Name="LBus status" Index="#xf100" Sub="#x01">
 								<Type>UINT</Type>
@@ -24339,7 +25291,7 @@ External Setpoint Generation:
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-8bit maping" Index="#x1601" InOut="1" Flags="#x0290" SyncMan="2">
+						<Pdo Name="0016ETP Output-8bit maping" Index="#x1601" InOut="1" Flags="#x0290">
 							<ExcludePdo>#x9600</ExcludePdo>
 							<ExcludePdo>#x9602</ExcludePdo>
 							<Entry Name="Digital output CH0-8bit" Index="#x7001" Sub="#x01" Flags="#x00001000">
@@ -24356,7 +25308,7 @@ External Setpoint Generation:
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-bit maping" Index="#x1600" InOut="1" Flags="#x0290">
+						<Pdo Name="0016ETP Output-bit maping" Index="#x1600" InOut="1" Flags="#x0290" SyncMan="2">
 							<ExcludePdo>#x9601</ExcludePdo>
 							<ExcludePdo>#x9602</ExcludePdo>
 							<Entry Name="Digital output CH1-bit0" Index="#x7000" Sub="#x01" Flags="#x00001000">
@@ -24408,6 +25360,75 @@ External Setpoint Generation:
 								<Type>BIT</Type>
 							</Entry>
 						</Pdo>
+						<Pdo Name="1600END input-8bit maping" Index="#x1a09" Flags="#x0290">
+							<ExcludePdo>#x9a08</ExcludePdo>
+							<ExcludePdo>#x9a0a</ExcludePdo>
+							<Entry Name="Digital input CH0-8bit" Index="#x6041" Sub="#x01" Flags="#x00001000">
+								<Type>USINT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-8bit" Index="#x6041" Sub="#x02" Flags="#x00001000">
+								<Type>USINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="1600END input-16bit maping" Index="#x1a0a" Flags="#x0290">
+							<ExcludePdo>#x9a08</ExcludePdo>
+							<ExcludePdo>#x9a09</ExcludePdo>
+							<Entry Name="Digital input 16bit" Index="#x6042" Sub="#x01" Flags="#x00001000">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="1600END input-bit maping" Index="#x1a08" Flags="#x0290" SyncMan="3">
+							<ExcludePdo>#x9a09</ExcludePdo>
+							<ExcludePdo>#x9a0a</ExcludePdo>
+							<Entry Name="Digital input CH1-bit0" Index="#x6040" Sub="#x01" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit1" Index="#x6040" Sub="#x02" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit2" Index="#x6040" Sub="#x03" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit3" Index="#x6040" Sub="#x04" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit4" Index="#x6040" Sub="#x05" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit5" Index="#x6040" Sub="#x06" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit6" Index="#x6040" Sub="#x07" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit7" Index="#x6040" Sub="#x08" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit0" Index="#x6040" Sub="#x09" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit1" Index="#x6040" Sub="#x0a" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit2" Index="#x6040" Sub="#x0b" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit3" Index="#x6040" Sub="#x0c" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit4" Index="#x6040" Sub="#x0d" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit5" Index="#x6040" Sub="#x0e" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit6" Index="#x6040" Sub="#x0f" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit7" Index="#x6040" Sub="#x10" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
 						<CoeProfile ProfileNo="5001"/>
 						<Slot Name="Terminals">
 							<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
@@ -24434,6 +25455,14 @@ External Setpoint Generation:
 							<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
 							<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
 							<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+							<Module Id="#x03090090" Type="GL20-1600END" Class="GL20-Digital In">
+								<Name>Module 2 (GL20-1600END)</Name>
+								<ImageId>65</ImageId>
+								<ModuleData>000010001010f410000004000000000000000000000000000000000000000000</ModuleData>
+								<PdoIndex>6665</PdoIndex>
+								<PdoIndex>6666</PdoIndex>
+								<PdoIndex>6664</PdoIndex>
+							</Module>
 						</Slot>
 						<Slot Name="Terminals">
 							<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
@@ -24570,7 +25599,7 @@ External Setpoint Generation:
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001804006400010003000000000000000000001864010000</SyncMan>
-						<SyncMan>001c04006000010004000000000000000000001c60010000</SyncMan>
+						<SyncMan>001c06006000010004000000000000000000001c60010000</SyncMan>
 						<Fmmu>0000000000000000001800020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001c00010100000002000000000000000000000000000000</Fmmu>
 						<DcMode>53796e6368726f6e0000000000000000534d2d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -24583,6 +25612,8 @@ External Setpoint Generation:
 						<MBoxUserCmdData>02000300090000002f000000030010004c0009030000000000000000000000002000800201000000ff444f206d6f64756c65204348312073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000900000030000000030010004c000903000000000000000000000000200180010100000000444f206d6f64756c65204348302073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000900000030000000030010004c000903000000000000000000000000200180020100000000444f206d6f64756c65204348312073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a000000190000000300100091000903000000000000000000000000204080010200000004004449206d6f64756c65204348302066696c7465722074696d6500</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a000000190000000300100091000903000000000000000000000000204080020200000004004449206d6f64756c65204348312066696c7465722074696d6500</MBoxUserCmdData>
 						<Pdo Name="Device TPDO Mapping parameter" Index="#x1ba0" Flags="#x0010" SyncMan="3">
 							<Entry Name="LBus status" Index="#xf100" Sub="#x01">
 								<Type>UINT</Type>
@@ -24604,7 +25635,7 @@ External Setpoint Generation:
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-8bit maping" Index="#x1601" InOut="1" Flags="#x0290" SyncMan="2">
+						<Pdo Name="0016ETP Output-8bit maping" Index="#x1601" InOut="1" Flags="#x0290">
 							<ExcludePdo>#x9600</ExcludePdo>
 							<ExcludePdo>#x9602</ExcludePdo>
 							<Entry Name="Digital output CH0-8bit" Index="#x7001" Sub="#x01" Flags="#x00001000">
@@ -24621,7 +25652,7 @@ External Setpoint Generation:
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-bit maping" Index="#x1600" InOut="1" Flags="#x0290">
+						<Pdo Name="0016ETP Output-bit maping" Index="#x1600" InOut="1" Flags="#x0290" SyncMan="2">
 							<ExcludePdo>#x9601</ExcludePdo>
 							<ExcludePdo>#x9602</ExcludePdo>
 							<Entry Name="Digital output CH1-bit0" Index="#x7000" Sub="#x01" Flags="#x00001000">
@@ -24673,6 +25704,75 @@ External Setpoint Generation:
 								<Type>BIT</Type>
 							</Entry>
 						</Pdo>
+						<Pdo Name="1600END input-8bit maping" Index="#x1a09" Flags="#x0290">
+							<ExcludePdo>#x9a08</ExcludePdo>
+							<ExcludePdo>#x9a0a</ExcludePdo>
+							<Entry Name="Digital input CH0-8bit" Index="#x6041" Sub="#x01" Flags="#x00001000">
+								<Type>USINT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-8bit" Index="#x6041" Sub="#x02" Flags="#x00001000">
+								<Type>USINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="1600END input-16bit maping" Index="#x1a0a" Flags="#x0290">
+							<ExcludePdo>#x9a08</ExcludePdo>
+							<ExcludePdo>#x9a09</ExcludePdo>
+							<Entry Name="Digital input 16bit" Index="#x6042" Sub="#x01" Flags="#x00001000">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="1600END input-bit maping" Index="#x1a08" Flags="#x0290" SyncMan="3">
+							<ExcludePdo>#x9a09</ExcludePdo>
+							<ExcludePdo>#x9a0a</ExcludePdo>
+							<Entry Name="Digital input CH1-bit0" Index="#x6040" Sub="#x01" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit1" Index="#x6040" Sub="#x02" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit2" Index="#x6040" Sub="#x03" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit3" Index="#x6040" Sub="#x04" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit4" Index="#x6040" Sub="#x05" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit5" Index="#x6040" Sub="#x06" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit6" Index="#x6040" Sub="#x07" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit7" Index="#x6040" Sub="#x08" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit0" Index="#x6040" Sub="#x09" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit1" Index="#x6040" Sub="#x0a" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit2" Index="#x6040" Sub="#x0b" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit3" Index="#x6040" Sub="#x0c" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit4" Index="#x6040" Sub="#x0d" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit5" Index="#x6040" Sub="#x0e" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit6" Index="#x6040" Sub="#x0f" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit7" Index="#x6040" Sub="#x10" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
 						<CoeProfile ProfileNo="5001"/>
 						<Slot Name="Terminals">
 							<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
@@ -24699,6 +25799,14 @@ External Setpoint Generation:
 							<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
 							<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
 							<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+							<Module Id="#x03090091" Type="GL20-1600END" Class="GL20-Digital In">
+								<Name>Module 2 (GL20-1600END)</Name>
+								<ImageId>65</ImageId>
+								<ModuleData>000010001010f410000004000000000000000000000000000000000000000000</ModuleData>
+								<PdoIndex>6665</PdoIndex>
+								<PdoIndex>6666</PdoIndex>
+								<PdoIndex>6664</PdoIndex>
+							</Module>
 						</Slot>
 						<Slot Name="Terminals">
 							<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
@@ -24835,7 +25943,7 @@ External Setpoint Generation:
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001804006400010003000000000000000000001864010000</SyncMan>
-						<SyncMan>001c04006000010004000000000000000000001c60010000</SyncMan>
+						<SyncMan>001c06006000010004000000000000000000001c60010000</SyncMan>
 						<Fmmu>0000000000000000001800020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001c00010100000002000000000000000000000000000000</Fmmu>
 						<DcMode>53796e6368726f6e0000000000000000534d2d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -24848,6 +25956,8 @@ External Setpoint Generation:
 						<MBoxUserCmdData>02000300090000002f000000030010004d0009030000000000000000000000002000800201000000ff444f206d6f64756c65204348312073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000900000030000000030010004d000903000000000000000000000000200180010100000000444f206d6f64756c65204348302073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000900000030000000030010004d000903000000000000000000000000200180020100000000444f206d6f64756c65204348312073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a000000190000000300100092000903000000000000000000000000204080010200000004004449206d6f64756c65204348302066696c7465722074696d6500</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a000000190000000300100092000903000000000000000000000000204080020200000004004449206d6f64756c65204348312066696c7465722074696d6500</MBoxUserCmdData>
 						<Pdo Name="Device TPDO Mapping parameter" Index="#x1ba0" Flags="#x0010" SyncMan="3">
 							<Entry Name="LBus status" Index="#xf100" Sub="#x01">
 								<Type>UINT</Type>
@@ -24869,7 +25979,7 @@ External Setpoint Generation:
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-8bit maping" Index="#x1601" InOut="1" Flags="#x0290" SyncMan="2">
+						<Pdo Name="0016ETP Output-8bit maping" Index="#x1601" InOut="1" Flags="#x0290">
 							<ExcludePdo>#x9600</ExcludePdo>
 							<ExcludePdo>#x9602</ExcludePdo>
 							<Entry Name="Digital output CH0-8bit" Index="#x7001" Sub="#x01" Flags="#x00001000">
@@ -24886,7 +25996,7 @@ External Setpoint Generation:
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-bit maping" Index="#x1600" InOut="1" Flags="#x0290">
+						<Pdo Name="0016ETP Output-bit maping" Index="#x1600" InOut="1" Flags="#x0290" SyncMan="2">
 							<ExcludePdo>#x9601</ExcludePdo>
 							<ExcludePdo>#x9602</ExcludePdo>
 							<Entry Name="Digital output CH1-bit0" Index="#x7000" Sub="#x01" Flags="#x00001000">
@@ -24938,6 +26048,75 @@ External Setpoint Generation:
 								<Type>BIT</Type>
 							</Entry>
 						</Pdo>
+						<Pdo Name="1600END input-8bit maping" Index="#x1a09" Flags="#x0290">
+							<ExcludePdo>#x9a08</ExcludePdo>
+							<ExcludePdo>#x9a0a</ExcludePdo>
+							<Entry Name="Digital input CH0-8bit" Index="#x6041" Sub="#x01" Flags="#x00001000">
+								<Type>USINT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-8bit" Index="#x6041" Sub="#x02" Flags="#x00001000">
+								<Type>USINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="1600END input-16bit maping" Index="#x1a0a" Flags="#x0290">
+							<ExcludePdo>#x9a08</ExcludePdo>
+							<ExcludePdo>#x9a09</ExcludePdo>
+							<Entry Name="Digital input 16bit" Index="#x6042" Sub="#x01" Flags="#x00001000">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="1600END input-bit maping" Index="#x1a08" Flags="#x0290" SyncMan="3">
+							<ExcludePdo>#x9a09</ExcludePdo>
+							<ExcludePdo>#x9a0a</ExcludePdo>
+							<Entry Name="Digital input CH1-bit0" Index="#x6040" Sub="#x01" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit1" Index="#x6040" Sub="#x02" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit2" Index="#x6040" Sub="#x03" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit3" Index="#x6040" Sub="#x04" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit4" Index="#x6040" Sub="#x05" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit5" Index="#x6040" Sub="#x06" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit6" Index="#x6040" Sub="#x07" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH1-bit7" Index="#x6040" Sub="#x08" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit0" Index="#x6040" Sub="#x09" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit1" Index="#x6040" Sub="#x0a" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit2" Index="#x6040" Sub="#x0b" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit3" Index="#x6040" Sub="#x0c" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit4" Index="#x6040" Sub="#x0d" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit5" Index="#x6040" Sub="#x0e" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit6" Index="#x6040" Sub="#x0f" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital input CH2-bit7" Index="#x6040" Sub="#x10" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
 						<CoeProfile ProfileNo="5001"/>
 						<Slot Name="Terminals">
 							<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
@@ -24964,6 +26143,14 @@ External Setpoint Generation:
 							<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
 							<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
 							<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+							<Module Id="#x03090092" Type="GL20-1600END" Class="GL20-Digital In">
+								<Name>Module 2 (GL20-1600END)</Name>
+								<ImageId>65</ImageId>
+								<ModuleData>000010001010f410000004000000000000000000000000000000000000000000</ModuleData>
+								<PdoIndex>6665</PdoIndex>
+								<PdoIndex>6666</PdoIndex>
+								<PdoIndex>6664</PdoIndex>
+							</Module>
 						</Slot>
 						<Slot Name="Terminals">
 							<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
@@ -25095,7 +26282,7 @@ External Setpoint Generation:
 				</Box>
 				<EtherCAT DcSyncMode="3" EnableVirtualSwitch="true" MaxSwitchPorts="22" MaxSwitchFrames="520"/>
 			</Device>
-			<Device Id="4" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28676" AmsNetId="192.168.11.159.5.1" RemoteName="pm side" InfoImageId="6">
+			<Device Id="4" DevType="111" DevFlags="#x0003" AmsPort="28676" AmsNetId="192.168.11.159.5.1" RemoteName="pm side" InfoImageId="6">
 				<Name>pm side</Name>
 				<AddressInfo>
 					<TcCom>
@@ -49429,7 +50616,7 @@ External Setpoint Generation:
 				</Box>
 				<EtherCAT DcSyncMode="2" EnableVirtualSwitch="true" MaxSwitchPorts="36" MaxSwitchFrames="800" MaxSwitchMACs="100"/>
 			</Device>
-			<Device Id="5" Disabled="true" DevType="57" AmsPort="28677">
+			<Device Id="5" DevType="57" AmsPort="28677">
 				<Name>Device 5 (USB)</Name>
 				<Image Id="7" AddrType="1" ImageType="3">
 					<Name>Image</Name>
@@ -49481,7 +50668,7 @@ External Setpoint Generation:
 				</Box>
 				<Usb VirtualDeviceName="true"/>
 			</Device>
-			<Device Id="6" Disabled="true" DevType="11" AmsPort="28678">
+			<Device Id="6" DevType="11" AmsPort="28678">
 				<Name>Device 6 (COM Port)</Name>
 				<AddressInfo>
 					<Pnp>
@@ -49495,7 +50682,7 @@ External Setpoint Generation:
 				</Image>
 				<Serial Baud="38400" Parity="1" StopBit="1" RsType="1" WaitTimeToShutdown="60" BufSize="4096" DataBit="8" ComPortNo="1" Timeout="300"/>
 			</Device>
-			<Device Id="7" Disabled="true" DevType="121">
+			<Device Id="7" DevType="121">
 				<Name>Device 7 (NOV-DP-RAM)</Name>
 				<AddressInfo>
 					<Pci>
@@ -49522,7 +50709,13 @@ External Setpoint Generation:
 		</Io>
 	</Project>
 	<Mappings>
-		<MappingInfo Identifier="{05000010-2003-0850-1000-040300205008}" Id="#x02030070" Watchdog="08000000040000000400000004000000"/>
+		<MappingInfo Identifier="{00000000-2003-0850-0020-500830000403}" Id="#x02030010"/>
+		<MappingInfo Identifier="{00000000-2003-0850-0020-500850000403}" Id="#x02030040"/>
+		<MappingInfo Identifier="{00000000-0040-0304-1000-040342000403}" Id="#x02030030"/>
+		<MappingInfo Identifier="{00000000-0060-0304-1000-040362000403}" Id="#x02030060"/>
+		<MappingInfo Identifier="{00000000-00A0-0304-1000-0403A1000403}" Id="#x02030050"/>
+		<MappingInfo Identifier="{00000000-00B0-0304-1000-0403B1000403}" Id="#x02030020"/>
+		<MappingInfo Identifier="{08502003-0010-0500-0020-500810000403}" Id="#x02030070" Watchdog="10000000040000000400000004000000"/>
 		<OwnerA Name="TINC^NC-Task 1 SAF^Axes^fr0">
 			<OwnerB Name="TIID^pm side^fr0_servermotor">
 				<Link VarA="Drive^Inputs^In^nDataIn1" VarB="Inputs^Following error actual value"/>
@@ -50649,6 +51842,12 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^G_IO.arDO[76]^Ch[9]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^lb0_converter">
+				<Link VarA="PlcTask Inputs^GVL.lb[0].belt[0].fbconverter.running_freq" VarB="Axis#1 Iutputs^Axis1 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.lb[0].belt[0].fbconverter.status" VarB="Axis#1 Iutputs^Axis1 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.lb[0].belt[1].fbconverter.running_freq" VarB="Axis#2 Iutputs^Axis2 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.lb[0].belt[1].fbconverter.status" VarB="Axis#2 Iutputs^Axis2 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.lb[0].belt[2].fbconverter.running_freq" VarB="Axis#3 Iutputs^Axis3 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.lb[0].belt[2].fbconverter.status" VarB="Axis#3 Iutputs^Axis3 AC drive running status word 2"/>
 				<Link VarA="PlcTask Outputs^GVL.lb[0].belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
 				<Link VarA="PlcTask Outputs^GVL.lb[0].belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
 				<Link VarA="PlcTask Outputs^GVL.lb[0].belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
@@ -50691,6 +51890,12 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^G_IO.arDO[87]^Ch[9]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^lb1_converter">
+				<Link VarA="PlcTask Inputs^GVL.lb[1].belt[0].fbconverter.running_freq" VarB="Axis#1 Iutputs^Axis1 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.lb[1].belt[0].fbconverter.status" VarB="Axis#1 Iutputs^Axis1 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.lb[1].belt[1].fbconverter.running_freq" VarB="Axis#2 Iutputs^Axis2 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.lb[1].belt[1].fbconverter.status" VarB="Axis#2 Iutputs^Axis2 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.lb[1].belt[2].fbconverter.running_freq" VarB="Axis#3 Iutputs^Axis3 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.lb[1].belt[2].fbconverter.status" VarB="Axis#3 Iutputs^Axis3 AC drive running status word 2"/>
 				<Link VarA="PlcTask Outputs^GVL.lb[1].belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
 				<Link VarA="PlcTask Outputs^GVL.lb[1].belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
 				<Link VarA="PlcTask Outputs^GVL.lb[1].belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
@@ -50733,6 +51938,8 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^G_IO.arDO[90]^Ch[9]" VarB="Module 2 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^lc0_converter">
+				<Link VarA="PlcTask Inputs^GVL.lc[0].belt_out.belt.fbconverter.running_freq" VarB="Axis#1 Iutputs^Axis1 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.lc[0].belt_out.belt.fbconverter.status" VarB="Axis#1 Iutputs^Axis1 AC drive running status word 2"/>
 				<Link VarA="PlcTask Outputs^GVL.lc[0].belt_out.belt.fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
 				<Link VarA="PlcTask Outputs^GVL.lc[0].belt_out.belt.fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
 			</OwnerB>
@@ -50803,6 +52010,8 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^G_IO.arDO[86]^Ch[9]" VarB="Module 4 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^lc1_converter">
+				<Link VarA="PlcTask Inputs^GVL.lc[1].belt_out.belt.fbconverter.running_freq" VarB="Axis#1 Iutputs^Axis1 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.lc[1].belt_out.belt.fbconverter.status" VarB="Axis#1 Iutputs^Axis1 AC drive running status word 2"/>
 				<Link VarA="PlcTask Outputs^GVL.lc[1].belt_out.belt.fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
 				<Link VarA="PlcTask Outputs^GVL.lc[1].belt_out.belt.fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
 			</OwnerB>
@@ -50987,6 +52196,18 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^G_IO.arDO[51]^Ch[9]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm0_1_innerConv">
+				<Link VarA="PlcTask Inputs^GVL.pm[0].inConv.belt[0].fbconverter.running_freq" VarB="Axis#1 Iutputs^Axis1 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[0].inConv.belt[0].fbconverter.status" VarB="Axis#1 Iutputs^Axis1 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[0].inConv.belt[1].fbconverter.running_freq" VarB="Axis#2 Iutputs^Axis2 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[0].inConv.belt[1].fbconverter.status" VarB="Axis#2 Iutputs^Axis2 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[0].inConv.belt[2].fbconverter.running_freq" VarB="Axis#3 Iutputs^Axis3 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[0].inConv.belt[2].fbconverter.status" VarB="Axis#3 Iutputs^Axis3 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[1].inConv.belt[0].fbconverter.running_freq" VarB="Axis#4 Iutputs^Axis4 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[1].inConv.belt[0].fbconverter.status" VarB="Axis#4 Iutputs^Axis4 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[1].inConv.belt[1].fbconverter.running_freq" VarB="Axis#5 Iutputs^Axis5 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[1].inConv.belt[1].fbconverter.status" VarB="Axis#5 Iutputs^Axis5 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[1].inConv.belt[2].fbconverter.running_freq" VarB="Axis#6 Iutputs^Axis6 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[1].inConv.belt[2].fbconverter.status" VarB="Axis#6 Iutputs^Axis6 AC drive running status word 2"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[0].inConv.belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[0].inConv.belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[0].inConv.belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
@@ -51001,6 +52222,14 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^GVL.pm[1].inConv.belt[2].fbconverter.freq" VarB="Axis#6 Outputs^Axis6 Frequency set through communication"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm0_1_outerConv">
+				<Link VarA="PlcTask Inputs^GVL.pm[0].outConv.belt[0].fbconverter.running_freq" VarB="Axis#1 Iutputs^Axis1 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[0].outConv.belt[0].fbconverter.status" VarB="Axis#1 Iutputs^Axis1 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[0].outConv.belt[1].fbconverter.running_freq" VarB="Axis#2 Iutputs^Axis2 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[0].outConv.belt[1].fbconverter.status" VarB="Axis#2 Iutputs^Axis2 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[1].outConv.belt[0].fbconverter.running_freq" VarB="Axis#3 Iutputs^Axis3 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[1].outConv.belt[0].fbconverter.status" VarB="Axis#3 Iutputs^Axis3 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[1].outConv.belt[1].fbconverter.running_freq" VarB="Axis#4 Iutputs^Axis4 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[1].outConv.belt[1].fbconverter.status" VarB="Axis#4 Iutputs^Axis4 AC drive running status word 2"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[0].outConv.belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[0].outConv.belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[0].outConv.belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
@@ -51125,6 +52354,18 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[9]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm2_3_innerConv">
+				<Link VarA="PlcTask Inputs^GVL.pm[2].inConv.belt[0].fbconverter.running_freq" VarB="Axis#1 Iutputs^Axis1 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[2].inConv.belt[0].fbconverter.status" VarB="Axis#1 Iutputs^Axis1 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[2].inConv.belt[1].fbconverter.running_freq" VarB="Axis#2 Iutputs^Axis2 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[2].inConv.belt[1].fbconverter.status" VarB="Axis#2 Iutputs^Axis2 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[2].inConv.belt[2].fbconverter.running_freq" VarB="Axis#3 Iutputs^Axis3 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[2].inConv.belt[2].fbconverter.status" VarB="Axis#3 Iutputs^Axis3 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[3].inConv.belt[0].fbconverter.running_freq" VarB="Axis#4 Iutputs^Axis4 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[3].inConv.belt[0].fbconverter.status" VarB="Axis#4 Iutputs^Axis4 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[3].inConv.belt[1].fbconverter.running_freq" VarB="Axis#5 Iutputs^Axis5 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[3].inConv.belt[1].fbconverter.status" VarB="Axis#5 Iutputs^Axis5 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[3].inConv.belt[2].fbconverter.running_freq" VarB="Axis#6 Iutputs^Axis6 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[3].inConv.belt[2].fbconverter.status" VarB="Axis#6 Iutputs^Axis6 AC drive running status word 2"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[2].inConv.belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[2].inConv.belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[2].inConv.belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
@@ -51139,6 +52380,14 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^GVL.pm[3].inConv.belt[2].fbconverter.freq" VarB="Axis#6 Outputs^Axis6 Frequency set through communication"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm2_3_outerConv">
+				<Link VarA="PlcTask Inputs^GVL.pm[2].outConv.belt[0].fbconverter.running_freq" VarB="Axis#1 Iutputs^Axis1 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[2].outConv.belt[0].fbconverter.status" VarB="Axis#1 Iutputs^Axis1 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[2].outConv.belt[1].fbconverter.running_freq" VarB="Axis#2 Iutputs^Axis2 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[2].outConv.belt[1].fbconverter.status" VarB="Axis#2 Iutputs^Axis2 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[3].outConv.belt[0].fbconverter.running_freq" VarB="Axis#3 Iutputs^Axis3 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[3].outConv.belt[0].fbconverter.status" VarB="Axis#3 Iutputs^Axis3 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[3].outConv.belt[1].fbconverter.running_freq" VarB="Axis#4 Iutputs^Axis4 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[3].outConv.belt[1].fbconverter.status" VarB="Axis#4 Iutputs^Axis4 AC drive running status word 2"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[2].outConv.belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[2].outConv.belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[2].outConv.belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
@@ -51263,6 +52512,18 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[9]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm4_5_innerConv">
+				<Link VarA="PlcTask Inputs^GVL.pm[4].inConv.belt[0].fbconverter.running_freq" VarB="Axis#1 Iutputs^Axis1 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[4].inConv.belt[0].fbconverter.status" VarB="Axis#1 Iutputs^Axis1 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[4].inConv.belt[1].fbconverter.running_freq" VarB="Axis#2 Iutputs^Axis2 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[4].inConv.belt[1].fbconverter.status" VarB="Axis#2 Iutputs^Axis2 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[4].inConv.belt[2].fbconverter.running_freq" VarB="Axis#3 Iutputs^Axis3 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[4].inConv.belt[2].fbconverter.status" VarB="Axis#3 Iutputs^Axis3 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[5].inConv.belt[0].fbconverter.running_freq" VarB="Axis#4 Iutputs^Axis4 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[5].inConv.belt[0].fbconverter.status" VarB="Axis#4 Iutputs^Axis4 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[5].inConv.belt[1].fbconverter.running_freq" VarB="Axis#5 Iutputs^Axis5 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[5].inConv.belt[1].fbconverter.status" VarB="Axis#5 Iutputs^Axis5 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[5].inConv.belt[2].fbconverter.running_freq" VarB="Axis#6 Iutputs^Axis6 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[5].inConv.belt[2].fbconverter.status" VarB="Axis#6 Iutputs^Axis6 AC drive running status word 2"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[4].inConv.belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[4].inConv.belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[4].inConv.belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
@@ -51277,6 +52538,14 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^GVL.pm[5].inConv.belt[2].fbconverter.freq" VarB="Axis#6 Outputs^Axis6 Frequency set through communication"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm4_5_outerConv">
+				<Link VarA="PlcTask Inputs^GVL.pm[4].outConv.belt[0].fbconverter.running_freq" VarB="Axis#1 Iutputs^Axis1 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[4].outConv.belt[0].fbconverter.status" VarB="Axis#1 Iutputs^Axis1 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[4].outConv.belt[1].fbconverter.running_freq" VarB="Axis#2 Iutputs^Axis2 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[4].outConv.belt[1].fbconverter.status" VarB="Axis#2 Iutputs^Axis2 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[5].outConv.belt[0].fbconverter.running_freq" VarB="Axis#3 Iutputs^Axis3 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[5].outConv.belt[0].fbconverter.status" VarB="Axis#3 Iutputs^Axis3 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[5].outConv.belt[1].fbconverter.running_freq" VarB="Axis#4 Iutputs^Axis4 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[5].outConv.belt[1].fbconverter.status" VarB="Axis#4 Iutputs^Axis4 AC drive running status word 2"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[4].outConv.belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[4].outConv.belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[4].outConv.belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
@@ -51401,6 +52670,18 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^G_IO.arDO[63]^Ch[9]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm6_7_innerConv">
+				<Link VarA="PlcTask Inputs^GVL.pm[6].inConv.belt[0].fbconverter.running_freq" VarB="Axis#1 Iutputs^Axis1 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[6].inConv.belt[0].fbconverter.status" VarB="Axis#1 Iutputs^Axis1 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[6].inConv.belt[1].fbconverter.running_freq" VarB="Axis#2 Iutputs^Axis2 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[6].inConv.belt[1].fbconverter.status" VarB="Axis#2 Iutputs^Axis2 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[6].inConv.belt[2].fbconverter.running_freq" VarB="Axis#3 Iutputs^Axis3 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[6].inConv.belt[2].fbconverter.status" VarB="Axis#3 Iutputs^Axis3 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[7].inConv.belt[0].fbconverter.running_freq" VarB="Axis#4 Iutputs^Axis4 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[7].inConv.belt[0].fbconverter.status" VarB="Axis#4 Iutputs^Axis4 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[7].inConv.belt[1].fbconverter.running_freq" VarB="Axis#5 Iutputs^Axis5 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[7].inConv.belt[1].fbconverter.status" VarB="Axis#5 Iutputs^Axis5 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[7].inConv.belt[2].fbconverter.running_freq" VarB="Axis#6 Iutputs^Axis6 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[7].inConv.belt[2].fbconverter.status" VarB="Axis#6 Iutputs^Axis6 AC drive running status word 2"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[6].inConv.belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[6].inConv.belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[6].inConv.belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
@@ -51415,6 +52696,14 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^GVL.pm[7].inConv.belt[2].fbconverter.freq" VarB="Axis#6 Outputs^Axis6 Frequency set through communication"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm6_7_outerConv">
+				<Link VarA="PlcTask Inputs^GVL.pm[6].outConv.belt[0].fbconverter.running_freq" VarB="Axis#1 Iutputs^Axis1 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[6].outConv.belt[0].fbconverter.status" VarB="Axis#1 Iutputs^Axis1 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[6].outConv.belt[1].fbconverter.running_freq" VarB="Axis#2 Iutputs^Axis2 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[6].outConv.belt[1].fbconverter.status" VarB="Axis#2 Iutputs^Axis2 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[7].outConv.belt[0].fbconverter.running_freq" VarB="Axis#3 Iutputs^Axis3 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[7].outConv.belt[0].fbconverter.status" VarB="Axis#3 Iutputs^Axis3 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[7].outConv.belt[1].fbconverter.running_freq" VarB="Axis#4 Iutputs^Axis4 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[7].outConv.belt[1].fbconverter.status" VarB="Axis#4 Iutputs^Axis4 AC drive running status word 2"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[6].outConv.belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[6].outConv.belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[6].outConv.belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
@@ -51539,6 +52828,18 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^G_IO.arDO[67]^Ch[9]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm8_9_innerConv">
+				<Link VarA="PlcTask Inputs^GVL.pm[8].inConv.belt[0].fbconverter.running_freq" VarB="Axis#1 Iutputs^Axis1 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[8].inConv.belt[0].fbconverter.status" VarB="Axis#1 Iutputs^Axis1 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[8].inConv.belt[1].fbconverter.running_freq" VarB="Axis#2 Iutputs^Axis2 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[8].inConv.belt[1].fbconverter.status" VarB="Axis#2 Iutputs^Axis2 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[8].inConv.belt[2].fbconverter.running_freq" VarB="Axis#3 Iutputs^Axis3 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[8].inConv.belt[2].fbconverter.status" VarB="Axis#3 Iutputs^Axis3 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[9].inConv.belt[0].fbconverter.running_freq" VarB="Axis#4 Iutputs^Axis4 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[9].inConv.belt[0].fbconverter.status" VarB="Axis#4 Iutputs^Axis4 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[9].inConv.belt[1].fbconverter.running_freq" VarB="Axis#5 Iutputs^Axis5 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[9].inConv.belt[1].fbconverter.status" VarB="Axis#5 Iutputs^Axis5 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[9].inConv.belt[2].fbconverter.running_freq" VarB="Axis#6 Iutputs^Axis6 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[9].inConv.belt[2].fbconverter.status" VarB="Axis#6 Iutputs^Axis6 AC drive running status word 2"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[8].inConv.belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[8].inConv.belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[8].inConv.belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>
@@ -51553,6 +52854,14 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^GVL.pm[9].inConv.belt[2].fbconverter.freq" VarB="Axis#6 Outputs^Axis6 Frequency set through communication"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm8_9_outerConv">
+				<Link VarA="PlcTask Inputs^GVL.pm[8].outConv.belt[0].fbconverter.running_freq" VarB="Axis#1 Iutputs^Axis1 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[8].outConv.belt[0].fbconverter.status" VarB="Axis#1 Iutputs^Axis1 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[8].outConv.belt[1].fbconverter.running_freq" VarB="Axis#2 Iutputs^Axis2 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[8].outConv.belt[1].fbconverter.status" VarB="Axis#2 Iutputs^Axis2 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[9].outConv.belt[0].fbconverter.running_freq" VarB="Axis#3 Iutputs^Axis3 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[9].outConv.belt[0].fbconverter.status" VarB="Axis#3 Iutputs^Axis3 AC drive running status word 2"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[9].outConv.belt[1].fbconverter.running_freq" VarB="Axis#4 Iutputs^Axis4 Running frequency"/>
+				<Link VarA="PlcTask Inputs^GVL.pm[9].outConv.belt[1].fbconverter.status" VarB="Axis#4 Iutputs^Axis4 AC drive running status word 2"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[8].outConv.belt[0].fbconverter.cmd" VarB="Axis#1 Outputs^Axis1 Communication control command"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[8].outConv.belt[0].fbconverter.freq" VarB="Axis#1 Outputs^Axis1 Frequency set through communication"/>
 				<Link VarA="PlcTask Outputs^GVL.pm[8].outConv.belt[1].fbconverter.cmd" VarB="Axis#2 Outputs^Axis2 Communication control command"/>

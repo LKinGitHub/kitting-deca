@@ -49,6 +49,9 @@
     <Compile Include="GVLs\kitting deca\DigitalInputStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GVLs\kitting deca\E_CMD_ConverterMotor.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GVLs\kitting deca\FB_Converter.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -353,6 +356,10 @@
       <Namespace>VisuNativeControl</Namespace>
       <SystemLibrary>true</SystemLibrary>
       <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_DataExchange">
+      <DefaultResolution>Tc2_DataExchange, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_DataExchange</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc2_EtherCAT">
       <DefaultResolution>Tc2_EtherCAT, * (Beckhoff Automation GmbH)</DefaultResolution>

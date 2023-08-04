@@ -8,8 +8,16 @@ VAR_INPUT
 	bSetParaEx	: BOOL;
 	cmd  AT%Q*	: UINT;
 	freq AT%Q*	: UINT;
+
+	reset	: BOOL;
 END_VAR
 VAR_OUTPUT
+	status	AT%I*	:  UINT;//Bit0：运行状态；Bit1：正反转状态；Bit2：是否发生故障
+							//Bit3：输出频率是否到达设定频率；Bit4：通信正常标志；
+							//Bit5~Bit7：保留；Bit8~Bit15：故障主码
+	running_freq	AT%I*	:  UINT;
+	xErr	:  BOOL;
+	errorID	: UINT;
 	xDone	: BOOL;
 END_VAR
 VAR_IN_OUT
@@ -27,6 +35,7 @@ VAR
 	iSdoWrite	: INT; 
 	offset: WORD;
 	rtrig_bSetPara	: R_TRIG;
+	rtrig_bReset	: R_TRIG;
 	ton_delay	: TON;
 END_VAR
 ]]></Declaration>
@@ -126,6 +135,7 @@ stConverter.iSdoWrite[13]	:= 1600;
 
 ton_delay(PT:= T#0.1S);
 rtrig_bSetPara(CLK:=bSetParaEx);
+rtrig_bReset(CLK:=reset);
 CASE iCase OF
 	0:
 		CoeWrt.bExecute	:= FALSE;
@@ -134,7 +144,10 @@ CASE iCase OF
 		xDone	:= FALSE;
 		IF rtrig_bSetPara.Q THEN
 			iCase	:= 1;
-		END_IF		
+		END_IF	
+		IF rtrig_bReset.Q THEN
+			iCase	:= 10;
+		END_IF				
 	1: 
 		nIndex	:= stConverter.nIndex[i];
 		nSubIndex	:= stConverter.nSubIndex[i];
@@ -156,10 +169,23 @@ CASE iCase OF
 			//RETURN ;
 		ELSE
 			iCase	:= 1;
+		END_IF	
+	10: 
+		IF status.2 THEN
+			cmd	:=INT_TO_UINT(E_CMD_ConverterMotor.RESET);
 		END_IF
-	
-		
+		iCase	:= 11;
+	11:
+		ton_delay.IN	:= TRUE;
+		IF ton_delay.Q THEN
+			iCase	:= 0;
+		END_IF		
 END_CASE
+
+
+xErr	:= status.2 ;
+
+errorID	:= SHR(status,8);
 ]]></ST>
     </Implementation>
     <Method Name="M_SetPara" Id="{91f69ed3-b089-494c-b183-d69bb531850e}">
@@ -199,13 +225,26 @@ END_FOR*)
       <LineId Id="128" Count="13" />
       <LineId Id="143" Count="1" />
       <LineId Id="187" Count="0" />
+      <LineId Id="233" Count="0" />
       <LineId Id="145" Count="5" />
       <LineId Id="177" Count="0" />
       <LineId Id="184" Count="1" />
+      <LineId Id="234" Count="1" />
+      <LineId Id="231" Count="0" />
       <LineId Id="152" Count="7" />
-      <LineId Id="161" Count="15" />
+      <LineId Id="161" Count="13" />
+      <LineId Id="236" Count="0" />
+      <LineId Id="240" Count="2" />
+      <LineId Id="249" Count="0" />
+      <LineId Id="244" Count="0" />
+      <LineId Id="246" Count="2" />
+      <LineId Id="245" Count="0" />
       <LineId Id="142" Count="0" />
+      <LineId Id="222" Count="0" />
       <LineId Id="41" Count="0" />
+      <LineId Id="220" Count="1" />
+      <LineId Id="223" Count="0" />
+      <LineId Id="225" Count="0" />
     </LineIds>
     <LineIds Name="FB_Converter.M_SetPara">
       <LineId Id="102" Count="0" />
