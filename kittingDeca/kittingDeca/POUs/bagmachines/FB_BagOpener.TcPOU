@@ -80,6 +80,7 @@ END_CASE
 //		[0]:machine status;
 //		[1]:bag status(3:BAG_READY,4:BAG_INSERTED,5:BAG_REMOVED,6:camera_ok,7:camera_ng);
 //		[2]:bag detect status(0:idle,1:ok,2:ng);	
+//		[3]:fixture enable
 //outputArr:
 //		[0]:line status;
 //		[1]:bag cmd(1:insert_bag,2:bag_done_clamping,3:camera_trigger,4:camera_reset);
@@ -275,6 +276,7 @@ END_IF
       <LineId Id="156" Count="0" />
       <LineId Id="158" Count="1" />
       <LineId Id="181" Count="0" />
+      <LineId Id="218" Count="0" />
       <LineId Id="163" Count="0" />
       <LineId Id="157" Count="0" />
       <LineId Id="161" Count="1" />

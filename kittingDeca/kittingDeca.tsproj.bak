@@ -1528,7 +1528,7 @@ External Setpoint Generation:
 			<Settings MaxCpus="2">
 				<Cpu/>
 				<Cpu CpuId="1"/>
-				<IoIdleTask Priority="4" Affinity="#x00000001"/>
+				<IoIdleTask Priority="8" CycleTime="20000" Affinity="#x00000001"/>
 			</Settings>
 			<Licenses>
 				<Target BkhfOrder="01100683">
@@ -1537,17 +1537,17 @@ External Setpoint Generation:
 				</Target>
 			</Licenses>
 			<Tasks>
-				<Task Id="3" Priority="6" CycleTime="20000" AmsPort="350" Affinity="#x00000001" AdtTasks="true">
+				<Task Id="3" Priority="12" CycleTime="20000" AmsPort="350" Affinity="#x00000001" AdtTasks="true">
 					<Name>PlcTask</Name>
 				</Task>
-				<Task Id="4" Priority="12" CycleTime="2000000" AmsPort="351" Affinity="#x00000001" DisableFpExceptions="true" AdtTasks="true">
+				<Task Id="4" Priority="16" CycleTime="2000000" AmsPort="351" Affinity="#x00000001" DisableFpExceptions="true" AdtTasks="true">
 					<Name>VISU_TASK</Name>
 				</Task>
 			</Tasks>
 		</System>
 		<Motion>
 			<NC>
-				<SafTask Priority="8" CycleTime="80000" AmsPort="501" Affinity="#x00000002" IoAtBegin="true" SafTaskInfo="256">
+				<SafTask Priority="6" CycleTime="40000" AmsPort="501" Affinity="#x00000002" IoAtBegin="true" SafTaskInfo="256">
 					<Name>NC-Task 1 SAF</Name>
 					<Vars VarGrpType="1" InsertType="1">
 						<Name>Inputs</Name>
@@ -7902,7 +7902,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{2354DE8C-DE54-4E07-94D7-E848733F7762}" Name="kittingDeca" PrjFilePath="kittingDeca\kittingDeca.plcproj" TmcFilePath="kittingDeca\kittingDeca.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="kittingDeca\kittingDeca.tmc" TmcHash="{10B791EF-72F7-AABA-598C-E12CFEF002D6}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="kittingDeca\kittingDeca.tmc" TmcHash="{C1877414-754E-8095-DC69-3B767CE3700D}">
 					<Name>kittingDeca Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -9668,7 +9668,7 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 							<ManualConfig>
 								<OTCID>#x02010030</OTCID>
 							</ManualConfig>
-							<Priority>6</Priority>
+							<Priority>12</Priority>
 							<CycleTime>2000000</CycleTime>
 						</Context>
 						<Context>
@@ -9677,13 +9677,13 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 							<ManualConfig>
 								<OTCID>#x02010040</OTCID>
 							</ManualConfig>
-							<Priority>12</Priority>
+							<Priority>16</Priority>
 							<CycleTime>200000000</CycleTime>
 						</Context>
 					</Contexts>
 					<TaskPouOids>
-						<TaskPouOid Prio="6" OTCID="#x08502003"/>
-						<TaskPouOid Prio="12" OTCID="#x08502002"/>
+						<TaskPouOid Prio="12" OTCID="#x08502003"/>
+						<TaskPouOid Prio="16" OTCID="#x08502002"/>
 					</TaskPouOids>
 				</Instance>
 			</Project>
@@ -32467,7 +32467,7 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001806006400010003000000000000000000001864010000</SyncMan>
-						<SyncMan>001c0e006000010004000000000000000000001c60010000</SyncMan>
+						<SyncMan>001c10006000010004000000000000000000001c60010000</SyncMan>
 						<Fmmu>0000000000000000001800020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001c00010100000002000000000000000000000000000000</Fmmu>
 						<DcMode>53796e6368726f6e0000000000000000534d2d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -32486,14 +32486,16 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 						<MBoxUserCmdData>020003000a00000019000000030010008900090300000000000000000000000020c080020200000004004449206d6f64756c65204348312066696c7465722074696d6500</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000a00000019000000030010008a000903000000000000000000000000200081010200000004004449206d6f64756c65204348302066696c7465722074696d6500</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000a00000019000000030010008a000903000000000000000000000000200081020200000004004449206d6f64756c65204348312066696c7465722074696d6500</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000002f000000030010008b0009030000000000000000000000002040810101000000ff444f206d6f64756c65204348302073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000002f000000030010008b0009030000000000000000000000002040810201000000ff444f206d6f64756c65204348312073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000030000000030010008b000903000000000000000000000000204181010100000000444f206d6f64756c65204348302073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000030000000030010008b000903000000000000000000000000204181020100000000444f206d6f64756c65204348312073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>02000300090000002f000000030010008c0009030000000000000000000000002080810101000000ff444f206d6f64756c65204348302073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>02000300090000002f000000030010008c0009030000000000000000000000002080810201000000ff444f206d6f64756c65204348312073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000900000030000000030010008c000903000000000000000000000000208181010100000000444f206d6f64756c65204348302073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000900000030000000030010008c000903000000000000000000000000208181020100000000444f206d6f64756c65204348312073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a00000019000000030010008b000903000000000000000000000000204081010200000004004449206d6f64756c65204348302066696c7465722074696d6500</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a00000019000000030010008b000903000000000000000000000000204081020200000004004449206d6f64756c65204348312066696c7465722074696d6500</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000002f000000030010009300090300000000000000000000000020c0810101000000ff444f206d6f64756c65204348302073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000002f000000030010009300090300000000000000000000000020c0810201000000ff444f206d6f64756c65204348312073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000900000030000000030010009300090300000000000000000000000020c181010100000000444f206d6f64756c65204348302073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000900000030000000030010009300090300000000000000000000000020c181020100000000444f206d6f64756c65204348312073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<Pdo Name="Device TPDO Mapping parameter" Index="#x1ba0" Flags="#x0010" SyncMan="3">
 							<Entry Name="LBus status" Index="#xf100" Sub="#x01">
 								<Type>UINT</Type>
@@ -32860,72 +32862,72 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 								<Type>BIT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-8bit maping" Index="#x1629" InOut="1" Flags="#x0290">
-							<ExcludePdo>#x9628</ExcludePdo>
-							<ExcludePdo>#x962a</ExcludePdo>
-							<Entry Name="Digital output CH0-8bit" Index="#x7141" Sub="#x01" Flags="#x00001000">
+						<Pdo Name="1600END input-8bit maping" Index="#x1a29" Flags="#x0290">
+							<ExcludePdo>#x9a28</ExcludePdo>
+							<ExcludePdo>#x9a2a</ExcludePdo>
+							<Entry Name="Digital input CH0-8bit" Index="#x6141" Sub="#x01" Flags="#x00001000">
 								<Type>USINT</Type>
 							</Entry>
-							<Entry Name="Digital output CH1-8bit" Index="#x7141" Sub="#x02" Flags="#x00001000">
+							<Entry Name="Digital input CH1-8bit" Index="#x6141" Sub="#x02" Flags="#x00001000">
 								<Type>USINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-16bit maping" Index="#x162a" InOut="1" Flags="#x0290">
-							<ExcludePdo>#x9628</ExcludePdo>
-							<ExcludePdo>#x9629</ExcludePdo>
-							<Entry Name="Digital output 16bit" Index="#x7142" Sub="#x01" Flags="#x00001000">
+						<Pdo Name="1600END input-16bit maping" Index="#x1a2a" Flags="#x0290">
+							<ExcludePdo>#x9a28</ExcludePdo>
+							<ExcludePdo>#x9a29</ExcludePdo>
+							<Entry Name="Digital input 16bit" Index="#x6142" Sub="#x01" Flags="#x00001000">
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-bit maping" Index="#x1628" InOut="1" Flags="#x0290" SyncMan="2">
-							<ExcludePdo>#x9629</ExcludePdo>
-							<ExcludePdo>#x962a</ExcludePdo>
-							<Entry Name="Digital output CH1-bit0" Index="#x7140" Sub="#x01" Flags="#x00001000">
+						<Pdo Name="1600END input-bit maping" Index="#x1a28" Flags="#x0290" SyncMan="3">
+							<ExcludePdo>#x9a29</ExcludePdo>
+							<ExcludePdo>#x9a2a</ExcludePdo>
+							<Entry Name="Digital input CH1-bit0" Index="#x6140" Sub="#x01" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH1-bit1" Index="#x7140" Sub="#x02" Flags="#x00001000">
+							<Entry Name="Digital input CH1-bit1" Index="#x6140" Sub="#x02" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH1-bit2" Index="#x7140" Sub="#x03" Flags="#x00001000">
+							<Entry Name="Digital input CH1-bit2" Index="#x6140" Sub="#x03" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH1-bit3" Index="#x7140" Sub="#x04" Flags="#x00001000">
+							<Entry Name="Digital input CH1-bit3" Index="#x6140" Sub="#x04" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH1-bit4" Index="#x7140" Sub="#x05" Flags="#x00001000">
+							<Entry Name="Digital input CH1-bit4" Index="#x6140" Sub="#x05" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH1-bit5" Index="#x7140" Sub="#x06" Flags="#x00001000">
+							<Entry Name="Digital input CH1-bit5" Index="#x6140" Sub="#x06" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH1-bit6" Index="#x7140" Sub="#x07" Flags="#x00001000">
+							<Entry Name="Digital input CH1-bit6" Index="#x6140" Sub="#x07" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH1-bit7" Index="#x7140" Sub="#x08" Flags="#x00001000">
+							<Entry Name="Digital input CH1-bit7" Index="#x6140" Sub="#x08" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH2-bit0" Index="#x7140" Sub="#x09" Flags="#x00001000">
+							<Entry Name="Digital input CH2-bit0" Index="#x6140" Sub="#x09" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH2-bit1" Index="#x7140" Sub="#x0a" Flags="#x00001000">
+							<Entry Name="Digital input CH2-bit1" Index="#x6140" Sub="#x0a" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH2-bit2" Index="#x7140" Sub="#x0b" Flags="#x00001000">
+							<Entry Name="Digital input CH2-bit2" Index="#x6140" Sub="#x0b" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH2-bit3" Index="#x7140" Sub="#x0c" Flags="#x00001000">
+							<Entry Name="Digital input CH2-bit3" Index="#x6140" Sub="#x0c" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH2-bit4" Index="#x7140" Sub="#x0d" Flags="#x00001000">
+							<Entry Name="Digital input CH2-bit4" Index="#x6140" Sub="#x0d" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH2-bit5" Index="#x7140" Sub="#x0e" Flags="#x00001000">
+							<Entry Name="Digital input CH2-bit5" Index="#x6140" Sub="#x0e" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH2-bit6" Index="#x7140" Sub="#x0f" Flags="#x00001000">
+							<Entry Name="Digital input CH2-bit6" Index="#x6140" Sub="#x0f" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH2-bit7" Index="#x7140" Sub="#x10" Flags="#x00001000">
+							<Entry Name="Digital input CH2-bit7" Index="#x6140" Sub="#x10" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
 						</Pdo>
@@ -32995,6 +32997,75 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 								<Type>BIT</Type>
 							</Entry>
 							<Entry Name="Digital output CH2-bit7" Index="#x7180" Sub="#x10" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="0016ETP Output-8bit maping" Index="#x1639" InOut="1" Flags="#x0290">
+							<ExcludePdo>#x9638</ExcludePdo>
+							<ExcludePdo>#x963a</ExcludePdo>
+							<Entry Name="Digital output CH0-8bit" Index="#x71c1" Sub="#x01" Flags="#x00001000">
+								<Type>USINT</Type>
+							</Entry>
+							<Entry Name="Digital output CH1-8bit" Index="#x71c1" Sub="#x02" Flags="#x00001000">
+								<Type>USINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="0016ETP Output-16bit maping" Index="#x163a" InOut="1" Flags="#x0290">
+							<ExcludePdo>#x9638</ExcludePdo>
+							<ExcludePdo>#x9639</ExcludePdo>
+							<Entry Name="Digital output 16bit" Index="#x71c2" Sub="#x01" Flags="#x00001000">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="0016ETP Output-bit maping" Index="#x1638" InOut="1" Flags="#x0290" SyncMan="2">
+							<ExcludePdo>#x9639</ExcludePdo>
+							<ExcludePdo>#x963a</ExcludePdo>
+							<Entry Name="Digital output CH1-bit0" Index="#x71c0" Sub="#x01" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH1-bit1" Index="#x71c0" Sub="#x02" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH1-bit2" Index="#x71c0" Sub="#x03" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH1-bit3" Index="#x71c0" Sub="#x04" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH1-bit4" Index="#x71c0" Sub="#x05" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH1-bit5" Index="#x71c0" Sub="#x06" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH1-bit6" Index="#x71c0" Sub="#x07" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH1-bit7" Index="#x71c0" Sub="#x08" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH2-bit0" Index="#x71c0" Sub="#x09" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH2-bit1" Index="#x71c0" Sub="#x0a" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH2-bit2" Index="#x71c0" Sub="#x0b" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH2-bit3" Index="#x71c0" Sub="#x0c" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH2-bit4" Index="#x71c0" Sub="#x0d" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH2-bit5" Index="#x71c0" Sub="#x0e" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH2-bit6" Index="#x71c0" Sub="#x0f" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH2-bit7" Index="#x71c0" Sub="#x10" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
 						</Pdo>
@@ -33092,13 +33163,13 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 							<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
 							<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
 							<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
-							<Module Id="#x0309008b" Type="GL20-0016ETP" Class="Digital Out">
-								<Name>Module 6 (GL20-0016ETP)</Name>
+							<Module Id="#x0309008b" Type="GL20-1600END" Class="GL20-Digital In">
+								<Name>Module 6 (GL20-1600END)</Name>
 								<ImageId>65</ImageId>
-								<ModuleData>000010002410f410000004000000000000000000000000000000000000000000</ModuleData>
-								<PdoIndex>5673</PdoIndex>
-								<PdoIndex>5674</PdoIndex>
-								<PdoIndex>5672</PdoIndex>
+								<ModuleData>000010001010f410000004000000000000000000000000000000000000000000</ModuleData>
+								<PdoIndex>6697</PdoIndex>
+								<PdoIndex>6698</PdoIndex>
+								<PdoIndex>6696</PdoIndex>
 							</Module>
 						</Slot>
 						<Slot Name="Terminals">
@@ -33126,6 +33197,14 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 							<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
 							<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
 							<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+							<Module Id="#x03090093" Type="GL20-0016ETP" Class="Digital Out">
+								<Name>Module 8 (GL20-0016ETP)</Name>
+								<ImageId>65</ImageId>
+								<ModuleData>000010002410f410000004000000000000000000000000000000000000000000</ModuleData>
+								<PdoIndex>5689</PdoIndex>
+								<PdoIndex>5690</PdoIndex>
+								<PdoIndex>5688</PdoIndex>
+							</Module>
 						</Slot>
 						<Slot Name="Terminals">
 							<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
@@ -36453,7 +36532,7 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 						<SyncMan>0010800026000100010000000c00c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000000c00c0008000001422010000</SyncMan>
 						<SyncMan>001806006400010003000000000000000000001864010000</SyncMan>
-						<SyncMan>001c0e006000010004000000000000000000001c60010000</SyncMan>
+						<SyncMan>001c10006000010004000000000000000000001c60010000</SyncMan>
 						<Fmmu>0000000000000000001800020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001c00010100000002000000000000000000000000000000</Fmmu>
 						<DcMode>53796e6368726f6e0000000000000000534d2d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -36480,6 +36559,12 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 						<MBoxUserCmdData>02000300090000002f000000030010008c0009030000000000000000000000002080810201000000ff444f206d6f64756c65204348312073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000900000030000000030010008c000903000000000000000000000000208181010100000000444f206d6f64756c65204348302073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000900000030000000030010008c000903000000000000000000000000208181020100000000444f206d6f64756c65204348312073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a000000190000000300100043000903000000000000000000000000204081010200000004004449206d6f64756c65204348302066696c7465722074696d6500</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a000000190000000300100043000903000000000000000000000000204081020200000004004449206d6f64756c65204348312066696c7465722074696d6500</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000002f000000030010009400090300000000000000000000000020c0810101000000ff444f206d6f64756c65204348302073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000002f000000030010009400090300000000000000000000000020c0810201000000ff444f206d6f64756c65204348312073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000900000030000000030010009400090300000000000000000000000020c181010100000000444f206d6f64756c65204348302073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000900000030000000030010009400090300000000000000000000000020c181020100000000444f206d6f64756c65204348312073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<Pdo Name="Device TPDO Mapping parameter" Index="#x1ba0" Flags="#x0010" SyncMan="3">
 							<Entry Name="LBus status" Index="#xf100" Sub="#x01">
 								<Type>UINT</Type>
@@ -36846,72 +36931,72 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 								<Type>BIT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-8bit maping" Index="#x1629" InOut="1" Flags="#x0290">
-							<ExcludePdo>#x9628</ExcludePdo>
-							<ExcludePdo>#x962a</ExcludePdo>
-							<Entry Name="Digital output CH0-8bit" Index="#x7141" Sub="#x01" Flags="#x00001000">
+						<Pdo Name="1600END input-8bit maping" Index="#x1a29" Flags="#x0290">
+							<ExcludePdo>#x9a28</ExcludePdo>
+							<ExcludePdo>#x9a2a</ExcludePdo>
+							<Entry Name="Digital input CH0-8bit" Index="#x6141" Sub="#x01" Flags="#x00001000">
 								<Type>USINT</Type>
 							</Entry>
-							<Entry Name="Digital output CH1-8bit" Index="#x7141" Sub="#x02" Flags="#x00001000">
+							<Entry Name="Digital input CH1-8bit" Index="#x6141" Sub="#x02" Flags="#x00001000">
 								<Type>USINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-16bit maping" Index="#x162a" InOut="1" Flags="#x0290">
-							<ExcludePdo>#x9628</ExcludePdo>
-							<ExcludePdo>#x9629</ExcludePdo>
-							<Entry Name="Digital output 16bit" Index="#x7142" Sub="#x01" Flags="#x00001000">
+						<Pdo Name="1600END input-16bit maping" Index="#x1a2a" Flags="#x0290">
+							<ExcludePdo>#x9a28</ExcludePdo>
+							<ExcludePdo>#x9a29</ExcludePdo>
+							<Entry Name="Digital input 16bit" Index="#x6142" Sub="#x01" Flags="#x00001000">
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="0016ETP Output-bit maping" Index="#x1628" InOut="1" Flags="#x0290" SyncMan="2">
-							<ExcludePdo>#x9629</ExcludePdo>
-							<ExcludePdo>#x962a</ExcludePdo>
-							<Entry Name="Digital output CH1-bit0" Index="#x7140" Sub="#x01" Flags="#x00001000">
+						<Pdo Name="1600END input-bit maping" Index="#x1a28" Flags="#x0290" SyncMan="3">
+							<ExcludePdo>#x9a29</ExcludePdo>
+							<ExcludePdo>#x9a2a</ExcludePdo>
+							<Entry Name="Digital input CH1-bit0" Index="#x6140" Sub="#x01" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH1-bit1" Index="#x7140" Sub="#x02" Flags="#x00001000">
+							<Entry Name="Digital input CH1-bit1" Index="#x6140" Sub="#x02" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH1-bit2" Index="#x7140" Sub="#x03" Flags="#x00001000">
+							<Entry Name="Digital input CH1-bit2" Index="#x6140" Sub="#x03" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH1-bit3" Index="#x7140" Sub="#x04" Flags="#x00001000">
+							<Entry Name="Digital input CH1-bit3" Index="#x6140" Sub="#x04" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH1-bit4" Index="#x7140" Sub="#x05" Flags="#x00001000">
+							<Entry Name="Digital input CH1-bit4" Index="#x6140" Sub="#x05" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH1-bit5" Index="#x7140" Sub="#x06" Flags="#x00001000">
+							<Entry Name="Digital input CH1-bit5" Index="#x6140" Sub="#x06" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH1-bit6" Index="#x7140" Sub="#x07" Flags="#x00001000">
+							<Entry Name="Digital input CH1-bit6" Index="#x6140" Sub="#x07" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH1-bit7" Index="#x7140" Sub="#x08" Flags="#x00001000">
+							<Entry Name="Digital input CH1-bit7" Index="#x6140" Sub="#x08" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH2-bit0" Index="#x7140" Sub="#x09" Flags="#x00001000">
+							<Entry Name="Digital input CH2-bit0" Index="#x6140" Sub="#x09" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH2-bit1" Index="#x7140" Sub="#x0a" Flags="#x00001000">
+							<Entry Name="Digital input CH2-bit1" Index="#x6140" Sub="#x0a" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH2-bit2" Index="#x7140" Sub="#x0b" Flags="#x00001000">
+							<Entry Name="Digital input CH2-bit2" Index="#x6140" Sub="#x0b" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH2-bit3" Index="#x7140" Sub="#x0c" Flags="#x00001000">
+							<Entry Name="Digital input CH2-bit3" Index="#x6140" Sub="#x0c" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH2-bit4" Index="#x7140" Sub="#x0d" Flags="#x00001000">
+							<Entry Name="Digital input CH2-bit4" Index="#x6140" Sub="#x0d" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH2-bit5" Index="#x7140" Sub="#x0e" Flags="#x00001000">
+							<Entry Name="Digital input CH2-bit5" Index="#x6140" Sub="#x0e" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH2-bit6" Index="#x7140" Sub="#x0f" Flags="#x00001000">
+							<Entry Name="Digital input CH2-bit6" Index="#x6140" Sub="#x0f" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
-							<Entry Name="Digital output CH2-bit7" Index="#x7140" Sub="#x10" Flags="#x00001000">
+							<Entry Name="Digital input CH2-bit7" Index="#x6140" Sub="#x10" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
 						</Pdo>
@@ -36981,6 +37066,75 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 								<Type>BIT</Type>
 							</Entry>
 							<Entry Name="Digital output CH2-bit7" Index="#x7180" Sub="#x10" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="0016ETP Output-8bit maping" Index="#x1639" InOut="1" Flags="#x0290">
+							<ExcludePdo>#x9638</ExcludePdo>
+							<ExcludePdo>#x963a</ExcludePdo>
+							<Entry Name="Digital output CH0-8bit" Index="#x71c1" Sub="#x01" Flags="#x00001000">
+								<Type>USINT</Type>
+							</Entry>
+							<Entry Name="Digital output CH1-8bit" Index="#x71c1" Sub="#x02" Flags="#x00001000">
+								<Type>USINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="0016ETP Output-16bit maping" Index="#x163a" InOut="1" Flags="#x0290">
+							<ExcludePdo>#x9638</ExcludePdo>
+							<ExcludePdo>#x9639</ExcludePdo>
+							<Entry Name="Digital output 16bit" Index="#x71c2" Sub="#x01" Flags="#x00001000">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="0016ETP Output-bit maping" Index="#x1638" InOut="1" Flags="#x0290" SyncMan="2">
+							<ExcludePdo>#x9639</ExcludePdo>
+							<ExcludePdo>#x963a</ExcludePdo>
+							<Entry Name="Digital output CH1-bit0" Index="#x71c0" Sub="#x01" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH1-bit1" Index="#x71c0" Sub="#x02" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH1-bit2" Index="#x71c0" Sub="#x03" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH1-bit3" Index="#x71c0" Sub="#x04" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH1-bit4" Index="#x71c0" Sub="#x05" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH1-bit5" Index="#x71c0" Sub="#x06" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH1-bit6" Index="#x71c0" Sub="#x07" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH1-bit7" Index="#x71c0" Sub="#x08" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH2-bit0" Index="#x71c0" Sub="#x09" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH2-bit1" Index="#x71c0" Sub="#x0a" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH2-bit2" Index="#x71c0" Sub="#x0b" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH2-bit3" Index="#x71c0" Sub="#x0c" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH2-bit4" Index="#x71c0" Sub="#x0d" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH2-bit5" Index="#x71c0" Sub="#x0e" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH2-bit6" Index="#x71c0" Sub="#x0f" Flags="#x00001000">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Digital output CH2-bit7" Index="#x71c0" Sub="#x10" Flags="#x00001000">
 								<Type>BIT</Type>
 							</Entry>
 						</Pdo>
@@ -37078,13 +37232,13 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 							<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
 							<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
 							<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
-							<Module Id="#x03090043" Type="GL20-0016ETP" Class="Digital Out">
-								<Name>Module 6 (GL20-0016ETP)</Name>
+							<Module Id="#x03090043" Type="GL20-1600END" Class="GL20-Digital In">
+								<Name>Module 6 (GL20-1600END)</Name>
 								<ImageId>65</ImageId>
-								<ModuleData>000010002410f410000004000000000000000000000000000000000000000000</ModuleData>
-								<PdoIndex>5673</PdoIndex>
-								<PdoIndex>5674</PdoIndex>
-								<PdoIndex>5672</PdoIndex>
+								<ModuleData>000010001010f410000004000000000000000000000000000000000000000000</ModuleData>
+								<PdoIndex>6697</PdoIndex>
+								<PdoIndex>6698</PdoIndex>
+								<PdoIndex>6696</PdoIndex>
 							</Module>
 						</Slot>
 						<Slot Name="Terminals">
@@ -37112,6 +37266,14 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 							<ModuleClass Class="Analog Out" Name="Analog Output Terminals" VendorId="1048576"/>
 							<ModuleClass Class="Temperature Measure" Name="Temperature Measure Terminals" VendorId="1048576"/>
 							<ModuleClass Class="Communication" Name="Communication module" VendorId="1048576"/>
+							<Module Id="#x03090094" Type="GL20-0016ETP" Class="Digital Out">
+								<Name>Module 8 (GL20-0016ETP)</Name>
+								<ImageId>65</ImageId>
+								<ModuleData>000010002410f410000004000000000000000000000000000000000000000000</ModuleData>
+								<PdoIndex>5689</PdoIndex>
+								<PdoIndex>5690</PdoIndex>
+								<PdoIndex>5688</PdoIndex>
+							</Module>
 						</Slot>
 						<Slot Name="Terminals">
 							<SlotData>0000000001000000080000004000000000000000000000000000000000000000</SlotData>
@@ -49474,7 +49636,7 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 						<SyncMan>0010800026000100010000002200c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000002200c0008000001422010000</SyncMan>
 						<SyncMan>00180c006400010003000000000000000400001864010000</SyncMan>
-						<SyncMan>001c10002000010004000000000000000400001c20010000</SyncMan>
+						<SyncMan>001c1c002000010004000000000000000400001c20010000</SyncMan>
 						<Fmmu>0000000000000000001800020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001c00010100000002000000000000000000000000000000</Fmmu>
 						<DcData>0003000000000000000000000000000001000000000000000000000000000000</DcData>
@@ -49487,6 +49649,12 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 							<Entry Name="Axis1 Running frequency" Index="#x2070" Sub="#x01">
 								<Type>UINT</Type>
 							</Entry>
+							<Entry Name="Axis1 Fault code" Index="#x2070" Sub="#x2e">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Axis1 Fault subcode" Index="#x2070" Sub="#x2f">
+								<Type>UINT</Type>
+							</Entry>
 						</Pdo>
 						<Pdo Name="Axis#2 Iutputs" Index="#x1a02" Flags="#x0000" SyncMan="3">
 							<Entry Name="Axis2 AC drive running status word 2" Index="#x2870" Sub="#x45">
@@ -49495,12 +49663,24 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 							<Entry Name="Axis2 Running frequency" Index="#x2870" Sub="#x01">
 								<Type>UINT</Type>
 							</Entry>
+							<Entry Name="Axis2 Fault code" Index="#x2870" Sub="#x2e">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Axis2 Fault subcode" Index="#x2870" Sub="#x2f">
+								<Type>UINT</Type>
+							</Entry>
 						</Pdo>
 						<Pdo Name="Axis#3 Iutputs" Index="#x1a03" Flags="#x0000" SyncMan="3">
 							<Entry Name="Axis3 AC drive running status word 2" Index="#x3070" Sub="#x45">
 								<Type>UINT</Type>
 							</Entry>
 							<Entry Name="Axis3 Running frequency" Index="#x3070" Sub="#x01">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Axis3 Fault code" Index="#x3070" Sub="#x2e">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Axis3 Fault subcode" Index="#x3070" Sub="#x2f">
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
@@ -50130,7 +50310,7 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 						<SyncMan>0010800026000100010000002200c0008000001026010000</SyncMan>
 						<SyncMan>0014800022000100020000002200c0008000001422010000</SyncMan>
 						<SyncMan>001804006400010003000000000000000400001864010000</SyncMan>
-						<SyncMan>001c08002000010004000000000000000400001c20010000</SyncMan>
+						<SyncMan>001c0c002000010004000000000000000400001c20010000</SyncMan>
 						<Fmmu>0000000000000000001800020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001c00010100000002000000000000000000000000000000</Fmmu>
 						<DcData>0003000000000000000000000000000001000000000000000000000000000000</DcData>
@@ -50141,6 +50321,12 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 								<Type>UINT</Type>
 							</Entry>
 							<Entry Name="Axis1 Running frequency" Index="#x2070" Sub="#x01">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Axis1 Fault code" Index="#x2070" Sub="#x2e">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Axis1 Fault subcode" Index="#x2070" Sub="#x2f">
 								<Type>UINT</Type>
 							</Entry>
 						</Pdo>
@@ -50706,16 +50892,959 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 				</Image>
 				<DpRam/>
 			</Device>
+			<Device Id="8" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28680" AmsNetId="192.168.11.159.9.1" RemoteName="Device 8 (EtherCAT)" InfoImageId="13">
+				<Name>Device 8 (EtherCAT)</Name>
+				<AddressInfo>
+					<Pnp>
+						<DeviceDesc>Ethernet 2 (TwinCAT-Intel PCI Ethernet Adapter (Gig</DeviceDesc>
+						<DeviceName>\DEVICE\{931CBA35-6A33-4E21-A09B-7411C52BD7E1}</DeviceName>
+						<DeviceData>0001056ec21b</DeviceData>
+					</Pnp>
+				</AddressInfo>
+				<Image Id="12" AddrType="9" ImageType="3">
+					<Name>Image</Name>
+				</Image>
+				<Box Id="63" BoxType="9099">
+					<Name>Box 63 (DL-EC1A)</Name>
+					<ImageId>114</ImageId>
+					<EtherCAT SlaveType="2" PdiType="#x0c08" MboxDataLinkLayer="true" CycleMBoxPolling="true" CoeType="39" VendorId="#x00000541" ProductCode="#x00001194" RevisionNo="#x00000002" InfoDataAddr="true" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="DL-EC1A" Desc="DL-EC1A" PortABoxInfo="#x00ffffff">
+						<SyncMan>001080002600010001000000000000008000001026010000</SyncMan>
+						<SyncMan>001280002200010002000000000000008000001222010000</SyncMan>
+						<SyncMan>001c14002400010003000000000000000000001c24010000</SyncMan>
+						<SyncMan>001848002000010004000000000000000000001820010000</SyncMan>
+						<Fmmu>0000000000000000001c00020100000001000000020000000200000000000000</Fmmu>
+						<Fmmu>0000000000000000001800010100000002000000020000000300000000000000</Fmmu>
+						<DcMode>4672656552756e0000000000000000004672656552756e00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</DcMode>
+						<DcMode>444300000000000000000000000000004443000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000030100000000000000000000000000000000000000000000000000000000000000</DcMode>
+						<Pdo Name="Status of System" Index="#x1a00" Flags="#x0011" SyncMan="3">
+							<Entry Name="Error Status" Index="#x6000" Sub="#x01">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Warning Status" Index="#x6000" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Current Value Property" Index="#x6000" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>USINT</Type>
+							</Entry>
+							<Entry Name="Error Code" Index="#x6000" Sub="#x0a">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="Reserved" Index="#x1a01" Flags="#x0010">
+							<Entry Name="Reserved" Index="#x9800" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Reserved" Index="#x9800" Sub="#x04">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="Input Response 1" Index="#x1a10" Flags="#x0010" SyncMan="3">
+							<Entry Name="Response 1" Index="#x6010" Sub="#x01">
+								<Type>UDINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="Input Response 2" Index="#x1a11" Flags="#x0010" SyncMan="3">
+							<Entry Name="Response 2" Index="#x6010" Sub="#x02">
+								<Type>UDINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="Input Response 3" Index="#x1a12" Flags="#x0010" SyncMan="3">
+							<Entry Name="Response 3" Index="#x6010" Sub="#x03">
+								<Type>UDINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="Input Response 4" Index="#x1a13" Flags="#x0010" SyncMan="3">
+							<Entry Name="Response 4" Index="#x6010" Sub="#x04">
+								<Type>UDINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="Input Response 5" Index="#x1a14" Flags="#x0010" SyncMan="3">
+							<Entry Name="Response 5" Index="#x6010" Sub="#x05">
+								<Type>UDINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID01 Current Value" Index="#x1a20" Flags="#x0010" SyncMan="3">
+							<Entry Name="ID01 Current Value (P.V.)" Index="#x6100" Sub="#x01">
+								<Type>DINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID02 Current Value" Index="#x1a21" Flags="#x0010" SyncMan="3">
+							<Entry Name="ID02 Current Value (P.V.)" Index="#x6110" Sub="#x01">
+								<Type>DINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID03 Current Value" Index="#x1a22" Flags="#x0010" SyncMan="3">
+							<Entry Name="ID03 Current Value (P.V.)" Index="#x6120" Sub="#x01">
+								<Type>DINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID04 Current Value" Index="#x1a23" Flags="#x0010" SyncMan="3">
+							<Entry Name="ID04 Current Value (P.V.)" Index="#x6130" Sub="#x01">
+								<Type>DINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID05 Current Value" Index="#x1a24" Flags="#x0010" SyncMan="3">
+							<Entry Name="ID05 Current Value (P.V.)" Index="#x6140" Sub="#x01">
+								<Type>DINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID06 Current Value" Index="#x1a25" Flags="#x0010" SyncMan="3">
+							<Entry Name="ID06 Current Value (P.V.)" Index="#x6150" Sub="#x01">
+								<Type>DINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID07 Current Value" Index="#x1a26" Flags="#x0010" SyncMan="3">
+							<Entry Name="ID07 Current Value (P.V.)" Index="#x6160" Sub="#x01">
+								<Type>DINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID08 Current Value" Index="#x1a27" Flags="#x0010" SyncMan="3">
+							<Entry Name="ID08 Current Value (P.V.)" Index="#x6170" Sub="#x01">
+								<Type>DINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID09 Current Value" Index="#x1a28" Flags="#x0010">
+							<Entry Name="ID09 Current Value (P.V.)" Index="#x6180" Sub="#x01">
+								<Type>DINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID10 Current Value" Index="#x1a29" Flags="#x0010">
+							<Entry Name="ID10 Current Value (P.V.)" Index="#x6190" Sub="#x01">
+								<Type>DINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID11 Current Value" Index="#x1a2a" Flags="#x0010">
+							<Entry Name="ID11 Current Value (P.V.)" Index="#x61a0" Sub="#x01">
+								<Type>DINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID12 Current Value" Index="#x1a2b" Flags="#x0010">
+							<Entry Name="ID12 Current Value (P.V.)" Index="#x61b0" Sub="#x01">
+								<Type>DINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID13 Current Value" Index="#x1a2c" Flags="#x0010">
+							<Entry Name="ID13 Current Value (P.V.)" Index="#x61c0" Sub="#x01">
+								<Type>DINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID14 Current Value" Index="#x1a2d" Flags="#x0010">
+							<Entry Name="ID14 Current Value (P.V.)" Index="#x61d0" Sub="#x01">
+								<Type>DINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID15 Current Value" Index="#x1a2e" Flags="#x0010">
+							<Entry Name="ID15 Current Value (P.V.)" Index="#x61e0" Sub="#x01">
+								<Type>DINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID01 Status" Index="#x1a30" Flags="#x0010" SyncMan="3">
+							<Entry Name="ID01 Output 1" Index="#x6100" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID01 Output 2" Index="#x6100" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID01 Output 3" Index="#x6100" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID01 Output 4" Index="#x6100" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID01 Output 5" Index="#x6100" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID01 Current Value Invalid" Index="#x6100" Sub="#x0b">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID01 Current Value Under Range" Index="#x6100" Sub="#x0c">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID01 Current Value Over Range" Index="#x6100" Sub="#x0d">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID01 Warning Status" Index="#x6100" Sub="#x10">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID01 Error Status" Index="#x6100" Sub="#x11">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID02 Status" Index="#x1a31" Flags="#x0010" SyncMan="3">
+							<Entry Name="ID02 Output 1" Index="#x6110" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID02 Output 2" Index="#x6110" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID02 Output 3" Index="#x6110" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID02 Output 4" Index="#x6110" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID02 Output 5" Index="#x6110" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID02 Current Value Invalid" Index="#x6110" Sub="#x0b">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID02 Current Value Under Range" Index="#x6110" Sub="#x0c">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID02 Current Value Over Range" Index="#x6110" Sub="#x0d">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID02 Warning Status" Index="#x6110" Sub="#x10">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID02 Error Status" Index="#x6110" Sub="#x11">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID03 Status" Index="#x1a32" Flags="#x0010" SyncMan="3">
+							<Entry Name="ID03 Output 1" Index="#x6120" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID03 Output 2" Index="#x6120" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID03 Output 3" Index="#x6120" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID03 Output 4" Index="#x6120" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID03 Output 5" Index="#x6120" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID03 Current Value Invalid" Index="#x6120" Sub="#x0b">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID03 Current Value Under Range" Index="#x6120" Sub="#x0c">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID03 Current Value Over Range" Index="#x6120" Sub="#x0d">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID03 Warning Status" Index="#x6120" Sub="#x10">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID03 Error Status" Index="#x6120" Sub="#x11">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID04 Status" Index="#x1a33" Flags="#x0010" SyncMan="3">
+							<Entry Name="ID04 Output 1" Index="#x6130" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID04 Output 2" Index="#x6130" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID04 Output 3" Index="#x6130" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID04 Output 4" Index="#x6130" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID04 Output 5" Index="#x6130" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID04 Current Value Invalid" Index="#x6130" Sub="#x0b">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID04 Current Value Under Range" Index="#x6130" Sub="#x0c">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID04 Current Value Over Range" Index="#x6130" Sub="#x0d">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID04 Warning Status" Index="#x6130" Sub="#x10">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID04 Error Status" Index="#x6130" Sub="#x11">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID05 Status" Index="#x1a34" Flags="#x0010" SyncMan="3">
+							<Entry Name="ID05 Output 1" Index="#x6140" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID05 Output 2" Index="#x6140" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID05 Output 3" Index="#x6140" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID05 Output 4" Index="#x6140" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID05 Output 5" Index="#x6140" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID05 Current Value Invalid" Index="#x6140" Sub="#x0b">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID05 Current Value Under Range" Index="#x6140" Sub="#x0c">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID05 Current Value Over Range" Index="#x6140" Sub="#x0d">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID05 Warning Status" Index="#x6140" Sub="#x10">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID05 Error Status" Index="#x6140" Sub="#x11">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID06 Status" Index="#x1a35" Flags="#x0010" SyncMan="3">
+							<Entry Name="ID06 Output 1" Index="#x6150" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID06 Output 2" Index="#x6150" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID06 Output 3" Index="#x6150" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID06 Output 4" Index="#x6150" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID06 Output 5" Index="#x6150" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID06 Current Value Invalid" Index="#x6150" Sub="#x0b">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID06 Current Value Under Range" Index="#x6150" Sub="#x0c">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID06 Current Value Over Range" Index="#x6150" Sub="#x0d">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID06 Warning Status" Index="#x6150" Sub="#x10">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID06 Error Status" Index="#x6150" Sub="#x11">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID07 Status" Index="#x1a36" Flags="#x0010" SyncMan="3">
+							<Entry Name="ID07 Output 1" Index="#x6160" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID07 Output 2" Index="#x6160" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID07 Output 3" Index="#x6160" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID07 Output 4" Index="#x6160" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID07 Output 5" Index="#x6160" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID07 Current Value Invalid" Index="#x6160" Sub="#x0b">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID07 Current Value Under Range" Index="#x6160" Sub="#x0c">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID07 Current Value Over Range" Index="#x6160" Sub="#x0d">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID07 Warning Status" Index="#x6160" Sub="#x10">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID07 Error Status" Index="#x6160" Sub="#x11">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID08 Status" Index="#x1a37" Flags="#x0010" SyncMan="3">
+							<Entry Name="ID08 Output 1" Index="#x6170" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID08 Output 2" Index="#x6170" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID08 Output 3" Index="#x6170" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID08 Output 4" Index="#x6170" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID08 Output 5" Index="#x6170" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID08 Current Value Invalid" Index="#x6170" Sub="#x0b">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID08 Current Value Under Range" Index="#x6170" Sub="#x0c">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID08 Current Value Over Range" Index="#x6170" Sub="#x0d">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID08 Warning Status" Index="#x6170" Sub="#x10">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID08 Error Status" Index="#x6170" Sub="#x11">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID09 Status" Index="#x1a38" Flags="#x0010">
+							<Entry Name="ID09 Output 1" Index="#x6180" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID09 Output 2" Index="#x6180" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID09 Output 3" Index="#x6180" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID09 Output 4" Index="#x6180" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID09 Output 5" Index="#x6180" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID09 Current Value Invalid" Index="#x6180" Sub="#x0b">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID09 Current Value Under Range" Index="#x6180" Sub="#x0c">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID09 Current Value Over Range" Index="#x6180" Sub="#x0d">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID09 Warning Status" Index="#x6180" Sub="#x10">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID09 Error Status" Index="#x6180" Sub="#x11">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID10 Status" Index="#x1a39" Flags="#x0010">
+							<Entry Name="ID10 Output 1" Index="#x6190" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID10 Output 2" Index="#x6190" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID10 Output 3" Index="#x6190" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID10 Output 4" Index="#x6190" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID10 Output 5" Index="#x6190" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID10 Current Value Invalid" Index="#x6190" Sub="#x0b">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID10 Current Value Under Range" Index="#x6190" Sub="#x0c">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID10 Current Value Over Range" Index="#x6190" Sub="#x0d">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID10 Warning Status" Index="#x6190" Sub="#x10">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID10 Error Status" Index="#x6190" Sub="#x11">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID11 Status" Index="#x1a3a" Flags="#x0010">
+							<Entry Name="ID11 Output 1" Index="#x61a0" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID11 Output 2" Index="#x61a0" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID11 Output 3" Index="#x61a0" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID11 Output 4" Index="#x61a0" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID11 Output 5" Index="#x61a0" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID11 Current Value Invalid" Index="#x61a0" Sub="#x0b">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID11 Current Value Under Range" Index="#x61a0" Sub="#x0c">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID11 Current Value Over Range" Index="#x61a0" Sub="#x0d">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID11 Warning Status" Index="#x61a0" Sub="#x10">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID11 Error Status" Index="#x61a0" Sub="#x11">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID12 Status" Index="#x1a3b" Flags="#x0010">
+							<Entry Name="ID12 Output 1" Index="#x61b0" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID12 Output 2" Index="#x61b0" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID12 Output 3" Index="#x61b0" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID12 Output 4" Index="#x61b0" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID12 Output 5" Index="#x61b0" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID12 Current Value Invalid" Index="#x61b0" Sub="#x0b">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID12 Current Value Under Range" Index="#x61b0" Sub="#x0c">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID12 Current Value Over Range" Index="#x61b0" Sub="#x0d">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID12 Warning Status" Index="#x61b0" Sub="#x10">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID12 Error Status" Index="#x61b0" Sub="#x11">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID13 Status" Index="#x1a3c" Flags="#x0010">
+							<Entry Name="ID13 Output 1" Index="#x61c0" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID13 Output 2" Index="#x61c0" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID13 Output 3" Index="#x61c0" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID13 Output 4" Index="#x61c0" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID13 Output 5" Index="#x61c0" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID13 Current Value Invalid" Index="#x61c0" Sub="#x0b">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID13 Current Value Under Range" Index="#x61c0" Sub="#x0c">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID13 Current Value Over Range" Index="#x61c0" Sub="#x0d">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID13 Warning Status" Index="#x61c0" Sub="#x10">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID13 Error Status" Index="#x61c0" Sub="#x11">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID14 Status" Index="#x1a3d" Flags="#x0010">
+							<Entry Name="ID14 Output 1" Index="#x61d0" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID14 Output 2" Index="#x61d0" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID14 Output 3" Index="#x61d0" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID14 Output 4" Index="#x61d0" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID14 Output 5" Index="#x61d0" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID14 Current Value Invalid" Index="#x61d0" Sub="#x0b">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID14 Current Value Under Range" Index="#x61d0" Sub="#x0c">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID14 Current Value Over Range" Index="#x61d0" Sub="#x0d">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID14 Warning Status" Index="#x61d0" Sub="#x10">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID14 Error Status" Index="#x61d0" Sub="#x11">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ID15 Status" Index="#x1a3e" Flags="#x0010">
+							<Entry Name="ID15 Output 1" Index="#x61e0" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID15 Output 2" Index="#x61e0" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID15 Output 3" Index="#x61e0" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID15 Output 4" Index="#x61e0" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID15 Output 5" Index="#x61e0" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID15 Current Value Invalid" Index="#x61e0" Sub="#x0b">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID15 Current Value Under Range" Index="#x61e0" Sub="#x0c">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID15 Current Value Over Range" Index="#x61e0" Sub="#x0d">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Reserved">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID15 Warning Status" Index="#x61e0" Sub="#x10">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="ID15 Error Status" Index="#x61e0" Sub="#x11">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="Input Request 1" Index="#x1600" InOut="1" Flags="#x0010" SyncMan="2">
+							<Entry Name="Request 1" Index="#x7000" Sub="#x01">
+								<Type>UDINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="Input Request 2" Index="#x1601" InOut="1" Flags="#x0010" SyncMan="2">
+							<Entry Name="Request 2" Index="#x7000" Sub="#x02">
+								<Type>UDINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="Input Request 3" Index="#x1602" InOut="1" Flags="#x0010" SyncMan="2">
+							<Entry Name="Request 3" Index="#x7000" Sub="#x03">
+								<Type>UDINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="Input Request 4" Index="#x1603" InOut="1" Flags="#x0010" SyncMan="2">
+							<Entry Name="Request 4" Index="#x7000" Sub="#x04">
+								<Type>UDINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="Input Request 5" Index="#x1604" InOut="1" Flags="#x0010" SyncMan="2">
+							<Entry Name="Request 5" Index="#x7000" Sub="#x05">
+								<Type>UDINT</Type>
+							</Entry>
+						</Pdo>
+					</EtherCAT>
+				</Box>
+				<EtherCAT/>
+			</Device>
 		</Io>
 	</Project>
 	<Mappings>
-		<MappingInfo Identifier="{00000000-2003-0850-0020-500830000403}" Id="#x02030010"/>
-		<MappingInfo Identifier="{00000000-2003-0850-0020-500850000403}" Id="#x02030040"/>
+		<MappingInfo Identifier="{00000000-2003-0850-0020-5008A1000403}" Id="#x02030050"/>
+		<MappingInfo Identifier="{00000000-2003-0850-0020-5008B1000403}" Id="#x02030020"/>
+		<MappingInfo Identifier="{00000000-0030-0304-1000-040330000403}" Id="#x02030010"/>
 		<MappingInfo Identifier="{00000000-0040-0304-1000-040342000403}" Id="#x02030030"/>
+		<MappingInfo Identifier="{00000000-0050-0304-1000-040350000403}" Id="#x02030040"/>
 		<MappingInfo Identifier="{00000000-0060-0304-1000-040362000403}" Id="#x02030060"/>
-		<MappingInfo Identifier="{00000000-00A0-0304-1000-0403A1000403}" Id="#x02030050"/>
-		<MappingInfo Identifier="{00000000-00B0-0304-1000-0403B1000403}" Id="#x02030020"/>
-		<MappingInfo Identifier="{08502003-0010-0500-0020-500810000403}" Id="#x02030070" Watchdog="10000000040000000400000004000000"/>
+		<MappingInfo Identifier="{05000010-2003-0850-1000-040300205008}" Id="#x02030070" Watchdog="04000000080000000400000004000000"/>
 		<OwnerA Name="TINC^NC-Task 1 SAF^Axes^fr0">
 			<OwnerB Name="TIID^pm side^fr0_servermotor">
 				<Link VarA="Drive^Inputs^In^nDataIn1" VarB="Inputs^Following error actual value"/>
@@ -52320,38 +53449,54 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 				<Link VarA="PlcTask Inputs^G_IO.arDI[59]^Ch[7]" VarB="Module 5 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit7"/>
 				<Link VarA="PlcTask Inputs^G_IO.arDI[59]^Ch[8]" VarB="Module 5 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit0"/>
 				<Link VarA="PlcTask Inputs^G_IO.arDI[59]^Ch[9]" VarB="Module 5 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit1"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[0]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit0"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[10]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit2"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[11]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit3"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[12]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit4"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[13]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit5"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[14]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit6"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[15]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit7"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[1]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit1"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[2]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit2"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[3]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit3"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[4]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit4"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[5]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit5"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[6]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit6"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[7]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit7"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[8]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit0"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[9]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[0]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit0"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[10]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit2"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[11]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit3"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[12]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit4"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[13]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit5"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[14]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit6"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[15]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit7"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[1]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit1"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[2]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit2"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[3]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit3"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[4]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit4"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[5]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit5"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[6]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit6"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[7]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit7"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[8]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit0"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[9]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[77]^Ch[0]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit0"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[77]^Ch[10]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit2"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[77]^Ch[11]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit3"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[77]^Ch[12]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit4"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[77]^Ch[13]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit5"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[77]^Ch[14]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit6"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[77]^Ch[15]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit7"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[77]^Ch[1]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit1"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[77]^Ch[2]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit2"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[77]^Ch[3]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit3"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[77]^Ch[4]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit4"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[77]^Ch[5]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit5"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[77]^Ch[6]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit6"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[77]^Ch[7]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit7"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[77]^Ch[8]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit0"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[77]^Ch[9]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit1"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[0]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit0"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[10]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit2"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[11]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit3"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[12]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit4"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[13]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit5"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[14]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit6"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[15]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit7"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[1]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit1"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[2]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit2"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[3]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit3"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[4]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit4"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[5]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit5"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[6]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit6"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[7]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit7"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[8]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit0"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[54]^Ch[9]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[0]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit0"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[10]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit2"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[11]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit3"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[12]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit4"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[13]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit5"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[14]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit6"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[15]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit7"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[1]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit1"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[2]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit2"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[3]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit3"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[4]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit4"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[5]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit5"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[6]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit6"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[7]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit7"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[8]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit0"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[55]^Ch[9]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm2_3_innerConv">
 				<Link VarA="PlcTask Inputs^GVL.pm[2].inConv.belt[0].fbconverter.running_freq" VarB="Axis#1 Iutputs^Axis1 Running frequency"/>
@@ -52478,38 +53623,54 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 				<Link VarA="PlcTask Inputs^G_IO.arDI[64]^Ch[7]" VarB="Module 5 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit7"/>
 				<Link VarA="PlcTask Inputs^G_IO.arDI[64]^Ch[8]" VarB="Module 5 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit0"/>
 				<Link VarA="PlcTask Inputs^G_IO.arDI[64]^Ch[9]" VarB="Module 5 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit1"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[0]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit0"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[10]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit2"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[11]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit3"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[12]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit4"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[13]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit5"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[14]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit6"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[15]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit7"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[1]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit1"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[2]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit2"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[3]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit3"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[4]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit4"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[5]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit5"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[6]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit6"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[7]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit7"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[8]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit0"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[9]" VarB="Module 6 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[0]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit0"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[10]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit2"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[11]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit3"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[12]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit4"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[13]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit5"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[14]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit6"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[15]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit7"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[1]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit1"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[2]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit2"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[3]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit3"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[4]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit4"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[5]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit5"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[6]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit6"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[7]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit7"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[8]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit0"/>
-				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[9]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[78]^Ch[0]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit0"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[78]^Ch[10]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit2"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[78]^Ch[11]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit3"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[78]^Ch[12]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit4"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[78]^Ch[13]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit5"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[78]^Ch[14]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit6"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[78]^Ch[15]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit7"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[78]^Ch[1]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit1"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[78]^Ch[2]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit2"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[78]^Ch[3]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit3"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[78]^Ch[4]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit4"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[78]^Ch[5]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit5"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[78]^Ch[6]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit6"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[78]^Ch[7]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH1-bit7"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[78]^Ch[8]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit0"/>
+				<Link VarA="PlcTask Inputs^G_IO.arDI[78]^Ch[9]" VarB="Module 6 (GL20-1600END)^1600END input-bit maping^Digital input CH2-bit1"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[0]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit0"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[10]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit2"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[11]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit3"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[12]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit4"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[13]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit5"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[14]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit6"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[15]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit7"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[1]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit1"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[2]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit2"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[3]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit3"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[4]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit4"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[5]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit5"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[6]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit6"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[7]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit7"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[8]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit0"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[58]^Ch[9]" VarB="Module 7 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[0]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit0"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[10]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit2"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[11]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit3"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[12]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit4"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[13]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit5"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[14]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit6"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[15]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit7"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[1]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit1"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[2]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit2"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[3]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit3"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[4]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit4"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[5]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit5"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[6]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit6"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[7]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH1-bit7"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[8]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit0"/>
+				<Link VarA="PlcTask Outputs^G_IO.arDO[59]^Ch[9]" VarB="Module 8 (GL20-0016ETP)^0016ETP Output-bit maping^Digital output CH2-bit1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^pm side^pm4_5_innerConv">
 				<Link VarA="PlcTask Inputs^GVL.pm[4].inConv.belt[0].fbconverter.running_freq" VarB="Axis#1 Iutputs^Axis1 Running frequency"/>

@@ -29,10 +29,12 @@ END_VAR
 VAR
 	iCase	: INT;
 	i : INT;
-	CoeWrt		:	FB_EcCoESdoWrite;
+	coeWrt		:	FB_EcCoESdoWrite;
+	coeRead		:  	FB_EcCoESdoRead;
 	nSubIndex	: BYTE;
 	nIndex		: WORD;
 	iSdoWrite	: INT; 
+	iSdoRead	: INT;
 	offset: WORD;
 	rtrig_bSetPara	: R_TRIG;
 	rtrig_bReset	: R_TRIG;
@@ -41,13 +43,25 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[xDone	:= FALSE; 
-CoeWrt(
+coeWrt(
 	sNetId:= stConverter.sNetID, 
 	nSlaveAddr:=stConverter.nSlaveAddr, 
 	nSubIndex:= nSubIndex, 
 	nIndex:= nIndex, 
 	pSrcBuf:= ADR(iSdoWrite), 
 	cbBufLen:= SIZEOF(iSdoWrite), 
+	bExecute:= , 
+	tTimeout:= , 
+	bBusy=> , 
+	bError=> , 
+	nErrId=> );
+coeRead(
+	sNetId:= stConverter.sNetID, 
+	nSlaveAddr:=stConverter.nSlaveAddr, 
+	nSubIndex:= nSubIndex, 
+	nIndex:= nIndex, 
+	pDstBuf:= ADR(iSdoRead), 
+	cbBufLen:= SIZEOF(iSdoRead), 
 	bExecute:= , 
 	tTimeout:= , 
 	bBusy=> , 
@@ -138,7 +152,7 @@ rtrig_bSetPara(CLK:=bSetParaEx);
 rtrig_bReset(CLK:=reset);
 CASE iCase OF
 	0:
-		CoeWrt.bExecute	:= FALSE;
+		coeWrt.bExecute	:= FALSE;
 		ton_delay.IN	:= FALSE;
 		i:=0;
 		xDone	:= FALSE;
@@ -153,7 +167,7 @@ CASE iCase OF
 		nSubIndex	:= stConverter.nSubIndex[i];
 		iSdoWrite	:= stConverter.iSdoWrite[i];
 		i	:= i+1;
-		CoeWrt.bExecute	:= TRUE;
+		coeWrt.bExecute	:= TRUE;
 		iCase	:= 2;
 	2:
 		ton_delay.IN	:= TRUE;
@@ -162,7 +176,7 @@ CASE iCase OF
 		END_IF		
 	3:
 		ton_delay.IN	:= FALSE;
-		CoeWrt.bExecute	:= FALSE;
+		coeWrt.bExecute	:= FALSE;
 		IF i >13 THEN
 			iCase	:= 0;
 			xDone	:= TRUE;
@@ -217,6 +231,8 @@ END_FOR*)
       <LineId Id="190" Count="0" />
       <LineId Id="20" Count="10" />
       <LineId Id="9" Count="0" />
+      <LineId Id="291" Count="10" />
+      <LineId Id="290" Count="0" />
       <LineId Id="65" Count="20" />
       <LineId Id="179" Count="0" />
       <LineId Id="178" Count="0" />

@@ -389,6 +389,10 @@
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_Module</Namespace>
     </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_PackML">
+      <DefaultResolution>Tc3_PackML, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_PackML</Namespace>
+    </PlaceholderReference>
     <PlaceholderReference Include="VisuDialogs">
       <DefaultResolution>VisuDialogs, * (System)</DefaultResolution>
       <Namespace>VisuDialogs</Namespace>

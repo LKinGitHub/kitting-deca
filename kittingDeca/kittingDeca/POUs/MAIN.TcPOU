@@ -34,7 +34,7 @@ VAR
 	
 
 	iReset: INT;
-
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -256,7 +256,7 @@ CASE iInit OF
 		iInit	:=0;
 	7://all buffer axis run
 		FOR i:=0 TO 19 DO
-			GVL.stAxisCtrl_Buffer[i].iCmd	:= 10;
+			GVL.stAxisCtrl_Buffer[i].iCmd	:= 20;
 		END_FOR	
 		iInit	:=0;
 	8://all lift axis stop
@@ -264,6 +264,10 @@ CASE iInit OF
 			GVL.stAxisCtrl_Lift[i].iCmd	:= 100;
 			GVL.stAxisCtrl_Buffer[i].iCmd	:= 100;
 		END_FOR	
+		FOR i:=0 TO 57 DO
+			GVL.ref_fbconverterMotor[i]^.cmd	:= 0;
+			GVL.ref_fbconverterMotor[i]^.freq	:= 0;
+		END_FOR
 		iInit	:=0;		
 	9://check error
 		IF M_checkError() THEN
@@ -281,6 +285,10 @@ END_CASE
 GVL.fb_bagOpener(ams_net_id:=GVL.netId_bagmachie[0]);
 GVL.fb_bagCloser(ams_net_id:=GVL.netId_bagmachie[1]);
 GVL.fb_bagCompactor(ams_net_id:=GVL.netId_bagmachie[2]);
+IF test_bool THEN
+ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG,msgFmtStr:='msg:log',strArg:='MSG ARG');
+test_bool	:= FALSE;
+END_IF
 
 ]]></ST>
     </Implementation>
@@ -1068,7 +1076,8 @@ GVL.safetyOut[0].0	:= G_IO.arDI[95].Ch[2];//btn_rst]]></ST>
       <LineId Id="1224" Count="0" />
       <LineId Id="1226" Count="2" />
       <LineId Id="1225" Count="0" />
-      <LineId Id="1229" Count="3" />
+      <LineId Id="1229" Count="0" />
+      <LineId Id="1429" Count="2" />
       <LineId Id="967" Count="0" />
       <LineId Id="1233" Count="0" />
       <LineId Id="1278" Count="2" />
@@ -1086,6 +1095,8 @@ GVL.safetyOut[0].0	:= G_IO.arDI[95].Ch[2];//btn_rst]]></ST>
       <LineId Id="1256" Count="0" />
       <LineId Id="1268" Count="2" />
       <LineId Id="1264" Count="0" />
+      <LineId Id="1434" Count="2" />
+      <LineId Id="1433" Count="0" />
       <LineId Id="1271" Count="0" />
       <LineId Id="1339" Count="0" />
       <LineId Id="1409" Count="2" />
@@ -1098,7 +1109,11 @@ GVL.safetyOut[0].0	:= G_IO.arDI[95].Ch[2];//btn_rst]]></ST>
       <LineId Id="928" Count="0" />
       <LineId Id="1307" Count="1" />
       <LineId Id="1346" Count="1" />
+      <LineId Id="1425" Count="0" />
       <LineId Id="1336" Count="0" />
+      <LineId Id="1427" Count="0" />
+      <LineId Id="1426" Count="0" />
+      <LineId Id="1428" Count="0" />
       <LineId Id="900" Count="0" />
     </LineIds>
     <LineIds Name="MAIN.M_ads_bagmachines">
