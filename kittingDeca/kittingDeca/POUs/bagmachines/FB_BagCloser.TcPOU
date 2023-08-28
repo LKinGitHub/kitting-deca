@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="FB_BagCloser" Id="{b1a4b7a4-8278-4d10-b586-c9ec08090bc9}" SpecialFunc="None">
+  <POU Name="FB_BagCloser" Id="{678bc602-a9e5-4e7d-94ba-1a138b16ef52}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_BagCloser
 VAR_INPUT
   ams_net_id: STRING;
@@ -8,24 +8,26 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
+	// Variable to be read from the app in python.
+	status: BagMachineStatus;
+	//bag_detection_status: BagDetectionStatus;
+	bag_holder_status: BagHolderStatus;
+	bag_status: BagStatus;
+	current_bag_cmd: BagCmd;
+	current_bag_height_status: BagHeightStatus;
+
 	adsread				: ADSREAD;
 	adswrite			: ADSWRITE;
-	status				: BagMachineStatus;
 	iMethodTest			: BagMachineStatus;
 	bagCloseStatus 		: BagMachineStatus;
   	error_code			: UINT;
 
 	adsArr				: AdsArr;
-	iState				: INT;
 	iAds				: INT;
 	ton_ms				: TON;
 
 	iMachineStatus		: INT;//inArr[0]
 	iBagStatus			: INT;//inArr[1]
-	
-	iBagCmd				: INT;//outArr[1]
-	iBagDetectCmd		: INT;//outArr[2] RESULT FROM DECA TO BAG_CLOSER
-	
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[	adsread(
@@ -77,43 +79,70 @@ CASE iAds OF
 END_CASE
 //inputArr:
 //		[0]:machine status;
-//		[1]:bag status(3:UNLOAD_READY,4:BAG_TAKEN,5:BAG_REMOVED);
+//		[1]:bag status;
+//		[2]:fixture status
 //outputArr:
 //		[0]:line status;
-//		[1]:bag cmd(1:take_bag,2:bag_done_unclamping;);
+//		[1]:bag cmd(0: do_nothing, 1:take_bag,2:bag_done_unclamping;);
 //		[2]:height detect cmd(0:idle,1:ok,2:ng)
 iMachineStatus	:= WORD_TO_INT(adsArr.inArr[0]);
 iBagStatus := WORD_TO_INT(adsArr.inArr[1]);
 
-adsArr.outArr[1]	:= INT_TO_WORD(iBagCmd);
-adsArr.outArr[2]	:= INT_TO_WORD(iBagDetectCmd);
+adsArr.outArr[1]	:= INT_TO_WORD(current_bag_cmd);
+adsArr.outArr[2]	:= INT_TO_WORD(current_bag_height_status);
 
-CASE iMachineStatus OF
-	0:
-		status	:= BagMachineStatus.OFF;
-	1:
-		status	:= BagMachineStatus.READY;
-	2:
-		status	:= BagMachineStatus.BUSY;
-	3:
-		status	:= BagMachineStatus.ERROR;
+CASE adsArr.inArr[0] OF
+	0:status	:= BagMachineStatus.OFF;
+	1:status	:= BagMachineStatus.BUSY;
+	2:status	:= BagMachineStatus.READY;
+	3:status	:= BagMachineStatus.READY;
+	4:status	:= BagMachineStatus.ERROR;
 END_CASE
-CASE iMethodTest OF
-	BagMachineStatus.OFF:
-		iState	:= BagMachineStatus.OFF;
-	BagMachineStatus.BAG_INSERTED:
-		IF GVL.fb_bagCloser.take_bag() THEN
-			iMethodTest	:=0;
+CASE adsArr.inArr[1] OF
+	0:bag_status	:= BagStatus.UNKNOWN;
+	1:bag_status	:= BagStatus.READY;
+	2:bag_status	:= BagStatus.INSERTED;
+	3:bag_status	:= BagStatus.REMOVED;
+END_CASE
+CASE adsArr.inArr[2] OF
+	0:bag_holder_status	:= BagHolderStatus.UNKNOWN;
+	1:bag_holder_status	:= BagHolderStatus.DOWN;
+	2:bag_holder_status	:= BagHolderStatus.UP;
+END_CASE
+
+CASE current_bag_cmd OF
+	BagCmd.DO_NOTHING:
+		;
+	BagCmd.INSERT_BAG_HOLDER:
+		IF fixture_ready() THEN
+			current_bag_cmd	:=0;
 		END_IF		
-	BagMachineStatus.BAG_REMOVED:
-		IF GVL.fb_bagCloser.fixture_ready() THEN
-			iMethodTest	:=0;
-		END_IF		
+	BagCmd.REMOVE_BAG_HOLDER:
+		IF bag_done_unclamping() THEN
+			current_bag_cmd	:=0;
+		END_IF	
 END_CASE
 
 
 ]]></ST>
     </Implementation>
+    <Method Name="bag_done_unclamping" Id="{e047a4f5-01c2-4724-98d7-fd4c5489bb8e}">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+METHOD PUBLIC bag_done_unclamping : BOOL
+VAR_INPUT
+
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bag_done_unclamping	:= FALSE;
+current_bag_cmd	:= BagCmd.REMOVE_BAG_HOLDER;
+IF bag_removed OR unload_ready THEN //avoid not catch signal of removed
+	bag_done_unclamping := TRUE;
+	current_bag_cmd	:= BagCmd.DO_NOTHING;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
     <Property Name="bag_removed" Id="{42fdd4c2-b1b0-40fd-b9d0-6bc8b59e8947}">
       <Declaration><![CDATA[PROPERTY bag_removed : BOOL]]></Declaration>
       <Get Name="Get" Id="{d52869db-1d62-4dd3-96ce-888cb2f81a29}">
@@ -121,7 +150,7 @@ END_CASE
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[bag_removed	:= (WORD_TO_INT(adsArr.inArr[1])	= BagMachineStatus.BAG_REMOVED);]]></ST>
+          <ST><![CDATA[bag_removed	:= (WORD_TO_INT(adsArr.inArr[1])	= BagStatus.REMOVED);]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -134,10 +163,10 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[fixture_ready	:= FALSE;
-iBagCmd	:= BagCmd.REMOVE_ENABLE;
+current_bag_cmd	:= BagCmd.INSERT_BAG_HOLDER;
 IF bag_removed OR unload_ready THEN//avoid not catch signal of removed
-	fixture_ready	:= TRUE;
-	iBagCmd	:= BagCmd.OFF;
+	fixture_ready := TRUE;
+	current_bag_cmd	:= BagCmd.DO_NOTHING;
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -148,8 +177,8 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[M_Init	:= FALSE;
-iState	:= BagMachineStatus.OFF;
-iBagCmd	:= 	BagCmd.OFF;
+current_bag_cmd	:= BagCmd.DO_NOTHING;
+current_bag_height_status := BagHeightStatus.UNKNOWN;
 M_Init	:= TRUE;
 ]]></ST>
       </Implementation>
@@ -161,37 +190,11 @@ M_Init	:= TRUE;
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[machine_inserted	:= (WORD_TO_INT(adsArr.inArr[1])	= BagMachineStatus.BAG_INSERTED);
+          <ST><![CDATA[machine_inserted	:= (WORD_TO_INT(adsArr.inArr[1])	= BagStatus.INSERTED);
 ]]></ST>
         </Implementation>
       </Get>
     </Property>
-    <Method Name="take_bag" Id="{c71e51df-8fa3-4035-a0b1-6c7eb0a5f252}">
-      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
-METHOD PUBLIC take_bag : BOOL
-VAR_INPUT
-
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[take_bag	:= FALSE;
-CASE iState OF
-	BagMachineStatus.OFF:
-		iState	:= BagMachineStatus.BAG_READY;
-	BagMachineStatus.BAG_READY:
-		IF unload_ready THEN			
-			iState	:= BagMachineStatus.BAG_INSERTED;
-		END_IF		
-	BagMachineStatus.BAG_INSERTED:
-		iBagCmd	:= 	BagCmd.INSERT_ENABLE;
-		IF machine_inserted THEN
-			take_bag	:= TRUE;
-			iState	:= BagMachineStatus.OFF;
-			iBagCmd	:= 	BagCmd.OFF;
-		END_IF	
-END_CASE]]></ST>
-      </Implementation>
-    </Method>
     <Property Name="unload_ready" Id="{c36c0a27-bfee-4b89-9e12-141da2b9c8c6}">
       <Declaration><![CDATA[PROPERTY unload_ready : BOOL]]></Declaration>
       <Get Name="Get" Id="{b0b68d0c-36a7-4abb-b777-e5a55260dddb}">
@@ -199,13 +202,26 @@ END_CASE]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[unload_ready	:= (WORD_TO_INT(adsArr.inArr[1])	= BagMachineStatus.BAG_READY);]]></ST>
+          <ST><![CDATA[unload_ready	:= (WORD_TO_INT(adsArr.inArr[1])	= BagStatus.READY);]]></ST>
         </Implementation>
       </Get>
     </Property>
     <LineIds Name="FB_BagCloser">
-      <LineId Id="248" Count="83" />
+      <LineId Id="248" Count="49" />
+      <LineId Id="431" Count="0" />
+      <LineId Id="298" Count="9" />
+      <LineId Id="386" Count="5" />
+      <LineId Id="317" Count="0" />
+      <LineId Id="392" Count="5" />
+      <LineId Id="403" Count="3" />
+      <LineId Id="357" Count="0" />
+      <LineId Id="419" Count="11" />
+      <LineId Id="329" Count="2" />
       <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BagCloser.bag_done_unclamping">
+      <LineId Id="76" Count="5" />
+      <LineId Id="70" Count="0" />
     </LineIds>
     <LineIds Name="FB_BagCloser.bag_removed.Get">
       <LineId Id="6" Count="0" />
@@ -217,17 +233,14 @@ END_VAR
     </LineIds>
     <LineIds Name="FB_BagCloser.M_Init">
       <LineId Id="7" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="9" Count="1" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="10" Count="0" />
       <LineId Id="6" Count="0" />
     </LineIds>
     <LineIds Name="FB_BagCloser.machine_inserted.Get">
       <LineId Id="5" Count="0" />
       <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_BagCloser.take_bag">
-      <LineId Id="56" Count="14" />
-      <LineId Id="45" Count="0" />
     </LineIds>
     <LineIds Name="FB_BagCloser.unload_ready.Get">
       <LineId Id="6" Count="0" />

@@ -51,6 +51,7 @@ Id;Default
 673;error
 924;Extend
 614;extended
+781;fixture clamp
 625;FR test
 174;FR Test
 1488;FR0
@@ -185,6 +186,7 @@ Id;Default
 637;valve_clamp
 863;valve_clamp[0]
 712;valve_clamp[1]
+739;valve_expand
 1456;valve_guide[0]
 1699;valve_guide[1]
 1384;valve_inner[0]

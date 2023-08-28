@@ -31,6 +31,8 @@ VAR_GLOBAL
 	fb_remAxisMapping	: ARRAY[0..19] OF FB_remAxisMapping;
 	stAxisCtrl_Lift	: ARRAY[0..19]OF ST_axisCtrl;
 	fbAxisCtrl_Lift	: ARRAY [0..19] OF FB_axisCtrl;
+	
+	
 
 	fb_rmIOmapping	: ARRAY[0..4] OF FB_rmIOmapping;
 	fb_pmAxisMapping	: ARRAY[0..19] OF FB_pmAxisMapping;
@@ -45,17 +47,20 @@ VAR_GLOBAL
 
 	
 	fb_lcIOmappiing : ARRAY [0..1] OF FB_lcIOmapping;
-	fb_lcAxis	: ARRAY[0..1] OF FB_MotionAxis_MC;
-	stAxis_LC	: ARRAY[0..1] OF ST_MotionAxis_MC;
+	//fb_lcAxis	: ARRAY[0..1] OF FB_MotionAxis_MC;
+	//stAxis_LC	: ARRAY[0..1] OF ST_MotionAxis_MC;
+	stAxisCtrl_LC	: ARRAY[0..1]OF ST_axisCtrl;
+	fbAxisCtrl_LC	: ARRAY [0..1] OF FB_axisCtrl;
 	
 	fb_lbIOmappiing : ARRAY [0..1] OF FB_lbIOmapping;
 	
 	
 	
 	fb_frIOmappiing : ARRAY [0..1] OF FB_frIOmapping;
-	fb_frAxis	: ARRAY[0..1] OF FB_MotionAxis_MC;
-	stAxis_FR	: ARRAY[0..1] OF ST_MotionAxis_MC;	
-	
+	//fb_frAxis	: ARRAY[0..1] OF FB_MotionAxis_MC;
+	//stAxis_FR	: ARRAY[0..1] OF ST_MotionAxis_MC;	
+	stAxisCtrl_FR	: ARRAY[0..1]OF ST_axisCtrl;
+	fbAxisCtrl_FR	: ARRAY [0..1] OF FB_axisCtrl;	
 	
 	
 	safetyin AT%I*	: ARRAY[0..49]OF BYTE;
@@ -75,6 +80,7 @@ VAR_GLOBAL
 	
 	adsReadByName	: FB_ReadAdsSymByName;
 	adsReadEvents	: FB_AdsReadEvents;
+	
 	
 END_VAR]]></Declaration>
   </GVL>

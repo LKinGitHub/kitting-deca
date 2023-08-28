@@ -6,6 +6,7 @@ STRUCT
 	belt	: ARRAY[0..2] OF Belt;
 	valve	: ARRAY[0..2] OF Valve;
 	rfid	: ARRAY[0..1] OF RFID;
+	photo_sensor	: ARRAY[0..5] OF BOOL;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

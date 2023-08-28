@@ -53,6 +53,15 @@ GVL.pm[iRm*2].outConv.valve[0].extended				:= G_IO.arDI[offsetIn+1].Ch[11];
 GVL.pm[iRm*2].outConv.valve[0].retracted			:= G_IO.arDI[offsetIn+1].Ch[12];
 GVL.pm[iRm*2].outConv.valve[1].extended				:= G_IO.arDI[offsetIn+1].Ch[13];
 GVL.pm[iRm*2].outConv.valve[1].retracted			:= G_IO.arDI[offsetIn+1].Ch[14];
+GVL.pm[iRm*2].inConv.photo_sensor[0]				:= G_IO.arDI[offsetIn+4].Ch[2];
+GVL.pm[iRm*2].inConv.photo_sensor[1]				:= G_IO.arDI[offsetIn+4].Ch[3];
+GVL.pm[iRm*2].inConv.photo_sensor[2]				:= G_IO.arDI[offsetIn+4].Ch[4];
+GVL.pm[iRm*2].inConv.photo_sensor[3]				:= G_IO.arDI[offsetIn+4].Ch[5];
+GVL.pm[iRm*2].inConv.photo_sensor[4]				:= G_IO.arDI[offsetIn+4].Ch[6];
+GVL.pm[iRm*2].inConv.photo_sensor[5]				:= G_IO.arDI[offsetIn+4].Ch[7];
+
+
+
 
 G_IO.arDO[offsetOut].Ch[0]	:= GVL.pm[iRm*2].buffer[0].power_axis;
 G_IO.arDO[offsetOut].Ch[1]	:= GVL.pm[iRm*2].buffer[0].magnet;
@@ -103,6 +112,12 @@ GVL.pm[iRm*2+1].outConv.valve[0].extended				:= G_IO.arDI[offsetIn+3].Ch[11];
 GVL.pm[iRm*2+1].outConv.valve[0].retracted			:= G_IO.arDI[offsetIn+3].Ch[12];
 GVL.pm[iRm*2+1].outConv.valve[1].extended				:= G_IO.arDI[offsetIn+3].Ch[13];
 GVL.pm[iRm*2+1].outConv.valve[1].retracted			:= G_IO.arDI[offsetIn+3].Ch[14];
+GVL.pm[iRm*2+1].inConv.photo_sensor[0]				:= G_IO.arDI[offsetIn+4].Ch[8];
+GVL.pm[iRm*2+1].inConv.photo_sensor[1]				:= G_IO.arDI[offsetIn+4].Ch[9];
+GVL.pm[iRm*2+1].inConv.photo_sensor[2]				:= G_IO.arDI[offsetIn+4].Ch[10];
+GVL.pm[iRm*2+1].inConv.photo_sensor[3]				:= G_IO.arDI[offsetIn+4].Ch[11];
+GVL.pm[iRm*2+1].inConv.photo_sensor[4]				:= G_IO.arDI[offsetIn+4].Ch[12];
+GVL.pm[iRm*2+1].inConv.photo_sensor[5]				:= G_IO.arDI[offsetIn+4].Ch[13];
 
 G_IO.arDO[offsetOut].Ch[5]	:= GVL.pm[iRm*2+1].buffer[0].power_axis;
 G_IO.arDO[offsetOut].Ch[6]	:= GVL.pm[iRm*2+1].buffer[0].magnet;
@@ -151,7 +166,11 @@ G_IO.arDO[offsetOut].Ch[11]	:= GVL.pm[iRm*2].power_outConv OR GVL.pm[iRm*2+1].po
       <LineId Id="366" Count="0" />
       <LineId Id="383" Count="0" />
       <LineId Id="248" Count="0" />
-      <LineId Id="197" Count="31" />
+      <LineId Id="197" Count="30" />
+      <LineId Id="400" Count="1" />
+      <LineId Id="405" Count="3" />
+      <LineId Id="402" Count="2" />
+      <LineId Id="228" Count="0" />
       <LineId Id="291" Count="11" />
       <LineId Id="229" Count="0" />
       <LineId Id="231" Count="1" />
@@ -160,7 +179,9 @@ G_IO.arDO[offsetOut].Ch[11]	:= GVL.pm[iRm*2].power_outConv OR GVL.pm[iRm*2+1].po
       <LineId Id="253" Count="0" />
       <LineId Id="304" Count="29" />
       <LineId Id="303" Count="0" />
+      <LineId Id="409" Count="4" />
       <LineId Id="334" Count="0" />
+      <LineId Id="414" Count="0" />
       <LineId Id="256" Count="11" />
       <LineId Id="254" Count="0" />
       <LineId Id="337" Count="1" />

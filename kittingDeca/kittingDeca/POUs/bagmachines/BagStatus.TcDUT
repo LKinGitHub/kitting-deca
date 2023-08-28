@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="BagStatus" Id="{f5944f12-37e1-49c1-b2da-dd71db3f82a3}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE BagStatus:
+(
+	UNKNOWN :=0,
+    READY := 1,
+    INSERTED := 2,
+    REMOVED := 3
+    //CAMERA_OK := 3,
+    //CAMERA_ERROR := 4
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

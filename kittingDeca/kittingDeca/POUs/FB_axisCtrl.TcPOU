@@ -46,7 +46,7 @@ CASE stAxisCtrl.iCmd OF
 		ton_delay.IN	:= FALSE;
 		IN_OUT.mcMoveAbsolute.Execute := TRUE;
 		IN_OUT.rActualPosSet	:= 0;
-		IN_OUT.rVelocitySet	:= 100;
+		IN_OUT.rVelocitySet	:= stAxisCtrl.iSpeed;
 		IF IN_OUT.mcMoveAbsolute.Done THEN
 			IN_OUT.mcMoveAbsolute.Execute := FALSE;
 			stAxisCtrl.iCmd	:= 11;
@@ -59,8 +59,8 @@ CASE stAxisCtrl.iCmd OF
 	12:
 		ton_delay.IN	:= FALSE;
 		IN_OUT.mcMoveAbsolute.Execute := TRUE;
-		IN_OUT.rActualPosSet	:= 0;
-		IN_OUT.rVelocitySet	:= 100;
+		IN_OUT.rActualPosSet	:= stAxisCtrl.rPosition;
+		IN_OUT.rVelocitySet	:= stAxisCtrl.iSpeed;
 		IF IN_OUT.mcMoveAbsolute.Done THEN
 			IN_OUT.mcMoveAbsolute.Execute := FALSE;
 			stAxisCtrl.iCmd	:= 13;
@@ -73,19 +73,26 @@ CASE stAxisCtrl.iCmd OF
 	
 		
 	20://PM buffer aging test start
-		IN_OUT.mcSetpoint.Execute	:= 0;
-		stAxisCtrl.iCmd	:= 21;
+		ton_delay.IN	:= FALSE;
+		IN_OUT.mcMoveRelative.Execute := TRUE;
+		IN_OUT.rPosition	:= stAxisCtrl.rPosition;
+		IN_OUT.rVelocity	:= stAxisCtrl.iSpeed;
+		IF IN_OUT.mcMoveRelative.Done THEN
+			IN_OUT.mcMoveRelative.Execute := FALSE;
+			stAxisCtrl.iCmd	:= 21;
+		END_IF
 	21:
-		IN_OUT.mcMoveVelocity.Execute	:= TRUE;
-		IN_OUT.rVelocity	:= 100;
-		
-	
-	
-	
+		ton_delay.IN	:= TRUE;
+		IF ton_delay.Q THEN
+			stAxisCtrl.iCmd	:= 20;
+		END_IF
+
+
 	
 	100:
 		IN_OUT.mcMoveAbsolute.Execute := FALSE;
 		IN_OUT.mcMoveVelocity.Execute	:= FALSE;
+		IN_OUT.mcMoveRelative.Execute	:= FALSE;
 		IN_OUT.mcStop.Execute	:= TRUE;
 		stAxisCtrl.iCmd	:= 0;
 		
@@ -133,13 +140,14 @@ stAxisCtrl.iStatus := stAxisCtrl.iCmd;
       <LineId Id="110" Count="0" />
       <LineId Id="116" Count="0" />
       <LineId Id="133" Count="1" />
-      <LineId Id="139" Count="0" />
-      <LineId Id="141" Count="3" />
+      <LineId Id="173" Count="12" />
       <LineId Id="140" Count="0" />
-      <LineId Id="135" Count="3" />
+      <LineId Id="137" Count="1" />
       <LineId Id="117" Count="0" />
       <LineId Id="92" Count="0" />
-      <LineId Id="158" Count="1" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="199" Count="0" />
+      <LineId Id="159" Count="0" />
       <LineId Id="119" Count="0" />
       <LineId Id="118" Count="0" />
       <LineId Id="26" Count="0" />

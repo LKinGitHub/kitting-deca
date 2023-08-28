@@ -13,7 +13,7 @@ STRUCT
 	valve_stopper : ARRAY [0..1] OF Valve;
 	valve_guide : ARRAY [0..1] OF Valve;
 END_STRUCT
-END_TYPE
+END_TYPE 
 ]]></Declaration>
   </DUT>
 </TcPlcObject>

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="FB_BagCompactor" Id="{017b6eb5-a8fd-4f32-9753-e8dab8e3fb07}" SpecialFunc="None">
+  <POU Name="FB_BagCompactor" Id="{8355ad32-ac34-4e65-996a-35b6bf3aedd4}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_BagCompactor
 VAR_INPUT
   ams_net_id: STRING;
@@ -14,7 +14,7 @@ END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Method Name="compact_bag" Id="{d356716c-e9b9-41b0-91db-30267c691488}">
+    <Method Name="compact_bag" Id="{467a6aeb-1750-4e77-8ae9-97ca0fe84a75}">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
 METHOD PUBLIC compact_bag : BOOL
 VAR_INPUT

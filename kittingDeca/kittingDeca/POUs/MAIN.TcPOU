@@ -248,14 +248,22 @@ CASE iInit OF
 			GVL.stAxisCtrl_Lift[i].iCmd	:= 1;
 			GVL.stAxisCtrl_Buffer[i].iCmd	:= 1;
 		END_FOR
+		FOR i:=0 TO 1 DO
+			GVL.stAxisCtrl_LC[i].iCmd	:= 1;
+			GVL.stAxisCtrl_FR[i].iCmd	:= 1;
+		END_FOR
 		iInit	:=0;
 	6://all lift axis run
 		FOR i:=0 TO 19 DO
+			GVL.stAxisCtrl_Lift[i].rPosition	:= 300;
+			GVL.stAxisCtrl_Lift[i].iSpeed	:= 100;
 			GVL.stAxisCtrl_Lift[i].iCmd	:= 10;
 		END_FOR
 		iInit	:=0;
 	7://all buffer axis run
 		FOR i:=0 TO 19 DO
+			GVL.stAxisCtrl_Buffer[i].rPosition	:= 250;
+			GVL.stAxisCtrl_Buffer[i].iSpeed	:= 100;
 			GVL.stAxisCtrl_Buffer[i].iCmd	:= 20;
 		END_FOR	
 		iInit	:=0;
@@ -264,6 +272,10 @@ CASE iInit OF
 			GVL.stAxisCtrl_Lift[i].iCmd	:= 100;
 			GVL.stAxisCtrl_Buffer[i].iCmd	:= 100;
 		END_FOR	
+		FOR i:=0 TO 1 DO
+			GVL.stAxisCtrl_LC[i].iCmd	:= 100;
+			GVL.stAxisCtrl_FR[i].iCmd	:= 100;
+		END_FOR		
 		FOR i:=0 TO 57 DO
 			GVL.ref_fbconverterMotor[i]^.cmd	:= 0;
 			GVL.ref_fbconverterMotor[i]^.freq	:= 0;
@@ -278,8 +290,20 @@ CASE iInit OF
 		IF M_reset() THEN
 			iInit	:=0;
 		END_IF		
-
-	
+	11://
+		FOR i:=0 TO 1 DO
+			GVL.stAxisCtrl_LC[i].rPosition	:= -800;
+			GVL.stAxisCtrl_LC[i].iSpeed	:= 600;
+			GVL.stAxisCtrl_LC[i].iCmd	:= 10;
+		END_FOR
+		iInit	:=0;	
+	12://
+		FOR i:=0 TO 1 DO
+			GVL.stAxisCtrl_FR[i].rPosition	:= -170;
+			GVL.stAxisCtrl_FR[i].iSpeed	:= 200;
+			GVL.stAxisCtrl_FR[i].iCmd	:= 10;
+		END_FOR
+		iInit	:=0;	
 END_CASE
 
 GVL.fb_bagOpener(ams_net_id:=GVL.netId_bagmachie[0]);
@@ -358,6 +382,15 @@ END_CASE
 
 *)
 	]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_agingTest" Id="{36e0329c-3d97-41f2-a822-50d06b5c64d9}">
+      <Declaration><![CDATA[METHOD M_agingTest : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
     <Method Name="M_checkError" Id="{7fd72e19-e986-48cb-880b-fcc78599fe02}">
@@ -491,11 +524,14 @@ GVL.fbAxisCtrl_Buffer[19](stAxisCtrl:=GVL.stAxisCtrl_Buffer[19],IN_OUT:=GVL.pm[9
 ////////////////////////////////////////////////////LC&LB&FR////////////////////////////////////////////////////////////////
 GVL.fb_lcIOmappiing[0](iLc:= 0,mcAxis:=GVL.lc[0].lateral.mcAxis,IN_OUT:=GVL.lc[0].lateral.st_mcAxis,nSlaveAddr:=1006,sNetID:='192.168.11.159.5.1');
 GVL.fb_lcIOmappiing[1](iLc:= 1,mcAxis:=GVL.lc[1].lateral.mcAxis,IN_OUT:=GVL.lc[1].lateral.st_mcAxis,nSlaveAddr:=1055,sNetID:='192.168.11.159.5.1');
+GVL.fbAxisCtrl_LC[0](stAxisCtrl:=GVL.stAxisCtrl_LC[0],IN_OUT:=GVL.lc[0].lateral.st_mcAxis);
+GVL.fbAxisCtrl_LC[1](stAxisCtrl:=GVL.stAxisCtrl_LC[1],IN_OUT:=GVL.lc[1].lateral.st_mcAxis);
 GVL.fb_lbIOmappiing[0](iLb:=0);
 GVL.fb_lbIOmappiing[1](iLb:=1);
 GVL.fb_frIOmappiing[0](iFR:= 0,mcAxis:=GVL.fr[0].mcAxis,IN_OUT:=GVL.fr[0].st_mcAxis,nSlaveAddr:=1016,sNetID:='192.168.11.159.5.1');
 GVL.fb_frIOmappiing[1](iFR:= 1,mcAxis:=GVL.fr[1].mcAxis,IN_OUT:=GVL.fr[1].st_mcAxis,nSlaveAddr:=1042,sNetID:='192.168.11.159.5.1');
-
+GVL.fbAxisCtrl_FR[0](stAxisCtrl:=GVL.stAxisCtrl_FR[0],IN_OUT:=GVL.fr[0].st_mcAxis);
+GVL.fbAxisCtrl_FR[1](stAxisCtrl:=GVL.stAxisCtrl_FR[1],IN_OUT:=GVL.fr[1].st_mcAxis);
 (*GVL.arrSenDetect[1] := G_IO.arDI[4].Ch[0];
 GVL.arrSenDetect[2] := G_IO.arDI[4].Ch[1];
 GVL.arrSenDetect[3] := G_IO.arDI[4].Ch[2];
@@ -1000,7 +1036,8 @@ END_CASE
     <Action Name="safetyConfig" Id="{e2ea83c0-a742-46c9-9729-41e1721b92cb}">
       <Implementation>
         <ST><![CDATA[G_IO.arDO[95].Ch[2] := GVL.safetyin[28].0;//rst lamp
-GVL.safetyOut[0].0	:= G_IO.arDI[95].Ch[2];//btn_rst]]></ST>
+GVL.safetyOut[0].0	:= G_IO.arDI[95].Ch[2];//btn_rst
+]]></ST>
       </Implementation>
     </Action>
     <LineIds Name="MAIN">
@@ -1082,19 +1119,29 @@ GVL.safetyOut[0].0	:= G_IO.arDI[95].Ch[2];//btn_rst]]></ST>
       <LineId Id="1233" Count="0" />
       <LineId Id="1278" Count="2" />
       <LineId Id="1282" Count="1" />
+      <LineId Id="1472" Count="1" />
+      <LineId Id="1475" Count="0" />
+      <LineId Id="1474" Count="0" />
       <LineId Id="1277" Count="0" />
       <LineId Id="1257" Count="0" />
-      <LineId Id="1265" Count="1" />
+      <LineId Id="1265" Count="0" />
+      <LineId Id="1481" Count="0" />
+      <LineId Id="1528" Count="0" />
+      <LineId Id="1266" Count="0" />
       <LineId Id="1260" Count="0" />
       <LineId Id="1274" Count="0" />
       <LineId Id="1348" Count="0" />
       <LineId Id="1350" Count="0" />
+      <LineId Id="1482" Count="0" />
+      <LineId Id="1529" Count="0" />
       <LineId Id="1352" Count="0" />
       <LineId Id="1349" Count="0" />
       <LineId Id="1378" Count="0" />
       <LineId Id="1256" Count="0" />
       <LineId Id="1268" Count="2" />
       <LineId Id="1264" Count="0" />
+      <LineId Id="1477" Count="2" />
+      <LineId Id="1476" Count="0" />
       <LineId Id="1434" Count="2" />
       <LineId Id="1433" Count="0" />
       <LineId Id="1271" Count="0" />
@@ -1105,6 +1152,13 @@ GVL.safetyOut[0].0	:= G_IO.arDI[95].Ch[2];//btn_rst]]></ST>
       <LineId Id="1416" Count="1" />
       <LineId Id="1415" Count="0" />
       <LineId Id="1414" Count="0" />
+      <LineId Id="1484" Count="1" />
+      <LineId Id="1530" Count="0" />
+      <LineId Id="1486" Count="1" />
+      <LineId Id="1483" Count="0" />
+      <LineId Id="1488" Count="2" />
+      <LineId Id="1531" Count="0" />
+      <LineId Id="1491" Count="1" />
       <LineId Id="1412" Count="0" />
       <LineId Id="928" Count="0" />
       <LineId Id="1307" Count="1" />
@@ -1141,6 +1195,9 @@ GVL.safetyOut[0].0	:= G_IO.arDI[95].Ch[2];//btn_rst]]></ST>
       <LineId Id="122" Count="0" />
       <LineId Id="124" Count="0" />
       <LineId Id="120" Count="0" />
+    </LineIds>
+    <LineIds Name="MAIN.M_agingTest">
+      <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="MAIN.M_checkError">
       <LineId Id="9" Count="0" />
@@ -1221,10 +1278,13 @@ GVL.safetyOut[0].0	:= G_IO.arDI[95].Ch[2];//btn_rst]]></ST>
       <LineId Id="339" Count="0" />
       <LineId Id="271" Count="0" />
       <LineId Id="270" Count="0" />
-      <LineId Id="358" Count="1" />
+      <LineId Id="358" Count="0" />
+      <LineId Id="370" Count="1" />
+      <LineId Id="359" Count="0" />
       <LineId Id="357" Count="0" />
       <LineId Id="365" Count="1" />
       <LineId Id="363" Count="0" />
+      <LineId Id="372" Count="0" />
       <LineId Id="5" Count="4" />
       <LineId Id="61" Count="0" />
       <LineId Id="50" Count="0" />
@@ -1454,6 +1514,7 @@ GVL.safetyOut[0].0	:= G_IO.arDI[95].Ch[2];//btn_rst]]></ST>
     <LineIds Name="MAIN.safetyConfig">
       <LineId Id="3" Count="0" />
       <LineId Id="1" Count="0" />
+      <LineId Id="4" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

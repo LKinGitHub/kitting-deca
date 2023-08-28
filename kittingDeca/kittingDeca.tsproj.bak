@@ -7679,7 +7679,7 @@ External Setpoint Generation:
 					</Encoder>
 					<Drive Name="Drive" DrvType="16">
 						<DrvPara MaxCount="#xffffffff" DriveControlDWord="#x00020100">
-							<Analog VeloReferenz="500" TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
+							<Analog VeloReferenz="1000" TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
 							<TimeComp TaskDelayCycles="1"/>
 						</DrvPara>
 						<Vars VarGrpType="1">
@@ -7823,7 +7823,7 @@ External Setpoint Generation:
 					</Encoder>
 					<Drive Name="Drive" DrvType="16">
 						<DrvPara MaxCount="#xffffffff" DriveControlDWord="#x00020100">
-							<Analog VeloReferenz="500" TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
+							<Analog VeloReferenz="1000" TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
 							<TimeComp TaskDelayCycles="1"/>
 						</DrvPara>
 						<Vars VarGrpType="1">
@@ -7902,7 +7902,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{2354DE8C-DE54-4E07-94D7-E848733F7762}" Name="kittingDeca" PrjFilePath="kittingDeca\kittingDeca.plcproj" TmcFilePath="kittingDeca\kittingDeca.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="kittingDeca\kittingDeca.tmc" TmcHash="{C1877414-754E-8095-DC69-3B767CE3700D}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="kittingDeca\kittingDeca.tmc" TmcHash="{115B958A-7C23-09E8-E4EE-004FC9397F13}">
 					<Name>kittingDeca Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -9690,7 +9690,7 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 			<PlcAuxTask Affinity="#x00000001"/>
 		</Plc>
 		<Io>
-			<Device Id="1" DevType="112" AmsPort="28673" AmsNetId="192.168.11.159.2.1" RemoteName="Device 1 (EtherCAT Automation Protocol)">
+			<Device Id="1" Disabled="true" DevType="112" AmsPort="28673" AmsNetId="192.168.11.159.2.1" RemoteName="Device 1 (EtherCAT Automation Protocol)">
 				<Name>Device 1 (EtherCAT Automation Protocol)</Name>
 				<AddressInfo>
 					<Pnp>
@@ -9705,7 +9705,7 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 				<Ethernet DeviceDesc="X000 (TwinCAT-Intel PCI Ethernet Adapter (Gigabit))"/>
 				<Eap EapDeviceGuid="{F08A719F-A7B6-47AC-AF2E-490DFCCA9AE8}"/>
 			</Device>
-			<Device Id="2" DevType="109" DevFlags="#x0004">
+			<Device Id="2" Disabled="true" DevType="109" DevFlags="#x0004">
 				<Name>Device 2 (RT-Ethernet Adapter)</Name>
 				<AddressInfo>
 					<Pnp>
@@ -9718,7 +9718,7 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 					<Esl SyncSlaveProtocolPort="-1"/>
 				</Ethernet>
 			</Device>
-			<Device Id="3" DevType="111" DevFlags="#x0003" AmsPort="28675" AmsNetId="192.168.11.159.4.1" RemoteName="rem_wf" InfoImageId="4">
+			<Device Id="3" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28675" AmsNetId="192.168.11.159.4.1" RemoteName="rem_wf" InfoImageId="4">
 				<Name>rem_wf</Name>
 				<AddressInfo>
 					<TcCom>
@@ -26282,7 +26282,7 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 				</Box>
 				<EtherCAT DcSyncMode="3" EnableVirtualSwitch="true" MaxSwitchPorts="22" MaxSwitchFrames="520"/>
 			</Device>
-			<Device Id="4" DevType="111" DevFlags="#x0003" AmsPort="28676" AmsNetId="192.168.11.159.5.1" RemoteName="pm side" InfoImageId="6">
+			<Device Id="4" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28676" AmsNetId="192.168.11.159.5.1" RemoteName="pm side" InfoImageId="6">
 				<Name>pm side</Name>
 				<AddressInfo>
 					<TcCom>
@@ -30193,13 +30193,13 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 					</EtherCAT>
 				</Box>
 				<Box Id="62" BoxType="9099" BoxFlags="#x00000020">
-					<Name>pm0_1_RFID_MLC</Name>
+					<Name>pm0_1_RFID</Name>
 					<ImageId>1006</ImageId>
 					<EtherCAT SlaveType="3" AdsServerAddress="c0a80b9f053ff603" PdiType="#x0006" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="47" EoeType="3" FoeType="1" VendorId="#x01000056" ProductCode="#x00001103" RevisionNo="#x00000001" InfoDataAddr="true" InfoDataNetId="true" GenerateOwnNetId="true" InitializeOwnNetId="true" PortPhys="17" IdentificationAdo="308" MaxSlotCount="8" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SIG350-0006AP100" Desc="6076924" PortABoxInfo="#x0100003d">
 						<SyncMan>0010ec0326000100010000008000ec03ec03001026010000</SyncMan>
 						<SyncMan>ec13ec0322000100020000008000ec03ec03ec1322010000</SyncMan>
-						<SyncMan>d817c2006400010003000000000040020000d81764010000</SyncMan>
-						<SyncMan>981ecb002000010004000000000040020000981e20010000</SyncMan>
+						<SyncMan>d81782006400010003000000000040020000d81764010000</SyncMan>
+						<SyncMan>981e8b002000010004000000000040020000981e20010000</SyncMan>
 						<Fmmu>0000000000000000d81700020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000981e00010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
@@ -30289,20 +30289,20 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 						<MBoxUserCmdData>02000300090000003c0000000300000055000903000000000000000000000000207080240100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
 						<MBoxUserCmdData>02000300090000003c0000000300000055000903000000000000000000000000207080250100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000a0000003c000000030000005500090300000000000000000000000020708028020000000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000c00000009000000030000005200090300000000000000000000000020408004040000000000000044657669636520494400</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000c00000009000000030000005200090300000000000000000000000020408005040000000000000056656e646f7220494400</MBoxUserCmdData>
-						<MBoxUserCmdData>0200030009000000630000000300000052000903000000000000000000000000204080200100000000494f2d4c696e6b205265766973696f6e203030203d20706c6175736962696c747920636865636b20697320646561637469766174652c20652e672e203131203d2056312e31202d20706c6175736962696c747920636865636b2069732061637469766500</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000000a00000003000000520009030000000000000000000000002040802201000000004379636c652054696d6500</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000003c000000030000005200090300000000000000000000000020408024010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000003c000000030000005200090300000000000000000000000020408025010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000a000000550000000300000052000903000000000000000000000000204080280200000003004d617374657220436f6e74726f6c3a20307830303033203d204e6f20446174612053746f726167652c20307830303233203d204261636b7570202b20526573746f72652c20307830303433203d20526573746f726500</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000c00000009000000030000005300090300000000000000000000000020508004040000000000000044657669636520494400</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000c00000009000000030000005300090300000000000000000000000020508005040000000000000056656e646f7220494400</MBoxUserCmdData>
 						<MBoxUserCmdData>0200030009000000630000000300000053000903000000000000000000000000205080200100000000494f2d4c696e6b205265766973696f6e203030203d20706c6175736962696c747920636865636b20697320646561637469766174652c20652e672e203131203d2056312e31202d20706c6175736962696c747920636865636b2069732061637469766500</MBoxUserCmdData>
 						<MBoxUserCmdData>02000300090000000a00000003000000530009030000000000000000000000002050802201000000004379636c652054696d6500</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000003c000000030000005300090300000000000000000000000020508024010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000003c000000030000005300090300000000000000000000000020508025010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000a000000550000000300000053000903000000000000000000000000205080280200000003004d617374657220436f6e74726f6c3a20307830303033203d204e6f20446174612053746f726167652c20307830303233203d204261636b7570202b20526573746f72652c20307830303433203d20526573746f726500</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000003c0000000300000053000903000000000000000000000000205080240100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000003c0000000300000053000903000000000000000000000000205080250100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a0000003c000000030000005300090300000000000000000000000020508028020000000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000c00000009000000030000005200090300000000000000000000000020408004040000000000000044657669636520494400</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000c00000009000000030000005200090300000000000000000000000020408005040000000000000056656e646f7220494400</MBoxUserCmdData>
+						<MBoxUserCmdData>0200030009000000630000000300000052000903000000000000000000000000204080200100000000494f2d4c696e6b205265766973696f6e203030203d20706c6175736962696c747920636865636b20697320646561637469766174652c20652e672e203131203d2056312e31202d20706c6175736962696c747920636865636b2069732061637469766500</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000000a00000003000000520009030000000000000000000000002040802201000000004379636c652054696d6500</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000003c0000000300000052000903000000000000000000000000204080240100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000003c0000000300000052000903000000000000000000000000204080250100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a0000003c000000030000005200090300000000000000000000000020408028020000000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
 						<Pdo Name="TxPDO Mapping of Digital Inputs" Index="#x1a10" Flags="#x0011" SyncMan="3">
 							<Entry Name="PD (I/Q Pin2 + C/Q Pin4)" Index="#x3000" Sub="#x01">
 								<Type>UINT</Type>
@@ -31131,398 +31131,6 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 								<Type>USINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="TxPDO" Index="#x1a04" Flags="#x0280" SyncMan="3">
-							<Entry Name="Input byte 0" Index="#x6040" Sub="#x01" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 1" Index="#x6040" Sub="#x02" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 2" Index="#x6040" Sub="#x03" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 3" Index="#x6040" Sub="#x04" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 4" Index="#x6040" Sub="#x05" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 5" Index="#x6040" Sub="#x06" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 6" Index="#x6040" Sub="#x07" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 7" Index="#x6040" Sub="#x08" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 8" Index="#x6040" Sub="#x09" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 9" Index="#x6040" Sub="#x0a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 10" Index="#x6040" Sub="#x0b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 11" Index="#x6040" Sub="#x0c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 12" Index="#x6040" Sub="#x0d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 13" Index="#x6040" Sub="#x0e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 14" Index="#x6040" Sub="#x0f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 15" Index="#x6040" Sub="#x10" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 16" Index="#x6040" Sub="#x11" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 17" Index="#x6040" Sub="#x12" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 18" Index="#x6040" Sub="#x13" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 19" Index="#x6040" Sub="#x14" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 20" Index="#x6040" Sub="#x15" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 21" Index="#x6040" Sub="#x16" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 22" Index="#x6040" Sub="#x17" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 23" Index="#x6040" Sub="#x18" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 24" Index="#x6040" Sub="#x19" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 25" Index="#x6040" Sub="#x1a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 26" Index="#x6040" Sub="#x1b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 27" Index="#x6040" Sub="#x1c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 28" Index="#x6040" Sub="#x1d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 29" Index="#x6040" Sub="#x1e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 30" Index="#x6040" Sub="#x1f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 31" Index="#x6040" Sub="#x20" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-						</Pdo>
-						<Pdo Name="RxPDO" Index="#x1604" InOut="1" Flags="#x0280" SyncMan="2">
-							<Entry Name="Output byte 0" Index="#x7040" Sub="#x01" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 1" Index="#x7040" Sub="#x02" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 2" Index="#x7040" Sub="#x03" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 3" Index="#x7040" Sub="#x04" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 4" Index="#x7040" Sub="#x05" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 5" Index="#x7040" Sub="#x06" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 6" Index="#x7040" Sub="#x07" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 7" Index="#x7040" Sub="#x08" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 8" Index="#x7040" Sub="#x09" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 9" Index="#x7040" Sub="#x0a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 10" Index="#x7040" Sub="#x0b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 11" Index="#x7040" Sub="#x0c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 12" Index="#x7040" Sub="#x0d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 13" Index="#x7040" Sub="#x0e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 14" Index="#x7040" Sub="#x0f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 15" Index="#x7040" Sub="#x10" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 16" Index="#x7040" Sub="#x11" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 17" Index="#x7040" Sub="#x12" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 18" Index="#x7040" Sub="#x13" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 19" Index="#x7040" Sub="#x14" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 20" Index="#x7040" Sub="#x15" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 21" Index="#x7040" Sub="#x16" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 22" Index="#x7040" Sub="#x17" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 23" Index="#x7040" Sub="#x18" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 24" Index="#x7040" Sub="#x19" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 25" Index="#x7040" Sub="#x1a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 26" Index="#x7040" Sub="#x1b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 27" Index="#x7040" Sub="#x1c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 28" Index="#x7040" Sub="#x1d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 29" Index="#x7040" Sub="#x1e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 30" Index="#x7040" Sub="#x1f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 31" Index="#x7040" Sub="#x20" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-						</Pdo>
-						<Pdo Name="TxPDO" Index="#x1a05" Flags="#x0280" SyncMan="3">
-							<Entry Name="Input byte 0" Index="#x6050" Sub="#x01" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 1" Index="#x6050" Sub="#x02" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 2" Index="#x6050" Sub="#x03" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 3" Index="#x6050" Sub="#x04" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 4" Index="#x6050" Sub="#x05" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 5" Index="#x6050" Sub="#x06" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 6" Index="#x6050" Sub="#x07" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 7" Index="#x6050" Sub="#x08" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 8" Index="#x6050" Sub="#x09" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 9" Index="#x6050" Sub="#x0a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 10" Index="#x6050" Sub="#x0b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 11" Index="#x6050" Sub="#x0c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 12" Index="#x6050" Sub="#x0d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 13" Index="#x6050" Sub="#x0e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 14" Index="#x6050" Sub="#x0f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 15" Index="#x6050" Sub="#x10" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 16" Index="#x6050" Sub="#x11" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 17" Index="#x6050" Sub="#x12" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 18" Index="#x6050" Sub="#x13" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 19" Index="#x6050" Sub="#x14" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 20" Index="#x6050" Sub="#x15" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 21" Index="#x6050" Sub="#x16" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 22" Index="#x6050" Sub="#x17" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 23" Index="#x6050" Sub="#x18" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 24" Index="#x6050" Sub="#x19" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 25" Index="#x6050" Sub="#x1a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 26" Index="#x6050" Sub="#x1b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 27" Index="#x6050" Sub="#x1c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 28" Index="#x6050" Sub="#x1d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 29" Index="#x6050" Sub="#x1e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 30" Index="#x6050" Sub="#x1f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 31" Index="#x6050" Sub="#x20" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-						</Pdo>
-						<Pdo Name="RxPDO" Index="#x1605" InOut="1" Flags="#x0280" SyncMan="2">
-							<Entry Name="Output byte 0" Index="#x7050" Sub="#x01" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 1" Index="#x7050" Sub="#x02" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 2" Index="#x7050" Sub="#x03" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 3" Index="#x7050" Sub="#x04" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 4" Index="#x7050" Sub="#x05" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 5" Index="#x7050" Sub="#x06" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 6" Index="#x7050" Sub="#x07" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 7" Index="#x7050" Sub="#x08" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 8" Index="#x7050" Sub="#x09" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 9" Index="#x7050" Sub="#x0a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 10" Index="#x7050" Sub="#x0b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 11" Index="#x7050" Sub="#x0c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 12" Index="#x7050" Sub="#x0d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 13" Index="#x7050" Sub="#x0e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 14" Index="#x7050" Sub="#x0f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 15" Index="#x7050" Sub="#x10" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 16" Index="#x7050" Sub="#x11" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 17" Index="#x7050" Sub="#x12" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 18" Index="#x7050" Sub="#x13" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 19" Index="#x7050" Sub="#x14" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 20" Index="#x7050" Sub="#x15" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 21" Index="#x7050" Sub="#x16" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 22" Index="#x7050" Sub="#x17" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 23" Index="#x7050" Sub="#x18" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 24" Index="#x7050" Sub="#x19" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 25" Index="#x7050" Sub="#x1a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 26" Index="#x7050" Sub="#x1b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 27" Index="#x7050" Sub="#x1c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 28" Index="#x7050" Sub="#x1d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 29" Index="#x7050" Sub="#x1e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 30" Index="#x7050" Sub="#x1f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 31" Index="#x7050" Sub="#x20" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-						</Pdo>
 						<CoeProfile ProfileNo="407638921"/>
 						<CoeProfile ProfileNo="407638921"/>
 						<CoeProfile ProfileNo="407638921"/>
@@ -31678,12 +31286,10 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 							<ModuleIdent>2056</ModuleIdent>
 							<ModuleIdent>4112</ModuleIdent>
 							<ModuleIdent>8224</ModuleIdent>
-							<Module Id="#x03090052" Type="IOL_32/32_I/O-Bytes" Class="">
-								<Name>Module 5 (IOL_32/32_I/O-Bytes)</Name>
-								<ImageId>1008</ImageId>
-								<ModuleData>5600000120200000000000000000000000000000000000000000000000000000</ModuleData>
-								<PdoIndex>6660</PdoIndex>
-								<PdoIndex>5636</PdoIndex>
+							<Module Id="#x03090052" Type="Slot Empty" Class="">
+								<Name>Module 5 (Slot Empty)</Name>
+								<ImageId>1007</ImageId>
+								<ModuleData>5600000100210000000000000000000000000000000000000000000000000000</ModuleData>
 							</Module>
 						</Slot>
 						<Slot Name="IO-Link Port S6" ImageId="1007">
@@ -31709,12 +31315,10 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 							<ModuleIdent>2056</ModuleIdent>
 							<ModuleIdent>4112</ModuleIdent>
 							<ModuleIdent>8224</ModuleIdent>
-							<Module Id="#x03090053" Type="IOL_32/32_I/O-Bytes" Class="">
-								<Name>Module 6 (IOL_32/32_I/O-Bytes)</Name>
-								<ImageId>1008</ImageId>
-								<ModuleData>5600000120200000000000000000000000000000000000000000000000000000</ModuleData>
-								<PdoIndex>6661</PdoIndex>
-								<PdoIndex>5637</PdoIndex>
+							<Module Id="#x03090053" Type="Slot Empty" Class="">
+								<Name>Module 6 (Slot Empty)</Name>
+								<ImageId>1007</ImageId>
+								<ModuleData>5600000100210000000000000000000000000000000000000000000000000000</ModuleData>
 							</Module>
 						</Slot>
 						<Slot Name="IO-Link Port S7" ImageId="1007">
@@ -32486,12 +32090,12 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 						<MBoxUserCmdData>020003000a00000019000000030010008900090300000000000000000000000020c080020200000004004449206d6f64756c65204348312066696c7465722074696d6500</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000a00000019000000030010008a000903000000000000000000000000200081010200000004004449206d6f64756c65204348302066696c7465722074696d6500</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000a00000019000000030010008a000903000000000000000000000000200081020200000004004449206d6f64756c65204348312066696c7465722074696d6500</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a00000019000000030010008b000903000000000000000000000000204081010200000004004449206d6f64756c65204348302066696c7465722074696d6500</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a00000019000000030010008b000903000000000000000000000000204081020200000004004449206d6f64756c65204348312066696c7465722074696d6500</MBoxUserCmdData>
 						<MBoxUserCmdData>02000300090000002f000000030010008c0009030000000000000000000000002080810101000000ff444f206d6f64756c65204348302073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>02000300090000002f000000030010008c0009030000000000000000000000002080810201000000ff444f206d6f64756c65204348312073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000900000030000000030010008c000903000000000000000000000000208181010100000000444f206d6f64756c65204348302073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000900000030000000030010008c000903000000000000000000000000208181020100000000444f206d6f64756c65204348312073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000a00000019000000030010008b000903000000000000000000000000204081010200000004004449206d6f64756c65204348302066696c7465722074696d6500</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000a00000019000000030010008b000903000000000000000000000000204081020200000004004449206d6f64756c65204348312066696c7465722074696d6500</MBoxUserCmdData>
 						<MBoxUserCmdData>02000300090000002f000000030010009300090300000000000000000000000020c0810101000000ff444f206d6f64756c65204348302073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>02000300090000002f000000030010009300090300000000000000000000000020c0810201000000ff444f206d6f64756c65204348312073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000900000030000000030010009300090300000000000000000000000020c181010100000000444f206d6f64756c65204348302073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
@@ -34941,13 +34545,13 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 					</EtherCAT>
 				</Box>
 				<Box Id="73" BoxType="9099" BoxFlags="#x00000020">
-					<Name>pm2_3_RFID_MLC</Name>
+					<Name>pm2_3_RFID</Name>
 					<ImageId>1006</ImageId>
 					<EtherCAT SlaveType="3" AdsServerAddress="c0a80b9f054a0004" PdiType="#x0006" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="47" EoeType="3" FoeType="1" VendorId="#x01000056" ProductCode="#x00001103" RevisionNo="#x00000001" InfoDataAddr="true" InfoDataNetId="true" GenerateOwnNetId="true" InitializeOwnNetId="true" PortPhys="17" IdentificationAdo="308" MaxSlotCount="8" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SIG350-0006AP100" Desc="6076924" PortABoxInfo="#x01000048">
 						<SyncMan>0010ec0326000100010000008000ec03ec03001026010000</SyncMan>
 						<SyncMan>ec13ec0322000100020000008000ec03ec03ec1322010000</SyncMan>
-						<SyncMan>d817c2006400010003000000000040020000d81764010000</SyncMan>
-						<SyncMan>981ecb002000010004000000000040020000981e20010000</SyncMan>
+						<SyncMan>d81782006400010003000000000040020000d81764010000</SyncMan>
+						<SyncMan>981e8b002000010004000000000040020000981e20010000</SyncMan>
 						<Fmmu>0000000000000000d81700020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000981e00010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
@@ -35023,20 +34627,6 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 						<MBoxUserCmdData>02000300090000003c000000030000005900090300000000000000000000000020308024010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
 						<MBoxUserCmdData>02000300090000003c000000030000005900090300000000000000000000000020308025010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000a000000550000000300000059000903000000000000000000000000203080280200000003004d617374657220436f6e74726f6c3a20307830303033203d204e6f20446174612053746f726167652c20307830303233203d204261636b7570202b20526573746f72652c20307830303433203d20526573746f726500</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000c00000009000000030000005a00090300000000000000000000000020408004040000000000000044657669636520494400</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000c00000009000000030000005a00090300000000000000000000000020408005040000000000000056656e646f7220494400</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000063000000030000005a000903000000000000000000000000204080200100000000494f2d4c696e6b205265766973696f6e203030203d20706c6175736962696c747920636865636b20697320646561637469766174652c20652e672e203131203d2056312e31202d20706c6175736962696c747920636865636b2069732061637469766500</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000000a000000030000005a0009030000000000000000000000002040802201000000004379636c652054696d6500</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000003c000000030000005a00090300000000000000000000000020408024010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000003c000000030000005a00090300000000000000000000000020408025010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000a00000055000000030000005a000903000000000000000000000000204080280200000003004d617374657220436f6e74726f6c3a20307830303033203d204e6f20446174612053746f726167652c20307830303233203d204261636b7570202b20526573746f72652c20307830303433203d20526573746f726500</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000c00000009000000030000005b00090300000000000000000000000020508004040000000000000044657669636520494400</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000c00000009000000030000005b00090300000000000000000000000020508005040000000000000056656e646f7220494400</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000063000000030000005b000903000000000000000000000000205080200100000000494f2d4c696e6b205265766973696f6e203030203d20706c6175736962696c747920636865636b20697320646561637469766174652c20652e672e203131203d2056312e31202d20706c6175736962696c747920636865636b2069732061637469766500</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000000a000000030000005b0009030000000000000000000000002050802201000000004379636c652054696d6500</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000003c000000030000005b00090300000000000000000000000020508024010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000003c000000030000005b00090300000000000000000000000020508025010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000a00000055000000030000005b000903000000000000000000000000205080280200000003004d617374657220436f6e74726f6c3a20307830303033203d204e6f20446174612053746f726167652c20307830303233203d204261636b7570202b20526573746f72652c20307830303433203d20526573746f726500</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000c00000009000000030000005c00090300000000000000000000000020608004040000000000000044657669636520494400</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000c00000009000000030000005c00090300000000000000000000000020608005040000000000000056656e646f7220494400</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000900000063000000030000005c000903000000000000000000000000206080200100000000494f2d4c696e6b205265766973696f6e203030203d20706c6175736962696c747920636865636b20697320646561637469766174652c20652e672e203131203d2056312e31202d20706c6175736962696c747920636865636b2069732061637469766500</MBoxUserCmdData>
@@ -35051,6 +34641,20 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 						<MBoxUserCmdData>02000300090000003c000000030000005d000903000000000000000000000000207080240100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
 						<MBoxUserCmdData>02000300090000003c000000030000005d000903000000000000000000000000207080250100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000a0000003c000000030000005d00090300000000000000000000000020708028020000000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000c00000009000000030000005b00090300000000000000000000000020508004040000000000000044657669636520494400</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000c00000009000000030000005b00090300000000000000000000000020508005040000000000000056656e646f7220494400</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000900000063000000030000005b000903000000000000000000000000205080200100000000494f2d4c696e6b205265766973696f6e203030203d20706c6175736962696c747920636865636b20697320646561637469766174652c20652e672e203131203d2056312e31202d20706c6175736962696c747920636865636b2069732061637469766500</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000000a000000030000005b0009030000000000000000000000002050802201000000004379636c652054696d6500</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000003c000000030000005b000903000000000000000000000000205080240100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000003c000000030000005b000903000000000000000000000000205080250100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a0000003c000000030000005b00090300000000000000000000000020508028020000000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000c00000009000000030000005a00090300000000000000000000000020408004040000000000000044657669636520494400</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000c00000009000000030000005a00090300000000000000000000000020408005040000000000000056656e646f7220494400</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000900000063000000030000005a000903000000000000000000000000204080200100000000494f2d4c696e6b205265766973696f6e203030203d20706c6175736962696c747920636865636b20697320646561637469766174652c20652e672e203131203d2056312e31202d20706c6175736962696c747920636865636b2069732061637469766500</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000000a000000030000005a0009030000000000000000000000002040802201000000004379636c652054696d6500</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000003c000000030000005a000903000000000000000000000000204080240100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000003c000000030000005a000903000000000000000000000000204080250100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a0000003c000000030000005a00090300000000000000000000000020408028020000000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
 						<Pdo Name="TxPDO Mapping of Digital Inputs" Index="#x1a10" Flags="#x0011" SyncMan="3">
 							<Entry Name="PD (I/Q Pin2 + C/Q Pin4)" Index="#x3000" Sub="#x01">
 								<Type>UINT</Type>
@@ -35879,398 +35483,6 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 								<Type>USINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="TxPDO" Index="#x1a04" Flags="#x0280" SyncMan="3">
-							<Entry Name="Input byte 0" Index="#x6040" Sub="#x01" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 1" Index="#x6040" Sub="#x02" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 2" Index="#x6040" Sub="#x03" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 3" Index="#x6040" Sub="#x04" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 4" Index="#x6040" Sub="#x05" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 5" Index="#x6040" Sub="#x06" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 6" Index="#x6040" Sub="#x07" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 7" Index="#x6040" Sub="#x08" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 8" Index="#x6040" Sub="#x09" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 9" Index="#x6040" Sub="#x0a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 10" Index="#x6040" Sub="#x0b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 11" Index="#x6040" Sub="#x0c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 12" Index="#x6040" Sub="#x0d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 13" Index="#x6040" Sub="#x0e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 14" Index="#x6040" Sub="#x0f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 15" Index="#x6040" Sub="#x10" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 16" Index="#x6040" Sub="#x11" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 17" Index="#x6040" Sub="#x12" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 18" Index="#x6040" Sub="#x13" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 19" Index="#x6040" Sub="#x14" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 20" Index="#x6040" Sub="#x15" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 21" Index="#x6040" Sub="#x16" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 22" Index="#x6040" Sub="#x17" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 23" Index="#x6040" Sub="#x18" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 24" Index="#x6040" Sub="#x19" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 25" Index="#x6040" Sub="#x1a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 26" Index="#x6040" Sub="#x1b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 27" Index="#x6040" Sub="#x1c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 28" Index="#x6040" Sub="#x1d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 29" Index="#x6040" Sub="#x1e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 30" Index="#x6040" Sub="#x1f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 31" Index="#x6040" Sub="#x20" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-						</Pdo>
-						<Pdo Name="RxPDO" Index="#x1604" InOut="1" Flags="#x0280" SyncMan="2">
-							<Entry Name="Output byte 0" Index="#x7040" Sub="#x01" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 1" Index="#x7040" Sub="#x02" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 2" Index="#x7040" Sub="#x03" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 3" Index="#x7040" Sub="#x04" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 4" Index="#x7040" Sub="#x05" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 5" Index="#x7040" Sub="#x06" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 6" Index="#x7040" Sub="#x07" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 7" Index="#x7040" Sub="#x08" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 8" Index="#x7040" Sub="#x09" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 9" Index="#x7040" Sub="#x0a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 10" Index="#x7040" Sub="#x0b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 11" Index="#x7040" Sub="#x0c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 12" Index="#x7040" Sub="#x0d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 13" Index="#x7040" Sub="#x0e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 14" Index="#x7040" Sub="#x0f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 15" Index="#x7040" Sub="#x10" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 16" Index="#x7040" Sub="#x11" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 17" Index="#x7040" Sub="#x12" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 18" Index="#x7040" Sub="#x13" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 19" Index="#x7040" Sub="#x14" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 20" Index="#x7040" Sub="#x15" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 21" Index="#x7040" Sub="#x16" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 22" Index="#x7040" Sub="#x17" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 23" Index="#x7040" Sub="#x18" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 24" Index="#x7040" Sub="#x19" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 25" Index="#x7040" Sub="#x1a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 26" Index="#x7040" Sub="#x1b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 27" Index="#x7040" Sub="#x1c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 28" Index="#x7040" Sub="#x1d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 29" Index="#x7040" Sub="#x1e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 30" Index="#x7040" Sub="#x1f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 31" Index="#x7040" Sub="#x20" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-						</Pdo>
-						<Pdo Name="TxPDO" Index="#x1a05" Flags="#x0280" SyncMan="3">
-							<Entry Name="Input byte 0" Index="#x6050" Sub="#x01" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 1" Index="#x6050" Sub="#x02" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 2" Index="#x6050" Sub="#x03" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 3" Index="#x6050" Sub="#x04" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 4" Index="#x6050" Sub="#x05" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 5" Index="#x6050" Sub="#x06" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 6" Index="#x6050" Sub="#x07" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 7" Index="#x6050" Sub="#x08" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 8" Index="#x6050" Sub="#x09" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 9" Index="#x6050" Sub="#x0a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 10" Index="#x6050" Sub="#x0b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 11" Index="#x6050" Sub="#x0c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 12" Index="#x6050" Sub="#x0d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 13" Index="#x6050" Sub="#x0e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 14" Index="#x6050" Sub="#x0f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 15" Index="#x6050" Sub="#x10" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 16" Index="#x6050" Sub="#x11" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 17" Index="#x6050" Sub="#x12" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 18" Index="#x6050" Sub="#x13" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 19" Index="#x6050" Sub="#x14" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 20" Index="#x6050" Sub="#x15" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 21" Index="#x6050" Sub="#x16" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 22" Index="#x6050" Sub="#x17" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 23" Index="#x6050" Sub="#x18" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 24" Index="#x6050" Sub="#x19" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 25" Index="#x6050" Sub="#x1a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 26" Index="#x6050" Sub="#x1b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 27" Index="#x6050" Sub="#x1c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 28" Index="#x6050" Sub="#x1d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 29" Index="#x6050" Sub="#x1e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 30" Index="#x6050" Sub="#x1f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 31" Index="#x6050" Sub="#x20" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-						</Pdo>
-						<Pdo Name="RxPDO" Index="#x1605" InOut="1" Flags="#x0280" SyncMan="2">
-							<Entry Name="Output byte 0" Index="#x7050" Sub="#x01" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 1" Index="#x7050" Sub="#x02" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 2" Index="#x7050" Sub="#x03" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 3" Index="#x7050" Sub="#x04" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 4" Index="#x7050" Sub="#x05" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 5" Index="#x7050" Sub="#x06" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 6" Index="#x7050" Sub="#x07" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 7" Index="#x7050" Sub="#x08" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 8" Index="#x7050" Sub="#x09" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 9" Index="#x7050" Sub="#x0a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 10" Index="#x7050" Sub="#x0b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 11" Index="#x7050" Sub="#x0c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 12" Index="#x7050" Sub="#x0d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 13" Index="#x7050" Sub="#x0e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 14" Index="#x7050" Sub="#x0f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 15" Index="#x7050" Sub="#x10" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 16" Index="#x7050" Sub="#x11" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 17" Index="#x7050" Sub="#x12" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 18" Index="#x7050" Sub="#x13" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 19" Index="#x7050" Sub="#x14" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 20" Index="#x7050" Sub="#x15" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 21" Index="#x7050" Sub="#x16" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 22" Index="#x7050" Sub="#x17" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 23" Index="#x7050" Sub="#x18" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 24" Index="#x7050" Sub="#x19" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 25" Index="#x7050" Sub="#x1a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 26" Index="#x7050" Sub="#x1b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 27" Index="#x7050" Sub="#x1c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 28" Index="#x7050" Sub="#x1d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 29" Index="#x7050" Sub="#x1e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 30" Index="#x7050" Sub="#x1f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 31" Index="#x7050" Sub="#x20" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-						</Pdo>
 						<CoeProfile ProfileNo="407638921"/>
 						<CoeProfile ProfileNo="407638921"/>
 						<CoeProfile ProfileNo="407638921"/>
@@ -36426,12 +35638,10 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 							<ModuleIdent>2056</ModuleIdent>
 							<ModuleIdent>4112</ModuleIdent>
 							<ModuleIdent>8224</ModuleIdent>
-							<Module Id="#x0309005a" Type="IOL_32/32_I/O-Bytes" Class="">
-								<Name>Module 5 (IOL_32/32_I/O-Bytes)</Name>
-								<ImageId>1008</ImageId>
-								<ModuleData>5600000120200000000000000000000000000000000000000000000000000000</ModuleData>
-								<PdoIndex>6660</PdoIndex>
-								<PdoIndex>5636</PdoIndex>
+							<Module Id="#x0309005a" Type="Slot Empty" Class="">
+								<Name>Module 5 (Slot Empty)</Name>
+								<ImageId>1007</ImageId>
+								<ModuleData>5600000100210000000000000000000000000000000000000000000000000000</ModuleData>
 							</Module>
 						</Slot>
 						<Slot Name="IO-Link Port S6" ImageId="1007">
@@ -36457,12 +35667,10 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 							<ModuleIdent>2056</ModuleIdent>
 							<ModuleIdent>4112</ModuleIdent>
 							<ModuleIdent>8224</ModuleIdent>
-							<Module Id="#x0309005b" Type="IOL_32/32_I/O-Bytes" Class="">
-								<Name>Module 6 (IOL_32/32_I/O-Bytes)</Name>
-								<ImageId>1008</ImageId>
-								<ModuleData>5600000120200000000000000000000000000000000000000000000000000000</ModuleData>
-								<PdoIndex>6661</PdoIndex>
-								<PdoIndex>5637</PdoIndex>
+							<Module Id="#x0309005b" Type="Slot Empty" Class="">
+								<Name>Module 6 (Slot Empty)</Name>
+								<ImageId>1007</ImageId>
+								<ModuleData>5600000100210000000000000000000000000000000000000000000000000000</ModuleData>
 							</Module>
 						</Slot>
 						<Slot Name="IO-Link Port S7" ImageId="1007">
@@ -36551,16 +35759,12 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 						<MBoxUserCmdData>020003000a00000019000000030010008900090300000000000000000000000020c080020200000004004449206d6f64756c65204348312066696c7465722074696d6500</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000a00000019000000030010008a000903000000000000000000000000200081010200000004004449206d6f64756c65204348302066696c7465722074696d6500</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000a00000019000000030010008a000903000000000000000000000000200081020200000004004449206d6f64756c65204348312066696c7465722074696d6500</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000002f000000030010008b0009030000000000000000000000002040810101000000ff444f206d6f64756c65204348302073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000002f000000030010008b0009030000000000000000000000002040810201000000ff444f206d6f64756c65204348312073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000030000000030010008b000903000000000000000000000000204181010100000000444f206d6f64756c65204348302073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000030000000030010008b000903000000000000000000000000204181020100000000444f206d6f64756c65204348312073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a000000190000000300100043000903000000000000000000000000204081010200000004004449206d6f64756c65204348302066696c7465722074696d6500</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a000000190000000300100043000903000000000000000000000000204081020200000004004449206d6f64756c65204348312066696c7465722074696d6500</MBoxUserCmdData>
 						<MBoxUserCmdData>02000300090000002f000000030010008c0009030000000000000000000000002080810101000000ff444f206d6f64756c65204348302073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>02000300090000002f000000030010008c0009030000000000000000000000002080810201000000ff444f206d6f64756c65204348312073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000900000030000000030010008c000903000000000000000000000000208181010100000000444f206d6f64756c65204348302073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000900000030000000030010008c000903000000000000000000000000208181020100000000444f206d6f64756c65204348312073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000a000000190000000300100043000903000000000000000000000000204081010200000004004449206d6f64756c65204348302066696c7465722074696d6500</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000a000000190000000300100043000903000000000000000000000000204081020200000004004449206d6f64756c65204348312066696c7465722074696d6500</MBoxUserCmdData>
 						<MBoxUserCmdData>02000300090000002f000000030010009400090300000000000000000000000020c0810101000000ff444f206d6f64756c65204348302073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>02000300090000002f000000030010009400090300000000000000000000000020c0810201000000ff444f206d6f64756c65204348312073746f706d6f6465206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000900000030000000030010009400090300000000000000000000000020c181010100000000444f206d6f64756c65204348302073746f7076616c7565206166746572204574686572434154206c6f7374206c696e6b00</MBoxUserCmdData>
@@ -39010,13 +38214,13 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 					</EtherCAT>
 				</Box>
 				<Box Id="119" BoxType="9099" BoxFlags="#x00000020">
-					<Name>pm4_5_RFID_MLC</Name>
+					<Name>pm4_5_RFID</Name>
 					<ImageId>1006</ImageId>
 					<EtherCAT SlaveType="3" AdsServerAddress="c0a80b9f05780804" PdiType="#x0006" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="47" EoeType="3" FoeType="1" VendorId="#x01000056" ProductCode="#x00001103" RevisionNo="#x00000001" InfoDataAddr="true" InfoDataNetId="true" GenerateOwnNetId="true" InitializeOwnNetId="true" PortPhys="17" IdentificationAdo="308" MaxSlotCount="8" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SIG350-0006AP100" Desc="6076924" PortABoxInfo="#x01000076">
 						<SyncMan>0010ec0326000100010000008000ec03ec03001026010000</SyncMan>
 						<SyncMan>ec13ec0322000100020000008000ec03ec03ec1322010000</SyncMan>
-						<SyncMan>d817c2006400010003000000000040020000d81764010000</SyncMan>
-						<SyncMan>981ecb002000010004000000000040020000981e20010000</SyncMan>
+						<SyncMan>d81782006400010003000000000040020000d81764010000</SyncMan>
+						<SyncMan>981e8b002000010004000000000040020000981e20010000</SyncMan>
 						<Fmmu>0000000000000000d81700020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000981e00010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
@@ -39124,20 +38328,20 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 						<MBoxUserCmdData>02000300090000003c0000000300000075000903000000000000000000000000207080240100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
 						<MBoxUserCmdData>02000300090000003c0000000300000075000903000000000000000000000000207080250100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000a0000003c000000030000007500090300000000000000000000000020708028020000000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000c00000009000000030000006f00090300000000000000000000000020408004040000000000000044657669636520494400</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000c00000009000000030000006f00090300000000000000000000000020408005040000000000000056656e646f7220494400</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000063000000030000006f000903000000000000000000000000204080200100000000494f2d4c696e6b205265766973696f6e203030203d20706c6175736962696c747920636865636b20697320646561637469766174652c20652e672e203131203d2056312e31202d20706c6175736962696c747920636865636b2069732061637469766500</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000000a000000030000006f0009030000000000000000000000002040802201000000004379636c652054696d6500</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000003c000000030000006f00090300000000000000000000000020408024010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000003c000000030000006f00090300000000000000000000000020408025010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000a00000055000000030000006f000903000000000000000000000000204080280200000003004d617374657220436f6e74726f6c3a20307830303033203d204e6f20446174612053746f726167652c20307830303233203d204261636b7570202b20526573746f72652c20307830303433203d20526573746f726500</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000c00000009000000030000007000090300000000000000000000000020508004040000000000000044657669636520494400</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000c00000009000000030000007000090300000000000000000000000020508005040000000000000056656e646f7220494400</MBoxUserCmdData>
 						<MBoxUserCmdData>0200030009000000630000000300000070000903000000000000000000000000205080200100000000494f2d4c696e6b205265766973696f6e203030203d20706c6175736962696c747920636865636b20697320646561637469766174652c20652e672e203131203d2056312e31202d20706c6175736962696c747920636865636b2069732061637469766500</MBoxUserCmdData>
 						<MBoxUserCmdData>02000300090000000a00000003000000700009030000000000000000000000002050802201000000004379636c652054696d6500</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000003c000000030000007000090300000000000000000000000020508024010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000003c000000030000007000090300000000000000000000000020508025010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000a000000550000000300000070000903000000000000000000000000205080280200000003004d617374657220436f6e74726f6c3a20307830303033203d204e6f20446174612053746f726167652c20307830303233203d204261636b7570202b20526573746f72652c20307830303433203d20526573746f726500</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000003c0000000300000070000903000000000000000000000000205080240100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000003c0000000300000070000903000000000000000000000000205080250100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a0000003c000000030000007000090300000000000000000000000020508028020000000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000c00000009000000030000006f00090300000000000000000000000020408004040000000000000044657669636520494400</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000c00000009000000030000006f00090300000000000000000000000020408005040000000000000056656e646f7220494400</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000900000063000000030000006f000903000000000000000000000000204080200100000000494f2d4c696e6b205265766973696f6e203030203d20706c6175736962696c747920636865636b20697320646561637469766174652c20652e672e203131203d2056312e31202d20706c6175736962696c747920636865636b2069732061637469766500</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000000a000000030000006f0009030000000000000000000000002040802201000000004379636c652054696d6500</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000003c000000030000006f000903000000000000000000000000204080240100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000003c000000030000006f000903000000000000000000000000204080250100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a0000003c000000030000006f00090300000000000000000000000020408028020000000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
 						<Pdo Name="TxPDO Mapping of Digital Inputs" Index="#x1a10" Flags="#x0011" SyncMan="3">
 							<Entry Name="PD (I/Q Pin2 + C/Q Pin4)" Index="#x3000" Sub="#x01">
 								<Type>UINT</Type>
@@ -39966,398 +39170,6 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 								<Type>USINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="TxPDO" Index="#x1a04" Flags="#x0280" SyncMan="3">
-							<Entry Name="Input byte 0" Index="#x6040" Sub="#x01" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 1" Index="#x6040" Sub="#x02" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 2" Index="#x6040" Sub="#x03" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 3" Index="#x6040" Sub="#x04" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 4" Index="#x6040" Sub="#x05" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 5" Index="#x6040" Sub="#x06" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 6" Index="#x6040" Sub="#x07" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 7" Index="#x6040" Sub="#x08" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 8" Index="#x6040" Sub="#x09" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 9" Index="#x6040" Sub="#x0a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 10" Index="#x6040" Sub="#x0b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 11" Index="#x6040" Sub="#x0c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 12" Index="#x6040" Sub="#x0d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 13" Index="#x6040" Sub="#x0e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 14" Index="#x6040" Sub="#x0f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 15" Index="#x6040" Sub="#x10" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 16" Index="#x6040" Sub="#x11" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 17" Index="#x6040" Sub="#x12" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 18" Index="#x6040" Sub="#x13" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 19" Index="#x6040" Sub="#x14" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 20" Index="#x6040" Sub="#x15" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 21" Index="#x6040" Sub="#x16" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 22" Index="#x6040" Sub="#x17" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 23" Index="#x6040" Sub="#x18" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 24" Index="#x6040" Sub="#x19" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 25" Index="#x6040" Sub="#x1a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 26" Index="#x6040" Sub="#x1b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 27" Index="#x6040" Sub="#x1c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 28" Index="#x6040" Sub="#x1d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 29" Index="#x6040" Sub="#x1e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 30" Index="#x6040" Sub="#x1f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 31" Index="#x6040" Sub="#x20" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-						</Pdo>
-						<Pdo Name="RxPDO" Index="#x1604" InOut="1" Flags="#x0280" SyncMan="2">
-							<Entry Name="Output byte 0" Index="#x7040" Sub="#x01" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 1" Index="#x7040" Sub="#x02" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 2" Index="#x7040" Sub="#x03" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 3" Index="#x7040" Sub="#x04" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 4" Index="#x7040" Sub="#x05" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 5" Index="#x7040" Sub="#x06" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 6" Index="#x7040" Sub="#x07" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 7" Index="#x7040" Sub="#x08" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 8" Index="#x7040" Sub="#x09" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 9" Index="#x7040" Sub="#x0a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 10" Index="#x7040" Sub="#x0b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 11" Index="#x7040" Sub="#x0c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 12" Index="#x7040" Sub="#x0d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 13" Index="#x7040" Sub="#x0e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 14" Index="#x7040" Sub="#x0f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 15" Index="#x7040" Sub="#x10" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 16" Index="#x7040" Sub="#x11" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 17" Index="#x7040" Sub="#x12" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 18" Index="#x7040" Sub="#x13" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 19" Index="#x7040" Sub="#x14" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 20" Index="#x7040" Sub="#x15" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 21" Index="#x7040" Sub="#x16" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 22" Index="#x7040" Sub="#x17" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 23" Index="#x7040" Sub="#x18" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 24" Index="#x7040" Sub="#x19" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 25" Index="#x7040" Sub="#x1a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 26" Index="#x7040" Sub="#x1b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 27" Index="#x7040" Sub="#x1c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 28" Index="#x7040" Sub="#x1d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 29" Index="#x7040" Sub="#x1e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 30" Index="#x7040" Sub="#x1f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 31" Index="#x7040" Sub="#x20" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-						</Pdo>
-						<Pdo Name="TxPDO" Index="#x1a05" Flags="#x0280" SyncMan="3">
-							<Entry Name="Input byte 0" Index="#x6050" Sub="#x01" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 1" Index="#x6050" Sub="#x02" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 2" Index="#x6050" Sub="#x03" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 3" Index="#x6050" Sub="#x04" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 4" Index="#x6050" Sub="#x05" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 5" Index="#x6050" Sub="#x06" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 6" Index="#x6050" Sub="#x07" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 7" Index="#x6050" Sub="#x08" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 8" Index="#x6050" Sub="#x09" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 9" Index="#x6050" Sub="#x0a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 10" Index="#x6050" Sub="#x0b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 11" Index="#x6050" Sub="#x0c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 12" Index="#x6050" Sub="#x0d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 13" Index="#x6050" Sub="#x0e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 14" Index="#x6050" Sub="#x0f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 15" Index="#x6050" Sub="#x10" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 16" Index="#x6050" Sub="#x11" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 17" Index="#x6050" Sub="#x12" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 18" Index="#x6050" Sub="#x13" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 19" Index="#x6050" Sub="#x14" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 20" Index="#x6050" Sub="#x15" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 21" Index="#x6050" Sub="#x16" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 22" Index="#x6050" Sub="#x17" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 23" Index="#x6050" Sub="#x18" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 24" Index="#x6050" Sub="#x19" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 25" Index="#x6050" Sub="#x1a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 26" Index="#x6050" Sub="#x1b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 27" Index="#x6050" Sub="#x1c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 28" Index="#x6050" Sub="#x1d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 29" Index="#x6050" Sub="#x1e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 30" Index="#x6050" Sub="#x1f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 31" Index="#x6050" Sub="#x20" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-						</Pdo>
-						<Pdo Name="RxPDO" Index="#x1605" InOut="1" Flags="#x0280" SyncMan="2">
-							<Entry Name="Output byte 0" Index="#x7050" Sub="#x01" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 1" Index="#x7050" Sub="#x02" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 2" Index="#x7050" Sub="#x03" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 3" Index="#x7050" Sub="#x04" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 4" Index="#x7050" Sub="#x05" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 5" Index="#x7050" Sub="#x06" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 6" Index="#x7050" Sub="#x07" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 7" Index="#x7050" Sub="#x08" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 8" Index="#x7050" Sub="#x09" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 9" Index="#x7050" Sub="#x0a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 10" Index="#x7050" Sub="#x0b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 11" Index="#x7050" Sub="#x0c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 12" Index="#x7050" Sub="#x0d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 13" Index="#x7050" Sub="#x0e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 14" Index="#x7050" Sub="#x0f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 15" Index="#x7050" Sub="#x10" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 16" Index="#x7050" Sub="#x11" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 17" Index="#x7050" Sub="#x12" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 18" Index="#x7050" Sub="#x13" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 19" Index="#x7050" Sub="#x14" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 20" Index="#x7050" Sub="#x15" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 21" Index="#x7050" Sub="#x16" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 22" Index="#x7050" Sub="#x17" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 23" Index="#x7050" Sub="#x18" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 24" Index="#x7050" Sub="#x19" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 25" Index="#x7050" Sub="#x1a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 26" Index="#x7050" Sub="#x1b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 27" Index="#x7050" Sub="#x1c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 28" Index="#x7050" Sub="#x1d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 29" Index="#x7050" Sub="#x1e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 30" Index="#x7050" Sub="#x1f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 31" Index="#x7050" Sub="#x20" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-						</Pdo>
 						<CoeProfile ProfileNo="407638921"/>
 						<CoeProfile ProfileNo="407638921"/>
 						<CoeProfile ProfileNo="407638921"/>
@@ -40513,12 +39325,10 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 							<ModuleIdent>2056</ModuleIdent>
 							<ModuleIdent>4112</ModuleIdent>
 							<ModuleIdent>8224</ModuleIdent>
-							<Module Id="#x0309006f" Type="IOL_32/32_I/O-Bytes" Class="">
-								<Name>Module 5 (IOL_32/32_I/O-Bytes)</Name>
-								<ImageId>1008</ImageId>
-								<ModuleData>5600000120200000000000000000000000000000000000000000000000000000</ModuleData>
-								<PdoIndex>6660</PdoIndex>
-								<PdoIndex>5636</PdoIndex>
+							<Module Id="#x0309006f" Type="Slot Empty" Class="">
+								<Name>Module 5 (Slot Empty)</Name>
+								<ImageId>1007</ImageId>
+								<ModuleData>5600000100210000000000000000000000000000000000000000000000000000</ModuleData>
 							</Module>
 						</Slot>
 						<Slot Name="IO-Link Port S6" ImageId="1007">
@@ -40544,12 +39354,10 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 							<ModuleIdent>2056</ModuleIdent>
 							<ModuleIdent>4112</ModuleIdent>
 							<ModuleIdent>8224</ModuleIdent>
-							<Module Id="#x03090070" Type="IOL_32/32_I/O-Bytes" Class="">
-								<Name>Module 6 (IOL_32/32_I/O-Bytes)</Name>
-								<ImageId>1008</ImageId>
-								<ModuleData>5600000120200000000000000000000000000000000000000000000000000000</ModuleData>
-								<PdoIndex>6661</PdoIndex>
-								<PdoIndex>5637</PdoIndex>
+							<Module Id="#x03090070" Type="Slot Empty" Class="">
+								<Name>Module 6 (Slot Empty)</Name>
+								<ImageId>1007</ImageId>
+								<ModuleData>5600000100210000000000000000000000000000000000000000000000000000</ModuleData>
 							</Module>
 						</Slot>
 						<Slot Name="IO-Link Port S7" ImageId="1007">
@@ -43014,13 +41822,13 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 					</EtherCAT>
 				</Box>
 				<Box Id="91" BoxType="9099" BoxFlags="#x00000020">
-					<Name>pm6_7_RFID_MLC</Name>
+					<Name>pm6_7_RFID</Name>
 					<ImageId>1006</ImageId>
 					<EtherCAT SlaveType="3" AdsServerAddress="c0a80b9f055c1004" PdiType="#x0006" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="47" EoeType="3" FoeType="1" VendorId="#x01000056" ProductCode="#x00001103" RevisionNo="#x00000001" InfoDataAddr="true" InfoDataNetId="true" GenerateOwnNetId="true" InitializeOwnNetId="true" PortPhys="17" IdentificationAdo="308" MaxSlotCount="8" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SIG350-0006AP100" Desc="6076924" PortABoxInfo="#x0100005a">
 						<SyncMan>0010ec0326000100010000008000ec03ec03001026010000</SyncMan>
 						<SyncMan>ec13ec0322000100020000008000ec03ec03ec1322010000</SyncMan>
-						<SyncMan>d817c2006400010003000000000040020000d81764010000</SyncMan>
-						<SyncMan>981ecb002000010004000000000040020000981e20010000</SyncMan>
+						<SyncMan>d81782006400010003000000000040020000d81764010000</SyncMan>
+						<SyncMan>981e8b002000010004000000000040020000981e20010000</SyncMan>
 						<Fmmu>0000000000000000d81700020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000981e00010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
@@ -43096,20 +41904,6 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 						<MBoxUserCmdData>02000300090000003c000000030000006900090300000000000000000000000020308024010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
 						<MBoxUserCmdData>02000300090000003c000000030000006900090300000000000000000000000020308025010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000a000000550000000300000069000903000000000000000000000000203080280200000003004d617374657220436f6e74726f6c3a20307830303033203d204e6f20446174612053746f726167652c20307830303233203d204261636b7570202b20526573746f72652c20307830303433203d20526573746f726500</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000c00000009000000030000006a00090300000000000000000000000020408004040000000000000044657669636520494400</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000c00000009000000030000006a00090300000000000000000000000020408005040000000000000056656e646f7220494400</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000063000000030000006a000903000000000000000000000000204080200100000000494f2d4c696e6b205265766973696f6e203030203d20706c6175736962696c747920636865636b20697320646561637469766174652c20652e672e203131203d2056312e31202d20706c6175736962696c747920636865636b2069732061637469766500</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000000a000000030000006a0009030000000000000000000000002040802201000000004379636c652054696d6500</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000003c000000030000006a00090300000000000000000000000020408024010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000003c000000030000006a00090300000000000000000000000020408025010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000a00000055000000030000006a000903000000000000000000000000204080280200000003004d617374657220436f6e74726f6c3a20307830303033203d204e6f20446174612053746f726167652c20307830303233203d204261636b7570202b20526573746f72652c20307830303433203d20526573746f726500</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000c00000009000000030000006b00090300000000000000000000000020508004040000000000000044657669636520494400</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000c00000009000000030000006b00090300000000000000000000000020508005040000000000000056656e646f7220494400</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000900000063000000030000006b000903000000000000000000000000205080200100000000494f2d4c696e6b205265766973696f6e203030203d20706c6175736962696c747920636865636b20697320646561637469766174652c20652e672e203131203d2056312e31202d20706c6175736962696c747920636865636b2069732061637469766500</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000000a000000030000006b0009030000000000000000000000002050802201000000004379636c652054696d6500</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000003c000000030000006b00090300000000000000000000000020508024010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000003c000000030000006b00090300000000000000000000000020508025010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000a00000055000000030000006b000903000000000000000000000000205080280200000003004d617374657220436f6e74726f6c3a20307830303033203d204e6f20446174612053746f726167652c20307830303233203d204261636b7570202b20526573746f72652c20307830303433203d20526573746f726500</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000c00000009000000030000006c00090300000000000000000000000020608004040000000000000044657669636520494400</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000c00000009000000030000006c00090300000000000000000000000020608005040000000000000056656e646f7220494400</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000900000063000000030000006c000903000000000000000000000000206080200100000000494f2d4c696e6b205265766973696f6e203030203d20706c6175736962696c747920636865636b20697320646561637469766174652c20652e672e203131203d2056312e31202d20706c6175736962696c747920636865636b2069732061637469766500</MBoxUserCmdData>
@@ -43124,6 +41918,20 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 						<MBoxUserCmdData>02000300090000003c000000030000006d000903000000000000000000000000207080240100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
 						<MBoxUserCmdData>02000300090000003c000000030000006d000903000000000000000000000000207080250100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000a0000003c000000030000006d00090300000000000000000000000020708028020000000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000c00000009000000030000006b00090300000000000000000000000020508004040000000000000044657669636520494400</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000c00000009000000030000006b00090300000000000000000000000020508005040000000000000056656e646f7220494400</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000900000063000000030000006b000903000000000000000000000000205080200100000000494f2d4c696e6b205265766973696f6e203030203d20706c6175736962696c747920636865636b20697320646561637469766174652c20652e672e203131203d2056312e31202d20706c6175736962696c747920636865636b2069732061637469766500</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000000a000000030000006b0009030000000000000000000000002050802201000000004379636c652054696d6500</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000003c000000030000006b000903000000000000000000000000205080240100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000003c000000030000006b000903000000000000000000000000205080250100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a0000003c000000030000006b00090300000000000000000000000020508028020000000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000c00000009000000030000006a00090300000000000000000000000020408004040000000000000044657669636520494400</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000c00000009000000030000006a00090300000000000000000000000020408005040000000000000056656e646f7220494400</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000900000063000000030000006a000903000000000000000000000000204080200100000000494f2d4c696e6b205265766973696f6e203030203d20706c6175736962696c747920636865636b20697320646561637469766174652c20652e672e203131203d2056312e31202d20706c6175736962696c747920636865636b2069732061637469766500</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000000a000000030000006a0009030000000000000000000000002040802201000000004379636c652054696d6500</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000003c000000030000006a000903000000000000000000000000204080240100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000003c000000030000006a000903000000000000000000000000204080250100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a0000003c000000030000006a00090300000000000000000000000020408028020000000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
 						<Pdo Name="TxPDO Mapping of Digital Inputs" Index="#x1a10" Flags="#x0011" SyncMan="3">
 							<Entry Name="PD (I/Q Pin2 + C/Q Pin4)" Index="#x3000" Sub="#x01">
 								<Type>UINT</Type>
@@ -43952,398 +42760,6 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 								<Type>USINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="TxPDO" Index="#x1a04" Flags="#x0280" SyncMan="3">
-							<Entry Name="Input byte 0" Index="#x6040" Sub="#x01" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 1" Index="#x6040" Sub="#x02" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 2" Index="#x6040" Sub="#x03" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 3" Index="#x6040" Sub="#x04" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 4" Index="#x6040" Sub="#x05" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 5" Index="#x6040" Sub="#x06" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 6" Index="#x6040" Sub="#x07" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 7" Index="#x6040" Sub="#x08" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 8" Index="#x6040" Sub="#x09" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 9" Index="#x6040" Sub="#x0a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 10" Index="#x6040" Sub="#x0b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 11" Index="#x6040" Sub="#x0c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 12" Index="#x6040" Sub="#x0d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 13" Index="#x6040" Sub="#x0e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 14" Index="#x6040" Sub="#x0f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 15" Index="#x6040" Sub="#x10" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 16" Index="#x6040" Sub="#x11" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 17" Index="#x6040" Sub="#x12" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 18" Index="#x6040" Sub="#x13" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 19" Index="#x6040" Sub="#x14" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 20" Index="#x6040" Sub="#x15" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 21" Index="#x6040" Sub="#x16" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 22" Index="#x6040" Sub="#x17" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 23" Index="#x6040" Sub="#x18" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 24" Index="#x6040" Sub="#x19" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 25" Index="#x6040" Sub="#x1a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 26" Index="#x6040" Sub="#x1b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 27" Index="#x6040" Sub="#x1c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 28" Index="#x6040" Sub="#x1d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 29" Index="#x6040" Sub="#x1e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 30" Index="#x6040" Sub="#x1f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 31" Index="#x6040" Sub="#x20" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-						</Pdo>
-						<Pdo Name="RxPDO" Index="#x1604" InOut="1" Flags="#x0280" SyncMan="2">
-							<Entry Name="Output byte 0" Index="#x7040" Sub="#x01" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 1" Index="#x7040" Sub="#x02" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 2" Index="#x7040" Sub="#x03" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 3" Index="#x7040" Sub="#x04" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 4" Index="#x7040" Sub="#x05" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 5" Index="#x7040" Sub="#x06" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 6" Index="#x7040" Sub="#x07" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 7" Index="#x7040" Sub="#x08" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 8" Index="#x7040" Sub="#x09" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 9" Index="#x7040" Sub="#x0a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 10" Index="#x7040" Sub="#x0b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 11" Index="#x7040" Sub="#x0c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 12" Index="#x7040" Sub="#x0d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 13" Index="#x7040" Sub="#x0e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 14" Index="#x7040" Sub="#x0f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 15" Index="#x7040" Sub="#x10" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 16" Index="#x7040" Sub="#x11" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 17" Index="#x7040" Sub="#x12" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 18" Index="#x7040" Sub="#x13" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 19" Index="#x7040" Sub="#x14" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 20" Index="#x7040" Sub="#x15" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 21" Index="#x7040" Sub="#x16" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 22" Index="#x7040" Sub="#x17" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 23" Index="#x7040" Sub="#x18" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 24" Index="#x7040" Sub="#x19" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 25" Index="#x7040" Sub="#x1a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 26" Index="#x7040" Sub="#x1b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 27" Index="#x7040" Sub="#x1c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 28" Index="#x7040" Sub="#x1d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 29" Index="#x7040" Sub="#x1e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 30" Index="#x7040" Sub="#x1f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 31" Index="#x7040" Sub="#x20" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-						</Pdo>
-						<Pdo Name="TxPDO" Index="#x1a05" Flags="#x0280" SyncMan="3">
-							<Entry Name="Input byte 0" Index="#x6050" Sub="#x01" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 1" Index="#x6050" Sub="#x02" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 2" Index="#x6050" Sub="#x03" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 3" Index="#x6050" Sub="#x04" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 4" Index="#x6050" Sub="#x05" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 5" Index="#x6050" Sub="#x06" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 6" Index="#x6050" Sub="#x07" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 7" Index="#x6050" Sub="#x08" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 8" Index="#x6050" Sub="#x09" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 9" Index="#x6050" Sub="#x0a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 10" Index="#x6050" Sub="#x0b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 11" Index="#x6050" Sub="#x0c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 12" Index="#x6050" Sub="#x0d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 13" Index="#x6050" Sub="#x0e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 14" Index="#x6050" Sub="#x0f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 15" Index="#x6050" Sub="#x10" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 16" Index="#x6050" Sub="#x11" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 17" Index="#x6050" Sub="#x12" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 18" Index="#x6050" Sub="#x13" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 19" Index="#x6050" Sub="#x14" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 20" Index="#x6050" Sub="#x15" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 21" Index="#x6050" Sub="#x16" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 22" Index="#x6050" Sub="#x17" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 23" Index="#x6050" Sub="#x18" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 24" Index="#x6050" Sub="#x19" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 25" Index="#x6050" Sub="#x1a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 26" Index="#x6050" Sub="#x1b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 27" Index="#x6050" Sub="#x1c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 28" Index="#x6050" Sub="#x1d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 29" Index="#x6050" Sub="#x1e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 30" Index="#x6050" Sub="#x1f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 31" Index="#x6050" Sub="#x20" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-						</Pdo>
-						<Pdo Name="RxPDO" Index="#x1605" InOut="1" Flags="#x0280" SyncMan="2">
-							<Entry Name="Output byte 0" Index="#x7050" Sub="#x01" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 1" Index="#x7050" Sub="#x02" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 2" Index="#x7050" Sub="#x03" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 3" Index="#x7050" Sub="#x04" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 4" Index="#x7050" Sub="#x05" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 5" Index="#x7050" Sub="#x06" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 6" Index="#x7050" Sub="#x07" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 7" Index="#x7050" Sub="#x08" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 8" Index="#x7050" Sub="#x09" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 9" Index="#x7050" Sub="#x0a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 10" Index="#x7050" Sub="#x0b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 11" Index="#x7050" Sub="#x0c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 12" Index="#x7050" Sub="#x0d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 13" Index="#x7050" Sub="#x0e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 14" Index="#x7050" Sub="#x0f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 15" Index="#x7050" Sub="#x10" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 16" Index="#x7050" Sub="#x11" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 17" Index="#x7050" Sub="#x12" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 18" Index="#x7050" Sub="#x13" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 19" Index="#x7050" Sub="#x14" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 20" Index="#x7050" Sub="#x15" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 21" Index="#x7050" Sub="#x16" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 22" Index="#x7050" Sub="#x17" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 23" Index="#x7050" Sub="#x18" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 24" Index="#x7050" Sub="#x19" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 25" Index="#x7050" Sub="#x1a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 26" Index="#x7050" Sub="#x1b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 27" Index="#x7050" Sub="#x1c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 28" Index="#x7050" Sub="#x1d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 29" Index="#x7050" Sub="#x1e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 30" Index="#x7050" Sub="#x1f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 31" Index="#x7050" Sub="#x20" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-						</Pdo>
 						<CoeProfile ProfileNo="407638921"/>
 						<CoeProfile ProfileNo="407638921"/>
 						<CoeProfile ProfileNo="407638921"/>
@@ -44499,12 +42915,10 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 							<ModuleIdent>2056</ModuleIdent>
 							<ModuleIdent>4112</ModuleIdent>
 							<ModuleIdent>8224</ModuleIdent>
-							<Module Id="#x0309006a" Type="IOL_32/32_I/O-Bytes" Class="">
-								<Name>Module 5 (IOL_32/32_I/O-Bytes)</Name>
-								<ImageId>1008</ImageId>
-								<ModuleData>5600000120200000000000000000000000000000000000000000000000000000</ModuleData>
-								<PdoIndex>6660</PdoIndex>
-								<PdoIndex>5636</PdoIndex>
+							<Module Id="#x0309006a" Type="Slot Empty" Class="">
+								<Name>Module 5 (Slot Empty)</Name>
+								<ImageId>1007</ImageId>
+								<ModuleData>5600000100210000000000000000000000000000000000000000000000000000</ModuleData>
 							</Module>
 						</Slot>
 						<Slot Name="IO-Link Port S6" ImageId="1007">
@@ -44530,12 +42944,10 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 							<ModuleIdent>2056</ModuleIdent>
 							<ModuleIdent>4112</ModuleIdent>
 							<ModuleIdent>8224</ModuleIdent>
-							<Module Id="#x0309006b" Type="IOL_32/32_I/O-Bytes" Class="">
-								<Name>Module 6 (IOL_32/32_I/O-Bytes)</Name>
-								<ImageId>1008</ImageId>
-								<ModuleData>5600000120200000000000000000000000000000000000000000000000000000</ModuleData>
-								<PdoIndex>6661</PdoIndex>
-								<PdoIndex>5637</PdoIndex>
+							<Module Id="#x0309006b" Type="Slot Empty" Class="">
+								<Name>Module 6 (Slot Empty)</Name>
+								<ImageId>1007</ImageId>
+								<ModuleData>5600000100210000000000000000000000000000000000000000000000000000</ModuleData>
 							</Module>
 						</Slot>
 						<Slot Name="IO-Link Port S7" ImageId="1007">
@@ -47683,13 +46095,13 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 					</EtherCAT>
 				</Box>
 				<Box Id="80" BoxType="9099" BoxFlags="#x00000020">
-					<Name>pm8_9_RFID_MLC</Name>
+					<Name>pm8_9_RFID</Name>
 					<ImageId>1006</ImageId>
 					<EtherCAT SlaveType="3" AdsServerAddress="c0a80b9f05511a04" PdiType="#x0006" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="47" EoeType="3" FoeType="1" VendorId="#x01000056" ProductCode="#x00001103" RevisionNo="#x00000001" InfoDataAddr="true" InfoDataNetId="true" GenerateOwnNetId="true" InitializeOwnNetId="true" PortPhys="17" IdentificationAdo="308" MaxSlotCount="8" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="SIG350-0006AP100" Desc="6076924" PortABoxInfo="#x0100004f">
 						<SyncMan>0010ec0326000100010000008000ec03ec03001026010000</SyncMan>
 						<SyncMan>ec13ec0322000100020000008000ec03ec03ec1322010000</SyncMan>
-						<SyncMan>d817c2006400010003000000000040020000d81764010000</SyncMan>
-						<SyncMan>981ecb002000010004000000000040020000981e20010000</SyncMan>
+						<SyncMan>d81782006400010003000000000040020000d81764010000</SyncMan>
+						<SyncMan>981e8b002000010004000000000040020000981e20010000</SyncMan>
 						<Fmmu>0000000000000000d81700020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000981e00010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
@@ -47783,20 +46195,6 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 						<MBoxUserCmdData>02000300090000003c000000030000007100090300000000000000000000000020308024010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
 						<MBoxUserCmdData>02000300090000003c000000030000007100090300000000000000000000000020308025010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000a000000550000000300000071000903000000000000000000000000203080280200000003004d617374657220436f6e74726f6c3a20307830303033203d204e6f20446174612053746f726167652c20307830303233203d204261636b7570202b20526573746f72652c20307830303433203d20526573746f726500</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000c00000009000000030000007200090300000000000000000000000020408004040000000000000044657669636520494400</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000c00000009000000030000007200090300000000000000000000000020408005040000000000000056656e646f7220494400</MBoxUserCmdData>
-						<MBoxUserCmdData>0200030009000000630000000300000072000903000000000000000000000000204080200100000000494f2d4c696e6b205265766973696f6e203030203d20706c6175736962696c747920636865636b20697320646561637469766174652c20652e672e203131203d2056312e31202d20706c6175736962696c747920636865636b2069732061637469766500</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000000a00000003000000720009030000000000000000000000002040802201000000004379636c652054696d6500</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000003c000000030000007200090300000000000000000000000020408024010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000003c000000030000007200090300000000000000000000000020408025010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000a000000550000000300000072000903000000000000000000000000204080280200000003004d617374657220436f6e74726f6c3a20307830303033203d204e6f20446174612053746f726167652c20307830303233203d204261636b7570202b20526573746f72652c20307830303433203d20526573746f726500</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000c00000009000000030000007300090300000000000000000000000020508004040000000000000044657669636520494400</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000c00000009000000030000007300090300000000000000000000000020508005040000000000000056656e646f7220494400</MBoxUserCmdData>
-						<MBoxUserCmdData>0200030009000000630000000300000073000903000000000000000000000000205080200100000000494f2d4c696e6b205265766973696f6e203030203d20706c6175736962696c747920636865636b20697320646561637469766174652c20652e672e203131203d2056312e31202d20706c6175736962696c747920636865636b2069732061637469766500</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000000a00000003000000730009030000000000000000000000002050802201000000004379636c652054696d6500</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000003c000000030000007300090300000000000000000000000020508024010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>02000300090000003c000000030000007300090300000000000000000000000020508025010000009f436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
-						<MBoxUserCmdData>020003000a000000550000000300000073000903000000000000000000000000205080280200000003004d617374657220436f6e74726f6c3a20307830303033203d204e6f20446174612053746f726167652c20307830303233203d204261636b7570202b20526573746f72652c20307830303433203d20526573746f726500</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000c00000009000000030000008e00090300000000000000000000000020608004040000000000000044657669636520494400</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000c00000009000000030000008e00090300000000000000000000000020608005040000000000000056656e646f7220494400</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000900000063000000030000008e000903000000000000000000000000206080200100000000494f2d4c696e6b205265766973696f6e203030203d20706c6175736962696c747920636865636b20697320646561637469766174652c20652e672e203131203d2056312e31202d20706c6175736962696c747920636865636b2069732061637469766500</MBoxUserCmdData>
@@ -47811,6 +46209,20 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 						<MBoxUserCmdData>02000300090000003c000000030000008f000903000000000000000000000000207080240100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
 						<MBoxUserCmdData>02000300090000003c000000030000008f000903000000000000000000000000207080250100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
 						<MBoxUserCmdData>020003000a0000003c000000030000008f00090300000000000000000000000020708028020000000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000c00000009000000030000007300090300000000000000000000000020508004040000000000000044657669636520494400</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000c00000009000000030000007300090300000000000000000000000020508005040000000000000056656e646f7220494400</MBoxUserCmdData>
+						<MBoxUserCmdData>0200030009000000630000000300000073000903000000000000000000000000205080200100000000494f2d4c696e6b205265766973696f6e203030203d20706c6175736962696c747920636865636b20697320646561637469766174652c20652e672e203131203d2056312e31202d20706c6175736962696c747920636865636b2069732061637469766500</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000000a00000003000000730009030000000000000000000000002050802201000000004379636c652054696d6500</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000003c0000000300000073000903000000000000000000000000205080240100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000003c0000000300000073000903000000000000000000000000205080250100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a0000003c000000030000007300090300000000000000000000000020508028020000000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000c00000009000000030000007200090300000000000000000000000020408004040000000000000044657669636520494400</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000c00000009000000030000007200090300000000000000000000000020408005040000000000000056656e646f7220494400</MBoxUserCmdData>
+						<MBoxUserCmdData>0200030009000000630000000300000072000903000000000000000000000000204080200100000000494f2d4c696e6b205265766973696f6e203030203d20706c6175736962696c747920636865636b20697320646561637469766174652c20652e672e203131203d2056312e31202d20706c6175736962696c747920636865636b2069732061637469766500</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000000a00000003000000720009030000000000000000000000002040802201000000004379636c652054696d6500</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000003c0000000300000072000903000000000000000000000000204080240100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>02000300090000003c0000000300000072000903000000000000000000000000204080250100000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
+						<MBoxUserCmdData>020003000a0000003c000000030000007200090300000000000000000000000020408028020000000000436f6e666967757265642062792074686520706c756767656420736c6f74206d6f64756c652c20706c6561736520646f206e6f74206368616e67652e00</MBoxUserCmdData>
 						<Pdo Name="TxPDO Mapping of Digital Inputs" Index="#x1a10" Flags="#x0011" SyncMan="3">
 							<Entry Name="PD (I/Q Pin2 + C/Q Pin4)" Index="#x3000" Sub="#x01">
 								<Type>UINT</Type>
@@ -48639,398 +47051,6 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 								<Type>USINT</Type>
 							</Entry>
 						</Pdo>
-						<Pdo Name="TxPDO" Index="#x1a04" Flags="#x0280" SyncMan="3">
-							<Entry Name="Input byte 0" Index="#x6040" Sub="#x01" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 1" Index="#x6040" Sub="#x02" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 2" Index="#x6040" Sub="#x03" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 3" Index="#x6040" Sub="#x04" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 4" Index="#x6040" Sub="#x05" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 5" Index="#x6040" Sub="#x06" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 6" Index="#x6040" Sub="#x07" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 7" Index="#x6040" Sub="#x08" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 8" Index="#x6040" Sub="#x09" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 9" Index="#x6040" Sub="#x0a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 10" Index="#x6040" Sub="#x0b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 11" Index="#x6040" Sub="#x0c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 12" Index="#x6040" Sub="#x0d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 13" Index="#x6040" Sub="#x0e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 14" Index="#x6040" Sub="#x0f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 15" Index="#x6040" Sub="#x10" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 16" Index="#x6040" Sub="#x11" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 17" Index="#x6040" Sub="#x12" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 18" Index="#x6040" Sub="#x13" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 19" Index="#x6040" Sub="#x14" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 20" Index="#x6040" Sub="#x15" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 21" Index="#x6040" Sub="#x16" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 22" Index="#x6040" Sub="#x17" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 23" Index="#x6040" Sub="#x18" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 24" Index="#x6040" Sub="#x19" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 25" Index="#x6040" Sub="#x1a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 26" Index="#x6040" Sub="#x1b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 27" Index="#x6040" Sub="#x1c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 28" Index="#x6040" Sub="#x1d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 29" Index="#x6040" Sub="#x1e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 30" Index="#x6040" Sub="#x1f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 31" Index="#x6040" Sub="#x20" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-						</Pdo>
-						<Pdo Name="RxPDO" Index="#x1604" InOut="1" Flags="#x0280" SyncMan="2">
-							<Entry Name="Output byte 0" Index="#x7040" Sub="#x01" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 1" Index="#x7040" Sub="#x02" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 2" Index="#x7040" Sub="#x03" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 3" Index="#x7040" Sub="#x04" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 4" Index="#x7040" Sub="#x05" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 5" Index="#x7040" Sub="#x06" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 6" Index="#x7040" Sub="#x07" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 7" Index="#x7040" Sub="#x08" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 8" Index="#x7040" Sub="#x09" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 9" Index="#x7040" Sub="#x0a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 10" Index="#x7040" Sub="#x0b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 11" Index="#x7040" Sub="#x0c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 12" Index="#x7040" Sub="#x0d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 13" Index="#x7040" Sub="#x0e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 14" Index="#x7040" Sub="#x0f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 15" Index="#x7040" Sub="#x10" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 16" Index="#x7040" Sub="#x11" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 17" Index="#x7040" Sub="#x12" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 18" Index="#x7040" Sub="#x13" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 19" Index="#x7040" Sub="#x14" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 20" Index="#x7040" Sub="#x15" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 21" Index="#x7040" Sub="#x16" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 22" Index="#x7040" Sub="#x17" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 23" Index="#x7040" Sub="#x18" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 24" Index="#x7040" Sub="#x19" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 25" Index="#x7040" Sub="#x1a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 26" Index="#x7040" Sub="#x1b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 27" Index="#x7040" Sub="#x1c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 28" Index="#x7040" Sub="#x1d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 29" Index="#x7040" Sub="#x1e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 30" Index="#x7040" Sub="#x1f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 31" Index="#x7040" Sub="#x20" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-						</Pdo>
-						<Pdo Name="TxPDO" Index="#x1a05" Flags="#x0280" SyncMan="3">
-							<Entry Name="Input byte 0" Index="#x6050" Sub="#x01" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 1" Index="#x6050" Sub="#x02" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 2" Index="#x6050" Sub="#x03" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 3" Index="#x6050" Sub="#x04" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 4" Index="#x6050" Sub="#x05" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 5" Index="#x6050" Sub="#x06" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 6" Index="#x6050" Sub="#x07" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 7" Index="#x6050" Sub="#x08" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 8" Index="#x6050" Sub="#x09" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 9" Index="#x6050" Sub="#x0a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 10" Index="#x6050" Sub="#x0b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 11" Index="#x6050" Sub="#x0c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 12" Index="#x6050" Sub="#x0d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 13" Index="#x6050" Sub="#x0e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 14" Index="#x6050" Sub="#x0f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 15" Index="#x6050" Sub="#x10" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 16" Index="#x6050" Sub="#x11" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 17" Index="#x6050" Sub="#x12" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 18" Index="#x6050" Sub="#x13" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 19" Index="#x6050" Sub="#x14" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 20" Index="#x6050" Sub="#x15" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 21" Index="#x6050" Sub="#x16" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 22" Index="#x6050" Sub="#x17" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 23" Index="#x6050" Sub="#x18" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 24" Index="#x6050" Sub="#x19" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 25" Index="#x6050" Sub="#x1a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 26" Index="#x6050" Sub="#x1b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 27" Index="#x6050" Sub="#x1c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 28" Index="#x6050" Sub="#x1d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 29" Index="#x6050" Sub="#x1e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 30" Index="#x6050" Sub="#x1f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Input byte 31" Index="#x6050" Sub="#x20" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-						</Pdo>
-						<Pdo Name="RxPDO" Index="#x1605" InOut="1" Flags="#x0280" SyncMan="2">
-							<Entry Name="Output byte 0" Index="#x7050" Sub="#x01" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 1" Index="#x7050" Sub="#x02" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 2" Index="#x7050" Sub="#x03" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 3" Index="#x7050" Sub="#x04" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 4" Index="#x7050" Sub="#x05" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 5" Index="#x7050" Sub="#x06" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 6" Index="#x7050" Sub="#x07" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 7" Index="#x7050" Sub="#x08" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 8" Index="#x7050" Sub="#x09" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 9" Index="#x7050" Sub="#x0a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 10" Index="#x7050" Sub="#x0b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 11" Index="#x7050" Sub="#x0c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 12" Index="#x7050" Sub="#x0d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 13" Index="#x7050" Sub="#x0e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 14" Index="#x7050" Sub="#x0f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 15" Index="#x7050" Sub="#x10" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 16" Index="#x7050" Sub="#x11" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 17" Index="#x7050" Sub="#x12" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 18" Index="#x7050" Sub="#x13" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 19" Index="#x7050" Sub="#x14" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 20" Index="#x7050" Sub="#x15" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 21" Index="#x7050" Sub="#x16" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 22" Index="#x7050" Sub="#x17" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 23" Index="#x7050" Sub="#x18" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 24" Index="#x7050" Sub="#x19" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 25" Index="#x7050" Sub="#x1a" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 26" Index="#x7050" Sub="#x1b" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 27" Index="#x7050" Sub="#x1c" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 28" Index="#x7050" Sub="#x1d" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 29" Index="#x7050" Sub="#x1e" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 30" Index="#x7050" Sub="#x1f" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-							<Entry Name="Output byte 31" Index="#x7050" Sub="#x20" Flags="#x00001000">
-								<Type>USINT</Type>
-							</Entry>
-						</Pdo>
 						<CoeProfile ProfileNo="407638921"/>
 						<CoeProfile ProfileNo="407638921"/>
 						<CoeProfile ProfileNo="407638921"/>
@@ -49186,12 +47206,10 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 							<ModuleIdent>2056</ModuleIdent>
 							<ModuleIdent>4112</ModuleIdent>
 							<ModuleIdent>8224</ModuleIdent>
-							<Module Id="#x03090072" Type="IOL_32/32_I/O-Bytes" Class="">
-								<Name>Module 5 (IOL_32/32_I/O-Bytes)</Name>
-								<ImageId>1008</ImageId>
-								<ModuleData>5600000120200000000000000000000000000000000000000000000000000000</ModuleData>
-								<PdoIndex>6660</PdoIndex>
-								<PdoIndex>5636</PdoIndex>
+							<Module Id="#x03090072" Type="Slot Empty" Class="">
+								<Name>Module 5 (Slot Empty)</Name>
+								<ImageId>1007</ImageId>
+								<ModuleData>5600000100210000000000000000000000000000000000000000000000000000</ModuleData>
 							</Module>
 						</Slot>
 						<Slot Name="IO-Link Port S6" ImageId="1007">
@@ -49217,12 +47235,10 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 							<ModuleIdent>2056</ModuleIdent>
 							<ModuleIdent>4112</ModuleIdent>
 							<ModuleIdent>8224</ModuleIdent>
-							<Module Id="#x03090073" Type="IOL_32/32_I/O-Bytes" Class="">
-								<Name>Module 6 (IOL_32/32_I/O-Bytes)</Name>
-								<ImageId>1008</ImageId>
-								<ModuleData>5600000120200000000000000000000000000000000000000000000000000000</ModuleData>
-								<PdoIndex>6661</PdoIndex>
-								<PdoIndex>5637</PdoIndex>
+							<Module Id="#x03090073" Type="Slot Empty" Class="">
+								<Name>Module 6 (Slot Empty)</Name>
+								<ImageId>1007</ImageId>
+								<ModuleData>5600000100210000000000000000000000000000000000000000000000000000</ModuleData>
 							</Module>
 						</Slot>
 						<Slot Name="IO-Link Port S7" ImageId="1007">
@@ -50802,7 +48818,7 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 				</Box>
 				<EtherCAT DcSyncMode="2" EnableVirtualSwitch="true" MaxSwitchPorts="36" MaxSwitchFrames="800" MaxSwitchMACs="100"/>
 			</Device>
-			<Device Id="5" DevType="57" AmsPort="28677">
+			<Device Id="5" Disabled="true" DevType="57" AmsPort="28677">
 				<Name>Device 5 (USB)</Name>
 				<Image Id="7" AddrType="1" ImageType="3">
 					<Name>Image</Name>
@@ -50854,7 +48870,7 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 				</Box>
 				<Usb VirtualDeviceName="true"/>
 			</Device>
-			<Device Id="6" DevType="11" AmsPort="28678">
+			<Device Id="6" Disabled="true" DevType="11" AmsPort="28678">
 				<Name>Device 6 (COM Port)</Name>
 				<AddressInfo>
 					<Pnp>
@@ -50868,7 +48884,7 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 				</Image>
 				<Serial Baud="38400" Parity="1" StopBit="1" RsType="1" WaitTimeToShutdown="60" BufSize="4096" DataBit="8" ComPortNo="1" Timeout="300"/>
 			</Device>
-			<Device Id="7" DevType="121">
+			<Device Id="7" Disabled="true" DevType="121">
 				<Name>Device 7 (NOV-DP-RAM)</Name>
 				<AddressInfo>
 					<Pci>
@@ -51838,12 +49854,6 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 		</Io>
 	</Project>
 	<Mappings>
-		<MappingInfo Identifier="{00000000-2003-0850-0020-5008A1000403}" Id="#x02030050"/>
-		<MappingInfo Identifier="{00000000-2003-0850-0020-5008B1000403}" Id="#x02030020"/>
-		<MappingInfo Identifier="{00000000-0030-0304-1000-040330000403}" Id="#x02030010"/>
-		<MappingInfo Identifier="{00000000-0040-0304-1000-040342000403}" Id="#x02030030"/>
-		<MappingInfo Identifier="{00000000-0050-0304-1000-040350000403}" Id="#x02030040"/>
-		<MappingInfo Identifier="{00000000-0060-0304-1000-040362000403}" Id="#x02030060"/>
 		<MappingInfo Identifier="{05000010-2003-0850-1000-040300205008}" Id="#x02030070" Watchdog="04000000080000000400000004000000"/>
 		<OwnerA Name="TINC^NC-Task 1 SAF^Axes^fr0">
 			<OwnerB Name="TIID^pm side^fr0_servermotor">

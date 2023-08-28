@@ -8,17 +8,8 @@ TYPE BagMachineStatus:
     OFF := 0,
     BUSY := 1,
     READY := 2,
-    BAG_READY := 3,
-	MOVEIN_ENABLE	:= 4,
-    BAG_INSERTED := 5,
-	BAG_REMOVED := 6,
-	GET_RESULT_FROM_CAMERA	:=7,
-	RESET_CAMERA	:= 8,
-	CAMERA_OK	:= 9,
-	CAMERA_NG	:= 11,
-    SUCCESS := 12,
-    ERROR := 13,
-	DONE	:=14
+	RESET	:=3,
+    ERROR := 4
 );
 END_TYPE
 ]]></Declaration>

@@ -1,19 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <DUT Name="BagCmd" Id="{d5ed3d2d-123f-4589-95f4-4d1f34e5e6c6}">
+  <DUT Name="BagCmd" Id="{4faa6746-5de0-4cb6-a6c4-3656231adfa9}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 {attribute 'strict'}
 TYPE BagCmd:
 (
-    OFF := 0,
-    INSERT_ENABLE := 1,
-    REMOVE_ENABLE := 2,
-	GET_RESULT_FROM_CAMERA	:= 3,
-	RESET_CAMERA	:=4,
-    SUCCESS := 5,
-    ERROR := 6
+	DO_NOTHING := 0,
+    INSERT_BAG_HOLDER := 1,
+    REMOVE_BAG_HOLDER := 2
 );
-END_TYPE
-]]></Declaration>
+END_TYPE]]></Declaration>
   </DUT>
 </TcPlcObject>

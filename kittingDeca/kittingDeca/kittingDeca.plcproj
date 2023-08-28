@@ -157,7 +157,22 @@
     <Compile Include="POUs\bagmachines\BagCmd.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\bagmachines\BagDetectionCmd.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\bagmachines\BagDetectionStatus.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\bagmachines\BagHeightStatus.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\bagmachines\BagHolderStatus.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\bagmachines\BagMachineStatus.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\bagmachines\BagStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\bagmachines\FB_BagCloser.TcPOU">
@@ -266,6 +281,10 @@
       <DependentUpon>视图管理器.TcVMO</DependentUpon>
     </Compile>
     <Compile Include="VISUs\v_IO_FR.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>视图管理器.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="VISUs\v_IO_fixtureClamp.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>视图管理器.TcVMO</DependentUpon>
     </Compile>
