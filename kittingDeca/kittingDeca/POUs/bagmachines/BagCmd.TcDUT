@@ -7,7 +7,8 @@ TYPE BagCmd:
 (
 	DO_NOTHING := 0,
     INSERT_BAG_HOLDER := 1,
-    REMOVE_BAG_HOLDER := 2
+    REMOVE_BAG_HOLDER := 2,
+	STOP	:=3
 );
 END_TYPE]]></Declaration>
   </DUT>

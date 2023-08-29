@@ -87,7 +87,7 @@ END_CASE
 //		[2]:height detect cmd(0:idle,1:ok,2:ng)
 iMachineStatus	:= WORD_TO_INT(adsArr.inArr[0]);
 iBagStatus := WORD_TO_INT(adsArr.inArr[1]);
-
+ 
 adsArr.outArr[1]	:= INT_TO_WORD(current_bag_cmd);
 adsArr.outArr[2]	:= INT_TO_WORD(current_bag_height_status);
 
@@ -95,8 +95,9 @@ CASE adsArr.inArr[0] OF
 	0:status	:= BagMachineStatus.OFF;
 	1:status	:= BagMachineStatus.BUSY;
 	2:status	:= BagMachineStatus.READY;
-	3:status	:= BagMachineStatus.READY;
+	3:status	:= BagMachineStatus.RESET;
 	4:status	:= BagMachineStatus.ERROR;
+	5:status	:= BagMachineStatus.STOPPED;
 END_CASE
 CASE adsArr.inArr[1] OF
 	0:bag_status	:= BagStatus.UNKNOWN;
@@ -121,6 +122,12 @@ CASE current_bag_cmd OF
 		IF bag_done_unclamping() THEN
 			current_bag_cmd	:=0;
 		END_IF	
+	BagCmd.STOP:
+		current_bag_cmd	:= BagCmd.STOP;
+		IF status = BagMachineStatus.STOPPED THEN
+			current_bag_cmd	:= BagCmd.DO_NOTHING;
+		END_IF
+		
 END_CASE
 
 
@@ -164,9 +171,9 @@ END_VAR
       <Implementation>
         <ST><![CDATA[fixture_ready	:= FALSE;
 current_bag_cmd	:= BagCmd.INSERT_BAG_HOLDER;
-IF bag_removed OR unload_ready THEN//avoid not catch signal of removed
-	fixture_ready := TRUE;
-	current_bag_cmd	:= BagCmd.DO_NOTHING;
+IF machine_inserted THEN
+	fixture_ready	:= TRUE;
+	current_bag_cmd	:= 	BagCmd.DO_NOTHING;
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -211,11 +218,15 @@ END_VAR
       <LineId Id="431" Count="0" />
       <LineId Id="298" Count="9" />
       <LineId Id="386" Count="5" />
+      <LineId Id="432" Count="0" />
       <LineId Id="317" Count="0" />
       <LineId Id="392" Count="5" />
       <LineId Id="403" Count="3" />
       <LineId Id="357" Count="0" />
       <LineId Id="419" Count="11" />
+      <LineId Id="433" Count="1" />
+      <LineId Id="436" Count="2" />
+      <LineId Id="435" Count="0" />
       <LineId Id="329" Count="2" />
       <LineId Id="2" Count="0" />
     </LineIds>
@@ -228,8 +239,9 @@ END_VAR
     </LineIds>
     <LineIds Name="FB_BagCloser.fixture_ready">
       <LineId Id="89" Count="0" />
-      <LineId Id="94" Count="2" />
-      <LineId Id="98" Count="1" />
+      <LineId Id="94" Count="0" />
+      <LineId Id="105" Count="2" />
+      <LineId Id="99" Count="0" />
     </LineIds>
     <LineIds Name="FB_BagCloser.M_Init">
       <LineId Id="7" Count="0" />

@@ -7902,7 +7902,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{2354DE8C-DE54-4E07-94D7-E848733F7762}" Name="kittingDeca" PrjFilePath="kittingDeca\kittingDeca.plcproj" TmcFilePath="kittingDeca\kittingDeca.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="kittingDeca\kittingDeca.tmc" TmcHash="{18F486D0-45FF-16F4-A028-8BA2BED0028E}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="kittingDeca\kittingDeca.tmc" TmcHash="{BA49B00C-003F-0188-FDCF-8406CF91176C}">
 					<Name>kittingDeca Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">

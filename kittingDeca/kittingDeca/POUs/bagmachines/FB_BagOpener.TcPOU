@@ -103,8 +103,9 @@ CASE adsArr.inArr[0] OF
 	0:status	:= BagMachineStatus.OFF;
 	1:status	:= BagMachineStatus.BUSY;
 	2:status	:= BagMachineStatus.READY;
-	3:status	:= BagMachineStatus.READY;
+	3:status	:= BagMachineStatus.RESET;
 	4:status	:= BagMachineStatus.ERROR;
+	5:status	:= BagMachineStatus.STOPPED;
 END_CASE
 CASE adsArr.inArr[1] OF
 	0:bag_status	:= BagStatus.UNKNOWN;
@@ -128,11 +129,11 @@ CASE current_bag_detection_cmd OF
 	BagDetectionCmd.DO_NOTHING:
 		;
 	BagDetectionCmd.GET_RESULT_FROM_CAMERA:
-		IF GVL.fb_bagOpener.get_result_from_camera() THEN
+		IF get_result_from_camera() THEN
 			current_bag_detection_cmd	:=0;
 		END_IF		
 	BagDetectionCmd.RESET_CAMERA:
-		IF GVL.fb_bagOpener.reset_camera() THEN
+		IF reset_camera() THEN
 			current_bag_detection_cmd	:=0;
 		END_IF	
 END_CASE
@@ -148,6 +149,11 @@ CASE current_bag_cmd OF
 		IF bag_done_clamping() THEN
 			current_bag_cmd	:=0;
 		END_IF	
+	BagCmd.STOP:
+		current_bag_cmd	:= BagCmd.STOP;
+		IF status = BagMachineStatus.STOPPED THEN
+			current_bag_cmd	:= BagCmd.DO_NOTHING;
+		END_IF
 END_CASE
 
 
@@ -297,6 +303,7 @@ END_IF
       <LineId Id="168" Count="0" />
       <LineId Id="170" Count="2" />
       <LineId Id="329" Count="0" />
+      <LineId Id="349" Count="0" />
       <LineId Id="169" Count="0" />
       <LineId Id="332" Count="4" />
       <LineId Id="284" Count="0" />
@@ -315,6 +322,8 @@ END_IF
       <LineId Id="132" Count="0" />
       <LineId Id="183" Count="0" />
       <LineId Id="318" Count="10" />
+      <LineId Id="351" Count="3" />
+      <LineId Id="350" Count="0" />
       <LineId Id="248" Count="0" />
       <LineId Id="247" Count="0" />
       <LineId Id="86" Count="0" />

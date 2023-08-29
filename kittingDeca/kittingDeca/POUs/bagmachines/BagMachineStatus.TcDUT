@@ -9,7 +9,8 @@ TYPE BagMachineStatus:
     BUSY := 1,
     READY := 2,
 	RESET	:=3,
-    ERROR := 4
+    ERROR := 4,
+	STOPPED := 5
 );
 END_TYPE
 ]]></Declaration>
