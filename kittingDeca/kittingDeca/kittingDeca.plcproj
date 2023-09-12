@@ -184,6 +184,9 @@
     <Compile Include="POUs\bagmachines\FB_BagOpener.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\bagmachines\fb_interface_bagmachine.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\E_RemIndex.TcDUT">
       <SubType>Code</SubType>
     </Compile>

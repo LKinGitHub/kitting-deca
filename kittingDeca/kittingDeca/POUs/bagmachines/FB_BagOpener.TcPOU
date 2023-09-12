@@ -156,7 +156,7 @@ CASE current_bag_cmd OF
 		END_IF
 END_CASE
 
-
+//test just for jdm to control io for testing bag machine easier
 ]]></ST>
     </Implementation>
     <Method Name="bag_done_clamping" Id="{106afa9e-1515-436b-93db-b6ae6b065e5a}">

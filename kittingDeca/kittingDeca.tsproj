@@ -7902,7 +7902,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{2354DE8C-DE54-4E07-94D7-E848733F7762}" Name="kittingDeca" PrjFilePath="kittingDeca\kittingDeca.plcproj" TmcFilePath="kittingDeca\kittingDeca.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="kittingDeca\kittingDeca.tmc" TmcHash="{BA49B00C-003F-0188-FDCF-8406CF91176C}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="kittingDeca\kittingDeca.tmc" TmcHash="{347EA758-C9C3-BEA1-C788-DB99F3DAD543}">
 					<Name>kittingDeca Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -9690,7 +9690,7 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 			<PlcAuxTask Affinity="#x00000001"/>
 		</Plc>
 		<Io>
-			<Device Id="1" Disabled="true" DevType="112" AmsPort="28673" AmsNetId="192.168.11.159.2.1" RemoteName="Device 1 (EtherCAT Automation Protocol)">
+			<Device Id="1" DevType="112" AmsPort="28673" AmsNetId="192.168.11.159.2.1" RemoteName="Device 1 (EtherCAT Automation Protocol)">
 				<Name>Device 1 (EtherCAT Automation Protocol)</Name>
 				<AddressInfo>
 					<Pnp>
@@ -9705,7 +9705,7 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 				<Ethernet DeviceDesc="X000 (TwinCAT-Intel PCI Ethernet Adapter (Gigabit))"/>
 				<Eap EapDeviceGuid="{F08A719F-A7B6-47AC-AF2E-490DFCCA9AE8}"/>
 			</Device>
-			<Device Id="2" Disabled="true" DevType="109" DevFlags="#x0004">
+			<Device Id="2" DevType="109" DevFlags="#x0004">
 				<Name>Device 2 (RT-Ethernet Adapter)</Name>
 				<AddressInfo>
 					<Pnp>
@@ -9718,7 +9718,7 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 					<Esl SyncSlaveProtocolPort="-1"/>
 				</Ethernet>
 			</Device>
-			<Device Id="3" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28675" AmsNetId="192.168.11.159.4.1" RemoteName="rem_wf" InfoImageId="4">
+			<Device Id="3" DevType="111" DevFlags="#x0003" AmsPort="28675" AmsNetId="192.168.11.159.4.1" RemoteName="rem_wf" InfoImageId="4">
 				<Name>rem_wf</Name>
 				<AddressInfo>
 					<TcCom>
@@ -26282,7 +26282,7 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 				</Box>
 				<EtherCAT DcSyncMode="3" EnableVirtualSwitch="true" MaxSwitchPorts="22" MaxSwitchFrames="520"/>
 			</Device>
-			<Device Id="4" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28676" AmsNetId="192.168.11.159.5.1" RemoteName="pm side" InfoImageId="6">
+			<Device Id="4" DevType="111" DevFlags="#x0003" AmsPort="28676" AmsNetId="192.168.11.159.5.1" RemoteName="pm side" InfoImageId="6">
 				<Name>pm side</Name>
 				<AddressInfo>
 					<TcCom>
@@ -48818,7 +48818,7 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 				</Box>
 				<EtherCAT DcSyncMode="2" EnableVirtualSwitch="true" MaxSwitchPorts="36" MaxSwitchFrames="800" MaxSwitchMACs="100"/>
 			</Device>
-			<Device Id="5" Disabled="true" DevType="57" AmsPort="28677">
+			<Device Id="5" DevType="57" AmsPort="28677">
 				<Name>Device 5 (USB)</Name>
 				<Image Id="7" AddrType="1" ImageType="3">
 					<Name>Image</Name>
@@ -48870,7 +48870,7 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 				</Box>
 				<Usb VirtualDeviceName="true"/>
 			</Device>
-			<Device Id="6" Disabled="true" DevType="11" AmsPort="28678">
+			<Device Id="6" DevType="11" AmsPort="28678">
 				<Name>Device 6 (COM Port)</Name>
 				<AddressInfo>
 					<Pnp>
@@ -48884,7 +48884,7 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 				</Image>
 				<Serial Baud="38400" Parity="1" StopBit="1" RsType="1" WaitTimeToShutdown="60" BufSize="4096" DataBit="8" ComPortNo="1" Timeout="300"/>
 			</Device>
-			<Device Id="7" Disabled="true" DevType="121">
+			<Device Id="7" DevType="121">
 				<Name>Device 7 (NOV-DP-RAM)</Name>
 				<AddressInfo>
 					<Pci>
@@ -49854,6 +49854,12 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 		</Io>
 	</Project>
 	<Mappings>
+		<MappingInfo Identifier="{00000000-2003-0850-0020-5008A1000403}" Id="#x02030050"/>
+		<MappingInfo Identifier="{00000000-2003-0850-0020-5008B1000403}" Id="#x02030020"/>
+		<MappingInfo Identifier="{00000000-0030-0304-1000-040330000403}" Id="#x02030010"/>
+		<MappingInfo Identifier="{00000000-0040-0304-1000-040342000403}" Id="#x02030030"/>
+		<MappingInfo Identifier="{00000000-0050-0304-1000-040350000403}" Id="#x02030040"/>
+		<MappingInfo Identifier="{00000000-0060-0304-1000-040362000403}" Id="#x02030060"/>
 		<MappingInfo Identifier="{05000010-2003-0850-1000-040300205008}" Id="#x02030070" Watchdog="04000000080000000400000004000000"/>
 		<OwnerA Name="TINC^NC-Task 1 SAF^Axes^fr0">
 			<OwnerB Name="TIID^pm side^fr0_servermotor">

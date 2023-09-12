@@ -28,6 +28,8 @@ VAR
 
 	iMachineStatus		: INT;//inArr[0]
 	iBagStatus			: INT;//inArr[1]
+	
+	arr_fb_belt	: ARRAY[0..9] OF fb_interface_bagmachine;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[	adsread(
@@ -105,11 +107,12 @@ CASE adsArr.inArr[1] OF
 	2:bag_status	:= BagStatus.INSERTED;
 	3:bag_status	:= BagStatus.REMOVED;
 END_CASE
-CASE adsArr.inArr[2] OF
+CASE adsArr.inArr[3] OF
 	0:bag_holder_status	:= BagHolderStatus.UNKNOWN;
 	1:bag_holder_status	:= BagHolderStatus.DOWN;
 	2:bag_holder_status	:= BagHolderStatus.UP;
 END_CASE
+
 
 CASE current_bag_cmd OF
 	BagCmd.DO_NOTHING:
@@ -131,6 +134,56 @@ CASE current_bag_cmd OF
 END_CASE
 
 
+//
+IF GVL.bBagmachine_test THEN
+	arr_fb_belt[0](bRun:=adsArr.inArr[4].0,iPM:=1,iBelt:=1);
+	arr_fb_belt[1](bRun:=adsArr.inArr[4].1,iPM:=1,iBelt:=0);
+	arr_fb_belt[2](bRun:=adsArr.inArr[4].2,iPM:=2,iBelt:=1);
+	arr_fb_belt[3](bRun:=adsArr.inArr[4].3,iPM:=2,iBelt:=0);
+	arr_fb_belt[4](bRun:=adsArr.inArr[4].4,iPM:=3,iBelt:=1);
+	arr_fb_belt[5](bRun:=adsArr.inArr[4].5,iPM:=3,iBelt:=0);
+	arr_fb_belt[6](bRun:=adsArr.inArr[4].6,iPM:=4,iBelt:=1);
+	arr_fb_belt[7](bRun:=adsArr.inArr[4].7,iPM:=4,iBelt:=0);
+	arr_fb_belt[8](bRun:=adsArr.inArr[4].8,iPM:=5,iBelt:=1);
+	arr_fb_belt[9](bRun:=adsArr.inArr[4].9,iPM:=5,iBelt:=0);
+	GVL.pm[2].outConv.valve[1].retract	:= adsArr.inArr[5].0;
+	GVL.pm[4].outConv.valve[1].retract	:= adsArr.inArr[5].1;
+	G_IO.arDO[55].Ch[10] := adsArr.inArr[5].2;
+	G_IO.arDO[55].Ch[11] := adsArr.inArr[5].3;
+	G_IO.arDO[55].Ch[12] := adsArr.inArr[5].4;
+	G_IO.arDO[55].Ch[13] := adsArr.inArr[5].5;
+	G_IO.arDO[59].Ch[10] := adsArr.inArr[5].6;
+	G_IO.arDO[59].Ch[11] := adsArr.inArr[5].7;
+	G_IO.arDO[59].Ch[12] := adsArr.inArr[5].8;
+	G_IO.arDO[59].Ch[13] := adsArr.inArr[5].9;
+	
+	adsArr.outArr[4].0	:= GVL.pm[2].outConv.photo_sensor[1];
+	adsArr.outArr[4].1	:= GVL.pm[4].outConv.photo_sensor[1];
+	adsArr.outArr[4].2	:= G_IO.arDI[77].Ch[0];
+	adsArr.outArr[4].3	:= G_IO.arDI[77].Ch[1];
+	adsArr.outArr[4].4	:= G_IO.arDI[77].Ch[4];
+	adsArr.outArr[4].5	:= G_IO.arDI[77].Ch[5];
+	adsArr.outArr[4].6	:= G_IO.arDI[78].Ch[0];
+	adsArr.outArr[4].7	:= G_IO.arDI[78].Ch[1];
+	adsArr.outArr[4].8	:= G_IO.arDI[78].Ch[4];
+	adsArr.outArr[4].9	:= G_IO.arDI[78].Ch[5];
+	
+	
+	
+	
+	
+	GVL.pm[1].outConv.valve[1].retract	:= TRUE;
+	GVL.pm[1].outConv.valve[0].retract	:= TRUE;
+	//GVL.pm[2].outConv.valve[1].retract	:= TRUE;
+	GVL.pm[2].outConv.valve[0].retract	:= TRUE	;
+	GVL.pm[3].outConv.valve[1].retract	:= TRUE;
+	GVL.pm[3].outConv.valve[0].retract	:= TRUE;
+	//GVL.pm[4].outConv.valve[1].retract	:= TRUE;
+	GVL.pm[4].outConv.valve[0].retract	:= TRUE;
+	GVL.pm[5].outConv.valve[1].retract	:= TRUE;
+	GVL.pm[5].outConv.valve[0].retract	:= TRUE;
+	
+END_IF
 ]]></ST>
     </Implementation>
     <Method Name="bag_done_unclamping" Id="{e047a4f5-01c2-4724-98d7-fd4c5489bb8e}">
@@ -223,12 +276,40 @@ END_VAR
       <LineId Id="392" Count="5" />
       <LineId Id="403" Count="3" />
       <LineId Id="357" Count="0" />
+      <LineId Id="468" Count="0" />
       <LineId Id="419" Count="11" />
       <LineId Id="433" Count="1" />
       <LineId Id="436" Count="2" />
       <LineId Id="435" Count="0" />
       <LineId Id="329" Count="2" />
       <LineId Id="2" Count="0" />
+      <LineId Id="501" Count="0" />
+      <LineId Id="500" Count="0" />
+      <LineId Id="506" Count="8" />
+      <LineId Id="516" Count="1" />
+      <LineId Id="520" Count="0" />
+      <LineId Id="519" Count="0" />
+      <LineId Id="522" Count="0" />
+      <LineId Id="525" Count="3" />
+      <LineId Id="521" Count="0" />
+      <LineId Id="524" Count="0" />
+      <LineId Id="523" Count="0" />
+      <LineId Id="529" Count="0" />
+      <LineId Id="542" Count="0" />
+      <LineId Id="546" Count="2" />
+      <LineId Id="550" Count="2" />
+      <LineId Id="549" Count="0" />
+      <LineId Id="543" Count="2" />
+      <LineId Id="541" Count="0" />
+      <LineId Id="518" Count="0" />
+      <LineId Id="532" Count="1" />
+      <LineId Id="535" Count="0" />
+      <LineId Id="531" Count="0" />
+      <LineId Id="534" Count="0" />
+      <LineId Id="536" Count="4" />
+      <LineId Id="530" Count="0" />
+      <LineId Id="515" Count="0" />
+      <LineId Id="493" Count="0" />
     </LineIds>
     <LineIds Name="FB_BagCloser.bag_done_unclamping">
       <LineId Id="76" Count="5" />

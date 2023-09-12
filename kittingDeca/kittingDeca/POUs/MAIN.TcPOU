@@ -255,8 +255,8 @@ CASE iInit OF
 		iInit	:=0;
 	6://all lift axis run
 		FOR i:=0 TO 19 DO
-			GVL.stAxisCtrl_Lift[i].rPosition	:= 300;
-			GVL.stAxisCtrl_Lift[i].iSpeed	:= 100;
+			GVL.stAxisCtrl_Lift[i].rPosition	:= 400;
+			GVL.stAxisCtrl_Lift[i].iSpeed	:= 200;
 			GVL.stAxisCtrl_Lift[i].iCmd	:= 10;
 		END_FOR
 		iInit	:=0;

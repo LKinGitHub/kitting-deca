@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="fb_interface_bagmachine" Id="{f060f8f2-ae65-4940-aac8-7b5b7fdaccc1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK fb_interface_bagmachine
+VAR_INPUT
+	bRun: BOOL;
+	iPM	: INT;
+	iBelt	: INT;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF bRun THEN
+	GVL.pm[iPM].outConv.belt[iBelt].fbconverter.cmd	:= INT_TO_UINT(E_CMD_ConverterMotor.BACKWARE);
+	GVL.pm[iPM].outConv.belt[iBelt].fbconverter.freq	:= 3500;	
+ELSE
+	GVL.pm[iPM].outConv.belt[iBelt].fbconverter.cmd	:= INT_TO_UINT(E_CMD_ConverterMotor.STOP);
+	GVL.pm[iPM].outConv.belt[iBelt].fbconverter.freq	:= 0;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="fb_interface_bagmachine">
+      <LineId Id="10" Count="5" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

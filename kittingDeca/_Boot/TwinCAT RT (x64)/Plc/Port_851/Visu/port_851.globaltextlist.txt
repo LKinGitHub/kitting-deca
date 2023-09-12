@@ -150,6 +150,7 @@ Id;Default
 795;ReM_1
 462;Replenishment
 199;Reset
+231;RESET
 481;Retract
 1651;retract
 934;retracted
@@ -179,7 +180,9 @@ Id;Default
 971;slot_0
 156;slot_1
 122;slot_2
+1494;START
 198;Stop
+399;STOP
 336;surface_light_curtain
 379;time
 1753;valve

@@ -81,7 +81,9 @@ VAR_GLOBAL
 	adsReadByName	: FB_ReadAdsSymByName;
 	adsReadEvents	: FB_AdsReadEvents;
 	
+	bBagmachine_test	: BOOL;
 	
+
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
