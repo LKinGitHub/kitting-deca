@@ -89,7 +89,7 @@ STRUCT
 	mcWriteBoolParameter			: 	MC_WriteBoolParameter			;(*	Write bool param to driver																			*)
 	mcReadBoolParameter				:	MC_ReadBoolParameter			;(*	Read bool param from driver																			*)
 	mcAxisParameter					:   MC_AxisParameter				;(*	Data type is used in conjunction with function blocks for reading and writing of axis parameters	*)
-	CoeWrt							:	FB_EcCoESdoWrite;											
+	CoeWrt							:	FB_EcCoESdoWrite;									
 	
 //	======================================================================================================	
 
@@ -101,7 +101,9 @@ STRUCT
 	nIndex	: WORD;
 	
 	iCoeWrt	: INT;
-
+	rToqueLimitSet	: LREAL	:= 350;
+	rActTorque	: LREAL;
+	xTorqueErr	: BOOL;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

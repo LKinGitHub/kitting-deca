@@ -352,8 +352,14 @@ END_CASE
 (******************************************************************************************************************)
 	
 (**error flag**)
-	xError := IN_OUT.mcReadStatus.Error OR xHomeError OR IN_OUT.mcMoveAbsolute.Error ;	
-	rtError(CLK:= (IN_OUT.mcReadStatus.ErrorID <> 0) AND NOT IN_OUT.xMuteAxisErrorMessages);
+
+	IN_OUT.xTorqueErr	:=ABS(IN_OUT.rActTorque)>IN_OUT.rToqueLimitSet ;
+
+	
+	
+
+	xError := IN_OUT.mcReadStatus.Error OR xHomeError OR IN_OUT.mcMoveAbsolute.Error OR IN_OUT.xTorqueErr ;	
+	rtError(CLK:= (IN_OUT.mcReadStatus.ErrorID <> 0 OR xError) AND NOT IN_OUT.xMuteAxisErrorMessages);
 	
 (*************************** READ ERROR FROM DRIVE *************************)
 rtFirstCycle(CLK:= TRUE);
@@ -364,7 +370,13 @@ sysTime(cpuCntLoDW => uFinishTime);
 (*************************** GET AXIS ERROR MESSAGE *************************)	
 	
 	IF rtError.Q THEN
-	sAxisErrorID	:=	TO_STRING(IN_OUT.mcReadStatus.ErrorID);
+		IF IN_OUT.xTorqueErr THEN
+			sAxisErrorID	:= 'TORQUE';
+		ELSE
+			sAxisErrorID	:=	TO_STRING(IN_OUT.mcReadStatus.ErrorID);
+		END_IF
+		IN_OUT.mcStop.Execute	:= TRUE;
+	
 	END_IF
 (**remember the Velocity**) 
 	IF IN_OUT.rVeloPers <> 0 THEN 
@@ -563,7 +575,10 @@ END_VAR
       <LineId Id="3286" Count="0" />
       <LineId Id="1445" Count="0" />
       <LineId Id="2623" Count="0" />
-      <LineId Id="1446" Count="1" />
+      <LineId Id="1446" Count="0" />
+      <LineId Id="3440" Count="2" />
+      <LineId Id="3437" Count="2" />
+      <LineId Id="1447" Count="0" />
       <LineId Id="2157" Count="0" />
       <LineId Id="2695" Count="0" />
       <LineId Id="2698" Count="0" />
@@ -572,8 +587,14 @@ END_VAR
       <LineId Id="2697" Count="0" />
       <LineId Id="2709" Count="0" />
       <LineId Id="2696" Count="0" />
-      <LineId Id="2138" Count="0" />
+      <LineId Id="3447" Count="0" />
       <LineId Id="2152" Count="0" />
+      <LineId Id="3452" Count="0" />
+      <LineId Id="3449" Count="0" />
+      <LineId Id="3451" Count="0" />
+      <LineId Id="3450" Count="0" />
+      <LineId Id="3448" Count="0" />
+      <LineId Id="3443" Count="0" />
       <LineId Id="2140" Count="0" />
       <LineId Id="1449" Count="5" />
       <LineId Id="1456" Count="5" />

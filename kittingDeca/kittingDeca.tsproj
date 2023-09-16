@@ -1451,6 +1451,15 @@ External Setpoint Generation:
 			</ArrayInfo>
 		</DataType>
 		<DataType>
+			<Name GUID="{8CCAA286-9D70-17C1-0436-475DB947D92E}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..1] OF LREAL</Name>
+			<BitSize>128</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>2</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
 			<Name GUID="{96E58E73-E3F3-3227-1848-F7F6AB281E2C}" AutoDeleteType="true">ST_IO_16</Name>
 			<BitSize>128</BitSize>
 			<SubItem>
@@ -7902,7 +7911,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{2354DE8C-DE54-4E07-94D7-E848733F7762}" Name="kittingDeca" PrjFilePath="kittingDeca\kittingDeca.plcproj" TmcFilePath="kittingDeca\kittingDeca.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="kittingDeca\kittingDeca.tmc" TmcHash="{347EA758-C9C3-BEA1-C788-DB99F3DAD543}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="kittingDeca\kittingDeca.tmc" TmcHash="{352585D1-54E7-7F74-D8E7-7A2610144660}">
 					<Name>kittingDeca Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -8888,6 +8897,10 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 							<Type GUID="{B97C0B48-8EFC-239C-9934-B1B7427F5260}">ARRAY [0..49] OF BYTE</Type>
 						</Var>
 						<Var>
+							<Name>GVL.fr_actTorque</Name>
+							<Type GUID="{8CCAA286-9D70-17C1-0436-475DB947D92E}">ARRAY [0..1] OF LREAL</Type>
+						</Var>
+						<Var>
 							<Name>G_IO.arDI</Name>
 							<Comment><![CDATA[  links to Digital input  Modules ]]></Comment>
 							<Type GUID="{EAAAC0F1-5FBA-7D10-E37C-E7C59CC4664E}">ARRAY [0..100] OF ST_IO_16</Type>
@@ -9661,6 +9674,13 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 							<Type GUID="{EAAAC0F1-5FBA-7D10-E37C-E7C59CC4664E}">ARRAY [0..100] OF ST_IO_16</Type>
 						</Var>
 					</Vars>
+					<UnrestoredVarLinks ImportTime="2023-09-13T21:09:38">
+						<OwnerA Name="InputDst" Prefix="TIPC^kittingDeca^kittingDeca Instance" Type="1">
+							<OwnerB Name="TINC^NC-Task 1 SAF^Axes^fr1">
+								<Link VarA="GVL.fr_torqueLimit[1]" TypeA="LREAL" InOutA="0" GuidA="{18071995-0000-0000-0000-00000000000E}" VarB="Outputs^ToPlc^ActTorque" RestoreInfo="ANotFound"/>
+							</OwnerB>
+						</OwnerA>
+					</UnrestoredVarLinks>
 					<Contexts>
 						<Context>
 							<Id NeedCalleeCall="true">0</Id>
@@ -49852,6 +49872,9 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 				<EtherCAT/>
 			</Device>
 		</Io>
+		<SymbolWatch>
+			<Variable>TINC^NC-Task 1 SAF^Axes^fr0^Outputs^ToPlc^ActTorque</Variable>
+		</SymbolWatch>
 	</Project>
 	<Mappings>
 		<MappingInfo Identifier="{00000000-2003-0850-0020-5008A1000403}" Id="#x02030050"/>
@@ -53426,10 +53449,12 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^fr0">
 				<Link VarA="PlcTask Inputs^GVL.fr[0].AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^GVL.fr_actTorque[0]" VarB="Outputs^ToPlc^ActTorque"/>
 				<Link VarA="PlcTask Outputs^GVL.fr[0].AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^fr1">
 				<Link VarA="PlcTask Inputs^GVL.fr[1].AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^GVL.fr_actTorque[1]" VarB="Outputs^ToPlc^ActTorque"/>
 				<Link VarA="PlcTask Outputs^GVL.fr[1].AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^lc0">

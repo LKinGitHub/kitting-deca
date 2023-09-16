@@ -83,7 +83,8 @@ VAR_GLOBAL
 	
 	bBagmachine_test	: BOOL;
 	
-
+	fr_actTorque	AT%I*	: ARRAY[0..1]OF LREAL ;
+	fr_torqueLimitSet		: ARRAY[0..1]OF LREAL :=[120,120] ;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

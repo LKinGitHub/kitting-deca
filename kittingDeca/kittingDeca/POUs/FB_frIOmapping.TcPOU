@@ -57,6 +57,8 @@ IN_OUT.bdirFW	:= TRUE;
 IN_OUT.rSetPos	:= 0;
 IN_OUT.sNetID := sNetID;
 IN_OUT.nSlaveAddr	:= nSlaveAddr;
+IN_OUT.rActTorque	:= GVL.fr_actTorque[iFR];
+IN_OUT.rToqueLimitSet	:= GVL.fr_torqueLimitSet[iFR];
 
 
 
@@ -77,6 +79,7 @@ IN_OUT.nSlaveAddr	:= nSlaveAddr;
       <LineId Id="233" Count="1" />
       <LineId Id="242" Count="24" />
       <LineId Id="235" Count="0" />
+      <LineId Id="317" Count="1" />
       <LineId Id="230" Count="0" />
       <LineId Id="229" Count="0" />
       <LineId Id="226" Count="0" />
