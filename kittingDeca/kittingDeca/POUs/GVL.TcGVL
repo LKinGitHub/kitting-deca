@@ -85,6 +85,12 @@ VAR_GLOBAL
 	
 	fr_actTorque	AT%I*	: ARRAY[0..1]OF LREAL ;
 	fr_torqueLimitSet		: ARRAY[0..1]OF LREAL :=[120,120] ;
+	
+	arrValve_PM	: ARRAY[0..99]OF FB_valve;
+	arrValve_Rem	: ARRAY[0..119] OF FB_valve;
+	
+	fb_heightDetection	: FB_heightDetection;
+	stHeightDetection	: ST_heightDetection;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

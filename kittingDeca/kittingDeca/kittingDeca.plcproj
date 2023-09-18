@@ -64,6 +64,9 @@
     <Compile Include="GVLs\kitting deca\FB_PhotoSensor.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GVLs\kitting deca\FB_valve.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GVLs\kitting deca\fixture rotation\fixtureRotation_Module.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -133,6 +136,9 @@
     <Compile Include="GVLs\kitting deca\ST_Converter.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GVLs\kitting deca\ST_heightDetection.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GVLs\kitting deca\Valve.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -175,6 +181,9 @@
     <Compile Include="POUs\bagmachines\BagStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\bagmachines\E_HeightDetection.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\bagmachines\FB_BagCloser.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -191,6 +200,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FB_axisCtrl.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FB_heightDetection.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FB_lbIOmapping.TcPOU">

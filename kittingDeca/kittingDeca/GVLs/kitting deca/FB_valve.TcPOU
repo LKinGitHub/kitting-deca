@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_valve" Id="{b4633b79-817f-46ef-b2c0-60ea98cc0f68}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_valve
+VAR_INPUT
+	bStart	: BOOL;
+	bStop	: BOOL;
+END_VAR
+VAR_IN_OUT
+	in_out	: Valve;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	rTrig_start	: R_TRIG;
+	rTrig_stop	: R_TRIG;
+	iState: INT;
+	ton_delay	: TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[rTrig_start(CLK:=bStart);
+rTrig_stop(CLK:=bStop);
+ton_delay(PT:=T#1S);
+IF rTrig_start.Q THEN 
+	iState	:= 1;
+END_IF
+IF rTrig_stop.Q THEN 
+	iState	:= 10;
+END_IF
+
+CASE iState	OF
+	0:
+		;
+	1:
+		ton_delay.IN	:= FALSE;
+		in_out.extend	:= FALSE;
+		in_out.retract 	:= TRUE;
+		IF in_out.retracted THEN
+			iState	:= 2;
+		END_IF
+	2:
+		ton_delay.IN	:= TRUE;
+		IF ton_delay.Q THEN
+			iState	:= 3;
+		END_IF
+	3:
+		ton_delay.IN	:= FALSE;
+		in_out.extend	:= TRUE;
+		in_out.retract 	:= FALSE;
+		IF in_out.extended THEN
+			iState	:= 4;
+		END_IF
+	4: 
+		ton_delay.IN	:= TRUE;
+		IF ton_delay.Q THEN
+			iState	:= 1;
+		END_IF			
+	10:
+		in_out.extend	:= FALSE;
+		in_out.retract 	:= FALSE;
+		iState	:= 0;	
+END_CASE]]></ST>
+    </Implementation>
+    <LineIds Name="FB_valve">
+      <LineId Id="9" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="20" Count="2" />
+      <LineId Id="57" Count="1" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="13" Count="1" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="23" Count="1" />
+      <LineId Id="27" Count="1" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="32" Count="2" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="38" Count="4" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="46" Count="2" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="15" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

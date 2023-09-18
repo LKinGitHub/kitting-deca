@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_heightDetection" Id="{1279264c-0729-442c-9679-9e1135528f61}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_heightDetection
+VAR_INPUT
+	
+END_VAR
+VAR_IN_OUT
+	stHeightDetection	: ST_heightDetection;
+END_VAR
+VAR_OUTPUT
+	
+END_VAR
+VAR
+	coeWrt		:	FB_EcCoESdoWrite;
+	coeRead		:  	FB_EcCoESdoRead;
+	iState	: INT;
+	ton_wait : TON;
+	heightCmd	: E_HeightDetection;
+	height_detection_cmd : E_HeightDetection;//for server to call the method
+	iHeight	: DWORD;//0.01mm
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+coeWrt(
+	sNetId:= stHeightDetection.sNetID, 
+	nSlaveAddr:=stHeightDetection.nSlaveAddr, 
+	nSubIndex:= stHeightDetection.nSubIndex, 
+	nIndex:= stHeightDetection.nIndex, 
+	pSrcBuf:= ADR(stHeightDetection.iSdoWrite), 
+	cbBufLen:= SIZEOF(stHeightDetection.iSdoWrite), 
+	bExecute:= , 
+	tTimeout:= , 
+	bBusy=> , 
+	bError=> , 
+	nErrId=> );
+coeRead(
+	sNetId:= stHeightDetection.sNetID, 
+	nSlaveAddr:=stHeightDetection.nSlaveAddr, 
+	nSubIndex:= stHeightDetection.nSubIndex, 
+	nIndex:= stHeightDetection.nIndex, 
+	pDstBuf:= ADR(stHeightDetection.iSdoRead), 
+	cbBufLen:= SIZEOF(stHeightDetection.iSdoRead), 
+	bExecute:= , 
+	tTimeout:= , 
+	bBusy=> , 
+	bError=> , 
+	nErrId=> );
+ton_wait();
+CASE height_detection_cmd OF
+	E_HeightDetection.SET_PROGRAM:
+		IF M_setProg(iProgram:=16#05) THEN
+			height_detection_cmd:= E_HeightDetection.DO_NOTHING;
+		END_IF
+	E_HeightDetection.READ_HEIGHT:
+		IF M_readHeight(iTool:=16#00) THEN
+			height_detection_cmd:= E_HeightDetection.DO_NOTHING;
+		END_IF	
+END_CASE
+]]></ST>
+    </Implementation>
+    <Method Name="M_readHeight" Id="{e432a2ed-0a37-4c1a-ba24-914d5f50cec3}">
+      <Declaration><![CDATA[METHOD M_readHeight : BOOL
+VAR_INPUT
+	iTool	: DWORD;
+END_VAR
+VAR_OUTPUT
+	
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[M_readHeight	:= FALSE;
+CASE iState OF
+	0:
+		coeWrt.bExecute	:= FALSE;
+		coeRead.bExecute:= FALSE;
+		ton_wait.IN	:= FALSE;
+		iState	:= 1;
+	1://trig
+		stHeightDetection.nIndex	:= 16#8005;
+		stHeightDetection.nSubIndex	:= 16#01;
+		stHeightDetection.iSdoWrite	:= 16#01;
+		coeWrt.bExecute	:= TRUE;
+		ton_wait.IN	:= TRUE;
+		ton_wait.PT:= T#2S;
+		IF ton_wait.Q THEN//wait finish
+			coeWrt.bExecute	:= FALSE;
+			iState	:= 2;
+		END_IF			
+	2://read tool
+		IF NOT coeWrt.bBusy THEN
+			stHeightDetection.nIndex	:= 16#8005;
+			stHeightDetection.nSubIndex	:= 16#0B;
+			stHeightDetection.iSdoWrite	:= iTool;
+			coeWrt.bExecute	:= TRUE;
+			iState	:= 3;
+		END_IF
+	3:
+		IF coeWrt.bBusy THEN
+			coeWrt.bExecute:= FALSE;
+			iState	:= 4;
+		END_IF
+	4://respose of read tool
+		IF NOT coeWrt.bBusy THEN
+			stHeightDetection.nIndex	:= 16#8005;
+			stHeightDetection.nSubIndex	:= 16#0C;		
+			coeRead.bExecute	:= TRUE;
+			IF coeRead.bBusy THEN
+				coeRead.bExecute:= FALSE;
+				iState	:= 5;
+			END_IF
+		END_IF	
+	5://read value
+		IF NOT coeRead.bBusy THEN
+			stHeightDetection.nIndex	:= 16#8005;
+			stHeightDetection.nSubIndex	:= 16#0D;		
+			coeRead.bExecute	:= TRUE;
+			iState	:= 6;
+		END_IF
+	6:
+		IF coeRead.bBusy THEN
+			coeRead.bExecute:= FALSE;
+			iState	:= 7;
+		END_IF
+	7:
+		IF NOT coeRead.bBusy THEN
+			iHeight	:= stHeightDetection.iSdoRead;		
+			iState	:= 8;
+		END_IF
+	8://init trig
+		stHeightDetection.nIndex	:= 16#8005;
+		stHeightDetection.nSubIndex	:= 16#01;
+		stHeightDetection.iSdoWrite	:= 16#00;
+		coeWrt.bExecute	:= TRUE;
+		IF coeWrt.bBusy THEN
+			coeWrt.bExecute	:= FALSE;
+			iState	:= 9;
+		END_IF
+	9:
+		IF NOT coeWrt.bBusy THEN
+			M_readHeight	:= TRUE;
+			iState	:= 0;
+		END_IF
+				
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_setProg" Id="{52bb96c2-4ca7-4a3d-96f2-00e79643c688}">
+      <Declaration><![CDATA[METHOD M_setProg : BOOL
+VAR_INPUT
+	iProgram	: DWORD;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[M_setProg	:= FALSE;
+CASE iState OF
+	0:
+		iState	:= 1;
+	1:
+		stHeightDetection.nIndex	:= 16#8005;
+		stHeightDetection.nSubIndex	:= 16#03;
+		stHeightDetection.iSdoWrite	:= iProgram;
+		coeWrt.bExecute	:= TRUE;
+		iState	:= 2;
+	2:
+		ton_wait.IN := TRUE;
+		ton_wait.PT	:= T#1000MS;
+		stHeightDetection.nIndex	:= 16#8005;
+		stHeightDetection.nSubIndex	:= 16#04;		
+		coeRead.bExecute	:= ton_wait.Q;
+		IF stHeightDetection.iSdoRead = 1 THEN
+			M_setProg	:= TRUE;
+			iState	:= 0;
+		END_IF
+		
+		
+END_CASE
+
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_heightDetection">
+      <LineId Id="59" Count="0" />
+      <LineId Id="12" Count="22" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="51" Count="2" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="54" Count="1" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="45" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_heightDetection.M_readHeight">
+      <LineId Id="6" Count="1" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="55" Count="1" />
+      <LineId Id="105" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="75" Count="3" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="106" Count="0" />
+      <LineId Id="79" Count="2" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="86" Count="2" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="17" Count="2" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="21" Count="1" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="30" Count="2" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="65" Count="2" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="90" Count="7" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="98" Count="0" />
+      <LineId Id="100" Count="1" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_heightDetection.M_setProg">
+      <LineId Id="12" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="41" Count="1" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="22" Count="3" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="15" Count="1" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -47,24 +47,136 @@ runEveryCycle();
 M_ReM();
 //M_ads_bagmachines();
 safetyConfig();
-//GVL.fbconverter[0](stConverter:= GVL.stConverter[0]);
-//GVL.fbconverter.M_SetPara(iMotor:=0,iCmd:=1);
+agingTestConfig();
 
-//GVL.stConverter[0].sNetID	:= '192.168.11.159.5.1';
-//GVL.stConverter[0].nSlaveAddr	:= 1058;
-(*CASE iInit OF
+
+
+CASE iInit OF
 	0:
+		FOR i:=0 TO 57 DO
+			GVL.ref_fbconverterMotor[i]^.bSetParaEx	:= FALSE;
+		END_FOR
+		FOR i:=0 TO 99 DO
+			GVL.arrValve_PM[i].bStart	:= FALSE;
+			GVL.arrValve_PM[i].bStop	:= FALSE;
+		END_FOR			
+	1://set parameters for all converter motors
+		FOR i:=0 TO 57 DO
+			GVL.ref_fbconverterMotor[i]^.bSetParaEx	:= TRUE;
+		END_FOR
+		IF GVL.ref_fbconverterMotor[57]^.xDone THEN
+			iInit	:=2;
+		END_IF
+	2://set parameters for all converter motors
+		FOR i:=0 TO 57 DO
+			GVL.ref_fbconverterMotor[i]^.bSetParaEx	:= FALSE;
+		END_FOR
+		iInit	:=0;
+	3://run all converter motors
+		FOR i:=0 TO 57 DO
+			GVL.ref_fbconverterMotor[i]^.cmd	:=INT_TO_UINT(E_CMD_ConverterMotor.BACKWARE);
+			GVL.ref_fbconverterMotor[i]^.freq	:= 2000;
+		END_FOR
+	4://stop all converter moters
+		FOR i:=0 TO 57 DO
+			GVL.ref_fbconverterMotor[i]^.cmd	:= 0;
+			GVL.ref_fbconverterMotor[i]^.freq	:= 0;
+		END_FOR
+		iInit	:=0;
+	5://all lift axis servo on
+		FOR i:=0 TO 19 DO
+			GVL.stAxisCtrl_Lift[i].iCmd	:= 1;
+			GVL.stAxisCtrl_Buffer[i].iCmd	:= 1;
+		END_FOR
+		FOR i:=0 TO 1 DO
+			GVL.stAxisCtrl_LC[i].iCmd	:= 1;
+			GVL.stAxisCtrl_FR[i].iCmd	:= 1;
+		END_FOR
+		iInit	:=0;
+	6://all lift axis run
+		FOR i:=0 TO 19 DO
+			GVL.stAxisCtrl_Lift[i].rPosition	:= 0;
+			GVL.stAxisCtrl_Lift[i].iSpeed	:= 200;
+			GVL.stAxisCtrl_Lift[i].iCmd	:= 10;
+		END_FOR
+		iInit	:=0;
+	7://all buffer axis run
+		FOR i:=0 TO 19 DO
+			GVL.stAxisCtrl_Buffer[i].rPosition	:= 250;
+			GVL.stAxisCtrl_Buffer[i].iSpeed	:= 100;
+			GVL.stAxisCtrl_Buffer[i].iCmd	:= 20;
+		END_FOR	
+		iInit	:=0;
+	8://all lift axis stop
+		FOR i:=0 TO 19 DO
+			GVL.stAxisCtrl_Lift[i].iCmd	:= 100;
+			GVL.stAxisCtrl_Buffer[i].iCmd	:= 100;
+		END_FOR	
+		FOR i:=0 TO 1 DO
+			GVL.stAxisCtrl_LC[i].iCmd	:= 100;
+			GVL.stAxisCtrl_FR[i].iCmd	:= 100;
+		END_FOR		
+		FOR i:=0 TO 57 DO
+			GVL.ref_fbconverterMotor[i]^.cmd	:= 0;
+			GVL.ref_fbconverterMotor[i]^.freq	:= 0;
+		END_FOR
+		FOR i:=0 TO 99 DO
+			GVL.arrValve_PM[i].bStop	:= TRUE;
+		END_FOR	
+		FOR i:=0 TO 119 DO
+			GVL.arrValve_Rem[i].bStop	:= TRUE;
+		END_FOR			
+		iInit	:=0;		
+	9://check error
+		IF M_checkError() THEN
+			iInit	:=0;
+		END_IF
+	
+	10://reset error
+		IF M_reset() THEN
+			iInit	:=0;
+		END_IF		
+	11://
+		FOR i:=0 TO 1 DO
+			GVL.stAxisCtrl_LC[i].rPosition	:= -800;
+			GVL.stAxisCtrl_LC[i].iSpeed	:= 600;
+			GVL.stAxisCtrl_LC[i].iCmd	:= 10;
+		END_FOR
+		iInit	:=0;	
+	12://
+		FOR i:=0 TO 1 DO
+			GVL.stAxisCtrl_FR[i].rPosition	:= -170;
+			GVL.stAxisCtrl_FR[i].iSpeed	:= 200;
+			GVL.stAxisCtrl_FR[i].iCmd	:= 10;
+		END_FOR
+		iInit	:=0;	
+	13://aging test valve of pm
+		FOR i:=0 TO 99 DO
+			GVL.arrValve_PM[i].bStart	:= TRUE;
+		END_FOR
+		iInit	:=0;
+	14://aging test valve of rem
+		FOR i:=0 TO 119 DO
+			GVL.arrValve_Rem[i].bStart	:= TRUE;
+		END_FOR		
+		iInit	:=0;	
 
-	;
-	1:
-	IF GVL.fbconverter[0].M_SetPara(iMotor:=0) THEN
-		iInit	:= 0;
-		;
-	END_IF
+END_CASE
 
-END_CASE*)
-
-GVL.stConverter[0].sNetID	:= '192.168.11.159.5.1';
+GVL.fb_bagOpener(ams_net_id:=GVL.netId_bagmachie[0]);
+GVL.fb_bagCloser(ams_net_id:=GVL.netId_bagmachie[1]);
+GVL.fb_bagCompactor(ams_net_id:=GVL.netId_bagmachie[2]);
+IF test_bool THEN
+	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG,msgFmtStr:='msg:log',strArg:='MSG ARG');
+	test_bool	:= FALSE;
+END_IF
+GVL.stHeightDetection.sNetID:='192.168.11.159.9.1';
+GVL.stHeightDetection.nSlaveAddr:=1001;
+GVL.fb_heightDetection(stHeightDetection:=GVL.stHeightDetection);]]></ST>
+    </Implementation>
+    <Action Name="agingTestConfig" Id="{1d1d1c97-22e3-4544-80ac-de316d41d784}">
+      <Implementation>
+        <ST><![CDATA[GVL.stConverter[0].sNetID	:= '192.168.11.159.5.1';
 GVL.stConverter[0].nSlaveAddr	:= 1003;//lb[0]
 GVL.stConverter[1].sNetID	:= '192.168.11.159.5.1';
 GVL.stConverter[1].nSlaveAddr	:= 1005;//lc[0]
@@ -92,7 +204,6 @@ GVL.stConverter[12].sNetID	:= '192.168.11.159.5.1';
 GVL.stConverter[12].nSlaveAddr	:= 1052;//lb[1]
 GVL.stConverter[13].sNetID	:= '192.168.11.159.5.1';
 GVL.stConverter[13].nSlaveAddr	:= 1054;//lc[1]
-
 GVL.lb[0].belt[0].fbconverter(stConverter:=GVL.stConverter[0],iMotor:=0);
 GVL.lb[0].belt[1].fbconverter(stConverter:=GVL.stConverter[0],iMotor:=1);
 GVL.lb[0].belt[2].fbconverter(stConverter:=GVL.stConverter[0],iMotor:=2);
@@ -214,107 +325,213 @@ GVL.ref_fbconverterMotor[56]	:= ADR(GVL.lb[1].belt[2].fbconverter);
 GVL.ref_fbconverterMotor[57]	:= ADR(GVL.lc[1].belt_out.belt.fbconverter);
 
 
+GVL.arrValve_PM[0](in_out:= GVL.pm[0].inConv.valve[0]);
+GVL.arrValve_PM[1](in_out:= GVL.pm[0].inConv.valve[1]);
+GVL.arrValve_PM[2](in_out:= GVL.pm[0].inConv.valve[2]);
+GVL.arrValve_PM[3](in_out:= GVL.pm[1].inConv.valve[0]);
+GVL.arrValve_PM[4](in_out:= GVL.pm[1].inConv.valve[1]);
+GVL.arrValve_PM[5](in_out:= GVL.pm[1].inConv.valve[2]);
+GVL.arrValve_PM[6](in_out:= GVL.pm[2].inConv.valve[0]);
+GVL.arrValve_PM[7](in_out:= GVL.pm[2].inConv.valve[1]);
+GVL.arrValve_PM[8](in_out:= GVL.pm[2].inConv.valve[2]);
+GVL.arrValve_PM[9](in_out:= GVL.pm[3].inConv.valve[0]);
+GVL.arrValve_PM[10](in_out:= GVL.pm[3].inConv.valve[1]);
+GVL.arrValve_PM[11](in_out:= GVL.pm[3].inConv.valve[2]);
+GVL.arrValve_PM[12](in_out:= GVL.pm[4].inConv.valve[0]);
+GVL.arrValve_PM[13](in_out:= GVL.pm[4].inConv.valve[1]);
+GVL.arrValve_PM[14](in_out:= GVL.pm[4].inConv.valve[2]);
+GVL.arrValve_PM[15](in_out:= GVL.pm[5].inConv.valve[0]);
+GVL.arrValve_PM[16](in_out:= GVL.pm[5].inConv.valve[1]);
+GVL.arrValve_PM[17](in_out:= GVL.pm[5].inConv.valve[2]);
+GVL.arrValve_PM[18](in_out:= GVL.pm[6].inConv.valve[0]);
+GVL.arrValve_PM[19](in_out:= GVL.pm[6].inConv.valve[1]);
+GVL.arrValve_PM[20](in_out:= GVL.pm[6].inConv.valve[2]);
+GVL.arrValve_PM[21](in_out:= GVL.pm[7].inConv.valve[0]);
+GVL.arrValve_PM[22](in_out:= GVL.pm[7].inConv.valve[1]);
+GVL.arrValve_PM[23](in_out:= GVL.pm[7].inConv.valve[2]);
+GVL.arrValve_PM[24](in_out:= GVL.pm[8].inConv.valve[0]);
+GVL.arrValve_PM[25](in_out:= GVL.pm[8].inConv.valve[1]);
+GVL.arrValve_PM[26](in_out:= GVL.pm[8].inConv.valve[2]);
+GVL.arrValve_PM[27](in_out:= GVL.pm[9].inConv.valve[0]);
+GVL.arrValve_PM[28](in_out:= GVL.pm[9].inConv.valve[1]);
+GVL.arrValve_PM[29](in_out:= GVL.pm[9].inConv.valve[2]);
+GVL.arrValve_PM[30](in_out:= GVL.pm[0].outConv.valve[0]);
+GVL.arrValve_PM[31](in_out:= GVL.pm[0].outConv.valve[1]);
+GVL.arrValve_PM[32](in_out:= GVL.pm[1].outConv.valve[0]);
+GVL.arrValve_PM[33](in_out:= GVL.pm[1].outConv.valve[1]);
+GVL.arrValve_PM[34](in_out:= GVL.pm[2].outConv.valve[0]);
+GVL.arrValve_PM[35](in_out:= GVL.pm[2].outConv.valve[1]);
+GVL.arrValve_PM[36](in_out:= GVL.pm[3].outConv.valve[0]);
+GVL.arrValve_PM[37](in_out:= GVL.pm[3].outConv.valve[1]);
+GVL.arrValve_PM[38](in_out:= GVL.pm[4].outConv.valve[0]);
+GVL.arrValve_PM[39](in_out:= GVL.pm[4].outConv.valve[1]);
+GVL.arrValve_PM[40](in_out:= GVL.pm[5].outConv.valve[0]);
+GVL.arrValve_PM[41](in_out:= GVL.pm[5].outConv.valve[1]);
+GVL.arrValve_PM[42](in_out:= GVL.pm[6].outConv.valve[0]);
+GVL.arrValve_PM[43](in_out:= GVL.pm[6].outConv.valve[1]);
+GVL.arrValve_PM[44](in_out:= GVL.pm[7].outConv.valve[0]);
+GVL.arrValve_PM[45](in_out:= GVL.pm[7].outConv.valve[1]);
+GVL.arrValve_PM[46](in_out:= GVL.pm[8].outConv.valve[0]);
+GVL.arrValve_PM[47](in_out:= GVL.pm[8].outConv.valve[1]);
+GVL.arrValve_PM[48](in_out:= GVL.pm[9].outConv.valve[0]);
+GVL.arrValve_PM[49](in_out:= GVL.pm[9].outConv.valve[1]);//end of pm
+GVL.arrValve_PM[50](in_out:= GVL.lb[0].valve_stopper[0]);
+GVL.arrValve_PM[51](in_out:= GVL.lb[0].valve_stopper[1]);
+GVL.arrValve_PM[52](in_out:= GVL.lb[0].valve_stopper[2]);
+GVL.arrValve_PM[53](in_out:= GVL.lb[0].valve_stopper[3]);
+GVL.arrValve_PM[54](in_out:= GVL.lb[0].valve_stopper[4]);
+GVL.arrValve_PM[55](in_out:= GVL.lb[0].valve_stopper[5]);
+GVL.arrValve_PM[56](in_out:= GVL.lb[1].valve_stopper[0]);
+GVL.arrValve_PM[57](in_out:= GVL.lb[1].valve_stopper[1]);
+GVL.arrValve_PM[58](in_out:= GVL.lb[1].valve_stopper[2]);
+GVL.arrValve_PM[59](in_out:= GVL.lb[1].valve_stopper[3]);
+GVL.arrValve_PM[60](in_out:= GVL.lb[1].valve_stopper[4]);
+GVL.arrValve_PM[61](in_out:= GVL.lb[1].valve_stopper[5]);//end of lb
+GVL.arrValve_PM[62](in_out:= GVL.lc[0].valve_guide[0]);
+GVL.arrValve_PM[63](in_out:= GVL.lc[0].valve_guide[1]);
+GVL.arrValve_PM[64](in_out:= GVL.lc[0].valve_stopper[0]);
+GVL.arrValve_PM[65](in_out:= GVL.lc[0].valve_stopper[1]);
+GVL.arrValve_PM[66](in_out:= GVL.lc[0].lateral.valve_lift);
+GVL.arrValve_PM[67](in_out:= GVL.lc[0].lateral.valve_clamp[0]);
+GVL.arrValve_PM[68](in_out:= GVL.lc[0].lateral.valve_clamp[1]);
+GVL.arrValve_PM[69](in_out:= GVL.lc[1].valve_guide[0]);
+GVL.arrValve_PM[70](in_out:= GVL.lc[1].valve_guide[1]);
+GVL.arrValve_PM[71](in_out:= GVL.lc[1].valve_stopper[0]);
+GVL.arrValve_PM[72](in_out:= GVL.lc[1].valve_stopper[1]);
+GVL.arrValve_PM[73](in_out:= GVL.lc[1].lateral.valve_lift);
+GVL.arrValve_PM[74](in_out:= GVL.lc[1].lateral.valve_clamp[0]);
+GVL.arrValve_PM[75](in_out:= GVL.lc[1].lateral.valve_clamp[1]);//end of lc
+GVL.arrValve_PM[76](in_out:= GVL.fr[0].valve);
+GVL.arrValve_PM[77](in_out:= GVL.fr[1].valve);//end of fr
 
-CASE iInit OF
-	0:
-		FOR i:=0 TO 57 DO
-			GVL.ref_fbconverterMotor[i]^.bSetParaEx	:= FALSE;
-		END_FOR
-	1://set parameters for all converter motors
-		FOR i:=0 TO 57 DO
-			GVL.ref_fbconverterMotor[i]^.bSetParaEx	:= TRUE;
-		END_FOR
-		IF GVL.ref_fbconverterMotor[57]^.xDone THEN
-			iInit	:=2;
-		END_IF
-	2://set parameters for all converter motors
-		FOR i:=0 TO 57 DO
-			GVL.ref_fbconverterMotor[i]^.bSetParaEx	:= FALSE;
-		END_FOR
-		iInit	:=0;
-	3://run all converter motors
-		FOR i:=0 TO 57 DO
-			GVL.ref_fbconverterMotor[i]^.cmd	:=INT_TO_UINT(E_CMD_ConverterMotor.BACKWARE);
-			GVL.ref_fbconverterMotor[i]^.freq	:= 2000;
-		END_FOR
-	4://stop all converter moters
-		FOR i:=0 TO 57 DO
-			GVL.ref_fbconverterMotor[i]^.cmd	:= 0;
-			GVL.ref_fbconverterMotor[i]^.freq	:= 0;
-		END_FOR
-		iInit	:=0;
-	5://all lift axis servo on
-		FOR i:=0 TO 19 DO
-			GVL.stAxisCtrl_Lift[i].iCmd	:= 1;
-			GVL.stAxisCtrl_Buffer[i].iCmd	:= 1;
-		END_FOR
-		FOR i:=0 TO 1 DO
-			GVL.stAxisCtrl_LC[i].iCmd	:= 1;
-			GVL.stAxisCtrl_FR[i].iCmd	:= 1;
-		END_FOR
-		iInit	:=0;
-	6://all lift axis run
-		FOR i:=0 TO 19 DO
-			GVL.stAxisCtrl_Lift[i].rPosition	:= 0;
-			GVL.stAxisCtrl_Lift[i].iSpeed	:= 200;
-			GVL.stAxisCtrl_Lift[i].iCmd	:= 10;
-		END_FOR
-		iInit	:=0;
-	7://all buffer axis run
-		FOR i:=0 TO 19 DO
-			GVL.stAxisCtrl_Buffer[i].rPosition	:= 250;
-			GVL.stAxisCtrl_Buffer[i].iSpeed	:= 100;
-			GVL.stAxisCtrl_Buffer[i].iCmd	:= 20;
-		END_FOR	
-		iInit	:=0;
-	8://all lift axis stop
-		FOR i:=0 TO 19 DO
-			GVL.stAxisCtrl_Lift[i].iCmd	:= 100;
-			GVL.stAxisCtrl_Buffer[i].iCmd	:= 100;
-		END_FOR	
-		FOR i:=0 TO 1 DO
-			GVL.stAxisCtrl_LC[i].iCmd	:= 100;
-			GVL.stAxisCtrl_FR[i].iCmd	:= 100;
-		END_FOR		
-		FOR i:=0 TO 57 DO
-			GVL.ref_fbconverterMotor[i]^.cmd	:= 0;
-			GVL.ref_fbconverterMotor[i]^.freq	:= 0;
-		END_FOR
-		iInit	:=0;		
-	9://check error
-		IF M_checkError() THEN
-			iInit	:=0;
-		END_IF
-	
-	10://reset error
-		IF M_reset() THEN
-			iInit	:=0;
-		END_IF		
-	11://
-		FOR i:=0 TO 1 DO
-			GVL.stAxisCtrl_LC[i].rPosition	:= -800;
-			GVL.stAxisCtrl_LC[i].iSpeed	:= 600;
-			GVL.stAxisCtrl_LC[i].iCmd	:= 10;
-		END_FOR
-		iInit	:=0;	
-	12://
-		FOR i:=0 TO 1 DO
-			GVL.stAxisCtrl_FR[i].rPosition	:= -170;
-			GVL.stAxisCtrl_FR[i].iSpeed	:= 200;
-			GVL.stAxisCtrl_FR[i].iCmd	:= 10;
-		END_FOR
-		iInit	:=0;	
-END_CASE
+//////////////////////////////////////REM/////////////////////////////////////
+GVL.arrValve_Rem[0](in_out:= GVL.rem[0].infeed[0].valve_stopper);
+GVL.arrValve_Rem[1](in_out:= GVL.rem[0].lift[0].valve_clamp);
+GVL.arrValve_Rem[2](in_out:= GVL.rem[0].lift[0].valve_perturbation[0]);
+GVL.arrValve_Rem[3](in_out:= GVL.rem[0].lift[0].valve_perturbation[1]);
+GVL.arrValve_Rem[4](in_out:= GVL.rem[0].lift[0].valve_perturbation[2]);
+GVL.arrValve_Rem[5](in_out:= GVL.rem[0].lift[0].valve_perturbation[3]);
+GVL.arrValve_Rem[6](in_out:= GVL.rem[0].infeed[1].valve_stopper);
+GVL.arrValve_Rem[7](in_out:= GVL.rem[0].lift[1].valve_clamp);
+GVL.arrValve_Rem[8](in_out:= GVL.rem[0].lift[1].valve_perturbation[0]);
+GVL.arrValve_Rem[9](in_out:= GVL.rem[0].lift[1].valve_perturbation[1]);
+GVL.arrValve_Rem[10](in_out:= GVL.rem[0].lift[1].valve_perturbation[2]);
+GVL.arrValve_Rem[11](in_out:= GVL.rem[0].lift[1].valve_perturbation[3]);
+GVL.arrValve_Rem[12](in_out:= GVL.rem[1].infeed[0].valve_stopper);
+GVL.arrValve_Rem[13](in_out:= GVL.rem[1].lift[0].valve_clamp);
+GVL.arrValve_Rem[14](in_out:= GVL.rem[1].lift[0].valve_perturbation[0]);
+GVL.arrValve_Rem[15](in_out:= GVL.rem[1].lift[0].valve_perturbation[1]);
+GVL.arrValve_Rem[16](in_out:= GVL.rem[1].lift[0].valve_perturbation[2]);
+GVL.arrValve_Rem[17](in_out:= GVL.rem[1].lift[0].valve_perturbation[3]);
+GVL.arrValve_Rem[18](in_out:= GVL.rem[1].infeed[1].valve_stopper);
+GVL.arrValve_Rem[19](in_out:= GVL.rem[1].lift[1].valve_clamp);
+GVL.arrValve_Rem[20](in_out:= GVL.rem[1].lift[1].valve_perturbation[0]);
+GVL.arrValve_Rem[21](in_out:= GVL.rem[1].lift[1].valve_perturbation[1]);
+GVL.arrValve_Rem[22](in_out:= GVL.rem[1].lift[1].valve_perturbation[2]);
+GVL.arrValve_Rem[23](in_out:= GVL.rem[1].lift[1].valve_perturbation[3]);
+GVL.arrValve_Rem[24](in_out:= GVL.rem[2].infeed[0].valve_stopper);
+GVL.arrValve_Rem[25](in_out:= GVL.rem[2].lift[0].valve_clamp);
+GVL.arrValve_Rem[26](in_out:= GVL.rem[2].lift[0].valve_perturbation[0]);
+GVL.arrValve_Rem[27](in_out:= GVL.rem[2].lift[0].valve_perturbation[1]);
+GVL.arrValve_Rem[28](in_out:= GVL.rem[2].lift[0].valve_perturbation[2]);
+GVL.arrValve_Rem[29](in_out:= GVL.rem[2].lift[0].valve_perturbation[3]);
+GVL.arrValve_Rem[30](in_out:= GVL.rem[2].infeed[1].valve_stopper);
+GVL.arrValve_Rem[31](in_out:= GVL.rem[2].lift[1].valve_clamp);
+GVL.arrValve_Rem[32](in_out:= GVL.rem[2].lift[1].valve_perturbation[0]);
+GVL.arrValve_Rem[33](in_out:= GVL.rem[2].lift[1].valve_perturbation[1]);
+GVL.arrValve_Rem[34](in_out:= GVL.rem[2].lift[1].valve_perturbation[2]);
+GVL.arrValve_Rem[35](in_out:= GVL.rem[2].lift[1].valve_perturbation[3]);
+GVL.arrValve_Rem[36](in_out:= GVL.rem[3].infeed[0].valve_stopper);
+GVL.arrValve_Rem[37](in_out:= GVL.rem[3].lift[0].valve_clamp);
+GVL.arrValve_Rem[38](in_out:= GVL.rem[3].lift[0].valve_perturbation[0]);
+GVL.arrValve_Rem[39](in_out:= GVL.rem[3].lift[0].valve_perturbation[1]);
+GVL.arrValve_Rem[40](in_out:= GVL.rem[3].lift[0].valve_perturbation[2]);
+GVL.arrValve_Rem[41](in_out:= GVL.rem[3].lift[0].valve_perturbation[3]);
+GVL.arrValve_Rem[42](in_out:= GVL.rem[3].infeed[1].valve_stopper);
+GVL.arrValve_Rem[43](in_out:= GVL.rem[3].lift[1].valve_clamp);
+GVL.arrValve_Rem[44](in_out:= GVL.rem[3].lift[1].valve_perturbation[0]);
+GVL.arrValve_Rem[45](in_out:= GVL.rem[3].lift[1].valve_perturbation[1]);
+GVL.arrValve_Rem[46](in_out:= GVL.rem[3].lift[1].valve_perturbation[2]);
+GVL.arrValve_Rem[47](in_out:= GVL.rem[3].lift[1].valve_perturbation[3]);
+GVL.arrValve_Rem[48](in_out:= GVL.rem[4].infeed[0].valve_stopper);
+GVL.arrValve_Rem[49](in_out:= GVL.rem[4].lift[0].valve_clamp);
+GVL.arrValve_Rem[50](in_out:= GVL.rem[4].lift[0].valve_perturbation[0]);
+GVL.arrValve_Rem[51](in_out:= GVL.rem[4].lift[0].valve_perturbation[1]);
+GVL.arrValve_Rem[52](in_out:= GVL.rem[4].lift[0].valve_perturbation[2]);
+GVL.arrValve_Rem[53](in_out:= GVL.rem[4].lift[0].valve_perturbation[3]);
+GVL.arrValve_Rem[54](in_out:= GVL.rem[4].infeed[1].valve_stopper);
+GVL.arrValve_Rem[55](in_out:= GVL.rem[4].lift[1].valve_clamp);
+GVL.arrValve_Rem[56](in_out:= GVL.rem[4].lift[1].valve_perturbation[0]);
+GVL.arrValve_Rem[57](in_out:= GVL.rem[4].lift[1].valve_perturbation[1]);
+GVL.arrValve_Rem[58](in_out:= GVL.rem[4].lift[1].valve_perturbation[2]);
+GVL.arrValve_Rem[59](in_out:= GVL.rem[4].lift[1].valve_perturbation[3]);
+GVL.arrValve_Rem[60](in_out:= GVL.rem[5].infeed[0].valve_stopper);
+GVL.arrValve_Rem[61](in_out:= GVL.rem[5].lift[0].valve_clamp);
+GVL.arrValve_Rem[62](in_out:= GVL.rem[5].lift[0].valve_perturbation[0]);
+GVL.arrValve_Rem[63](in_out:= GVL.rem[5].lift[0].valve_perturbation[1]);
+GVL.arrValve_Rem[64](in_out:= GVL.rem[5].lift[0].valve_perturbation[2]);
+GVL.arrValve_Rem[65](in_out:= GVL.rem[5].lift[0].valve_perturbation[3]);
+GVL.arrValve_Rem[66](in_out:= GVL.rem[5].infeed[1].valve_stopper);
+GVL.arrValve_Rem[67](in_out:= GVL.rem[5].lift[1].valve_clamp);
+GVL.arrValve_Rem[68](in_out:= GVL.rem[5].lift[1].valve_perturbation[0]);
+GVL.arrValve_Rem[69](in_out:= GVL.rem[5].lift[1].valve_perturbation[1]);
+GVL.arrValve_Rem[70](in_out:= GVL.rem[5].lift[1].valve_perturbation[2]);
+GVL.arrValve_Rem[71](in_out:= GVL.rem[5].lift[1].valve_perturbation[3]);
+GVL.arrValve_Rem[72](in_out:= GVL.rem[6].infeed[0].valve_stopper);
+GVL.arrValve_Rem[73](in_out:= GVL.rem[6].lift[0].valve_clamp);
+GVL.arrValve_Rem[74](in_out:= GVL.rem[6].lift[0].valve_perturbation[0]);
+GVL.arrValve_Rem[75](in_out:= GVL.rem[6].lift[0].valve_perturbation[1]);
+GVL.arrValve_Rem[76](in_out:= GVL.rem[6].lift[0].valve_perturbation[2]);
+GVL.arrValve_Rem[77](in_out:= GVL.rem[6].lift[0].valve_perturbation[3]);
+GVL.arrValve_Rem[78](in_out:= GVL.rem[6].infeed[1].valve_stopper);
+GVL.arrValve_Rem[79](in_out:= GVL.rem[6].lift[1].valve_clamp);
+GVL.arrValve_Rem[80](in_out:= GVL.rem[6].lift[1].valve_perturbation[0]);
+GVL.arrValve_Rem[81](in_out:= GVL.rem[6].lift[1].valve_perturbation[1]);
+GVL.arrValve_Rem[82](in_out:= GVL.rem[6].lift[1].valve_perturbation[2]);
+GVL.arrValve_Rem[83](in_out:= GVL.rem[6].lift[1].valve_perturbation[3]);
+GVL.arrValve_Rem[84](in_out:= GVL.rem[7].infeed[0].valve_stopper);
+GVL.arrValve_Rem[85](in_out:= GVL.rem[7].lift[0].valve_clamp);
+GVL.arrValve_Rem[86](in_out:= GVL.rem[7].lift[0].valve_perturbation[0]);
+GVL.arrValve_Rem[87](in_out:= GVL.rem[7].lift[0].valve_perturbation[1]);
+GVL.arrValve_Rem[88](in_out:= GVL.rem[7].lift[0].valve_perturbation[2]);
+GVL.arrValve_Rem[89](in_out:= GVL.rem[7].lift[0].valve_perturbation[3]);
+GVL.arrValve_Rem[90](in_out:= GVL.rem[7].infeed[1].valve_stopper);
+GVL.arrValve_Rem[91](in_out:= GVL.rem[7].lift[1].valve_clamp);
+GVL.arrValve_Rem[92](in_out:= GVL.rem[7].lift[1].valve_perturbation[0]);
+GVL.arrValve_Rem[93](in_out:= GVL.rem[7].lift[1].valve_perturbation[1]);
+GVL.arrValve_Rem[94](in_out:= GVL.rem[7].lift[1].valve_perturbation[2]);
+GVL.arrValve_Rem[95](in_out:= GVL.rem[7].lift[1].valve_perturbation[3]);
+GVL.arrValve_Rem[96](in_out:= GVL.rem[8].infeed[0].valve_stopper);
+GVL.arrValve_Rem[97](in_out:= GVL.rem[8].lift[0].valve_clamp);
+GVL.arrValve_Rem[98](in_out:= GVL.rem[8].lift[0].valve_perturbation[0]);
+GVL.arrValve_Rem[99](in_out:= GVL.rem[8].lift[0].valve_perturbation[1]);
+GVL.arrValve_Rem[100](in_out:= GVL.rem[8].lift[0].valve_perturbation[2]);
+GVL.arrValve_Rem[101](in_out:= GVL.rem[8].lift[0].valve_perturbation[3]);
+GVL.arrValve_Rem[102](in_out:= GVL.rem[8].infeed[1].valve_stopper);
+GVL.arrValve_Rem[103](in_out:= GVL.rem[8].lift[1].valve_clamp);
+GVL.arrValve_Rem[104](in_out:= GVL.rem[8].lift[1].valve_perturbation[0]);
+GVL.arrValve_Rem[105](in_out:= GVL.rem[8].lift[1].valve_perturbation[1]);
+GVL.arrValve_Rem[106](in_out:= GVL.rem[8].lift[1].valve_perturbation[2]);
+GVL.arrValve_Rem[107](in_out:= GVL.rem[8].lift[1].valve_perturbation[3]);
+GVL.arrValve_Rem[108](in_out:= GVL.rem[9].infeed[0].valve_stopper);
+GVL.arrValve_Rem[109](in_out:= GVL.rem[9].lift[0].valve_clamp);
+GVL.arrValve_Rem[110](in_out:= GVL.rem[9].lift[0].valve_perturbation[0]);
+GVL.arrValve_Rem[111](in_out:= GVL.rem[9].lift[0].valve_perturbation[1]);
+GVL.arrValve_Rem[112](in_out:= GVL.rem[9].lift[0].valve_perturbation[2]);
+GVL.arrValve_Rem[113](in_out:= GVL.rem[9].lift[0].valve_perturbation[3]);
+GVL.arrValve_Rem[114](in_out:= GVL.rem[9].infeed[1].valve_stopper);
+GVL.arrValve_Rem[115](in_out:= GVL.rem[9].lift[1].valve_clamp);
+GVL.arrValve_Rem[116](in_out:= GVL.rem[9].lift[1].valve_perturbation[0]);
+GVL.arrValve_Rem[117](in_out:= GVL.rem[9].lift[1].valve_perturbation[1]);
+GVL.arrValve_Rem[118](in_out:= GVL.rem[9].lift[1].valve_perturbation[2]);
+GVL.arrValve_Rem[119](in_out:= GVL.rem[9].lift[1].valve_perturbation[3]);
 
-GVL.fb_bagOpener(ams_net_id:=GVL.netId_bagmachie[0]);
-GVL.fb_bagCloser(ams_net_id:=GVL.netId_bagmachie[1]);
-GVL.fb_bagCompactor(ams_net_id:=GVL.netId_bagmachie[2]);
-IF test_bool THEN
-ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG,msgFmtStr:='msg:log',strArg:='MSG ARG');
-test_bool	:= FALSE;
-END_IF
+
+
+
 ]]></ST>
-    </Implementation>
+      </Implementation>
+    </Action>
     <Method Name="M_ads_bagmachines" Id="{e17f7489-04b4-4071-b5e7-5d660350d153}">
       <Declaration><![CDATA[METHOD M_ads_bagmachines : BOOL
 VAR_INPUT
@@ -531,165 +748,6 @@ GVL.fb_frIOmappiing[0](iFR:= 0,mcAxis:=GVL.fr[0].mcAxis,IN_OUT:=GVL.fr[0].st_mcA
 GVL.fb_frIOmappiing[1](iFR:= 1,mcAxis:=GVL.fr[1].mcAxis,IN_OUT:=GVL.fr[1].st_mcAxis,nSlaveAddr:=1042,sNetID:='192.168.11.159.5.1');
 GVL.fbAxisCtrl_FR[0](stAxisCtrl:=GVL.stAxisCtrl_FR[0],IN_OUT:=GVL.fr[0].st_mcAxis);
 GVL.fbAxisCtrl_FR[1](stAxisCtrl:=GVL.stAxisCtrl_FR[1],IN_OUT:=GVL.fr[1].st_mcAxis);
-(*GVL.arrSenDetect[1] := G_IO.arDI[4].Ch[0];
-GVL.arrSenDetect[2] := G_IO.arDI[4].Ch[1];
-GVL.arrSenDetect[3] := G_IO.arDI[4].Ch[2];
-GVL.arrSenDetect[4] := G_IO.arDI[4].Ch[3];
-GVL.arrSenDetect[5] := G_IO.arDI[4].Ch[4];*)
-
-(*GVL.rem[0].infeed[0].roller.err						:= G_IO.arDI[0].Ch[0];
-GVL.rem[0].infeed[0].valve_stopper.extended  		:= G_IO.arDI[0].Ch[1];
-GVL.rem[0].infeed[0].valve_stopper.retracted  		:= G_IO.arDI[0].Ch[2];
-GVL.rem[0].infeed[0].photo_sensor[0].set_status(G_IO.arDI[0].Ch[3],10,50);
-GVL.rem[0].infeed[0].photo_sensor[1].set_status(G_IO.arDI[0].Ch[4],10,50);
-GVL.rem[0].outfeed[0].roller.err					:= G_IO.arDI[0].Ch[5];
-GVL.rem[0].outfeed[0].photo_sensor[0].set_status(G_IO.arDI[0].Ch[6],10,50);
-GVL.rem[0].outfeed[0].photo_sensor[1].set_status(G_IO.arDI[0].Ch[7],10,50);
-GVL.rem[0].lift[0].roller.err						:= G_IO.arDI[0].Ch[8];
-GVL.rem[0].lift[0].contactor_axis						:= G_IO.arDI[0].Ch[9];
-//GVL.rem[0].lift[0].limit_sensor[0]	:= TRUE;
-//GVL.rem[0].lift[0].limit_sensor[1]	:= TRUE;
-//GVL.rem[0].lift[0].limit_sensor[2]	:= TRUE;
-GVL.rem[0].lift[0].limit_sensor[0]	:= G_IO.arDI[0].Ch[10];
-GVL.rem[0].lift[0].limit_sensor[1]	:= G_IO.arDI[0].Ch[11];
-GVL.rem[0].lift[0].limit_sensor[2]	:= G_IO.arDI[0].Ch[12];
-GVL.rem[0].lift[0].valve_perturbation[0].extended  	:= G_IO.arDI[0].Ch[13];
-GVL.rem[0].lift[0].valve_perturbation[0].retracted 	:= G_IO.arDI[0].Ch[14];
-GVL.rem[0].lift[0].valve_perturbation[1].extended  	:= G_IO.arDI[0].Ch[15];
-GVL.rem[0].lift[0].valve_perturbation[1].retracted 	:= G_IO.arDI[1].Ch[0];
-GVL.rem[0].lift[0].valve_perturbation[2].extended  	:= G_IO.arDI[1].Ch[1];
-GVL.rem[0].lift[0].valve_perturbation[2].retracted 	:= G_IO.arDI[1].Ch[2];
-GVL.rem[0].lift[0].valve_perturbation[3].extended  	:= G_IO.arDI[1].Ch[3];
-GVL.rem[0].lift[0].valve_perturbation[3].retracted	:= G_IO.arDI[1].Ch[4];
-GVL.rem[0].lift[0].valve_clamp.extended  := G_IO.arDI[1].Ch[5];
-GVL.rem[0].lift[0].valve_clamp.retracted  := G_IO.arDI[1].Ch[6];
-GVL.rem[0].lift[0].photo_sensor[0].set_status(G_IO.arDI[1].Ch[7],10,50);
-GVL.rem[0].lift[0].photo_sensor[1].set_status(G_IO.arDI[1].Ch[8],10,50);
-
-G_IO.arDO[0].Ch[0]	:= GVL.rem[0].infeed[0].roller.Power;
-G_IO.arDO[0].Ch[1]	:= GVL.rem[0].infeed[0].roller.forward;
-G_IO.arDO[0].Ch[2]	:= GVL.rem[0].infeed[0].roller.backward;
-G_IO.arDO[0].Ch[3]	:= GVL.rem[0].outfeed[0].roller.Power;
-G_IO.arDO[0].Ch[4]	:= GVL.rem[0].outfeed[0].roller.forward;
-G_IO.arDO[0].Ch[5]	:= GVL.rem[0].outfeed[0].roller.backward;
-G_IO.arDO[0].Ch[6]	:= GVL.rem[0].lift[0].roller.Power;
-G_IO.arDO[0].Ch[7]	:= GVL.rem[0].lift[0].roller.forward;
-G_IO.arDO[0].Ch[8]	:= GVL.rem[0].lift[0].roller.backward;
-G_IO.arDO[0].Ch[9]	:= GVL.rem[0].lift[0].power_axis;
-G_IO.arDO[2].Ch[0]	:= GVL.rem[0].infeed[0].valve_stopper.extend;
-G_IO.arDO[2].Ch[1]	:= GVL.rem[0].infeed[0].valve_stopper.retract;
-G_IO.arDO[2].Ch[2]	:= GVL.rem[0].lift[0].valve_perturbation[0].extend;
-G_IO.arDO[2].Ch[4]	:= GVL.rem[0].lift[0].valve_perturbation[1].extend;
-G_IO.arDO[2].Ch[6]	:= GVL.rem[0].lift[0].valve_perturbation[2].extend;
-G_IO.arDO[2].Ch[8]	:= GVL.rem[0].lift[0].valve_perturbation[3].extend;
-G_IO.arDO[2].Ch[10]	:= GVL.rem[0].lift[0].valve_clamp.extend;
-G_IO.arDO[2].Ch[11]	:= GVL.rem[0].lift[0].valve_clamp.retract;
-
-
-
-GVL.rem[0].infeed[1].roller.err	:= G_IO.arDI[2].Ch[0];
-GVL.rem[0].infeed[1].valve_stopper.extended  := G_IO.arDI[2].Ch[1];
-GVL.rem[0].infeed[1].valve_stopper.retracted  := G_IO.arDI[2].Ch[2];
-GVL.rem[0].infeed[1].photo_sensor[0].set_status(G_IO.arDI[2].Ch[3],10,50);
-GVL.rem[0].infeed[1].photo_sensor[1].set_status(G_IO.arDI[2].Ch[4],10,50);
-GVL.rem[0].outfeed[1].roller.err	:= G_IO.arDI[2].Ch[5];
-GVL.rem[0].outfeed[1].photo_sensor[0].set_status(G_IO.arDI[2].Ch[6],10,50);
-GVL.rem[0].outfeed[1].photo_sensor[1].set_status(G_IO.arDI[2].Ch[7],10,50);
-GVL.rem[0].lift[1].roller.err	:= G_IO.arDI[2].Ch[8];
-GVL.rem[0].lift[1].contactor_axis	:= G_IO.arDI[2].Ch[9];
-//GVL.rem[0].lift[1].limit_sensor[0]	:= TRUE;
-//GVL.rem[0].lift[1].limit_sensor[1]	:= TRUE;
-//GVL.rem[0].lift[1].limit_sensor[2]	:= TRUE;
-GVL.rem[0].lift[1].limit_sensor[0]	:= G_IO.arDI[2].Ch[10];
-GVL.rem[0].lift[1].limit_sensor[1]	:= G_IO.arDI[2].Ch[11];
-GVL.rem[0].lift[1].limit_sensor[2]	:= G_IO.arDI[2].Ch[12];
-GVL.rem[0].lift[1].valve_perturbation[0].extended  := G_IO.arDI[2].Ch[13];
-GVL.rem[0].lift[1].valve_perturbation[0].retracted  := G_IO.arDI[2].Ch[14];
-GVL.rem[0].lift[1].valve_perturbation[1].extended  := G_IO.arDI[2].Ch[15];
-GVL.rem[0].lift[1].valve_perturbation[1].retracted  := G_IO.arDI[3].Ch[0];
-GVL.rem[0].lift[1].valve_perturbation[2].extended  := G_IO.arDI[3].Ch[1];
-GVL.rem[0].lift[1].valve_perturbation[2].retracted  := G_IO.arDI[3].Ch[2];
-GVL.rem[0].lift[1].valve_perturbation[3].extended  := G_IO.arDI[3].Ch[3];
-GVL.rem[0].lift[1].valve_perturbation[3].retracted  := G_IO.arDI[3].Ch[4];
-GVL.rem[0].lift[1].valve_clamp.extended  := G_IO.arDI[3].Ch[5];
-GVL.rem[0].lift[1].valve_clamp.retracted  := G_IO.arDI[3].Ch[6];
-GVL.rem[0].lift[1].photo_sensor[0].set_status(G_IO.arDI[3].Ch[7],10,50);
-GVL.rem[0].lift[1].photo_sensor[1].set_status(G_IO.arDI[3].Ch[8],10,50);
-
-G_IO.arDO[1].Ch[0]	:= GVL.rem[0].infeed[1].roller.Power;
-G_IO.arDO[1].Ch[1]	:= GVL.rem[0].infeed[1].roller.forward;
-G_IO.arDO[1].Ch[2]	:= GVL.rem[0].infeed[1].roller.backward;
-G_IO.arDO[1].Ch[3]	:= GVL.rem[0].outfeed[1].roller.Power;
-G_IO.arDO[1].Ch[4]	:= GVL.rem[0].outfeed[1].roller.forward;
-G_IO.arDO[1].Ch[5]	:= GVL.rem[0].outfeed[1].roller.backward;
-G_IO.arDO[1].Ch[6]	:= GVL.rem[0].lift[1].roller.Power;
-G_IO.arDO[1].Ch[7]	:= GVL.rem[0].lift[1].roller.forward;
-G_IO.arDO[1].Ch[8]	:= GVL.rem[0].lift[1].roller.backward;
-G_IO.arDO[1].Ch[9]	:= GVL.rem[0].lift[1].power_axis;
-G_IO.arDO[2].Ch[12]	:= GVL.rem[0].infeed[1].valve_stopper.extend;
-G_IO.arDO[2].Ch[13]	:= GVL.rem[0].infeed[1].valve_stopper.retract;
-G_IO.arDO[2].Ch[14]	:= GVL.rem[0].lift[1].valve_perturbation[0].extend;
-G_IO.arDO[3].Ch[0]	:= GVL.rem[0].lift[1].valve_perturbation[1].extend;
-G_IO.arDO[3].Ch[2]	:= GVL.rem[0].lift[1].valve_perturbation[2].extend;
-G_IO.arDO[3].Ch[4]	:= GVL.rem[0].lift[1].valve_perturbation[3].extend;
-G_IO.arDO[3].Ch[6]	:= GVL.rem[0].lift[1].valve_clamp.extend;
-G_IO.arDO[3].Ch[7]	:= GVL.rem[0].lift[1].valve_clamp.retract;*)
-
-
-//////////////////////////////PM[0]///////////////////////////////////
-(*GVL.pm[0].buffer[0].contractor_axis				:= G_IO.arDI[50].Ch[0];
-GVL.pm[0].buffer[0].axis_sensor					:= G_IO.arDI[50].Ch[1];
-GVL.pm[0].buffer[0].surfae_slot_0				:= G_IO.arDI[50].Ch[2];
-GVL.pm[0].buffer[0].surfae_slot_1				:= G_IO.arDI[50].Ch[3];
-GVL.pm[0].buffer[0].surfae_slot_2				:= G_IO.arDI[50].Ch[4];
-GVL.pm[0].buffer[0].above_fixture_light_curtain	:= G_IO.arDI[50].Ch[5];
-GVL.pm[0].buffer[0].button						:= G_IO.arDI[50].Ch[6];
-GVL.pm[0].buffer[0].locked						:= G_IO.arDI[50].Ch[7];
-GVL.pm[0].buffer[0].magnet_locked				:= G_IO.arDI[50].Ch[8];
-GVL.pm[0].buffer[1].contractor_axis				:= G_IO.arDI[50].Ch[9];
-GVL.pm[0].buffer[1].axis_sensor					:= G_IO.arDI[50].Ch[10];
-GVL.pm[0].buffer[1].surfae_slot_0				:= G_IO.arDI[50].Ch[11];
-GVL.pm[0].buffer[1].surfae_slot_1				:= G_IO.arDI[50].Ch[12];
-GVL.pm[0].buffer[1].surfae_slot_2				:= G_IO.arDI[50].Ch[13];
-GVL.pm[0].buffer[1].above_fixture_light_curtain	:= G_IO.arDI[50].Ch[14];
-GVL.pm[0].buffer[1].button						:= G_IO.arDI[50].Ch[15];
-GVL.pm[0].buffer[1].locked						:= G_IO.arDI[51].Ch[0];
-GVL.pm[0].buffer[1].magnet_locked				:= G_IO.arDI[51].Ch[1];
-GVL.pm[0].contactor_robot						:= G_IO.arDI[51].Ch[2];
-GVL.pm[0].inConv.valve[0].extended				:= G_IO.arDI[51].Ch[3];
-GVL.pm[0].inConv.valve[0].retracted				:= G_IO.arDI[51].Ch[4];
-GVL.pm[0].inConv.valve[1].extended				:= G_IO.arDI[51].Ch[5];
-GVL.pm[0].inConv.valve[1].retracted				:= G_IO.arDI[51].Ch[6];
-GVL.pm[0].inConv.valve[2].extended				:= G_IO.arDI[51].Ch[7];
-GVL.pm[0].inConv.valve[2].retracted				:= G_IO.arDI[51].Ch[8];
-GVL.pm[0].outConv.photo_sensor[0]				:= G_IO.arDI[51].Ch[9];
-GVL.pm[0].outConv.photo_sensor[1]				:= G_IO.arDI[51].Ch[10];
-GVL.pm[0].outConv.valve[0].extended				:= G_IO.arDI[51].Ch[11];
-GVL.pm[0].outConv.valve[0].retracted			:= G_IO.arDI[51].Ch[12];
-GVL.pm[0].outConv.valve[1].extended				:= G_IO.arDI[51].Ch[13];
-GVL.pm[0].outConv.valve[1].retracted			:= G_IO.arDI[51].Ch[14];
-
-
-GVL.pm[0].contactor_inConv						:= G_IO.arDI[54].Ch[0];//share with pm[1]
-GVL.pm[0].contactor_inConv						:= G_IO.arDI[54].Ch[1];//share with pm[1]
-
-G_IO.arDO[50].Ch[0]	:= GVL.pm[0].buffer[0].power_axis;
-G_IO.arDO[50].Ch[1]	:= GVL.pm[0].buffer[0].magnet;
-G_IO.arDO[50].Ch[2]	:= GVL.pm[0].buffer[1].power_axis;
-G_IO.arDO[50].Ch[3]	:= GVL.pm[0].buffer[1].magnet;
-G_IO.arDO[50].Ch[4]	:= GVL.pm[0].power_robot;
-G_IO.arDO[50].Ch[12]	:= GVL.pm[0].buffer[0].lamp_button;
-G_IO.arDO[50].Ch[13]	:= GVL.pm[0].buffer[1].lamp_button;
-
-G_IO.arDO[52].Ch[0]	:= GVL.pm[0].inConv.valve[0].extend;
-G_IO.arDO[52].Ch[2]	:= GVL.pm[0].inConv.valve[1].extend;
-G_IO.arDO[52].Ch[4]	:= GVL.pm[0].inConv.valve[2].extend;
-G_IO.arDO[52].Ch[6]	:= GVL.pm[0].outConv.valve[0].extend;
-G_IO.arDO[52].Ch[8]	:= GVL.pm[0].outConv.valve[1].extend;
-
-G_IO.arDO[50].Ch[10]	:= GVL.pm[0].power_inConv;//share with pm[1]
-G_IO.arDO[50].Ch[11]	:= GVL.pm[0].power_outConv;//share with pm[1]
-*)
 ]]></ST>
       </Implementation>
     </Method>
@@ -1049,60 +1107,15 @@ GVL.safetyOut[0].0	:= G_IO.arDI[95].Ch[2];//btn_rst
       <LineId Id="712" Count="0" />
       <LineId Id="801" Count="0" />
       <LineId Id="1309" Count="0" />
-      <LineId Id="799" Count="0" />
-      <LineId Id="824" Count="0" />
-      <LineId Id="823" Count="0" />
-      <LineId Id="821" Count="1" />
-      <LineId Id="828" Count="1" />
-      <LineId Id="838" Count="0" />
-      <LineId Id="832" Count="3" />
-      <LineId Id="837" Count="0" />
-      <LineId Id="836" Count="0" />
-      <LineId Id="831" Count="0" />
-      <LineId Id="830" Count="0" />
-      <LineId Id="899" Count="0" />
-      <LineId Id="860" Count="1" />
-      <LineId Id="868" Count="0" />
-      <LineId Id="864" Count="0" />
-      <LineId Id="870" Count="0" />
-      <LineId Id="869" Count="0" />
-      <LineId Id="872" Count="0" />
-      <LineId Id="871" Count="0" />
-      <LineId Id="874" Count="0" />
-      <LineId Id="873" Count="0" />
-      <LineId Id="876" Count="0" />
-      <LineId Id="875" Count="0" />
-      <LineId Id="878" Count="0" />
-      <LineId Id="877" Count="0" />
-      <LineId Id="880" Count="0" />
-      <LineId Id="879" Count="0" />
-      <LineId Id="882" Count="0" />
-      <LineId Id="881" Count="0" />
-      <LineId Id="884" Count="0" />
-      <LineId Id="883" Count="0" />
-      <LineId Id="893" Count="0" />
-      <LineId Id="885" Count="0" />
-      <LineId Id="894" Count="0" />
-      <LineId Id="891" Count="0" />
-      <LineId Id="896" Count="0" />
-      <LineId Id="895" Count="0" />
-      <LineId Id="898" Count="0" />
-      <LineId Id="897" Count="0" />
-      <LineId Id="1057" Count="57" />
-      <LineId Id="974" Count="0" />
-      <LineId Id="957" Count="0" />
-      <LineId Id="1201" Count="0" />
-      <LineId Id="983" Count="0" />
-      <LineId Id="1139" Count="16" />
-      <LineId Id="1197" Count="0" />
-      <LineId Id="1157" Count="11" />
-      <LineId Id="1200" Count="0" />
-      <LineId Id="1170" Count="26" />
+      <LineId Id="1567" Count="0" />
       <LineId Id="985" Count="1" />
       <LineId Id="976" Count="0" />
       <LineId Id="958" Count="1" />
       <LineId Id="1055" Count="1" />
-      <LineId Id="961" Count="1" />
+      <LineId Id="961" Count="0" />
+      <LineId Id="1585" Count="2" />
+      <LineId Id="1584" Count="0" />
+      <LineId Id="962" Count="0" />
       <LineId Id="1045" Count="2" />
       <LineId Id="1050" Count="2" />
       <LineId Id="1048" Count="0" />
@@ -1143,6 +1156,10 @@ GVL.safetyOut[0].0	:= G_IO.arDI[95].Ch[2];//btn_rst
       <LineId Id="1476" Count="0" />
       <LineId Id="1434" Count="2" />
       <LineId Id="1433" Count="0" />
+      <LineId Id="1580" Count="1" />
+      <LineId Id="1579" Count="0" />
+      <LineId Id="1628" Count="1" />
+      <LineId Id="1627" Count="0" />
       <LineId Id="1271" Count="0" />
       <LineId Id="1339" Count="0" />
       <LineId Id="1409" Count="2" />
@@ -1159,6 +1176,11 @@ GVL.safetyOut[0].0	:= G_IO.arDI[95].Ch[2];//btn_rst
       <LineId Id="1531" Count="0" />
       <LineId Id="1491" Count="1" />
       <LineId Id="1412" Count="0" />
+      <LineId Id="1569" Count="4" />
+      <LineId Id="1630" Count="0" />
+      <LineId Id="1632" Count="2" />
+      <LineId Id="1631" Count="0" />
+      <LineId Id="1578" Count="0" />
       <LineId Id="928" Count="0" />
       <LineId Id="1307" Count="1" />
       <LineId Id="1346" Count="1" />
@@ -1166,7 +1188,93 @@ GVL.safetyOut[0].0	:= G_IO.arDI[95].Ch[2];//btn_rst
       <LineId Id="1336" Count="0" />
       <LineId Id="1427" Count="0" />
       <LineId Id="1426" Count="0" />
+      <LineId Id="1568" Count="0" />
+      <LineId Id="1588" Count="0" />
       <LineId Id="900" Count="0" />
+    </LineIds>
+    <LineIds Name="MAIN.agingTestConfig">
+      <LineId Id="121" Count="26" />
+      <LineId Id="120" Count="0" />
+      <LineId Id="2" Count="117" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="149" Count="0" />
+      <LineId Id="152" Count="0" />
+      <LineId Id="148" Count="0" />
+      <LineId Id="153" Count="1" />
+      <LineId Id="162" Count="1" />
+      <LineId Id="156" Count="0" />
+      <LineId Id="165" Count="1" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="168" Count="1" />
+      <LineId Id="167" Count="0" />
+      <LineId Id="171" Count="1" />
+      <LineId Id="170" Count="0" />
+      <LineId Id="174" Count="1" />
+      <LineId Id="173" Count="0" />
+      <LineId Id="177" Count="1" />
+      <LineId Id="176" Count="0" />
+      <LineId Id="180" Count="1" />
+      <LineId Id="179" Count="0" />
+      <LineId Id="183" Count="1" />
+      <LineId Id="182" Count="0" />
+      <LineId Id="186" Count="1" />
+      <LineId Id="185" Count="0" />
+      <LineId Id="198" Count="2" />
+      <LineId Id="197" Count="0" />
+      <LineId Id="202" Count="0" />
+      <LineId Id="201" Count="0" />
+      <LineId Id="204" Count="0" />
+      <LineId Id="203" Count="0" />
+      <LineId Id="206" Count="0" />
+      <LineId Id="205" Count="0" />
+      <LineId Id="208" Count="0" />
+      <LineId Id="207" Count="0" />
+      <LineId Id="210" Count="0" />
+      <LineId Id="209" Count="0" />
+      <LineId Id="212" Count="0" />
+      <LineId Id="211" Count="0" />
+      <LineId Id="214" Count="0" />
+      <LineId Id="213" Count="0" />
+      <LineId Id="216" Count="0" />
+      <LineId Id="215" Count="0" />
+      <LineId Id="221" Count="0" />
+      <LineId Id="220" Count="0" />
+      <LineId Id="223" Count="8" />
+      <LineId Id="236" Count="0" />
+      <LineId Id="235" Count="0" />
+      <LineId Id="243" Count="0" />
+      <LineId Id="242" Count="0" />
+      <LineId Id="234" Count="0" />
+      <LineId Id="244" Count="8" />
+      <LineId Id="233" Count="0" />
+      <LineId Id="254" Count="0" />
+      <LineId Id="253" Count="0" />
+      <LineId Id="267" Count="0" />
+      <LineId Id="266" Count="0" />
+      <LineId Id="232" Count="0" />
+      <LineId Id="261" Count="4" />
+      <LineId Id="268" Count="4" />
+      <LineId Id="260" Count="0" />
+      <LineId Id="273" Count="10" />
+      <LineId Id="218" Count="0" />
+      <LineId Id="284" Count="10" />
+      <LineId Id="217" Count="0" />
+      <LineId Id="295" Count="10" />
+      <LineId Id="194" Count="0" />
+      <LineId Id="307" Count="10" />
+      <LineId Id="306" Count="0" />
+      <LineId Id="318" Count="10" />
+      <LineId Id="157" Count="0" />
+      <LineId Id="330" Count="10" />
+      <LineId Id="329" Count="0" />
+      <LineId Id="342" Count="10" />
+      <LineId Id="341" Count="0" />
+      <LineId Id="354" Count="10" />
+      <LineId Id="353" Count="0" />
+      <LineId Id="366" Count="10" />
+      <LineId Id="365" Count="0" />
+      <LineId Id="158" Count="3" />
+      <LineId Id="155" Count="0" />
     </LineIds>
     <LineIds Name="MAIN.M_ads_bagmachines">
       <LineId Id="37" Count="0" />
@@ -1283,88 +1391,6 @@ GVL.safetyOut[0].0	:= G_IO.arDI[95].Ch[2];//btn_rst
       <LineId Id="365" Count="1" />
       <LineId Id="363" Count="0" />
       <LineId Id="372" Count="0" />
-      <LineId Id="5" Count="4" />
-      <LineId Id="61" Count="0" />
-      <LineId Id="50" Count="0" />
-      <LineId Id="17" Count="0" />
-      <LineId Id="51" Count="0" />
-      <LineId Id="18" Count="1" />
-      <LineId Id="47" Count="0" />
-      <LineId Id="64" Count="0" />
-      <LineId Id="63" Count="0" />
-      <LineId Id="65" Count="0" />
-      <LineId Id="74" Count="0" />
-      <LineId Id="99" Count="1" />
-      <LineId Id="98" Count="0" />
-      <LineId Id="62" Count="0" />
-      <LineId Id="78" Count="1" />
-      <LineId Id="89" Count="0" />
-      <LineId Id="87" Count="0" />
-      <LineId Id="90" Count="0" />
-      <LineId Id="88" Count="0" />
-      <LineId Id="92" Count="0" />
-      <LineId Id="91" Count="0" />
-      <LineId Id="94" Count="0" />
-      <LineId Id="93" Count="0" />
-      <LineId Id="95" Count="0" />
-      <LineId Id="86" Count="0" />
-      <LineId Id="97" Count="0" />
-      <LineId Id="96" Count="0" />
-      <LineId Id="77" Count="0" />
-      <LineId Id="48" Count="1" />
-      <LineId Id="37" Count="0" />
-      <LineId Id="67" Count="1" />
-      <LineId Id="66" Count="0" />
-      <LineId Id="72" Count="1" />
-      <LineId Id="70" Count="1" />
-      <LineId Id="82" Count="0" />
-      <LineId Id="55" Count="0" />
-      <LineId Id="83" Count="0" />
-      <LineId Id="57" Count="0" />
-      <LineId Id="84" Count="0" />
-      <LineId Id="58" Count="0" />
-      <LineId Id="54" Count="0" />
-      <LineId Id="85" Count="0" />
-      <LineId Id="102" Count="0" />
-      <LineId Id="150" Count="0" />
-      <LineId Id="103" Count="46" />
-      <LineId Id="101" Count="0" />
-      <LineId Id="155" Count="2" />
-      <LineId Id="154" Count="0" />
-      <LineId Id="158" Count="3" />
-      <LineId Id="167" Count="0" />
-      <LineId Id="162" Count="0" />
-      <LineId Id="164" Count="1" />
-      <LineId Id="168" Count="7" />
-      <LineId Id="166" Count="0" />
-      <LineId Id="163" Count="0" />
-      <LineId Id="177" Count="2" />
-      <LineId Id="176" Count="0" />
-      <LineId Id="180" Count="0" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="185" Count="0" />
-      <LineId Id="182" Count="0" />
-      <LineId Id="186" Count="0" />
-      <LineId Id="183" Count="0" />
-      <LineId Id="187" Count="0" />
-      <LineId Id="184" Count="0" />
-      <LineId Id="241" Count="0" />
-      <LineId Id="207" Count="1" />
-      <LineId Id="206" Count="0" />
-      <LineId Id="189" Count="1" />
-      <LineId Id="193" Count="1" />
-      <LineId Id="239" Count="0" />
-      <LineId Id="238" Count="0" />
-      <LineId Id="237" Count="0" />
-      <LineId Id="195" Count="0" />
-      <LineId Id="240" Count="0" />
-      <LineId Id="188" Count="0" />
-      <LineId Id="198" Count="2" />
-      <LineId Id="202" Count="0" />
-      <LineId Id="205" Count="0" />
-      <LineId Id="204" Count="0" />
-      <LineId Id="201" Count="0" />
-      <LineId Id="197" Count="0" />
       <LineId Id="181" Count="0" />
     </LineIds>
     <LineIds Name="MAIN.M_measuringLC">

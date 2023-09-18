@@ -1424,6 +1424,30 @@ External Setpoint Generation:
 			</Relations>
 		</DataType>
 		<DataType>
+			<Name GUID="{96E58E73-E3F3-3227-1848-F7F6AB281E2C}" AutoDeleteType="true">ST_IO_16</Name>
+			<BitSize>128</BitSize>
+			<SubItem>
+				<Name>Ch</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<ArrayInfo>
+					<LBound>0</LBound>
+					<Elements>16</Elements>
+				</ArrayInfo>
+				<BitSize>128</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{EAAAC0F1-5FBA-7D10-E37C-E7C59CC4664E}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..100] OF ST_IO_16</Name>
+			<Comment><![CDATA[  links to Digital input  Modules ]]></Comment>
+			<BitSize>12928</BitSize>
+			<BaseType GUID="{96E58E73-E3F3-3227-1848-F7F6AB281E2C}">ST_IO_16</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>101</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
 			<Name GUID="{F0FA53F5-E220-F475-FF85-78B194435716}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..32] OF BYTE</Name>
 			<BitSize>256</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
@@ -1457,30 +1481,6 @@ External Setpoint Generation:
 			<ArrayInfo>
 				<LBound>0</LBound>
 				<Elements>2</Elements>
-			</ArrayInfo>
-		</DataType>
-		<DataType>
-			<Name GUID="{96E58E73-E3F3-3227-1848-F7F6AB281E2C}" AutoDeleteType="true">ST_IO_16</Name>
-			<BitSize>128</BitSize>
-			<SubItem>
-				<Name>Ch</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
-				<ArrayInfo>
-					<LBound>0</LBound>
-					<Elements>16</Elements>
-				</ArrayInfo>
-				<BitSize>128</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-		</DataType>
-		<DataType>
-			<Name GUID="{EAAAC0F1-5FBA-7D10-E37C-E7C59CC4664E}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..100] OF ST_IO_16</Name>
-			<Comment><![CDATA[  links to Digital input  Modules ]]></Comment>
-			<BitSize>12928</BitSize>
-			<BaseType GUID="{96E58E73-E3F3-3227-1848-F7F6AB281E2C}">ST_IO_16</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>101</Elements>
 			</ArrayInfo>
 		</DataType>
 		<DataType>
@@ -7911,11 +7911,16 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{2354DE8C-DE54-4E07-94D7-E848733F7762}" Name="kittingDeca" PrjFilePath="kittingDeca\kittingDeca.plcproj" TmcFilePath="kittingDeca\kittingDeca.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="kittingDeca\kittingDeca.tmc" TmcHash="{89C51005-78F1-0F9F-9EEC-37A0CF19F858}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="kittingDeca\kittingDeca.tmc" TmcHash="{03464E43-A5D7-2B7C-EC83-2749011A42CC}">
 					<Name>kittingDeca Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
 						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>G_IO.arDI</Name>
+							<Comment><![CDATA[  links to Digital input  Modules ]]></Comment>
+							<Type GUID="{EAAAC0F1-5FBA-7D10-E37C-E7C59CC4664E}">ARRAY [0..100] OF ST_IO_16</Type>
+						</Var>
 						<Var>
 							<Name>GVL.rem[0].lift[0].AxisRef.NcToPlc</Name>
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
@@ -8900,14 +8905,14 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 							<Name>GVL.fr_actTorque</Name>
 							<Type GUID="{8CCAA286-9D70-17C1-0436-475DB947D92E}">ARRAY [0..1] OF LREAL</Type>
 						</Var>
-						<Var>
-							<Name>G_IO.arDI</Name>
-							<Comment><![CDATA[  links to Digital input  Modules ]]></Comment>
-							<Type GUID="{EAAAC0F1-5FBA-7D10-E37C-E7C59CC4664E}">ARRAY [0..100] OF ST_IO_16</Type>
-						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>PlcTask Outputs</Name>
+						<Var>
+							<Name>G_IO.arDO</Name>
+							<Comment><![CDATA[  links to Digital output Modules]]></Comment>
+							<Type GUID="{EAAAC0F1-5FBA-7D10-E37C-E7C59CC4664E}">ARRAY [0..100] OF ST_IO_16</Type>
+						</Var>
 						<Var>
 							<Name>GVL.rem[0].lift[0].AxisRef.PlcToNc</Name>
 							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
@@ -9667,11 +9672,6 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 						<Var>
 							<Name>GVL.safetyOut</Name>
 							<Type GUID="{B97C0B48-8EFC-239C-9934-B1B7427F5260}">ARRAY [0..49] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>G_IO.arDO</Name>
-							<Comment><![CDATA[  links to Digital output Modules]]></Comment>
-							<Type GUID="{EAAAC0F1-5FBA-7D10-E37C-E7C59CC4664E}">ARRAY [0..100] OF ST_IO_16</Type>
 						</Var>
 					</Vars>
 					<UnrestoredVarLinks ImportTime="2023-09-13T21:09:38">
@@ -49873,7 +49873,7 @@ Bit5~Bit7：保留；Bit8~Bit15：故障主码]]></Comment>
 			</Device>
 		</Io>
 		<SymbolWatch>
-			<Variable>TINC^NC-Task 1 SAF^Axes^rem9_Lift1^Outputs^ToPlc^ActTorque</Variable>
+			<Variable>TINC^NC-Task 1 SAF^Axes^fr0^Outputs^ToPlc^ActTorque</Variable>
 		</SymbolWatch>
 	</Project>
 	<Mappings>

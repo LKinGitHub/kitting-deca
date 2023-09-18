@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_heightDetection" Id="{cdca2be2-737e-479f-9e25-3a908cbdac26}">
+    <Declaration><![CDATA[TYPE ST_heightDetection :
+STRUCT
+		
+	sNetID : STRING;
+	nSlaveAddr	: UINT;
+	nSubIndex	: BYTE;
+	nIndex	: WORD;
+	iSdoWrite	: DWORD; 
+	iSdoRead	: DWORD; 
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
